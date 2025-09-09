@@ -14,8 +14,8 @@ import Image from "next/image";
 
 export function Header() {
   return (
-    <header className="">
-      <div className="flex justify-between items-center h-16 bg-[#191919] px-10">
+    <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
+      <div className="flex justify-between items-center h-16 bg-[#191919] px-10 ">
         <div>
           <Link href="/" className="flex items-center space-x-2">
             <Image src="/logo.svg" alt="Logo" width={200} height={30} />
