@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
 import { Textarea } from "@/components/ui/textarea";
 import { Star } from "lucide-react";
 import { useState } from "react";
@@ -16,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { businessCategories, reviewerTypes } from "@/demoData/reviewPage";
 
 export default function ReviewerRatingForm() {
   const [rating, setRating] = useState(0);
@@ -130,9 +130,11 @@ export default function ReviewerRatingForm() {
               <SelectValue placeholder="Select Reviewer Type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="drama">The Drama Queen</SelectItem>
-              <SelectItem value="nitpicker">The Nitpicker</SelectItem>
-              <SelectItem value="ghost">The Ghost Reviewer</SelectItem>
+              {reviewerTypes.map((item, index) => (
+                <SelectItem key={index} value={item.label}>
+                  {item.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -166,9 +168,11 @@ export default function ReviewerRatingForm() {
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="food">Food & Drink</SelectItem>
-              <SelectItem value="retail">Retail</SelectItem>
-              <SelectItem value="services">Services</SelectItem>
+              {businessCategories.map((item, index) => (
+                <SelectItem key={index} value={item.label}>
+                  {item.label}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -187,7 +191,9 @@ export default function ReviewerRatingForm() {
         </div>
 
         {/* Submit Button */}
-        <Button type="submit">Submit Review</Button>
+        <Button type="submit" className="bg-[#F05223]">
+          Submit Your Review
+        </Button>
       </form>
     </section>
   );
