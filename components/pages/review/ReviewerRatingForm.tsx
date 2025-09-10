@@ -1,9 +1,6 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Star } from "lucide-react";
-import { useState } from "react";
 
 import {
   Select,
@@ -16,45 +13,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { businessCategories, reviewerTypes } from "@/demoData/reviewPage";
+import RatingHeader from "./RatingHeader";
 
 export default function ReviewerRatingForm() {
-  const [rating, setRating] = useState(0);
-
   return (
     <section className="my-14">
-      {" "}
       <form className="max-w-2xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm">
         {/* Star Rating */}
-        <div className="flex justify-between">
-          <div className="flex items-center space-x-1 ">
-            <div className="flex gap-2">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <div
-                  key={star}
-                  className="bg-[#E1E1E1] p-2 cursor-pointer"
-                  onClick={() => setRating(star)}
-                >
-                  <Star
-                    className={`w-6 h-6 ${
-                      rating >= star
-                        ? "text-yellow-500 fill-yellow-500"
-                        : "text-gray-400"
-                    }`}
-                    fill={rating >= star ? "#facc15" : "none"}
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="inline-block bg-[#c6db24] text-black font-semibold px-4 py-3 rounded-md text-sm relative  clip-tag">
-              Choose Your Rating
-            </div>
-          </div>
-          <p className="flex items-end">
-            <a href="#" className="text-sm text-[#3D454E] font-semibold">
-              Read Our Review Guidelines
-            </a>
-          </p>
-        </div>
+        <RatingHeader />
 
         {/* Name of Reviewer */}
         <div>
