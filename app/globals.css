@@ -135,3 +135,8 @@ body {
   font-weight: 400;
   font-size: 16px;
 }
+
+/* Add to globals.css or in a style tag if using Tailwind */
+.clip-tag {
+  clip-path: polygon(100% 0%, 100% 51%, 100% 100%, 10% 100%, 0% 50%, 9% 0);
+}

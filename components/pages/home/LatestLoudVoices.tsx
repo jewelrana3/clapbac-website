@@ -1,17 +1,17 @@
 import React from "react";
 import CarouselPage from "./Carusel";
+import Description from "./Description";
 
 export default function LatestLoudVoices() {
   return (
     <div>
       <CarouselPage />
-      <div className="bg-[#E9E9E9] px-10 py-20 sm:text-2xl font-bold text-center">
-        <p>
-          One-star warriors, keyboard critics — your spotlight’s on. <br /> We
-          don’t just read reviews, we call it out, we clap back. <br /> Loudly.
-          Fairly. No Filters. No Passes.
-        </p>
-      </div>
+      <Description
+        className="md:w-[40%] mx-auto"
+        description=" One-star warriors, keyboard critics — your spotlight’s on. We
+        don’t just read reviews, we call it out, we clap back. Loudly.
+        Fairly. No Filters. No Passes."
+      />
     </div>
   );
 }

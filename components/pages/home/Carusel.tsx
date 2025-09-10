@@ -7,32 +7,95 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { clapbacCards } from "@/demoData/loudVoice";
+import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
+import Image from "next/image";
+import Container from "@/layout/Container";
 
 export default function CarouselPage() {
+  const renderStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const hasHalf = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+    console.log(emptyStars);
+
+    return (
+      <>
+        {[...Array(fullStars)].map((_, i) => (
+          <FaStar key={`full-${i}`} className="text-[#F05223] text-2xl" />
+        ))}
+        {hasHalf && <FaRegStarHalfStroke className="text-[#F05223] text-2xl" />}
+        {[...Array(emptyStars)].map((_, i) => (
+          <FaRegStar key={`empty-${i}`} className="text-[#F05223] text-2xl" />
+        ))}
+      </>
+    );
+  };
+
   return (
-    <section className="my-5">
+    <Container className="py-32 lg:max-w-7xl">
+      <h1 className="text-[#F05223] mb-2 text-2xl font-bold">
+        Latest Loud Voices
+      </h1>
       <Carousel
         opts={{
           align: "start",
         }}
-        className="w-full lg:max-w-6xl mx-auto"
+        className="w-full lg:max-w-7xl mx-auto"
       >
         <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
-                    <span className="text-3xl font-semibold">{index + 1}</span>
+          {clapbacCards.map((card, index) => (
+            <CarouselItem
+              key={index}
+              className="basis-1/1 md:basis-1/2 lg:basis-1/4"
+            >
+              <Card className="bg-[#C5D92D] h-full flex flex-col">
+                <div className="bg-white h-full flex flex-col py-4">
+                  <CardContent className="flex flex-col justify-between">
+                    {/* Profile Header */}
+                    <div className="flex items-center space-x-3 mb-4">
+                      <Image
+                        src={card.user.avatarUrl}
+                        alt={card.user.name}
+                        width={48}
+                        height={48}
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                      <div>
+                        <h3 className="font-bold">{card.user.name}</h3>
+                        <p className="text-sm text-gray-600">
+                          {card.user.business}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Action and Target */}
+                    <div className="mb-2">
+                      <p className="text-xs font-semibold text-gray-700">
+                        {card.action}
+                      </p>
+                      <h2 className="text-xl font-bold">{card.target.name}</h2>
+                    </div>
+
+                    {/* Star Rating */}
+                    <div className="flex space-x-1 mb-3">
+                      {renderStars(card.target.rating)}
+                    </div>
+
+                    {/* Review */}
+                    <p className="text-sm  text-gray-800 font-semibold flex-grow">
+                      {card.review}
+                    </p>
                   </CardContent>
-                </Card>
-              </div>
+                </div>
+              </Card>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+
+        <CarouselPrevious className="" />
+        <CarouselNext className="" />
       </Carousel>
-    </section>
+    </Container>
   );
 }
