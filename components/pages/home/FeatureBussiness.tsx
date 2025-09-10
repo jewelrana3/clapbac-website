@@ -1,6 +1,8 @@
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
-import coffeeImg from "../../../public/feature-bussiness/one.png"; // Consider mapping images to businesses dynamically
+import coffeeImg from "../../../public/feature-bussiness/one.png";
+import two from "../../../public/feature-bussiness/two.png";
+import three from "../../../public/feature-bussiness/three.png";
 import Image from "next/image";
 import Container from "@/layout/Container";
 
@@ -17,14 +19,14 @@ const data = [
     title: "Bruno Cafe",
     rating: 5,
     review: "5.0 (48 Reviews)",
-    img: coffeeImg,
+    img: two,
   },
   {
     id: 3,
     title: "All Press Espresso",
     rating: 3.5,
     review: "3.5 (23 Reviews)",
-    img: coffeeImg,
+    img: three,
   },
 ];
 
