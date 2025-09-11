@@ -186,9 +186,9 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full cursor-pointer text-[#e93c08]",
+        "absolute size-20 rounded-full cursor-pointer text-[#e93c08]",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
+          ? "top-1/2 -left-16 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -196,7 +196,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <IoMdArrowDropleft size={50} />
+      <IoMdArrowDropleft className="w-48 h-40" />
       {/* <span className="sr-only">Previous slide</span> */}
     </Button>
   );
@@ -216,9 +216,9 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full cursor-pointer text-[#e93c08]",
+        "absolute size-20 rounded-full cursor-pointer text-[#e93c08]",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
+          ? "top-1/2 -right-16 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -226,7 +226,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <IoMdArrowDropright size={50} />
+      <IoMdArrowDropright className="w-48 h-40" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

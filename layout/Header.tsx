@@ -41,7 +41,7 @@ export function Header() {
                 asChild
                 className={navigationMenuTriggerStyle()}
               >
-                <Link href="/business-categories">Business Categories</Link>
+                <Link href="/bussiness-categories">Business Categories</Link>
               </NavigationMenuLink>
               <NavigationMenuLink
                 asChild
