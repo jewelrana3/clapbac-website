@@ -11,8 +11,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Clapbac Website",
-  description: "website",
+  title: "Sign up",
+  description: "page",
 };
 
 export default function RootLayout({

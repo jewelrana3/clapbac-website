@@ -1,7 +1,7 @@
 import BussinessCard from "@/components/pages/bussinessCategory/BussinessCard";
 import ProfileSection from "@/components/share/ProfileSection";
 import React from "react";
-import profile from "../../public/bussiness-card/profile-bussiness.png";
+import profile from "../../../public/bussiness-card/profile-bussiness.png";
 import SectionTitle from "@/components/share/SectionTitle";
 
 export default function BussinessCategories() {

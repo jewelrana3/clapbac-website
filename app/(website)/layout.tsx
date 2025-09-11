@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
+import "../globals.css"; // Your global styles
+import { Header } from "@/layout/Header";
+import Footer from "@/layout/Footer";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
   description: "website",
 };
 
-export default function AuthLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -20,7 +23,13 @@ export default function AuthLayout({
   return (
     <html lang="en">
       <body className={`${lato.className}  antialiased`}>
+        <div>
+          <Header />
+        </div>
         <div className="mt-16">{children}</div>
+        <div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
