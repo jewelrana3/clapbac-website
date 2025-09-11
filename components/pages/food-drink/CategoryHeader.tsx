@@ -1,6 +1,6 @@
 const CategoryHeader = () => {
   return (
-    <div className="flex justify-between items-center py-2">
+    <div className="flex flex-col sm:flex-row justify-between sm:items-center py-2">
       {/* Left: Category Title */}
       <div>
         <h2 className="text-lg font-semibold">

@@ -22,7 +22,10 @@ export default function FoodDrink() {
       <FeatureBusiness />
       <AllBussiness />
 
-      <RecentlyViewCompanies title={businessNames} />
+      <RecentlyViewCompanies
+        title="Recently Viewed Companies"
+        data={businessNames}
+      />
     </div>
   );
 }

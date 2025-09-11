@@ -11,10 +11,16 @@ import { clapbacCards } from "@/demoData/loudVoice";
 import Image from "next/image";
 import Container from "@/layout/Container";
 
-export default function RecentlyViewCompanies({ title }: { title: any }) {
+export default function RecentlyViewCompanies({
+  data,
+  title,
+}: {
+  data: any;
+  title: string;
+}) {
   return (
-    <Container className="py-32">
-      <h1 className=" mb-2 text-2xl font-bold">Recently Viewed Companies</h1>
+    <Container className="my-14">
+      <h1 className=" mb-2 text-2xl font-bold">{title}</h1>
       <Carousel
         opts={{
           align: "start",
@@ -22,7 +28,7 @@ export default function RecentlyViewCompanies({ title }: { title: any }) {
         className="w-full "
       >
         <CarouselContent>
-          {title.map((card: any, index: number) => (
+          {data.map((card: any, index: number) => (
             <CarouselItem
               key={index}
               className="basis-1/1 md:basis-1/2 lg:basis-1/4"
