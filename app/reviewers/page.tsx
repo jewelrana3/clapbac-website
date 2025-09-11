@@ -1,6 +1,5 @@
-import AllBussiness from "@/components/pages/food-drink/AllBussiness";
+import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 import RecentlyViewCompanies from "@/components/share/RecentlyViewCompines";
-import FeatureBusiness from "@/components/pages/home/FeatureBussiness";
 import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
 
@@ -9,19 +8,22 @@ import two from "../../public/food-drink/four.png";
 import three from "../../public/food-drink/three.png";
 import four from "../../public/food-drink/five.png";
 
-export default function FoodDrink() {
+export default function Reviewers() {
   const businessNames = [
-    { title: "Arabica Coffee", image: one },
-    { title: "Loop Coffee", image: two },
-    { title: "Cenchi Cafe", image: three },
-    { title: "Eiji Coffee Corner", image: four },
+    { title: "Danny K. on Arabica Coffee", image: one },
+    { title: "Sasha C. on Loop Coffee", image: two },
+    { title: "Nancy B. on Cenchi Cafe", image: three },
+    { title: "Keisha V. on Ejji Coffee", image: four },
   ];
+
   return (
     <div>
-      <SectionTitle title="Food & Drink" />
-      <FeatureBusiness />
-      <AllBussiness />
+      <SectionTitle
+        title="Reviewers"
+        subTitle="Everyone has an opinion—start by finding theirs."
+      />
 
+      <LatestLoudVoices />
       <RecentlyViewCompanies title={businessNames} />
     </div>
   );

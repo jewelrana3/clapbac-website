@@ -11,19 +11,7 @@ import { clapbacCards } from "@/demoData/loudVoice";
 import Image from "next/image";
 import Container from "@/layout/Container";
 
-import one from "../../public/food-drink/one.png";
-import two from "../../public/food-drink/four.png";
-import three from "../../public/food-drink/three.png";
-import four from "../../public/food-drink/five.png";
-
-export default function RecentlyViewCompanies() {
-  const businessNames = [
-    { title: "Arabica Coffee", image: one },
-    { title: "Loop Coffee", image: two },
-    { title: "Cenchi Cafe", image: three },
-    { title: "Eiji Coffee Corner", image: four },
-  ];
-
+export default function RecentlyViewCompanies({ title }: { title: any }) {
   return (
     <Container className="py-32">
       <h1 className=" mb-2 text-2xl font-bold">Recently Viewed Companies</h1>
@@ -34,7 +22,7 @@ export default function RecentlyViewCompanies() {
         className="w-full "
       >
         <CarouselContent>
-          {businessNames.map((card, index) => (
+          {title.map((card: any, index: number) => (
             <CarouselItem
               key={index}
               className="basis-1/1 md:basis-1/2 lg:basis-1/4"
@@ -49,7 +37,8 @@ export default function RecentlyViewCompanies() {
                       className="w-full  object-cover"
                     />
                   </div>
-                  <p className="text-2xl font-bold">{card.title}</p>
+
+                  <p className="text-lg font-bold">{card.title}</p>
                 </CardContent>
               </Card>
             </CarouselItem>

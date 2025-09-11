@@ -11,7 +11,8 @@ export default function SectionTitle({
   subTitle?: string;
 }) {
   const pathname = usePathname();
-  const currentPathname = pathname === "/bussiness-categories";
+  const currentPathname =
+    pathname === "/bussiness-categories" || pathname === "/reviewers";
   return (
     <div className="text-center p-12 bg-[#E9E9E9]">
       <h2 className="md:text-2xl text-[#F05223] font-bold">{title}</h2>
