@@ -8,7 +8,7 @@ const footerLinks = [
     links: [
       { label: "About Clapbac", href: "/about" },
       { label: "FAQs", href: "/faq" },
-      { label: "Contact Us", href: "/contact" },
+      { label: "Contact Us", href: "/contact-us" },
     ],
   },
   {

@@ -11,8 +11,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Sign up",
-  description: "page",
+  title: "Weebsite Layout",
+  description: "This is the main layout for the website section",
 };
 
 export default function RootLayout({

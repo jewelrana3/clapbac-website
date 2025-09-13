@@ -11,7 +11,7 @@ export default function Button({
     <div className="">
       <button
         type={type}
-        className={`bg-[#F05223] text-white px-5 py-2 rounded-md font-semibold ${className}`}
+        className={`bg-[#F05223] text-white px-5 py-2 rounded-md font-semibold cursor-pointer ${className}`}
       >
         {children}
       </button>

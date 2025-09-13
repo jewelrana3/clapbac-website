@@ -1,5 +1,6 @@
 import Button from "@/components/share/Button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function AboutFooter() {
@@ -24,7 +25,9 @@ export default function AboutFooter() {
             </p>
             <p className=" mb-4 text-lg">Say it straight — we’re listening.</p>
 
-            <Button className="">Log In or Sign Up</Button>
+            <Link href="/signup" className="cursor-pointer">
+              <Button className="">Log In or Sign Up</Button>
+            </Link>
           </div>
         </div>
       </section>

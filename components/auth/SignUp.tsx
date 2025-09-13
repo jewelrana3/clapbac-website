@@ -1,23 +1,27 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 import React from "react";
-import { FaGoogle, FaApple, FaFacebookF } from "react-icons/fa";
+import { FaApple } from "react-icons/fa";
+import google from "../../public/auth/google.png";
+import facebook from "../../public/auth/facebook.jpg";
+import Link from "next/link";
 
 export default function Signup() {
   return (
-    <div className="max-w-md mx-auto p-6 shadow-xl bg-[#E9E9E9] rounded my-10 border-r-2">
+    <div className="max-w-xl mx-auto py-12 px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
       {/* Social Buttons */}
-      <div className="space-y-3">
-        <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-2 rounded hover:bg-gray-50">
-          <FaGoogle className="text-xl" />
+      <div className="space-y-3 text-[#A0A0A0]">
+        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-2  bg-white">
+          <Image src={google} width={30} height={30} alt="google" />
           <span>Sign Up with Google</span>
         </button>
-        <button className="w-full flex items-center justify-center gap-3 border border-gray-900 bg-black text-white py-2 rounded hover:bg-gray-800">
-          <FaApple className="text-xl" />
+        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-1  bg-white">
+          <FaApple className="text-4xl text-black" />
           <span>Sign Up with Apple</span>
         </button>
-        <button className="w-full flex items-center justify-center gap-3 border border-blue-500 text-blue-600 py-2 rounded hover:bg-blue-50">
-          <FaFacebookF className="text-xl" />
+        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3]  py-2 bg-white">
+          <Image src={facebook} width={30} height={30} alt="fb" />
           <span>Sign Up with Facebook</span>
         </button>
       </div>
@@ -41,21 +45,22 @@ export default function Signup() {
           className="form-input"
         />
         <Input type="email" placeholder="Email" className="form-input" />
+        <Input type="password" placeholder="password" className="form-input" />
         <Input type="tel" placeholder="Phone Number" className="form-input" />
         <Input type="url" placeholder="Website" className="form-input" />
 
         {/* Terms */}
-        <div className="flex items-start gap-2 text-sm">
+        <div className="flex items-start my-4 text-sm">
           <Checkbox className="mt-1 bg-white" />
-          <label className="text-md text-[#3D454E]">
+          <label className="text-md text-[#3D454E] ml-3 leading-6">
             I have read and agree to Clapbac’s{" "}
-            <a href="#" className="text-[#F05223]">
+            <Link href="/privacy-policy" className="text-[#F05223]">
               Terms of Service
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a href="#" className="text-[#F05223]">
+            <Link href="/privacy-policy" className="text-[#F05223]">
               Privacy Policy
-            </a>
+            </Link>
             .
           </label>
         </div>
@@ -71,9 +76,9 @@ export default function Signup() {
         {/* Login link */}
         <p className="text-md  text-[#3D454E] font-semibold">
           Already have an account?{" "}
-          <a href="#" className="text-[#E95022] font-medium">
+          <Link href="/login" className="text-[#E95022] font-medium">
             Log In
-          </a>
+          </Link>
         </p>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import Signup from "@/components/auth/SignUp";
+import LoginPage from "@/components/auth/LoginPage";
 import ProfileSection from "@/components/share/ProfileSection";
 import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
@@ -14,14 +14,15 @@ const des = (
   </>
 );
 
-export default function SignupPage() {
+export default function Login() {
   return (
     <div>
       <SectionTitle
-        title="Sign Up"
-        subTitle=" Join now and give reviewers a taste of their own stars."
+        title="Log In"
+        subTitle="The reviews are in. Time to clap back."
       />
-      <Signup />
+
+      <LoginPage />
 
       <ProfileSection
         image={signUp}

@@ -4,10 +4,11 @@ import FeatureBusiness from "@/components/pages/home/FeatureBussiness";
 import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
 
-import one from "../../public/food-drink/one.png";
-import two from "../../public/food-drink/four.png";
-import three from "../../public/food-drink/three.png";
-import four from "../../public/food-drink/five.png";
+import one from "../../../public/food-drink/one.png";
+import two from "../../../public/food-drink/four.png";
+import three from "../../../public/food-drink/three.png";
+// import four from "../../public/food-drink/five.png";
+import four from "../../../public/food-drink/five.png";
 
 export default function FoodDrink() {
   const businessNames = [

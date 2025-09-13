@@ -1,15 +1,13 @@
-import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 import RecentlyViewCompanies from "@/components/share/RecentlyViewCompines";
 import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
 
-import one from "../../public/food-drink/one.png";
-import two from "../../public/food-drink/four.png";
-import three from "../../public/food-drink/three.png";
-import four from "../../public/food-drink/five.png";
+import one from "../../../public/food-drink/one.png";
+import two from "../../../public/food-drink/four.png";
+import three from "../../../public/food-drink/three.png";
+import four from "../../../public/food-drink/five.png";
 import Container from "@/layout/Container";
 import CategoryHeader from "@/components/pages/food-drink/CategoryHeader";
-import { coffeeShops } from "@/demoData/food-drink";
 import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
