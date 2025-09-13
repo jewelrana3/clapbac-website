@@ -39,17 +39,20 @@ export default function LoginPage() {
         <Input type="password" placeholder="password" className="form-input" />
 
         {/* Submit Button */}
-        <div className="flex flex-col md:flex-row gap-3 my-4">
-          <Button
-            type="submit"
-            className="bg-[#E95022]  w-full text-white font-bold py-2 rounded-xl"
-          >
-            Login
-          </Button>
-          <Link href="/forgot-password" className="w-full">
-            <button
+        <div className="grid grid-cols-2 gap-3 my-4">
+          <Link href="/">
+            <Button
               type="submit"
-              className="bg-white  w-full text-[#A0A0A0] font-semibold py-2 rounded-xl border border-[#D3D3D3]  cursor-pointer"
+              className="bg-[#E95022] w-full md:flex-1 text-white font-bold py-2 rounded-xl"
+            >
+              Login
+            </Button>
+          </Link>
+
+          <Link href="/forgot-password" className="w-full md:flex-1">
+            <button
+              type="button"
+              className="bg-white w-full text-[#A0A0A0] font-semibold py-2 rounded-xl border border-[#D3D3D3] cursor-pointer"
             >
               Forgot Your Password
             </button>

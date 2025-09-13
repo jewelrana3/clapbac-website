@@ -36,7 +36,7 @@ export default function CarouselPage() {
   };
 
   return (
-    <Container className="py-32 lg:max-w-screen-2xl">
+    <Container className="py-20 lg:max-w-screen-2xl">
       <h1 className="text-[#F05223] mb-2 text-2xl font-bold">
         Latest Loud Voices
       </h1>

@@ -50,7 +50,7 @@ export default function FeatureBusiness() {
   };
 
   return (
-    <Container className="mt-8 max-w-screen-2xl">
+    <Container className=" max-w-screen-2xl">
       <div className="bg-white py-12">
         <h2 className="text-orange-600 text-2xl font-bold mb-4">
           Featured Businesses
