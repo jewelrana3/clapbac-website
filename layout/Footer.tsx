@@ -6,7 +6,7 @@ const footerLinks = [
   {
     title: "ABOUT",
     links: [
-      { label: "About Clapbac", href: "/about" },
+      { label: "About Clapbac", href: "/about-us" },
       { label: "FAQs", href: "/faq" },
       { label: "Contact Us", href: "/contact-us" },
     ],
@@ -22,9 +22,9 @@ const footerLinks = [
   {
     title: "FOR BUSINESSES",
     links: [
-      { label: "Advertise on Clapbac", href: "/advertise" },
-      { label: "Business Log In", href: "/business-login" },
-      { label: "Clapbac for Business", href: "/for-business" },
+      { label: "Advertise on Clapbac", href: "#" },
+      { label: "Business Log In", href: "#" },
+      { label: "Clapbac for Business", href: "#" },
     ],
   },
 ];
@@ -49,7 +49,7 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
-                  <li key={link.href} className="my-9">
+                  <li key={link.label} className="my-9">
                     <Link className="link" href={link.href}>
                       {link.label}
                     </Link>
@@ -64,11 +64,11 @@ export default function Footer() {
         <div className=" mt-10 pt-6 text-xs flex flex-col md:flex-row justify-between ">
           <p className="condition">© 2025 Clapbac | All Rights Reserved.</p>
           <div className="space-x-4 mt-2 md:mt-0">
-            <Link className="condition" href="/terms">
+            <Link className="condition" href="/privacy-policy">
               Terms of Service
             </Link>
             <span>|</span>
-            <Link className="condition" href="/privacy">
+            <Link className="condition" href="/privacy-policy">
               Privacy Policy
             </Link>
           </div>

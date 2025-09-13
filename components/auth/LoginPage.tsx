@@ -6,6 +6,7 @@ import { FaApple } from "react-icons/fa";
 import google from "../../public/auth/google.png";
 import facebook from "../../public/auth/facebook.jpg";
 import Link from "next/link";
+import Button from "../share/Button";
 
 export default function LoginPage() {
   return (
@@ -40,18 +41,20 @@ export default function LoginPage() {
 
         {/* Submit Button */}
         <div className="flex flex-col md:flex-row gap-3 my-4">
-          <button
+          <Button
             type="submit"
             className="bg-[#E95022]  w-full text-white font-bold py-2 rounded-xl"
           >
-            Create My Account
-          </button>
-          <button
-            type="submit"
-            className="bg-white  w-full text-[#A0A0A0] font-semibold py-2 rounded-xl border border-[#D3D3D3]"
-          >
-            Forgot Your Password
-          </button>
+            Login
+          </Button>
+          <Link href="/forgot-password" className="w-full">
+            <button
+              type="submit"
+              className="bg-white  w-full text-[#A0A0A0] font-semibold py-2 rounded-xl border border-[#D3D3D3]  cursor-pointer"
+            >
+              Forgot Your Password
+            </button>
+          </Link>
         </div>
 
         {/* Login link */}
