@@ -12,16 +12,22 @@ export default function LoginPage() {
     <div className="max-w-xl mx-auto py-12 px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
       {/* Social Buttons */}
       <div className="space-y-3 text-[#A0A0A0]">
-        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-2  bg-white  cursor-pointer">
+        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-2  bg-white">
           <Image src={google} width={30} height={30} alt="google" />
           <span>Sign Up with Google</span>
-        </button>{" "}
-        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-1  bg-white cursor-pointer">
-          <FaApple className="text-4xl text-black" />
-          <span>Sign Up with Apple</span>
         </button>
-        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3]  py-2 bg-white cursor-pointer">
-          <Image src={facebook} width={30} height={30} alt="fb" />
+        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-1  bg-white">
+          <FaApple className="text-4xl text-black" />
+          <span className="mr-3">Sign Up with Apple</span>
+        </button>
+        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3]  py-2 bg-white">
+          <Image
+            src={facebook}
+            width={30}
+            height={30}
+            alt="fb"
+            className="ml-4"
+          />
           <span>Sign Up with Facebook</span>
         </button>
       </div>

@@ -18,10 +18,16 @@ export default function Signup() {
         </button>
         <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-1  bg-white">
           <FaApple className="text-4xl text-black" />
-          <span>Sign Up with Apple</span>
+          <span className="mr-3">Sign Up with Apple</span>
         </button>
         <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3]  py-2 bg-white">
-          <Image src={facebook} width={30} height={30} alt="fb" />
+          <Image
+            src={facebook}
+            width={30}
+            height={30}
+            alt="fb"
+            className="ml-4"
+          />
           <span>Sign Up with Facebook</span>
         </button>
       </div>

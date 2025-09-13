@@ -1,10 +1,9 @@
-import Image from "next/image";
 import React from "react";
-import help from "../../public/clapbac-reviews/help.svg";
+import HelpFull from "./HelpFull";
 
 export default function CommentsSection() {
   return (
-    <div className="flex flex-col lg:flex-row items-center gap-3 mt-10">
+    <div className="flex flex-col sm:flex-row items-center gap-3 mt-10">
       {/* Comments Button */}
       <button className="flex items-center gap-1 px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition cursor-pointer">
         Comments
@@ -25,15 +24,12 @@ export default function CommentsSection() {
       </button>
 
       {/* Report Button */}
-      <button className="px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition cursor-pointer w-full sm:w-auto">
+      <button className="px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition cursor-pointer">
         Report
       </button>
 
       {/* Helpful Button */}
-      <button className="flex items-center gap-1 px-4 py-2 rounded-md bg-[#C5D92D] text-gray-900 font-semibold hover:bg-lime-500 transition cursor-pointer">
-        <Image src={help} width={30} height={10} alt="help" />
-        Helpful (0)
-      </button>
+      <HelpFull />
     </div>
   );
 }
