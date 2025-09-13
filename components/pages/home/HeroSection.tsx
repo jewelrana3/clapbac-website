@@ -6,7 +6,7 @@ import bgImage from "../../../public/home-banner.jpg"; // replace with your actu
 export default function HeroSection() {
   return (
     <>
-      <div className="relative w-full h-[100vh]">
+      <div className="relative w-full h-[60vh] md:h-[100vh]">
         {/* Background Image */}
         <Image
           src={bgImage}
@@ -41,7 +41,7 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center justify-around py-12 px-8 gap-16">
           {/* Right text */}
           <div>
-            <h1 className="text-xl md:text-3xl font-bold flex items-center space-x-2 my-3">
+            <h1 className="text-xl md:text-3xl font-bold sm:flex items-center space-x-2 my-3">
               <span className="text-orange-600">We’re Clapbac</span>
               <span className="text-white">|</span>
               <span className="text-[#C4D82D]">We Rate the Raters</span>

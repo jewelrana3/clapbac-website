@@ -15,6 +15,17 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const mobileMenuItems = [
+  { title: "Home", href: "/" },
+  { title: "Rate a Reviewer", href: "/rate-reviewer" },
+  { title: "Business Categories", href: "/bussiness-categories" },
+  { title: "Reviewers", href: "/reviewers" },
+  { title: "FAQ", href: "/faq" },
+  { title: "About", href: "/about-us" },
+  { title: "Contact", href: "/contact-us" },
+  { title: "Login", href: "/login" },
+];
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   return (
@@ -86,15 +97,18 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-20 right-0 w-full md:w-[30%] bg-zinc-900 shadow-md">
+        <div className="lg:hidden absolute top-20 right-0 w-[30%] bg-zinc-900 shadow-md">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link
-              onClick={() => setIsMenuOpen(false)}
-              href="/"
-              className="block px-3 py-2 font-semibold text-white hover:text-primary transition-colors"
-            >
-              Home sssssssssssss
-            </Link>
+            {mobileMenuItems.map((item) => (
+              <Link
+                key={item.title}
+                onClick={() => setIsMenuOpen(false)}
+                href={item.href}
+                className="block px-3 py-2 font-semibold text-white hover:text-primary transition-colors"
+              >
+                {item.title}
+              </Link>
+            ))}
           </div>
         </div>
       )}
