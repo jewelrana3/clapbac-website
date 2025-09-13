@@ -23,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lato.className}  antialiased`}>
-        <div>{/* <Header /> */}</div>
+        <div>
+          <Header />
+        </div>
         <div className="mt-16">{children}</div>
         <div>
           <Footer />

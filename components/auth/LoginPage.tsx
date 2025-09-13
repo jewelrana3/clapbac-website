@@ -1,4 +1,3 @@
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React from "react";
@@ -59,7 +58,7 @@ export default function LoginPage() {
 
         {/* Login link */}
         <p className="text-md  text-[#3D454E] font-semibold">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" className="text-[#E95022] font-medium">
             Sign Up
           </Link>

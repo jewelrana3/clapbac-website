@@ -7,7 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { clapbacCards } from "@/demoData/loudVoice";
 import Image from "next/image";
 import Container from "@/layout/Container";
 

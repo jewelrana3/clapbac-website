@@ -18,15 +18,6 @@ const review = {
   source: "Yelp",
 };
 
-const ReviewerRatingStars = ({ rating }: { rating: any }) => {
-  return (
-    <div className="text-yellow-400 text-sm">
-      {"★".repeat(rating)}
-      {"☆".repeat(5 - rating)}
-    </div>
-  );
-};
-
 const ReviewCard = () => {
   const { reviewer, excerpt, source } = review;
 

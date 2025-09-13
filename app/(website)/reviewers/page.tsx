@@ -12,6 +12,7 @@ import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
 import { reviewers } from "@/demoData/reviewers";
+import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 
 const reviewerIndexOptions = [
   "Most Controversial",
@@ -45,6 +46,8 @@ export default function Reviewers() {
         title="Reviewers"
         subTitle="Everyone has an opinion—start by finding theirs."
       />
+
+      <LatestLoudVoices />
 
       <Container className="mt-10">
         <section className="flex flex-col lg:flex-row gap-12">

@@ -6,7 +6,6 @@ import Container from "@/layout/Container";
 import React from "react";
 import CompanyDetails from "@/components/clapbac-reviewsPage/CompanyDetails";
 import { companyDetails } from "@/demoData/conpany-data";
-import CommentsSection from "@/components/clapbac-reviewsPage/CommentsSection";
 
 export default function Review() {
   return (

@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -11,8 +13,10 @@ import { clapbacCards } from "@/demoData/loudVoice";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import Image from "next/image";
 import Container from "@/layout/Container";
+import { usePathname } from "next/navigation";
 
 export default function CarouselPage() {
+  const pathname = usePathname();
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;
@@ -32,7 +36,7 @@ export default function CarouselPage() {
   };
 
   return (
-    <Container className="py-32 lg:max-w-7xl">
+    <Container className="py-32 lg:max-w-screen-2xl">
       <h1 className="text-[#F05223] mb-2 text-2xl font-bold">
         Latest Loud Voices
       </h1>
@@ -40,7 +44,7 @@ export default function CarouselPage() {
         opts={{
           align: "start",
         }}
-        className="w-full lg:max-w-7xl mx-auto"
+        className=" "
       >
         <CarouselContent>
           {clapbacCards.map((card, index) => (
@@ -48,8 +52,12 @@ export default function CarouselPage() {
               key={index}
               className="basis-1/1 md:basis-1/2 lg:basis-1/4"
             >
-              <Card className="bg-[#C5D92D] h-full flex flex-col">
-                <div className="bg-white h-full flex flex-col py-4">
+              <Card
+                className={`${
+                  pathname === "/reviewers" ? "bg-[#E1E1E1]" : "bg-[#C5D92D]"
+                } h-[350px] flex flex-col`}
+              >
+                <div className="bg-white w-[90%] h-full mx-auto flex flex-col py-4">
                   <CardContent className="flex flex-col justify-between">
                     {/* Profile Header */}
                     <div className="flex items-center space-x-3 mb-4">
