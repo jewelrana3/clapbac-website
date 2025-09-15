@@ -9,9 +9,9 @@ export default function HelpFull() {
   return (
     <button
       onClick={() => setAdd(!add ? 1 : 0)}
-      className="flex items-center gap-1 px-4 py-2 rounded-md bg-[#C5D92D] text-gray-900 font-semibold hover:bg-lime-500 transition cursor-pointer"
+      className="flex items-center justify-center gap-1 px- py-2 rounded-md bg-[#C5D92D] text-gray-900 font-semibold hover:bg-lime-500 transition cursor-pointer text-nowrap text-sm"
     >
-      <Image src={help} width={30} height={10} alt="help" />
+      <Image src={help} width={20} height={10} className="" alt="help" />
       Helpful ({add})
     </button>
   );

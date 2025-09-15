@@ -65,7 +65,7 @@ const ReviewCard = () => {
 
       {/* Excerpt */}
       <div className="mt-4">
-        <p className="font-semibold text-gray-800 flex items-center mb-2">
+        <p className="font-semibold text-gray-800 flex flex-col sm:flex-row items-center mb-2">
           <span className="flex items-center gap-1 text-xl text-gray-400 mr-2">
             <span className="bg-[#D9D9D9] px-1">★</span>
             <span className="bg-[#D9D9D9] px-1">★</span>

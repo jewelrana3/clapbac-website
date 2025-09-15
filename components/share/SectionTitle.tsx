@@ -15,7 +15,9 @@ export default function SectionTitle({
     pathname === "/bussiness-categories" || pathname === "/reviewers";
   return (
     <div className="text-center p-12 bg-[#E9E9E9]">
-      <h2 className="md:text-2xl text-[#F05223] font-bold">{title}</h2>
+      <h2 className="text-[18px] md:text-2xl text-[#F05223] font-bold">
+        {title}
+      </h2>
       <p className="text-[#3D454E] md:text-2xl  mt-2 mx-auto lg:w-[37%]">
         {subTitle}
       </p>

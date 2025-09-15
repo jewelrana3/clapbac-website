@@ -97,14 +97,14 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-20 right-0 w-[30%] bg-zinc-900 shadow-md">
+        <div className="lg:hidden absolute top-20 right-0 w-[200px] bg-zinc-900 shadow-md">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {mobileMenuItems.map((item) => (
               <Link
                 key={item.title}
                 onClick={() => setIsMenuOpen(false)}
                 href={item.href}
-                className="block px-3 py-2 font-semibold text-white hover:text-primary transition-colors"
+                className="block px-3 py-2 font-semibold text-white hover:text-red-500  transition-colors"
               >
                 {item.title}
               </Link>

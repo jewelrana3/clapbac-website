@@ -3,7 +3,7 @@ import HelpFull from "./HelpFull";
 
 export default function CommentsSection() {
   return (
-    <div className="flex flex-col sm:flex-row items-center gap-3 mt-10">
+    <div className="grid grid-cols-[50%] sm:grid-cols-[20%_20%_20%] gap-3 mt-10">
       {/* Comments Button */}
       <button className="flex items-center gap-1 px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition cursor-pointer">
         Comments

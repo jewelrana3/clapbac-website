@@ -61,13 +61,13 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
                       />
 
                       <div className="">
-                        <div className="flex flex-col sm:flex-row items-center gap-2">
+                        <div className="flex flex-row items-center gap-2">
                           <div>
                             {reply.image && (
                               <Image
                                 src={reply?.image}
                                 alt="Logo"
-                                className=" sm:w-20 sm:h-20"
+                                className="w-16 h-16 sm:w-20 sm:h-20"
                               />
                             )}
                           </div>
@@ -94,11 +94,11 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
                         </p>
                       </div>
                     </div>
-                    <div className="text-nowrap">
+                    <div className="text-nowrap my-4 lg:my-0">
                       <p className="font-bold text-md">{reply.ownerside}</p>
 
                       {reply.ratings && (
-                        <p className="mt-1 flex gap-1 justify-end ">
+                        <p className="mt-1 flex gap-1 lg:justify-end ">
                           {ratingCaculate(reply.ratings)}
                         </p>
                       )}

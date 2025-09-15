@@ -22,9 +22,9 @@ const footerLinks = [
   {
     title: "FOR BUSINESSES",
     links: [
-      { label: "Advertise on Clapbac", href: "#" },
-      { label: "Business Log In", href: "#" },
-      { label: "Clapbac for Business", href: "#" },
+      { label: "Advertise on Clapbac", href: "https://www.google.com" },
+      { label: "Business Log In", href: "https://www.google.com" },
+      { label: "Clapbac for Business", href: "https://www.google.com" },
     ],
   },
 ];
@@ -49,7 +49,7 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
-                  <li key={link.label} className="my-9">
+                  <li key={link.label} className="my-5 sm:my-9">
                     <Link className="link" href={link.href}>
                       {link.label}
                     </Link>

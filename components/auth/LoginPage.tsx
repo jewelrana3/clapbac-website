@@ -45,7 +45,7 @@ export default function LoginPage() {
         <Input type="password" placeholder="password" className="form-input" />
 
         {/* Submit Button */}
-        <div className="grid grid-cols-2 gap-3 my-4">
+        <div className="grid sm:grid-cols-2 gap-3 my-4">
           <Link href="/">
             <Button
               type="submit"
@@ -55,7 +55,7 @@ export default function LoginPage() {
             </Button>
           </Link>
 
-          <Link href="/forgot-password" className="w-full md:flex-1">
+          <Link href="/forgot-password">
             <button
               type="button"
               className="bg-white w-full text-[#A0A0A0] font-semibold py-2 rounded-xl border border-[#D3D3D3] cursor-pointer"
