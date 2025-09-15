@@ -5,6 +5,7 @@ import left from "../../public/clapbac-reviews/left.svg";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
 import CommentsSection from "./CommentsSection";
+import ComapyNameSection from "./ComapyNameSection";
 export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
   const ratingCaculate = (rating: number) => {
     const fullStars = Math.floor(rating);
