@@ -97,7 +97,7 @@ export function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-20 right-0 w-[200px] bg-zinc-900 shadow-md">
+        <div className="lg:hidden absolute top-20 right-0 w-[220px] bg-zinc-900 shadow-md">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {mobileMenuItems.map((item) => (
               <Link

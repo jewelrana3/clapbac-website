@@ -50,13 +50,13 @@ export default function CarouselPage() {
           {clapbacCards.map((card, index) => (
             <CarouselItem
               key={index}
-              className="basis-1/1 md:basis-1/2 lg:basis-1/4"
+              className="basis-1/1 md:basis-1/2 xl:basis-1/4"
             >
               <Card
                 className={`${
                   pathname === "/reviewers"
                     ? "bg-[#E1E1E1]"
-                    : "border-16 border-[#C5D92D]"
+                    : "border-16 border-[#C5D92D] w-[90%] mx-auto"
                 } h-[350px] flex flex-col`}
               >
                 <div className="bg-white h-full mx-auto flex flex-col ">
@@ -102,8 +102,8 @@ export default function CarouselPage() {
           ))}
         </CarouselContent>
 
-        <CarouselPrevious className="" />
-        <CarouselNext className="" />
+        <CarouselPrevious className="left-[-40px]" />
+        <CarouselNext className="right-[-40px]" />
       </Carousel>
     </Container>
   );

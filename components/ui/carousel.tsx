@@ -211,7 +211,7 @@ function CarouselNext({
 
   return (
     <Button
-      data-slot="carousel-next"
+      // data-slot="carousel-next"
       variant={variant}
       size={size}
       className={cn(
