@@ -1,7 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import one from "../../public/share-icon/one.svg";
-import two from "../../public/share-icon/two.svg";
 import Container from "@/layout/Container";
 
 export default function ProfileSection({
@@ -12,7 +10,7 @@ export default function ProfileSection({
 }: {
   image: any;
   des: any;
-  shortName: string;
+  shortName?: string;
   className?: string;
 }) {
   return (
@@ -25,36 +23,14 @@ export default function ProfileSection({
           alt="Alexander S."
           width={247}
           height={295}
-          className=" object-cover"
+          className="object-cover"
         />
         <div className="text-gray-800">
           <div className="mb-2 text-lg font-semibold ">
-            <div className="flex ">
-              <div className="flex items-start">
-                <Image
-                  src={two}
-                  alt="Alexander S."
-                  width={60}
-                  height={42}
-                  className=" object-cover"
-                />
-              </div>
-              <div>
-                <span>
-                  {des}
-                  <br />
-                  <span> {shortName}</span>
-                </span>
-              </div>
-              <div className="flex items-end">
-                <Image
-                  src={one}
-                  alt="Alexander S."
-                  width={60}
-                  height={42}
-                  className=" object-cover"
-                />
-              </div>
+            <div>
+              {des}
+
+              <p className="ml-14 md:ml-20 mt-4"> {shortName}</p>
             </div>
           </div>
         </div>
