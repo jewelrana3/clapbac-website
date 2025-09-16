@@ -55,9 +55,9 @@ export default function CarouselPage() {
               <Card
                 className={`${
                   pathname === "/reviewers"
-                    ? "bg-[#E1E1E1]"
-                    : "border-16 border-[#C5D92D] w-[90%] mx-auto"
-                } h-[350px] flex flex-col`}
+                    ? "border-16 border-[#E1E1E1]"
+                    : "border-16 border-[#C5D92D] "
+                } h-[350px] flex flex-col w-[90%] mx-auto`}
               >
                 <div className="bg-white h-full mx-auto flex flex-col ">
                   <CardContent className="flex flex-col justify-between">
