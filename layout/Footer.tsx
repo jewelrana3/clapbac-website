@@ -35,12 +35,15 @@ export default function Footer() {
       <Container className="max-w-screen-2xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-8 text-sm font-lato">
           {/* Logo Section */}
-          <div>
-            <h1 className="text-2xl font-bold">
-              <span className="text-[#ff4d00]">CLAP</span>
-              <span className="text-[#a0d911]">BAC</span>
-            </h1>
-          </div>
+          <Link href="/">
+            {" "}
+            <div>
+              <h1 className="text-2xl font-bold">
+                <span className="text-[#ff4d00]">CLAP</span>
+                <span className="text-[#a0d911]">BAC</span>
+              </h1>
+            </div>
+          </Link>
 
           {footerLinks.map((section) => (
             <div key={section.title}>

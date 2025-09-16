@@ -55,6 +55,7 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
                       className={`flex items-start gap-3 `}
                       style={{ marginLeft: index === 0 ? 0 : index * 12 }}
                     >
+                      {/* left logo */}
                       <Image
                         src={left}
                         alt="Logo"
@@ -63,20 +64,19 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
 
                       <div className="">
                         <div className="flex flex-row items-center gap-2">
+                          {/* user profile image */}
                           <div>
                             {reply.image && (
                               <Image
                                 src={reply?.image}
                                 alt="Logo"
-                                className="w-16 h-16 sm:w-20 sm:h-20"
+                                className="w-8 h-8 sm:w-20 sm:h-20 rounded-full"
                               />
                             )}
                           </div>
                           <div className="font-semibold text-sm">
                             <p>
-                              {reply.role === "Owner"
-                                ? "From Clapbac"
-                                : "From Response"}
+                              {reply.role === "Owner" ? "Juyel" : "From Owner"}
                             </p>
                             {reply.author}
                             {reply.business && (

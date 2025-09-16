@@ -1,4 +1,4 @@
-import owner from "../public/clapbac-reviews/owner.png";
+import man from "../public/clapbac-reviews/man.jpg";
 export const reviews = [
   {
     id: 1,
@@ -12,7 +12,7 @@ export const reviews = [
     replies: [
       {
         id: 101,
-        reply: "From Clapback",
+        reply: "Juyel",
         recever: "owner",
         role: "Owner",
         business: "Arabica Coffee",
@@ -23,7 +23,7 @@ export const reviews = [
           "Nunc arcu dui, bibendum vel semper in, rhoncus eget nulla. Nullam tempor faucibus ornare...",
         ownerside: "Clapbac Rating of this Review",
         ratings: 3.5,
-        image: owner,
+        image: man,
       },
       {
         id: 102,
@@ -34,18 +34,18 @@ export const reviews = [
         content:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu erat lacinia...",
       },
-      {
-        id: 103,
-        reply: "clapback",
-        recever: "Pete Wells",
-        role: "Owner",
-        business: "Arabica Coffee",
-        date: "2/11/25",
-        type: "clapback",
-        content:
-          "Maecenas gravida sem vitae nulla porta elementum. Duis blandit, est non malesuada euismod...",
-        image: owner,
-      },
+      // {
+      //   id: 103,
+      //   reply: "Juyel",
+      //   recever: "Pete Wells",
+      //   role: "Owner",
+      //   business: "Arabica Coffee",
+      //   date: "2/11/25",
+      //   type: "clapback",
+      //   content:
+      //     "Maecenas gravida sem vitae nulla porta elementum. Duis blandit, est non malesuada euismod...",
+      //   image: owner,
+      // },
     ],
   },
   // Add more review threads here if needed

@@ -14,6 +14,7 @@ import Image from "next/image";
 
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 
 const mobileMenuItems = [
   { title: "Home", href: "/" },
@@ -23,70 +24,43 @@ const mobileMenuItems = [
   { title: "FAQ", href: "/faq" },
   { title: "About", href: "/about-us" },
   { title: "Contact", href: "/contact-us" },
-  { title: "Login", href: "/login" },
+  { title: "Login", href: "/login", highlight: true },
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
-      <div className="flex justify-between items-center h-16 bg-[#191919] px-10 ">
+      <div className="flex justify-between items-center h-16 bg-[#191919] px-7 ">
         {/* logo */}
         <div className="">
           <Link href="/" className="flex items-center space-x-2">
             <Image src="/logo.svg" alt="Logo" width={200} height={30} />
           </Link>
         </div>
+        {/* navigation */}
+        <div>
+          <ul className="hidden lg:flex space-x-4">
+            {mobileMenuItems.map(({ href, title, highlight }) => {
+              const isActive = pathname === href;
 
-        {/*  navigation */}
-        <NavigationMenu className="hidden lg:flex">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link href="/rate-reviewer">Rate a Reviewer</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link href="/bussiness-categories">Business Categories</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link href="/reviewers">Reviewers</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link href="/faq">FAQ</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link href="/about-us">About</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={navigationMenuTriggerStyle()}
-              >
-                <Link href="/contact-us">Contact</Link>
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                asChild
-                className={`${navigationMenuTriggerStyle()} bg-[#F05223]`}
-              >
-                <Link href="/login">Login</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+              return (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={`px-3 py-2 rounded transition-colors duration-200 
+                ${highlight && "bg-[#F05223]"}
+                ${isActive ? "bg-white text-black" : "text-white "} 
+                `}
+                  >
+                    {title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         {/* Mobile menu button */}
         <div className="lg:hidden">
