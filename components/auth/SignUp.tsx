@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function Signup() {
   return (
-    <div className="max-w-xl mx-auto py-12 px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
+    <div className="max-w-xl mx-auto py-12 px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
       {/* Social Buttons */}
       <div className="space-y-3 text-[#A0A0A0]">
         <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-2  bg-white">
