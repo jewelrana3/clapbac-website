@@ -53,7 +53,7 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
                   <div key={reply.id} className=" flex flex-col lg:flex-row ">
                     <div
                       className={`flex items-start gap-3 `}
-                      style={{ marginLeft: index === 0 ? 0 : index * 12 }}
+                      style={{ marginLeft: index === 0 ? 0 : index * 55 }}
                     >
                       {/* left logo */}
                       <Image
@@ -75,10 +75,19 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
                             )}
                           </div>
                           <div className="font-semibold text-sm">
-                            <p>
-                              {reply.role === "Owner" ? "Juyel" : "From Owner"}
-                            </p>
-                            {reply.author}
+                            <div>
+                              <div>
+                                <p>
+                                  {reply.role === "Owner"
+                                    ? "RESPONSE FROM..."
+                                    : "CLAPBAC FROM..."}
+                                </p>
+                                <p>{reply?.name}</p>
+
+                                <p>{reply?.subName}</p>
+                                {reply.author}
+                              </div>
+                            </div>
                             {reply.business && (
                               <span className="text-gray-500 text-xs">
                                 {reply.business}
