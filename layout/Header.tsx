@@ -17,7 +17,6 @@ import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
 const mobileMenuItems = [
-  { title: "Home", href: "/" },
   { title: "Rate a Reviewer", href: "/rate-reviewer" },
   { title: "Business Categories", href: "/bussiness-categories" },
   { title: "Reviewers", href: "/reviewers" },

@@ -38,8 +38,8 @@ export default function BussinessCategories() {
   return (
     <div className="mt-16">
       <SectionTitle
-        title="Reviewers"
-        subTitle="Everyone has an opinion—start by finding theirs."
+        title="Business Categories"
+        subTitle="Find Out Who’s Worth It. Type It In. Expose or Endorse."
       />
       <BussinessCard />
       <ProfileSection
