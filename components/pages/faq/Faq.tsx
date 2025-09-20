@@ -27,7 +27,7 @@ const des = (
   </section>
 );
 
-const shortName = "p— Alexander S., Chicago";
+const shortName = "— Alexander S., Chicago";
 export default function Faq() {
   return (
     <div>
