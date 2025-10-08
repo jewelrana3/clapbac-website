@@ -1,3 +1,5 @@
+import { Textarea } from "@/components/ui/textarea";
+
 const userInfo = [
   { label: "User Name", value: "arabica123" },
   { label: "Display Name", value: "Pete Wells" },
@@ -48,9 +50,9 @@ const buttons = [
 ];
 export default function UserDetails() {
   return (
-    <section className="">
-      <div className=" p-4  w-80 text-sm">
-        <div className="space-y-1 text-gray-800">
+    <section className=" text-[#3D454E]">
+      <div className=" p-4 text-sm">
+        <div className="space-y-1 ">
           {userInfo.map((item) => (
             <div key={item.label} className="grid grid-cols-2">
               <p className="font-medium text-gray-600">{item.label}:</p>
@@ -60,7 +62,7 @@ export default function UserDetails() {
         </div>
       </div>
       <hr />
-      <div className=" p-4 rounded-md  w-96 text-sm text-gray-800 space-y-3">
+      <div className=" p-4 text-sm  space-y-3">
         {/* Top Section */}
         <div className="space-y-1 pb-2 border-b border-gray-300">
           {topSection.map((item) => (
@@ -69,13 +71,7 @@ export default function UserDetails() {
                 {item.label}:
               </span>
               <span className="whitespace-pre-line">
-                {item?.isLink ? (
-                  <a href="#" className="text-blue-600 hover:underline">
-                    {item.value}
-                  </a>
-                ) : (
-                  item.value
-                )}
+                <span className=" hover:underline">{item.value}</span>
               </span>
             </div>
           ))}
@@ -88,25 +84,20 @@ export default function UserDetails() {
               <span className="w-56 font-medium text-gray-600">
                 {item.label}:
               </span>
-              {item.isLink ? (
-                <a href="#" className="text-blue-600 hover:underline">
-                  {item.value}
-                </a>
-              ) : (
-                <span>{item.value}</span>
-              )}
+
+              <span>{item.value}</span>
             </div>
           ))}
         </div>
       </div>
-      <hr />{" "}
-      <div className="max-w-xl">
+      <hr />
+      <div className="max-w-2xl p-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Notes About This User:
         </label>
 
-        <textarea
-          className="w-full h-28 p-4 bg-white border border-gray-200 shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-orange-200 rounded-sm"
+        <Textarea
+          className="w-full h-28 p-4 bg-white   shadow-sm resize-none border-none rounded-sm"
           placeholder=""
           aria-label="Notes about this user"
         />
@@ -115,6 +106,19 @@ export default function UserDetails() {
           If you feel the user is fake in any way, you can block or delete the
           user from here.
         </p>
+      </div>
+
+      {/* btn */}
+      <div className="flex gap-4 ml-4">
+        <button className="bg-[#F05223] text-white p-2 rounded-xl font-bold w-24">
+          Suspend
+        </button>
+        <button className="bg-[#F05223] text-white p-2 rounded-xl font-bold w-24">
+          Ban
+        </button>
+        <button className="bg-[#000000] text-white p-2 rounded-xl font-bold w-24">
+          Delete
+        </button>
       </div>
     </section>
   );
