@@ -41,17 +41,15 @@ export default function Sidebar() {
         {paths.map((item) => {
           const active = pathname === item.path;
           return (
-            <div className="">
-              <div key={item.id} className="flex px-10 my-3">
-                <Link
-                  href={item.path}
-                  className={`font-bold px-4 py-2 w-[90%] ${
-                    active && "bg-[#F05223] text-white"
-                  }`}
-                >
-                  <p>{item.name}</p>
-                </Link>
-              </div>
+            <div key={item.id} className="flex px-10 my-3">
+              <Link
+                href={item.path}
+                className={`font-bold px-4 py-2 w-[90%] ${
+                  active && "bg-[#F05223] text-white"
+                }`}
+              >
+                <p>{item.name}</p>
+              </Link>
             </div>
           );
         })}

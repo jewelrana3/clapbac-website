@@ -1,4 +1,4 @@
-import Users from "@/components/dashboard/overview/users/Users";
+import Users from "@/components/dashboard/users/Users";
 import React from "react";
 
 export default function page() {
