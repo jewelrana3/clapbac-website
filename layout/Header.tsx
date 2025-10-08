@@ -3,13 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 
 import { Menu, X } from "lucide-react";
