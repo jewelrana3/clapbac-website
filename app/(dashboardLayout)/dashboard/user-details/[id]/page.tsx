@@ -4,9 +4,7 @@ import React from "react";
 import man from "../../../../../public/dashboard/users/man2.png";
 import { ChevronLeft } from "lucide-react";
 
-export default function id({ params }: any) {
-  const { id } = params;
-  console.log(id);
+export default function id() {
   return (
     <div className=" w-[90%] mx-auto">
       <div className="flex items-center mb-4">

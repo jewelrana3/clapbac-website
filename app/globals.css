@@ -140,3 +140,60 @@ body {
 .clip-tag {
   clip-path: polygon(100% 0%, 100% 51%, 100% 100%, 10% 100%, 0% 50%, 9% 0);
 }
+
+/* reviews */
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.location {
+  margin-left: 5px;
+  color: #555;
+}
+
+.meta {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 5px;
+}
+
+.overall-rating {
+  color: #f05223;
+  font-size: 2em;
+}
+
+.stars {
+  color: #f05223;
+  font-size: 2em;
+  margin: 5px 0;
+}
+
+.review-title,
+.clapback-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.clapback-review {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.clapback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clapback-author {
+  color: #d84315;
+}
+
+.clapback-date {
+  font-size: 0.9em;
+  color: #999;
+}

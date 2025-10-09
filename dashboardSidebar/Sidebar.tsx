@@ -6,10 +6,10 @@ import React from "react";
 const paths = [
   { id: 1, name: "Overview", path: "/dashboard" },
   { id: 2, name: "Users", path: "/dashboard/users" },
-  { id: 3, name: "Reviews", path: "dashboard/reviews" },
-  { id: 4, name: "Reviewers", path: "dashboard/reviewers" },
-  { id: 5, name: "Reports", path: "dashboard/reports" },
-  { id: 6, name: "Announcements", path: "dashboard/announcements" },
+  { id: 3, name: "Reviews", path: "/dashboard/reviews" },
+  { id: 4, name: "Reviewers", path: "/dashboard/reviewers" },
+  { id: 5, name: "Reports", path: "/dashboard/reports" },
+  { id: 6, name: "Announcements", path: "/dashboard/announcements" },
   {
     id: 7,
     name: "Settings",
