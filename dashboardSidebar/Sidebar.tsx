@@ -18,16 +18,16 @@ const paths = [
       {
         id: 7.1,
         name: "Terms & Conditions",
-        path: "/settings/terms-conditions",
+        path: "/dashboard/terms-conditions",
       },
       {
         id: 7.2,
         name: "Privacy Policy",
-        path: "/settings/privacy-policy",
+        path: "/dashboard/privacy-policy",
       },
     ],
   },
-  { id: 8, name: "Profile", path: "/profile" },
+  { id: 8, name: "Profile", path: "/dashboard/profile" },
   { id: 9, name: "Log Out", path: "/logout" },
 ];
 
@@ -62,7 +62,7 @@ export default function Sidebar() {
                       <Link
                         href={child.path}
                         key={child.id}
-                        className={`block font-medium px-4 py-2 rounded w-full text-sm ${
+                        className={`block font-bold px-4 py-2 rounded w-full text-sm ${
                           isChildActive
                             ? "bg-[#F05223] text-white"
                             : "text-gray-700"

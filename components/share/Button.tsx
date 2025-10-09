@@ -1,17 +1,25 @@
-export default function Button({
-  className,
-  children,
-  type = "submit",
-}: {
-  className?: string;
+interface ButtonProps {
   children: React.ReactNode;
-  type?: "button" | "submit" | "reset";
-}) {
+  className: string;
+  onClick?: () => void;
+  htmlType?: "button" | "submit" | "reset";
+  style?: React.CSSProperties;
+}
+
+export default function Button({
+  children,
+  className,
+  onClick,
+  style,
+  htmlType = "button",
+}: ButtonProps) {
   return (
-    <div className="">
+    <div className="flex  p-2">
       <button
-        type={type}
-        className={`bg-[#F05223] text-white px-5 py-2 rounded-md font-semibold cursor-pointer ${className}`}
+        style={style}
+        type={htmlType}
+        onClick={onClick} // Passing the onClick handler here
+        className={`${className} text-center my-auto cursor-pointer  w-auto h-[45px]  text-base font-poppins `}
       >
         {children}
       </button>
