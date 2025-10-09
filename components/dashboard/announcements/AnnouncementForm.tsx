@@ -17,36 +17,36 @@ const AnnouncementForm = ({ trigger }: { trigger: React.ReactNode }) => {
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-[925px] bg-[#F5F5F5]">
         <div className=" p-6">
-          <h2 className="text-lg font-semibold ">
+          <h2 className="text-lg font-semibold mb-5">
             CREATE/EDIT ANNOUNCEMENT FORM:
           </h2>
 
           <div className="flex items-center gap-4">
-            <Label className="font-medium text-[#000000] text-[20px] text-right ">
+            <Label className="font-medium text-[#000000] text-[18px] text-right ">
               Title/Subject :
             </Label>
             <Input
               type="text"
-              className="flex-1 px- py-2 border-none shadow-xl text-[#000000] "
+              className="flex-1 px- py-2 border-none shadow-xl text-[#3D454E] "
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div className="flex items-center gap-4 mt-3">
-            <Label className="font-medium text-[#000000] text-[20px]  text-left">
+            <Label className="font-medium text-[#000000] text-[18px]  text-left">
               Message :
             </Label>
             <Input
               type="text"
-              className="flex-1 px- py-2 border-none shadow-xl text-[#000000] "
+              className="flex-1 px- py-2 border-none shadow-xl text-[#3D454E] "
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
           </div>
 
           <div className="flex items-center gap-4 mt-3">
-            <Label className="font-medium text-[#000000] text-[20px] text-nowrap text-right">
+            <Label className="font-medium text-[#000000] text-[18px] text-nowrap text-right">
               URL Link :
             </Label>
             <Input
@@ -59,7 +59,7 @@ const AnnouncementForm = ({ trigger }: { trigger: React.ReactNode }) => {
           </div>
 
           <div className="flex items-center gap-4 mt-3">
-            <Label className="font-medium text-[#000000] text-[20px] text-nowrap">
+            <Label className="font-medium text-[#000000] text-[18px] text-nowrap">
               Banner Preview:
             </Label>
             <div className="bg-black w-full text-white px-4 py-3 font-medium shadow-md">

@@ -30,7 +30,7 @@ export default function ContactForm() {
           />
         </div>
         <Button
-          type="submit"
+          htmlType="submit"
           className="bg-orange-600 hover:bg-orange-700 w-full sm:w-[206px] h-10  text-md"
         >
           Submit

@@ -33,7 +33,7 @@ export default function page() {
             <div className="flex flex-col md:flex-row gap-3 my-4">
               <Link href="/reset-password" className="w-full">
                 <Button
-                  type="submit"
+                  htmlType="submit"
                   className="bg-[#E95022]  w-full text-white font-bold py-2 rounded-xl"
                 >
                   Continue

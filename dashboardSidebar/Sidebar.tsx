@@ -13,7 +13,7 @@ const paths = [
   {
     id: 7,
     name: "Settings",
-    path: "/settings",
+    path: "#",
     children: [
       {
         id: 7.1,

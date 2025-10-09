@@ -48,7 +48,7 @@ export default function LoginPage() {
         <div className="grid sm:grid-cols-2 gap-3 my-4">
           <Link href="/">
             <Button
-              type="submit"
+              htmlType="submit"
               className="bg-[#E95022] w-full md:flex-1 text-white font-bold py-2 rounded-xl"
             >
               Login

@@ -10,9 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
-import man from "../../../public/dashboard/users/man.png";
-import logo from "../../../public/dashboard/users/logo.png";
-import Image from "next/image";
+
 import Link from "next/link";
 
 const users = [

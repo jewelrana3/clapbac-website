@@ -11,6 +11,7 @@ export default function Button({
   className,
   onClick,
   style,
+
   htmlType = "button",
 }: ButtonProps) {
   return (
