@@ -36,20 +36,44 @@ export default function Sidebar() {
   console.log(pathname);
 
   return (
-    <section className="">
-      <div className="bg-[#F2F2F2] w-[340px] text-[#000000] h-screen py-14">
+    <section>
+      <div className="bg-[#F2F2F2] w-[340px] text-black h-screen py-14">
         {paths.map((item) => {
-          const active = pathname === item.path;
+          const isActive = pathname === item.path;
+
           return (
-            <div key={item.id} className="flex px-10 my-3">
+            <div key={item.id} className="px-10 my-3">
+              {/* Parent Link */}
               <Link
                 href={item.path}
-                className={`font-bold px-4 py-2 w-[90%] ${
-                  active && "bg-[#F05223] text-white"
+                className={`block font-bold px-4 py-2 rounded w-full ${
+                  isActive ? "bg-[#F05223] text-white" : "text-black"
                 }`}
               >
-                <p>{item.name}</p>
+                {item.name}
               </Link>
+
+              {/* Children (if any) */}
+              {item.children && (
+                <div className="ml-6 mt-2 space-y-2">
+                  {item.children.map((child) => {
+                    const isChildActive = pathname === child.path;
+                    return (
+                      <Link
+                        href={child.path}
+                        key={child.id}
+                        className={`block font-medium px-4 py-2 rounded w-full text-sm ${
+                          isChildActive
+                            ? "bg-[#F05223] text-white"
+                            : "text-gray-700"
+                        }`}
+                      >
+                        {child.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           );
         })}
