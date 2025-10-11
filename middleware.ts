@@ -40,7 +40,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Allow only users with USER role
-  if (!(profile.role === "Owner")) {
+  if (!(profile.role === "Owner" || profile.role === "Admin")) {
     (await cookies()).delete("OWNER_TOKEN");
     (await cookies()).delete("refreshToken");
     return NextResponse.redirect(new URL("/login", request.url));
