@@ -7,6 +7,7 @@ import SectionTitle from "@/components/share/SectionTitle";
 import one from "../../../public/share-icon/one.svg";
 import two from "../../../public/share-icon/two.svg";
 import Image from "next/image";
+import { myFetch } from "@/utils/myFetch";
 
 const des = (
   <section className="flex  gap-4 bg-gray-100 ">
@@ -34,14 +35,16 @@ const des = (
   </section>
 );
 
-export default function BussinessCategories() {
+export default async function BussinessCategories() {
+  const categories = await myFetch("/categories");
+
   return (
     <div className="mt-16">
       <SectionTitle
         title="Business Categories"
         subTitle="Find Out Who’s Worth It. Type It In. Expose or Endorse."
       />
-      <BussinessCard />
+      <BussinessCard data={categories?.data} />
       <ProfileSection
         image={profile}
         des={des}
