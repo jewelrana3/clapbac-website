@@ -3,6 +3,7 @@ import { Lato } from "next/font/google";
 import "./globals.css"; // Your global styles
 import { Header } from "@/layout/Header";
 import Footer from "@/layout/Footer";
+import toast, { Toaster } from "react-hot-toast";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <div>
           <Footer />
         </div>
+        <Toaster />
       </body>
     </html>
   );

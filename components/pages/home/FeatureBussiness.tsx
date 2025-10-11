@@ -5,6 +5,7 @@ import two from "../../../public/feature-bussiness/two.png";
 import three from "../../../public/feature-bussiness/three.png";
 import Image from "next/image";
 import Container from "@/layout/Container";
+import { myFetch } from "@/utils/myFetch";
 
 const data = [
   {
@@ -30,7 +31,9 @@ const data = [
   },
 ];
 
-export default function FeatureBusiness() {
+export default async function FeatureBusiness() {
+  const featuresBussiness = await myFetch("/companies");
+  console.log(featuresBussiness);
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;
@@ -56,20 +59,27 @@ export default function FeatureBusiness() {
           Featured Businesses
         </h2>
         <div className=" grid md:grid-cols-3 gap-5 ">
-          {data.map(({ id, title, rating, review, img }) => (
+          {featuresBussiness?.data?.map((item: any) => (
             <div
-              key={id}
-              className="bg-[#F5F5F5] p-5 text-[#3D454E] mb-6  gap-16"
+              key={item?._id}
+              className="bg-[#F5F5F5] p-5 text-[#3D454E] mb-  gap-16"
             >
-              <Image src={img} alt={title} className=" w-full" />
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.category.icon}`}
+                alt={item.category.name}
+                width={100}
+                height={100}
+                sizes="100vw"
+                className="h-[70%] w-full object-cover"
+              />
               <div className="mt-5">
-                <h3 className="font-bold text-xl lg:text-2xl">{title}</h3>
+                <h3 className="font-bold text-xl lg:text-2xl">{item.name}</h3>
                 <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
                   <div className="lg:flex gap-5">
                     <div className="flex items-center">
-                      {renderStars(rating)}
+                      {renderStars(item.avgRating)}
                     </div>
-                    <p className="mt-1 lg:mt-0">{review}</p>
+                    <p className="mt-1 lg:mt-0">3.5 (23 Reviews)</p>
                   </div>
                 </div>
               </div>

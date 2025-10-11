@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React from "react";
@@ -6,8 +8,39 @@ import google from "../../public/auth/google.png";
 import facebook from "../../public/auth/facebook.jpg";
 import Link from "next/link";
 import Button from "../share/Button";
+import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
+import { setCookie } from "cookies-next";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const redirect = useSearchParams()?.get("redirect");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+      const res = await myFetch("/auth/login", {
+        method: "POST",
+        body: { email, password },
+      });
+
+      console.log("res", res);
+
+      if (res.success) {
+        toast.success("Login successful", { id: "login" });
+        setCookie("OWNER_TOKEN", res.data);
+        setCookie("refreshToken", res.data.refreshToken);
+        router.push(redirect || "/");
+      } else {
+        toast.error(res?.message || "Login failed", { id: "login" });
+      }
+    } catch (error) {}
+  };
   return (
     <div className="max-w-xl mx-auto py-12  px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
       {/* Social Buttons */}
@@ -40,28 +73,36 @@ export default function LoginPage() {
       </div>
 
       {/* Form Fields */}
-      <form className="space-y-3">
-        <Input type="email" placeholder="Email" className="form-input" />
-        <Input type="password" placeholder="password" className="form-input" />
+      <form className="space-y-3" onSubmit={handleSubmit}>
+        <Input
+          name="email"
+          type="email"
+          placeholder="Email"
+          className="form-input"
+        />
+        <Input
+          name="password"
+          type="password"
+          placeholder="password"
+          className="form-input"
+        />
 
         {/* Submit Button */}
         <div className="grid sm:grid-cols-2 gap-3 my-4">
-          <Link href="/">
-            <Button
-              htmlType="submit"
-              className="bg-[#E95022] w-full md:flex-1 text-white font-bold py-2 rounded-xl"
-            >
-              Login
-            </Button>
-          </Link>
+          <Button
+            htmlType="submit"
+            className="bg-[#E95022] w-full md:flex-1 text-white font-bold py-2 rounded-xl"
+          >
+            Login
+          </Button>
 
           <Link href="/forgot-password">
-            <button
-              type="button"
+            <Button
+              htmlType="button"
               className="bg-white w-full text-[#A0A0A0] font-semibold py-2 rounded-xl border border-[#D3D3D3] cursor-pointer"
             >
               Forgot Your Password
-            </button>
+            </Button>
           </Link>
         </div>
 

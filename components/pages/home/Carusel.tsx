@@ -9,13 +9,22 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { clapbacCards } from "@/demoData/loudVoice";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import Image from "next/image";
 import Container from "@/layout/Container";
 import { usePathname } from "next/navigation";
+import { myFetch } from "@/utils/myFetch";
 
 export default function CarouselPage() {
+  const [featuresCompany, setFeaturesCompany] = React.useState<any>([]);
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const featuresCompany = await myFetch("/reviews/reviewers");
+      setFeaturesCompany(featuresCompany?.data);
+    };
+
+    fetchData();
+  }, []);
   const pathname = usePathname();
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -47,7 +56,7 @@ export default function CarouselPage() {
         className=" "
       >
         <CarouselContent>
-          {clapbacCards.map((card, index) => (
+          {featuresCompany?.map((card: any, index: number) => (
             <CarouselItem
               key={index}
               className="basis-1/1 md:basis-1/2 xl:basis-1/4"
@@ -57,23 +66,23 @@ export default function CarouselPage() {
                   pathname === "/reviewers"
                     ? "border-16 border-[#E1E1E1]"
                     : "border-16 border-[#C5D92D] "
-                } h-[350px] flex flex-col w-[90%] mx-auto`}
+                } h-[350px] flex flex-col w-[90%] full mx-auto`}
               >
                 <div className="bg-white h-full mx-auto flex flex-col ">
                   <CardContent className="flex flex-col justify-between">
                     {/* Profile Header */}
                     <div className="flex items-center space-x-3 mb-4">
                       <Image
-                        src={card.user.avatarUrl}
-                        alt={card.user.name}
+                        src={`${process.env.NEXT_PUBLIC_BASE_URL}${card.company.logo}`}
+                        alt={card.company.name}
                         width={48}
                         height={48}
                         className="w-12 h-12 rounded-full object-cover"
                       />
                       <div>
-                        <h3 className="font-bold">{card.user.name}</h3>
+                        <h3 className="font-bold">{card.user.firstName}</h3>
                         <p className="text-sm text-gray-600">
-                          {card.user.business}
+                          {card.user.title}
                         </p>
                       </div>
                     </div>
@@ -81,19 +90,19 @@ export default function CarouselPage() {
                     {/* Action and Target */}
                     <div className="mb-2">
                       <p className="text-xs font-semibold text-gray-700">
-                        {card.action}
+                        {card.clapbacTitle}
                       </p>
-                      <h2 className="text-xl font-bold">{card.target.name}</h2>
+                      <h2 className="text-xl font-bold">{card.company.name}</h2>
                     </div>
 
                     {/* Star Rating */}
                     <div className="flex space-x-1 mb-3">
-                      {renderStars(card.target.rating)}
+                      {renderStars(card.reviewRating)}
                     </div>
 
                     {/* Review */}
                     <p className="text-sm  text-gray-800 font-semibold flex-grow">
-                      {card.review}
+                      {card.reviewMessage.slice(0, 200)}....
                     </p>
                   </CardContent>
                 </div>

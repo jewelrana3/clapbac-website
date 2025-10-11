@@ -9,6 +9,12 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
+import { myFetch } from "@/utils/myFetch";
+
+interface profileData {
+  firstName: string;
+  image: string;
+}
 
 const mobileMenuItems = [
   { title: "Rate a Reviewer", href: "/rate-reviewer" },
@@ -17,12 +23,22 @@ const mobileMenuItems = [
   { title: "FAQ", href: "/faq" },
   { title: "About", href: "/about-us" },
   { title: "Contact", href: "/contact-us" },
-  { title: "Login", href: "/login", highlight: true },
 ];
 
 export function Header() {
+  const [profileData, setProfileData] = React.useState<profileData>();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const res = await myFetch("/users/profile");
+      setProfileData(res.data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
       <div className="flex justify-between items-center h-16 bg-[#191919] px-7 ">
@@ -34,24 +50,42 @@ export function Header() {
         </div>
         {/* navigation */}
         <div>
-          <ul className="hidden lg:flex space-x-4">
-            {mobileMenuItems.map(({ href, title, highlight }) => {
+          <ul className="hidden lg:flex items-center space-x-4">
+            {mobileMenuItems.map(({ href, title }) => {
               const isActive = pathname === href;
 
               return (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className={`px-3 py-2 rounded transition-colors duration-200 
-                ${highlight && "bg-[#F05223]"}
+                <section key={href}>
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className={`px-3 py-2 rounded transition-colors duration-200 
+              
                 ${isActive ? "bg-white text-black" : "text-white "} 
                 `}
-                  >
-                    {title}
-                  </Link>
-                </li>
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                </section>
               );
             })}
+
+            <div
+              className="flex items-center space-x-2 focus:outline-none"
+              aria-haspopup="true"
+            >
+              <Image
+                src={profileData?.image || "/default-avatar.png"}
+                alt={`${profileData?.firstName || "User"} profile`}
+                width={30}
+                height={30}
+                className="rounded-full"
+              />
+              <span className="text-white font-medium">
+                {profileData?.firstName || "User"}
+              </span>
+            </div>
           </ul>
         </div>
 
