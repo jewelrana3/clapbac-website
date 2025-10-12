@@ -7,7 +7,7 @@ const Card = () => {
     { title: "Total Reviews", value: "25,290" },
     { title: "New Sign Ups", value: "34" },
   ];
-  console.log("lsdsd");
+
   return (
     <div className="">
       <div className="grid grid-cols-4 gap-10">

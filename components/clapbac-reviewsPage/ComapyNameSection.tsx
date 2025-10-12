@@ -4,12 +4,12 @@ import Image from "next/image";
 import Button from "../share/Button";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
-export default function ComapyNameSection() {
+export default function ComapyNameSection({ details }: any) {
   return (
     <>
       {" "}
       <h1 className="flex items-center">
-        Food & Drink{" "}
+        {details?.category?.name}{" "}
         <span>
           <MdOutlineKeyboardArrowRight />
         </span>{" "}
@@ -20,8 +20,14 @@ export default function ComapyNameSection() {
           <div className="flex items-center md:justify-center gap-5">
             <div className="">
               <Image
-                src={one}
+                src={
+                  `${process.env.NEXT_PUBLIC_BASE_URL}${details?.category?.icon}` ||
+                  details?.category?.icon
+                }
+                width={0}
+                height={0}
                 alt="card"
+                sizes="100vw"
                 className="w-30 lg:w-48 object-cover "
               />
             </div>
@@ -31,7 +37,8 @@ export default function ComapyNameSection() {
                 Arabica Coffee
               </h3>
               <p className="text-[#3D454E]">
-                Food & Drink | 14 Reviews | Updated 3 Days ago
+                {details?.category?.name} | {details?.reviewCount} Reviews |
+                Updated 3 Days ago
               </p>
             </div>
           </div>

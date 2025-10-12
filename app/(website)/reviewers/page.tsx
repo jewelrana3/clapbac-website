@@ -13,6 +13,7 @@ import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
 import { reviewers } from "@/demoData/reviewers";
 import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
+import { myFetch } from "@/utils/myFetch";
 
 const reviewerIndexOptions = [
   "Most Controversial",
@@ -32,13 +33,15 @@ const reviewerTypes = [
   "VIP",
 ];
 
-export default function Reviewers() {
-  const businessNames = [
-    { title: "Danny K. on Arabica Coffee", image: one },
-    { title: "Sasha C. on Loop Coffee", image: two },
-    { title: "Nancy B. on Cenchi Cafe", image: three },
-    { title: "Keisha V. on Ejji Coffee", image: four },
-  ];
+const businessNames = [
+  { title: "Danny K. on Arabica Coffee", image: one },
+  { title: "Sasha C. on Loop Coffee", image: two },
+  { title: "Nancy B. on Cenchi Cafe", image: three },
+  { title: "Keisha V. on Ejji Coffee", image: four },
+];
+
+export default async function Reviewers() {
+  const reviews = await myFetch("/reviews/reviewers");
 
   return (
     <div>
@@ -51,18 +54,20 @@ export default function Reviewers() {
 
       <Container className="mt-10">
         <section className="flex flex-col lg:flex-row gap-12">
-          <div className="basis-auto mb-8">
+          <div className="basis-[70%] mb-8">
             <CategoryHeader />
 
-            {reviewers.map((item, index) => (
-              <ReviewersCard item={item} key={index} />
+            {reviews?.data?.map((item: any) => (
+              <ReviewersCard item={item} key={item._id} />
             ))}
+
+            {/* <ReviewersCard item={reviews?.data} /> */}
 
             <Pagination />
           </div>
 
           {/* categories ralted  */}
-          <div className="basis-[40%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
+          <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
             <RelatedCategories
               title="Reviewer Index"
               categories={reviewerIndexOptions}

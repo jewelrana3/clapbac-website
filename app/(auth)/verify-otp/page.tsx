@@ -32,8 +32,6 @@ export default function InputOTPPattern() {
         body: payload,
       });
 
-      console.log(res.data);
-
       if (res.success) {
         router.push(`/reset-password?token=${res.data}`);
       } else {

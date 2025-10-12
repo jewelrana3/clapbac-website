@@ -58,15 +58,11 @@ export default function ContactForm() {
 
     const payload = { ...form };
 
-    console.log("Submitting payload:", payload);
-
     try {
       const res = await myFetch("/supports/create", {
         method: "POST",
         body: payload,
       });
-
-      console.log("Response:", res);
 
       if (res.success) {
         toast.success("Contact submitted successfully!");

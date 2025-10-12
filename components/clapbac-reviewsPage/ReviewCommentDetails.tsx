@@ -52,9 +52,9 @@ export default function ReviewCommentDetails({
           <div className="flex flex-row items-center gap-2">
             {/* user profile image */}
             <div>
-              {reply.image && (
+              {reply && (
                 <Image
-                  src={reply?.image}
+                  src={reply?.user?.image}
                   alt="Logo"
                   className="w-8 h-8 sm:w-20 sm:h-20 rounded-full"
                 />
@@ -84,15 +84,15 @@ export default function ReviewCommentDetails({
             </div>
           </div>
 
-          <p className="text-sm text-gray-700 mt-1">{reply.content}</p>
+          <p className="text-sm text-gray-700 mt-1">{reply.reviewMessage}</p>
         </div>
       </div>
       <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">
         <p className="font-bold text-md">{reply.ownerside}</p>
 
-        {reply.ratings && (
+        {reply.reviewRating && (
           <p className="mt-1 flex gap-1 xl:justify-end ">
-            {ratingCaculate(reply.ratings)}
+            {ratingCaculate(reply.reviewRating)}
           </p>
         )}
       </div>

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import help from "../../public/clapbac-reviews/help.svg";
 import Image from "next/image";
 
-export default function HelpFull() {
-  const [add, setAdd] = useState(false);
+export default function HelpFull({ reviews }: any) {
+  const [add, setAdd] = useState(reviews?.helpfulCount);
 
   return (
     <button

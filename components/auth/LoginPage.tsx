@@ -31,8 +31,6 @@ export default function LoginPage() {
         body: { email, password },
       });
 
-      console.log("res", res);
-
       if (res.success) {
         toast.success("Login successful", { id: "login" });
         setCookie("OWNER_TOKEN", res.data);

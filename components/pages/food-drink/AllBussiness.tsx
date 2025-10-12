@@ -27,7 +27,6 @@ const searches = [
   "Family Restaurant",
 ];
 export default function AllBussiness({ data }: { data: Props[] }) {
-  console.log(data);
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">

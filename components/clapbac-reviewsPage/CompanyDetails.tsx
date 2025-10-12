@@ -1,39 +1,40 @@
 import React from "react";
 
 const CompanyDetails = ({ details }: { details: any }) => {
-  const { title, descriptionTitle, description, contactTitle, contact } =
-    details;
+  console.log(details, "details");
 
   return (
     <div className="max-w-md">
-      <h2 className="text-lg font-semibold mb-4">{title}</h2>
+      <h2 className="text-lg font-semibold mb-4">Company Details</h2>
 
       <div className="mb-6">
-        <h3 className="text-red-600 font-semibold mb-2">{descriptionTitle}</h3>
-        <p className="text-gray-700 leading-relaxed">{description}</p>
+        <h3 className="text-red-600 font-semibold mb-2">
+          Written by the Company
+        </h3>
+        <p className="text-gray-700 leading-relaxed">{details?.about}</p>
       </div>
 
       <div>
-        <h3 className="text-red-600 font-semibold mb-2">{contactTitle}</h3>
+        <h3 className="text-red-600 font-semibold mb-2">Contact Info</h3>
         <address className="not-italic text-gray-700 space-y-1">
-          <p>{contact.address}</p>
-          <p>{contact.phone}</p>
+          <p>{details?.address}</p>
+          <p>{details?.phone}</p>
           <p>
             <a
-              href={`mailto:${contact.email}`}
+              href={`mailto:${details?.email}`}
               className="text-blue-600 underline"
             >
-              {contact.email}
+              {details?.email}
             </a>
           </p>
           <p>
             <a
-              href={`https://${contact.website}`}
+              href={`https://${details?.website}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline"
             >
-              {contact.website}
+              {details?.website}
             </a>
           </p>
         </address>

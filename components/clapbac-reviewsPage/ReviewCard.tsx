@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
+import { parseISO, format } from "date-fns";
 
 const review = {
   reviewer: {
@@ -18,9 +19,7 @@ const review = {
   source: "Yelp",
 };
 
-const ReviewCard = () => {
-  const { reviewer, excerpt, source } = review;
-
+const ReviewCard = ({ reviews }: { reviews: any }) => {
   const ratingCaculate = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;
@@ -42,47 +41,77 @@ const ReviewCard = () => {
       </>
     );
   };
+  const ratingCaculate2 = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const hasHalf = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+
+    return (
+      <>
+        {[...Array(fullStars)].map((_, i) => (
+          <FaStar key={`full-${i}`} className="bg-[#D9D9D9] px-1 text-2xl " />
+        ))}
+
+        {hasHalf && (
+          <FaRegStarHalfStroke className="bg-[#D9D9D9] px-1 text-2xl " />
+        )}
+
+        {[...Array(emptyStars)].map((_, i) => (
+          <FaRegStar
+            key={`empty-${i}`}
+            className="bg-[#D9D9D9] px-1 text-2xl "
+          />
+        ))}
+      </>
+    );
+  };
+
+  // date
+  const formattedDate = (date: string) => {
+    return format(parseISO(date), "MMMM d, yyyy");
+  };
 
   return (
     <div className="border-b pb-6 mb-6">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h3 className="font-bold text-lg">{reviewer.name}</h3>
-          <p className="text-sm text-gray-500">{reviewer.location}</p>
+          <h3 className="font-bold text-lg">{reviews?.reviewerName}</h3>
+          {/* <p className="text-sm text-gray-500">{reviewer.location}</p> */}
         </div>
         <div className="text-right">
           <p className="text-sm  text-gray-500">Overall Reviewer Rating</p>
-          <p className="flex gap-1"> {ratingCaculate(4)}</p>
+          <p className="flex gap-1">{ratingCaculate(reviews?.clapbacRating)}</p>
         </div>
       </div>
 
       {/* Metadata */}
       <p className="text-xs text-gray-500 mt-2">
-        Original Review Excerpted from {source} | Date of Review:{" "}
-        {reviewer.date} | Date of Experience: {reviewer.experienceDate}
+        Original Review Excerpted from {reviews?.reviewSource} | Date of Review:{" "}
+        {formattedDate(reviews?.createdAt)} | Date of Experience:{" "}
+        {formattedDate(reviews?.updatedAt)}
       </p>
 
       {/* Excerpt */}
       <div className="mt-4">
         <p className="font-semibold text-gray-800 flex flex-col sm:flex-row items-center mb-2">
           <span className="flex items-center gap-1 text-xl text-gray-400 mr-2">
-            <span className="bg-[#D9D9D9] px-1">★</span>
-            <span className="bg-[#D9D9D9] px-1">★</span>
-            <span className="bg-[#D9D9D9] px-1">★</span>
-            <span className="bg-[#D9D9D9] px-1">☆</span>
-            <span className="bg-[#D9D9D9] px-1">☆</span>
+            <span className="flex gap-1">
+              {ratingCaculate2(reviews?.clapbacRating)}
+            </span>
           </span>
-
-          {excerpt.headline}
+          {reviews?.clapbacTitle}
+          {/* Don’t even bother coming here. */}
         </p>
-        <p className="text-sm text-gray-700 ">{excerpt.content}</p>
-        <Link
-          href="#"
+        <p className="text-sm text-gray-700 ">{reviews?.clapbacMessage}</p>
+        <a
+          href={reviews?.sourceLink}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-[#1AA1B1] text-sm mt-2  flex justify-end underline"
         >
           Read Full Review
-        </Link>
+        </a>
       </div>
     </div>
   );

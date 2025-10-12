@@ -18,7 +18,7 @@ export default function ReportModal() {
             Report
           </button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] py-3">
           <DialogHeader>
             <DialogTitle>Report </DialogTitle>
           </DialogHeader>

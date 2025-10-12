@@ -2,7 +2,7 @@ import React from "react";
 import HelpFull from "./HelpFull";
 import ReportModal from "./ReportModal";
 
-export default function CommentsSection() {
+export default function CommentsSection({ reviews }: any) {
   return (
     // <div className="grid grid-cols-[50%] sm:grid-cols-[30%_30%_20%] gap-3 mt-10">
     <div className="flex flex-col sm:flex-row gap-3 mt-10">
@@ -32,7 +32,7 @@ export default function CommentsSection() {
 
       {/* Helpful Button */}
 
-      <HelpFull />
+      <HelpFull reviews={reviews} />
     </div>
   );
 }

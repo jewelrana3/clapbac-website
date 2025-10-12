@@ -35,16 +35,12 @@ export default function ResetPassword() {
       confirmPassword,
     };
 
-    console.log(payload);
-
     try {
       const res = await myFetch("/auth/reset-password", {
         method: "POST",
         body: payload,
         token,
       });
-
-      console.log(res);
 
       if (res.success) {
         router.push("/login");
