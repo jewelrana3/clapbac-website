@@ -5,29 +5,45 @@ import CategoryHeader from "./CategoryHeader";
 import RelatedCategories from "./RalatedCategories";
 import FoodDrinkBussinessCard from "./FoodDrinkBussinessCard";
 import Pagination from "@/components/share/Pagination";
-export default function AllBussiness() {
-  const categories = ["Bakery", "Desserts", "Snacks", "Chocolate", "Candy"];
-  const searches = [
-    "Brunch",
-    "Steak House",
-    "Fine Dining",
-    "Ice Cream",
-    "Family Restaurant",
-  ];
 
+interface Props {
+  _id: string;
+  category: {
+    name: string;
+    icon: string;
+  };
+
+  website: string;
+  reviewCount: number;
+  avgRating: number;
+}
+
+const categories = ["Bakery", "Desserts", "Snacks", "Chocolate", "Candy"];
+const searches = [
+  "Brunch",
+  "Steak House",
+  "Fine Dining",
+  "Ice Cream",
+  "Family Restaurant",
+];
+export default function AllBussiness({ data }: { data: Props[] }) {
+  console.log(data);
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">
-        <div className="basis-auto mb-8">
+        <div className="basis-[70%] mb-8">
+          {/* category header */}
           <CategoryHeader />
-          {coffeeShops.map((item, index) => (
-            <FoodDrinkBussinessCard item={item} key={index} />
+
+          {/* bussiness cards */}
+          {data?.map((item) => (
+            <FoodDrinkBussinessCard item={item} key={item?._id} />
           ))}
           <Pagination />
         </div>
 
         {/* categories ralted  */}
-        <div className="basis-[50%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
+        <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
           <RelatedCategories
             title="Related Categories"
             categories={categories}

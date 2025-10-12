@@ -32,8 +32,8 @@ const data = [
 ];
 
 export default async function FeatureBusiness() {
-  const featuresBussiness = await myFetch("/companies");
-  console.log(featuresBussiness);
+  const featuresBussiness = await myFetch(" companies?isFeatured=true");
+
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;

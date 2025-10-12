@@ -1,7 +1,7 @@
 "use client";
+import { deleteCookie } from "cookies-next/client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const paths = [
   { id: 1, name: "Overview", path: "/dashboard" },
@@ -28,18 +28,38 @@ const paths = [
     ],
   },
   { id: 8, name: "Profile", path: "/dashboard/profile" },
-  { id: 9, name: "Log Out", path: "/logout" },
+  { id: 9, name: "Log Out", path: "/login" },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
-  console.log(pathname);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    deleteCookie("OWNER_TOKEN");
+    deleteCookie("refreshToken");
+    router.push("/login");
+  };
 
   return (
     <section>
       <div className="bg-[#F2F2F2] w-[340px] text-black h-screen py-14">
         {paths.map((item) => {
           const isActive = pathname === item.path;
+
+          // Special case for logout
+          if (item.name === "Log Out") {
+            return (
+              <div key={item.id} className="px-10 my-3">
+                <button
+                  onClick={handleLogout}
+                  className="block font-bold px-4 py-2 cursor-pointer  text-[#F05223] "
+                >
+                  {item.name}
+                </button>
+              </div>
+            );
+          }
 
           return (
             <div key={item.id} className="px-10 my-3">

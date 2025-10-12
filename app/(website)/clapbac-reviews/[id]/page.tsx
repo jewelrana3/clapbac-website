@@ -7,8 +7,12 @@ import React from "react";
 import CompanyDetails from "@/components/clapbac-reviewsPage/CompanyDetails";
 import { companyDetails } from "@/demoData/conpany-data";
 import ComapyNameSection from "@/components/clapbac-reviewsPage/ComapyNameSection";
+import { myFetch } from "@/utils/myFetch";
 
-export default function Review() {
+export default async function Review({ params }: { params: { id: string } }) {
+  const res = await myFetch(`/reviews/company/${params.id}`);
+  const companyReviews = res?.data;
+  console.log(companyReviews);
   return (
     <>
       <SectionTitle

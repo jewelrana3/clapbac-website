@@ -14,6 +14,8 @@ import { setCookie } from "cookies-next";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
+  // GET PROFILE
+
   const router = useRouter();
   const redirect = useSearchParams()?.get("redirect");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
