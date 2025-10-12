@@ -10,6 +10,7 @@ import {
 import { Textarea } from "../ui/textarea";
 
 export default function ReportModal() {
+  console.log("s");
   return (
     <Dialog>
       <form>
