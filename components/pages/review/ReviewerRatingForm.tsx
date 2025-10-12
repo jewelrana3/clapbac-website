@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Star } from "lucide-react";
@@ -14,11 +15,40 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { businessCategories, reviewerTypes } from "@/demoData/reviewPage";
 import RatingHeader from "./RatingHeader";
+import { useState } from "react";
 
 export default function ReviewerRatingForm() {
+  const [reviewType, setReviewType] = useState("");
+
+  const handleChangeRetype = (value: string) => {
+    console.log(value);
+    setReviewType(value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const data = {
+      reviewerName: formData.get("reviewerName"),
+      excerpt: formData.get("excerpt"),
+      reviewSource: formData.get("reviewSource"),
+      sourceLink: formData.get("sourceLink"),
+      experienceDate: formData.get("experienceDate"),
+      clapbacTitle: formData.get("clapbacTitle"),
+      yourReview: formData.get("yourReview"),
+    };
+
+    console.log("Form Data:", data, reviewType);
+  };
+
   return (
     <section className="my-14">
-      <form className="max-w-2xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm">
+      <form
+        className="max-w-2xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm"
+        onSubmit={handleSubmit}
+      >
         {/* Star Rating */}
         <RatingHeader />
 
@@ -27,7 +57,11 @@ export default function ReviewerRatingForm() {
           <Label htmlFor="reviewerName">
             Name of Reviewer that you are Rating
           </Label>
-          <Input id="reviewerName" placeholder="e.g. Sarah M." />
+          <Input
+            name="reviewerName"
+            id="reviewerName"
+            placeholder="e.g. Sarah M."
+          />
           <p className="text-sm text-muted-foreground mt-1">
             Please use first name and last initial only (e.g., Sarah M.) to
             respect privacy.
@@ -39,7 +73,7 @@ export default function ReviewerRatingForm() {
           <Label htmlFor="excerpt">
             Paste Excerpt from Original Review Here
           </Label>
-          <Textarea id="excerpt" rows={3} />
+          <Textarea name="excerpt" id="excerpt" rows={3} />
           <p className="text-sm text-muted-foreground mt-1">
             Review needs to be short excerpts from original review to comply
             with Fair Use.
@@ -49,19 +83,19 @@ export default function ReviewerRatingForm() {
         {/* Review Source */}
         <div>
           <Label htmlFor="source">Review Source (e.g. Yelp, Google)</Label>
-          <Input id="source" placeholder="e.g. Yelp" />
+          <Input name="reviewSource" id="source" placeholder="e.g. Yelp" />
         </div>
 
         {/* Source Link */}
         <div>
           <Label htmlFor="sourceLink">Paste Review Source Link Here</Label>
-          <Input id="sourceLink" placeholder="https://..." />
+          <Input name="sourceLink" id="sourceLink" placeholder="https://..." />
         </div>
 
         {/* Date of Experience */}
         <div>
           <Label htmlFor="date">Date of Experience</Label>
-          <Input id="date" type="date" />
+          <Input name="experienceDate" id="date" type="date" />
         </div>
 
         {/* How They Rated You */}
@@ -77,13 +111,13 @@ export default function ReviewerRatingForm() {
         {/* Title of Your Review */}
         <div>
           <Label htmlFor="reviewTitle">Title of Your Review</Label>
-          <Input id="reviewTitle" />
+          <Input name="clapbacTitle" id="reviewTitle" />
         </div>
 
         {/* Your Review */}
         <div>
           <Label htmlFor="yourReview">Your Review</Label>
-          <Textarea id="yourReview" rows={5} />
+          <Textarea name="yourReview" id="yourReview" rows={5} />
           <p className="text-sm text-muted-foreground mt-1">
             Review needs to be at least 100 characters.
           </p>
@@ -91,7 +125,7 @@ export default function ReviewerRatingForm() {
 
         <div className="space-y-2">
           <Label>Reviewer Type</Label>
-          <Select>
+          <Select value={reviewType} onValueChange={handleChangeRetype}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select Reviewer Type" />
             </SelectTrigger>
@@ -120,13 +154,12 @@ export default function ReviewerRatingForm() {
           </Select>
         </div>
 
-        {/* Business Website */}
+        {/*       
         <div className="space-y-2">
           <Label>Your Business Website</Label>
           <Input placeholder="https://yourwebsite.com" />
         </div>
 
-        {/* Business Category */}
         <div className="space-y-2">
           <Label>Your Business Category</Label>
           <Select>
@@ -141,7 +174,7 @@ export default function ReviewerRatingForm() {
               ))}
             </SelectContent>
           </Select>
-        </div>
+        </div> */}
 
         {/* Certification Checkbox */}
         <div className="flex items-start space-x-3">
