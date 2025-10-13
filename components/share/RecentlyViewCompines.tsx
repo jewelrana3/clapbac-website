@@ -17,6 +17,7 @@ export default function RecentlyViewCompanies({
   data: any;
   title: string;
 }) {
+  console.log(data, "data");
   return (
     <Container className="my-14">
       <h1 className=" mb-2 text-2xl font-bold">{title}</h1>
@@ -37,13 +38,15 @@ export default function RecentlyViewCompanies({
                   {/* Profile Header */}
                   <div className="flex items-center space-x-3 mb-4">
                     <Image
-                      src={card.image}
-                      alt={card.title}
+                      src={card.logo}
+                      alt={card.name}
+                      width={0}
+                      height={0}
                       className="w-full  object-cover"
                     />
                   </div>
 
-                  <p className="text-lg font-bold">{card.title}</p>
+                  <p className="text-lg font-bold">{card.name}</p>
                 </CardContent>
               </Card>
             </CarouselItem>

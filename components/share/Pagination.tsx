@@ -1,37 +1,89 @@
-const Pagination = () => {
+"use client";
+
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { useRouter, useSearchParams } from "next/navigation";
+
+export default function TablePagination({ total }: { total?: any }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const activePage = searchParams.get("page") || "1";
+
+  let pageCalculate = 1;
+  if (total > 10) {
+    pageCalculate = total / 10;
+  } else {
+    pageCalculate = 1;
+  }
+
+  const length = Math.ceil(pageCalculate);
+
+  const goToPage = (page: number) => {
+    if (page < 1 || page > length) {
+      return;
+    }
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", page.toString());
+    router.push(`?${params.toString()}`);
+  };
+
+  const pageNumbers = [];
+  for (let i = 1; i <= length; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <div className="flex items-center justify-start space-x-2 mt-6">
-      {/* Left Arrow */}
-      <button className="px-2 py-1 bg-gray-100 text-gray-500 rounded">
-        {"<"}
-      </button>
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            className={`${
+              length === 1
+                ? "text-[#8A8A8A] hover:text-[#8A8A8A] cursor-default"
+                : ""
+            }`}
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
 
-      {/* Page Numbers */}
-      {[1, 2, 3, 4, 5].map((page) => (
-        <button
-          key={page}
-          className={`px-3 py-1 rounded ${
-            page === 1
-              ? "bg-gray-200 font-semibold text-gray-700"
-              : "text-gray-700 hover:bg-gray-100"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
+              goToPage(Number(activePage) - 1);
+            }}
+          />
+        </PaginationItem>
 
-      {/* Ellipsis and Last Page */}
-      <span className="text-gray-500 px-2">...</span>
-      <button className="px-3 py-1 text-gray-700 hover:bg-gray-100 rounded">
-        48
-      </button>
+        {pageNumbers?.map((page) => (
+          <PaginationItem key={page}>
+            <PaginationLink
+              className="hover:text-[#FFFFFF]"
+              href="#"
+              isActive={page === Number(activePage)}
+              onClick={(e) => {
+                e.preventDefault();
+                goToPage(page);
+              }}
+            >
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
 
-      {/* Right Arrow */}
-      <button className="px-2 py-1 bg-gray-100 text-gray-500 rounded">
-        {">"}
-      </button>
-    </div>
+        <PaginationItem>
+          <PaginationNext
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              goToPage(Number(activePage) + 1);
+            }}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
-};
-
-export default Pagination;
+}

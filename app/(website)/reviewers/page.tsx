@@ -1,6 +1,7 @@
+"use client";
+
 import RecentlyViewCompanies from "@/components/share/RecentlyViewCompines";
 import SectionTitle from "@/components/share/SectionTitle";
-import React from "react";
 
 import one from "../../../public/food-drink/one.png";
 import two from "../../../public/food-drink/four.png";
@@ -11,9 +12,10 @@ import CategoryHeader from "@/components/pages/food-drink/CategoryHeader";
 import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
-import { reviewers } from "@/demoData/reviewers";
 import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 import { myFetch } from "@/utils/myFetch";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const reviewerIndexOptions = [
   "Most Controversial",
@@ -40,8 +42,33 @@ const businessNames = [
   { title: "Keisha V. on Ejji Coffee", image: four },
 ];
 
-export default async function Reviewers() {
-  const reviews = await myFetch("/reviews/reviewers");
+export default function Reviewers() {
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
+  console.log(searchParams);
+  const [reviews, setReviews] = useState<any>(null);
+  const [recentCompanies, setRecentCompanies] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const reviews = await myFetch(
+        `/reviews/reviewers?page=${page?.toString()}&limit=8`
+      );
+      setReviews(reviews);
+    };
+
+    fetchReviews();
+  }, [searchParams]);
+
+  // recent companies
+  useEffect(() => {
+    const fetchRecentCompanies = async () => {
+      const recentCompanys = await myFetch("/recent-companies");
+      setRecentCompanies(recentCompanys);
+    };
+
+    fetchRecentCompanies();
+  }, []);
 
   return (
     <div>
@@ -63,7 +90,7 @@ export default async function Reviewers() {
 
             {/* <ReviewersCard item={reviews?.data} /> */}
 
-            <Pagination />
+            <Pagination total={reviews?.pagination?.total} />
           </div>
 
           {/* categories ralted  */}
@@ -78,11 +105,14 @@ export default async function Reviewers() {
             />
           </div>
         </section>
+
+        {/* pagination */}
+        {/* <Pagination /> */}
       </Container>
 
       <RecentlyViewCompanies
         title="Recently Viewed Reviewers"
-        data={businessNames}
+        data={recentCompanies?.data || []}
       />
     </div>
   );

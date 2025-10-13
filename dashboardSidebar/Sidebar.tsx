@@ -2,6 +2,7 @@
 import { deleteCookie } from "cookies-next/client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import path from "path";
 
 const paths = [
   { id: 1, name: "Overview", path: "/dashboard" },
@@ -46,6 +47,14 @@ export default function Sidebar() {
       <div className="bg-[#F2F2F2] w-[340px] text-black h-screen py-14">
         {paths.map((item) => {
           const isActive = pathname === item.path;
+          const isUserActive =
+            item.path === "/dashboard/users" &&
+            pathname.startsWith("/dashboard/user-details/arabian1423");
+
+          // reviews active
+          const isReviewsActive =
+            item.path === "/dashboard/reviewers" &&
+            pathname === "/dashboard/reviewers/nanbar38";
 
           // Special case for logout
           if (item.name === "Log Out") {
@@ -67,7 +76,9 @@ export default function Sidebar() {
               <Link
                 href={item.path}
                 className={`block font-bold px-4 py-2 rounded w-full ${
-                  isActive ? "bg-[#F05223] text-white" : "text-black"
+                  isActive || isUserActive || isReviewsActive
+                    ? "bg-[#F05223] text-white"
+                    : "text-black"
                 }`}
               >
                 {item.name}
@@ -78,6 +89,7 @@ export default function Sidebar() {
                 <div className="ml-6 mt-2 space-y-2">
                   {item.children.map((child) => {
                     const isChildActive = pathname === child.path;
+
                     return (
                       <Link
                         href={child.path}
