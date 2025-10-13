@@ -2,7 +2,6 @@
 import { deleteCookie } from "cookies-next/client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import path from "path";
 
 const paths = [
   { id: 1, name: "Overview", path: "/dashboard" },

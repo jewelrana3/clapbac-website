@@ -22,7 +22,7 @@ const AnnouncementForm = ({ trigger }: { trigger: React.ReactNode }) => {
           </h2>
 
           <div className="flex items-center gap-4">
-            <Label className="font-medium text-[#000000] text-[18px] text-right ">
+            <Label className="font-medium text-[#000000] text-[18px] text-right inline w-[150px] ">
               Title/Subject :
             </Label>
             <Input
@@ -34,7 +34,7 @@ const AnnouncementForm = ({ trigger }: { trigger: React.ReactNode }) => {
           </div>
 
           <div className="flex items-center gap-4 mt-3">
-            <Label className="font-medium text-[#000000] text-[18px]  text-left">
+            <Label className="font-medium text-[#000000] text-[18px] text-right inline w-[150px]">
               Message :
             </Label>
             <Input
@@ -46,12 +46,12 @@ const AnnouncementForm = ({ trigger }: { trigger: React.ReactNode }) => {
           </div>
 
           <div className="flex items-center gap-4 mt-3">
-            <Label className="font-medium text-[#000000] text-[18px] text-nowrap text-right">
+            <Label className="font-medium text-[#000000] text-[18px] text-right inline w-[150px] text-nowrap">
               URL Link :
             </Label>
             <Input
               type="text"
-              className="w-full px-4 border rounded shadow-sm"
+              className="flex-1 px-4 border rounded shadow-sm"
               placeholder="http://"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
@@ -59,10 +59,10 @@ const AnnouncementForm = ({ trigger }: { trigger: React.ReactNode }) => {
           </div>
 
           <div className="flex items-center gap-4 mt-3">
-            <Label className="font-medium text-[#000000] text-[18px] text-nowrap">
+            <Label className="font-medium text-[#000000] text-[18px] text-right inline w-[150px]">
               Banner Preview:
             </Label>
-            <div className="bg-black w-full text-white px-4 py-3 font-medium shadow-md">
+            <div className="bg-black flex-1 text-white px-4 py-3 font-medium shadow-md">
               {message}
             </div>
           </div>

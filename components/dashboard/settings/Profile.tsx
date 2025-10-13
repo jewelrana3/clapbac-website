@@ -99,7 +99,9 @@ export default function Profile() {
             ))}
 
             <div className="flex items-center justify-end">
-              <Button className="w-[72%] bg-[#F05223]">Save Changes</Button>
+              <Button className="w-[72%] bg-[#F05223] !hover:none">
+                Save Changes
+              </Button>
             </div>
           </div>
 

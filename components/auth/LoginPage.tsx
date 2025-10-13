@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { FaApple } from "react-icons/fa";
 import google from "../../public/auth/google.png";
 import facebook from "../../public/auth/facebook.jpg";
@@ -12,12 +12,15 @@ import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { setCookie } from "cookies-next";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   // GET PROFILE
 
   const router = useRouter();
   const redirect = useSearchParams()?.get("redirect");
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -80,12 +83,25 @@ export default function LoginPage() {
           placeholder="Email"
           className="form-input"
         />
-        <Input
-          name="password"
-          type="password"
-          placeholder="password"
-          className="form-input"
-        />
+        <div className="relative">
+          <Input
+            name="password"
+            type={passwordVisible ? "text" : "password"}
+            placeholder="password"
+            className="form-input"
+          />
+
+          <span
+            className="absolute top-3 right-3"
+            onClick={() => setPasswordVisible(!passwordVisible)}
+          >
+            {passwordVisible ? (
+              <Eye className="text-[#3D454E] cursor-pointer" />
+            ) : (
+              <EyeOff className="text-[#3D454E] cursor-pointer" />
+            )}
+          </span>
+        </div>
 
         {/* Submit Button */}
         <div className="grid sm:grid-cols-2 gap-3 my-4">
