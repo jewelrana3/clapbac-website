@@ -43,7 +43,7 @@ export default function ReviewCommentDetails({
     <div className=" flex flex-col xl:flex-row ">
       <div
         className={`flex items-start gap-3 `}
-        style={{ marginLeft: index === 0 ? 0 : index * 55 }}
+        style={{ marginLeft: index === 0 ? 0 : index * 33 }}
       >
         {/* left logo */}
         <Image src={left} alt="Logo" className="hidden sm:block" />

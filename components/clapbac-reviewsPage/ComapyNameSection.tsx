@@ -1,10 +1,10 @@
 import React from "react";
-import one from "../../public/food-drink/one.png";
 import Image from "next/image";
 import Button from "../share/Button";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function ComapyNameSection({ details }: any) {
+  console.log(details);
   return (
     <>
       {" "}
@@ -19,17 +19,16 @@ export default function ComapyNameSection({ details }: any) {
         <div className="bg-white p-3 flex flex-col md:flex-row gap-7 md:justify-around md:items-center ">
           <div className="flex items-center md:justify-center gap-5">
             <div className="">
-              <Image
-                src={
-                  `${process.env.NEXT_PUBLIC_BASE_URL}${details?.category?.icon}` ||
-                  details?.category?.icon
-                }
-                width={0}
-                height={0}
-                alt="card"
-                sizes="100vw"
-                className="w-30 lg:w-48 object-cover "
-              />
+              {details?.category?.icon && (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${details?.category?.icon}`}
+                  width={0}
+                  height={0}
+                  alt="card"
+                  sizes="100vw"
+                  className="w-30 lg:w-48 object-cover "
+                />
+              )}
             </div>
 
             <div className="">
