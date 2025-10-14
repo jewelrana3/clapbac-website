@@ -23,7 +23,11 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
 
         <div className="text-right">
           <p className="text-sm  text-gray-500">Overall Reviewer Rating</p>
-          <p className="flex gap-1">{ratingCaculate(reviews?.reviewRating)}</p>
+          {reviews?.reviewRating && (
+            <p className="flex gap-1">
+              {ratingCaculate(reviews?.reviewRating)}
+            </p>
+          )}
         </div>
       </div>
 
@@ -42,9 +46,11 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
       <div className="mt-4">
         <p className="font-semibold text-gray-800 flex flex-col sm:flex-row items-center mb-2">
           <span className="flex items-center gap-1 text-xl text-gray-400 mr-2">
-            <span className="flex gap-1">
-              {ratingCaculate2(reviews?.reviewRating)}
-            </span>
+            {reviews?.reviewRating && (
+              <span className="flex gap-1">
+                {ratingCaculate2(reviews?.reviewRating)}
+              </span>
+            )}
           </span>
           {reviews?.clapbacTitle}
         </p>

@@ -10,6 +10,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
+import { deleteCookie, setCookie } from "cookies-next/client";
 
 interface profileData {
   firstName: string;
@@ -26,7 +27,8 @@ const mobileMenuItems = [
 ];
 
 export function Header() {
-  const [profileData, setProfileData] = React.useState<profileData>();
+  const [profileData, setProfileData] = React.useState<profileData>("" as any);
+  console.log(profileData);
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -38,6 +40,10 @@ export function Header() {
 
     fetchData();
   }, []);
+
+  const handleLogout = () => {
+    deleteCookie("OWNER_TOKEN");
+  };
 
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
@@ -71,21 +77,32 @@ export function Header() {
               );
             })}
 
-            <div
-              className="flex items-center space-x-2 focus:outline-none"
-              aria-haspopup="true"
-            >
-              <Image
-                src={profileData?.image || "/default-avatar.png"}
-                alt={`${profileData?.firstName || "User"} profile`}
-                width={30}
-                height={30}
-                className="rounded-full"
-              />
-              <span className="text-white font-medium">
-                {profileData?.firstName || "User"}
-              </span>
-            </div>
+            {profileData ? (
+              <div
+                className="flex items-center space-x-2 focus:outline-none"
+                aria-haspopup="true"
+              >
+                <Image
+                  src={`http://10.10.7.7:5000/${profileData?.image}`}
+                  alt={`${profileData?.firstName || "User"} profile`}
+                  width={30}
+                  height={30}
+                  className="rounded-full"
+                />
+                <span className="text-white font-medium">
+                  {profileData?.firstName || "User"}
+                </span>
+              </div>
+            ) : (
+              <Link href="/login">
+                <button
+                  // onClick={handleLogout}
+                  className={`px-3 py-2 rounded transition-colors duration-200 font-bold bg-orange-600 text-white cursor-pointer `}
+                >
+                  Login
+                </button>
+              </Link>
+            )}
           </ul>
         </div>
 

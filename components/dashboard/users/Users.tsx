@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Table,
   TableBody,
@@ -10,32 +9,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
-import man from "../../../public/dashboard/users/man.png";
-import logo from "../../../public/dashboard/users/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
-const users = [
-  {
-    username: "arabian1423",
-    name: "Pete Wells",
-    bussinessName: "Arabica Coffee",
-    profileImage: man, // Replace with actual image URL
-    brandLogo: logo, // Replace with actual logo URL
-    email: "petewells1423@gmail.com",
-    category: "Food & Drink",
-    date: "21/03/23",
-    brand: "Arabica Coffee",
-    status: "Active",
-  },
-];
-
-export default function Users() {
+export default function Users({ users }: any) {
   return (
     <>
       <DropDownDashboard
         title="Users"
-        data={["All", "Active", "Suspended", "Ban"]}
+        data={["Active", "Suspended", "Banned"]}
       />
       <Table>
         <TableHeader>
@@ -51,23 +33,24 @@ export default function Users() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from({ length: 5 }).map((_, index) => {
-            const invoice = users[0];
+          {users?.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">
-                  {invoice.username}
+                  {invoice?.username}
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <p>{invoice.name}</p>
                     <div>
                       <Image
-                        src={invoice.profileImage}
-                        alt={`${invoice.name}'s profile`}
+                        src={process.env.NEXT_PUBLIC_BASE_URL + invoice.image}
+                        width={40}
+                        height={40}
+                        alt={`${invoice.firstName}'s profile`}
                         className=" rounded-full object-cover"
                       />
                     </div>
+                    <p>{invoice.lastName}</p>
                   </div>
                 </TableCell>
 
@@ -75,18 +58,26 @@ export default function Users() {
                   <div className="flex items-center gap-2">
                     <div>
                       <Image
-                        src={invoice.brandLogo}
-                        alt={`${invoice.bussinessName} logo`}
+                        src={
+                          process.env.NEXT_PUBLIC_BASE_URL +
+                          invoice?.company?.logo
+                        }
+                        width={40}
+                        height={40}
+                        alt={`${invoice.company?.name} logo`}
+                        sizes="100vh"
                         className=" rounded-full object-cover"
                       />
                     </div>
 
-                    <p> {invoice.bussinessName}</p>
+                    <p>{invoice.company?.name}</p>
                   </div>
                 </TableCell>
                 <TableCell>{invoice.email}</TableCell>
-                <TableCell className="">{invoice.category}</TableCell>
-                <TableCell className="">{invoice.date}</TableCell>
+                <TableCell className="">Food & Drink</TableCell>
+                <TableCell className="">
+                  {invoice.createdAt.slice(0, 10)}
+                </TableCell>
                 <TableCell className="">
                   <Badge
                     className={`${

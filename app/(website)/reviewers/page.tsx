@@ -45,7 +45,6 @@ const businessNames = [
 export default function Reviewers() {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
-  console.log(searchParams);
   const [reviews, setReviews] = useState<any>(null);
   const [recentCompanies, setRecentCompanies] = useState<any>(null);
 

@@ -1,8 +1,6 @@
 import React from "react";
 
 const CompanyDetails = ({ details }: { details: any }) => {
-  console.log(details, "details");
-
   return (
     <div className="max-w-md">
       <h2 className="text-lg font-semibold mb-4">Company Details</h2>

@@ -1,22 +1,24 @@
 import ReviewCard from "@/components/clapbac-reviewsPage/ReviewCard";
-import ReviewAndComment from "@/components/clapbac-reviewsPage/ReviewAndComment";
 import SectionTitle from "@/components/share/SectionTitle";
-import { reviews } from "@/demoData/review-data";
 import Container from "@/layout/Container";
 import React from "react";
 import CompanyDetails from "@/components/clapbac-reviewsPage/CompanyDetails";
-// import { companyDetails } from "@/demoData/conpany-data";
 import ComapyNameSection from "@/components/clapbac-reviewsPage/ComapyNameSection";
 import { myFetch } from "@/utils/myFetch";
 import SingleComment from "@/components/clapbac-reviewsPage/SingleComment";
+import ReviewAndComment from "@/components/clapbac-reviewsPage/ReviewAndComment";
 
 export default async function Review({ params }: any) {
   const { id } = await params;
   const res = await myFetch(`/reviews/company/${id}`);
   const companyReviews = res?.data;
+  console.log(companyReviews, "companyReviews");
 
   // compnay details
   const companyDetails = await myFetch(`/companies/${id}`);
+
+  // commments
+  const comments = await myFetch(`/comments/review/${id}`);
 
   return (
     <>
@@ -32,13 +34,18 @@ export default async function Review({ params }: any) {
           <div className="flex-1">
             <ComapyNameSection details={companyDetails?.data} />
             <div className="bg-[#E9E9E9] p-6 ">
-              <div className="bg-white p-6">
-                {/* review card */}
-                <ReviewCard reviews={companyReviews[0]} />
-                <SingleComment reply={companyReviews[0]} index={0} />
-                {/* comments section */}
-                {/* <ReviewAndComment reviews={companyReviews} /> */}
-              </div>
+              {companyReviews.length > 0 ? (
+                <div className="bg-white p-6">
+                  {/* review card */}
+                  <ReviewCard reviews={companyReviews[0]} />
+                  <SingleComment reply={companyReviews[0]} index={0} />
+                  {/* comments section */}
+                  {/* <ReviewAndComment reviews={comments?.data} /> */}
+                  {<ReviewAndComment reviews={companyReviews} />}
+                </div>
+              ) : (
+                <p className="text-center">No reviews found</p>
+              )}
             </div>
           </div>
           <div className="w-full lg:w-1/3">

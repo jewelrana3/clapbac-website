@@ -76,15 +76,11 @@ export default function ReviewerRatingForm() {
       return toast.error("Please provide your rating.");
     }
 
-    console.log(payload);
-
     try {
       const res = await myFetch("/reviews/create", {
         method: "POST",
         body: payload,
       });
-
-      console.log(res);
 
       if (res?.success) {
         toast.success("Review submitted successfully!");

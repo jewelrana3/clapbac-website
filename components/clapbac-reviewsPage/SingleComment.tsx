@@ -46,7 +46,7 @@ export default function SingleComment({
         style={{ marginLeft: index === 0 ? 0 : index * 33 }}
       >
         {/* left logo */}
-        <Image src={left} alt="Logo" className="hidden sm:block" />
+        <Image src={left} alt="Logo" className="hidden sm:block h-10" />
 
         <div className="">
           <div className="flex flex-row items-center gap-2">
@@ -55,6 +55,8 @@ export default function SingleComment({
               {reply && (
                 <Image
                   src={reply?.user?.image}
+                  width={0}
+                  height={0}
                   alt="Logo"
                   className="w-8 h-8 sm:w-20 sm:h-20 rounded-full"
                 />

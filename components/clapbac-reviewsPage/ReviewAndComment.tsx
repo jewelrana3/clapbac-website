@@ -3,14 +3,18 @@ import React from "react";
 import CommentsSection from "./CommentsSection";
 import ReviewCommentDetails from "./ReviewCommentDetails";
 export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
+  console.log(reviews, "reviews");
   return (
-    <div className=" p-6 bg-white">
+    <div className=" px-6 bg-white">
       {/* ReviewCommentDetails */}
       <div className=" pl-4 space-y-6">
-        {reviews?.map((reply: any, index: number) => {
-          if (index >= 1) return null;
+        {reviews?.map((reply: any) => {
           return (
-            <ReviewCommentDetails key={index} reply={reply} index={index} />
+            <div>
+              {reply?.comments?.map((comment: any, idx: number) => (
+                <ReviewCommentDetails key={idx} reply={comment} index={idx} />
+              ))}
+            </div>
           );
         })}
       </div>

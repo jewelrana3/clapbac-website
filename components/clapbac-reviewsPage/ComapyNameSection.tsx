@@ -4,7 +4,6 @@ import Button from "../share/Button";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function ComapyNameSection({ details }: any) {
-  console.log(details);
   return (
     <>
       {" "}
@@ -43,7 +42,14 @@ export default function ComapyNameSection({ details }: any) {
           </div>
           <div className="font-bold lg:text-lg flex gap-5 items-center">
             <div className="my-2">
-              <Button className="text-sm">View Website</Button>
+              <a
+                href={`https://${details?.website}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-blue-600 underline hover:text-blue-800"
+              >
+                View Website
+              </a>
             </div>
           </div>
         </div>

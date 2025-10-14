@@ -17,7 +17,6 @@ export default function RecentlyViewCompanies({
   data: any;
   title: string;
 }) {
-  console.log(data, "data");
   return (
     <Container className="my-14">
       <h1 className=" mb-2 text-2xl font-bold">{title}</h1>
