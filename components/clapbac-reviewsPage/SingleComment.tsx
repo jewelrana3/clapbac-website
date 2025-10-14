@@ -32,7 +32,7 @@ const ratingCaculate = (rating: number) => {
   );
 };
 
-export default function ReviewCommentDetails({
+export default function SingleComment({
   reply,
   index,
 }: {
@@ -75,27 +75,27 @@ export default function ReviewCommentDetails({
                     <p className="font-medium">{reply?.owner}</p>
                   </div>
                   <p>{reply?.subName}</p>
-                  {reply.author}
+                  {reply?.author}
                 </div>
               </div>
-              {reply.business && (
-                <span className="text-gray-500 text-xs">{reply.business}</span>
+              {reply?.business && (
+                <span className="text-gray-500 text-xs">{reply?.business}</span>
               )}
-              <p className="text-xs text-gray-400 mb-1">{reply.date}</p>
+              <p className="text-xs text-gray-400 mb-1">{reply?.date}</p>
             </div>
           </div>
 
-          <p className="text-sm text-gray-700 mt-1">{reply.reviewMessage}</p>
+          <p className="text-sm text-gray-700 mt-1">{reply?.reviewMessage}</p>
         </div>
       </div>
       <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">
-        <p className="font-bold text-md">{reply.ownerside}</p>
+        <p className="font-bold text-md">{reply?.ownerside}</p>
 
-        {/* {reply.reviewRating && (
+        {reply?.reviewRating && (
           <p className="mt-1 flex gap-1 xl:justify-end ">
-            {ratingCaculate(reply.reviewRating)}
+            {ratingCaculate(reply?.clapbacRating)}
           </p>
-        )} */}
+        )}
       </div>
     </div>
   );

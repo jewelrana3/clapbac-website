@@ -73,7 +73,9 @@ export default function CarouselPage() {
                     {/* Profile Header */}
                     <div className="flex items-center space-x-3 mb-4">
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_BASE_URL}${card.company.logo}`}
+                        src={
+                          process.env.NEXT_PUBLIC_BASE_URL + card.company.logo
+                        }
                         alt={card.company.name}
                         width={48}
                         height={48}

@@ -29,7 +29,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
         <div className="bg-white p-3 flex flex-col md:flex-row gap-7 justify-center items-center  shadow-md">
           <div className="flex items-center justify-center w-full max-w-[150px]">
             <Image
-              src={item.category.icon}
+              src={process.env.NEXT_PUBLIC_BASE_URL + item?.category?.icon}
               alt={item.name}
               width={100}
               height={100}

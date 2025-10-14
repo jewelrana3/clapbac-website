@@ -8,6 +8,7 @@ import CompanyDetails from "@/components/clapbac-reviewsPage/CompanyDetails";
 // import { companyDetails } from "@/demoData/conpany-data";
 import ComapyNameSection from "@/components/clapbac-reviewsPage/ComapyNameSection";
 import { myFetch } from "@/utils/myFetch";
+import SingleComment from "@/components/clapbac-reviewsPage/SingleComment";
 
 export default async function Review({ params }: any) {
   const { id } = await params;
@@ -32,7 +33,10 @@ export default async function Review({ params }: any) {
             <ComapyNameSection details={companyDetails?.data} />
             <div className="bg-[#E9E9E9] p-6 ">
               <div className="bg-white p-6">
+                {/* review card */}
                 <ReviewCard reviews={companyReviews[0]} />
+                <SingleComment reply={companyReviews[0]} index={0} />
+                {/* comments section */}
                 {/* <ReviewAndComment reviews={companyReviews} /> */}
               </div>
             </div>
