@@ -73,28 +73,31 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
   };
 
   return (
-    <div className="border-b pb-6 mb-6">
+    <div className=" pb-6 mb-6">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
           <h3 className="font-bold text-lg">{reviews?.reviewerName}</h3>
-          {/* <p className="text-sm text-gray-500">{reviewer.location}</p> */}
+          {/* location */}
+          <p className="text-sm ">Los Angeles, CA</p>
         </div>
+
         <div className="text-right">
           <p className="text-sm  text-gray-500">Overall Reviewer Rating</p>
           <p className="flex gap-1">{ratingCaculate(reviews?.clapbacRating)}</p>
         </div>
       </div>
 
-      {/* Metadata */}
-      {reviews?.createdAt ||
-        (reviews?.updatedAt && (
-          <p className="text-xs text-gray-500 mt-2">
-            Original Review Excerpted from {reviews?.reviewSource} | Date of
-            Review: {formattedDate(reviews?.createdAt.slice(0, 10))} | Date of
-            Experience: {formattedDate(reviews?.updatedAt.slice(0, 10))}
-          </p>
-        ))}
+      <hr className="mt-4" />
+
+      {/* date */}
+      {reviews?.createdAt && reviews?.updatedAt && (
+        <p className="text-xs text-gray-500 mt-2">
+          Original Review Excerpted from {reviews?.reviewSource} | Date of
+          Review: {formattedDate(reviews?.createdAt.slice(0, 10))} | Date of
+          Experience: {formattedDate(reviews?.updatedAt.slice(0, 10))}
+        </p>
+      )}
 
       {/* Excerpt */}
       <div className="mt-4">

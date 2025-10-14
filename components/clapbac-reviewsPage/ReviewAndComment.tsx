@@ -8,6 +8,7 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
       {/* ReviewCommentDetails */}
       <div className=" pl-4 space-y-6">
         {reviews?.map((reply: any, index: number) => {
+          if (index >= 1) return null;
           return (
             <ReviewCommentDetails key={index} reply={reply} index={index} />
           );

@@ -33,7 +33,7 @@ export default async function Review({ params }: any) {
             <div className="bg-[#E9E9E9] p-6 ">
               <div className="bg-white p-6">
                 <ReviewCard reviews={companyReviews[0]} />
-                <ReviewAndComment reviews={companyReviews} />
+                {/* <ReviewAndComment reviews={companyReviews} /> */}
               </div>
             </div>
           </div>

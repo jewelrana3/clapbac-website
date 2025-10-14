@@ -63,11 +63,12 @@ export default function ReviewCommentDetails({
             <div className="font-semibold text-sm">
               <div>
                 <div>
-                  <p>
+                  {/* <p>
                     {reply.role === "Owner"
                       ? "RESPONSE FROM..."
                       : "CLAPBAC FROM..."}
-                  </p>
+                  </p> */}
+                  <p>CLAPBAC FROM</p>
                   {/* name & owner */}
                   <div className="flex gap-1 ">
                     <p>{reply?.name}</p>
