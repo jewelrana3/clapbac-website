@@ -87,7 +87,7 @@ export default function LoginPage() {
           <Input
             name="password"
             type={passwordVisible ? "text" : "password"}
-            placeholder="password"
+            placeholder="Password"
             className="form-input"
           />
 

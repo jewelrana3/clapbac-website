@@ -257,7 +257,7 @@ export default function ReviewerRatingForm() {
                 }}
                 value={field.value}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full rounded-none !h-14">
                   <SelectValue placeholder="Select Reviewer Type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -292,7 +292,7 @@ export default function ReviewerRatingForm() {
                 }}
                 value={field.value}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full rounded-none !h-14">
                   <SelectValue placeholder="Select Consequence" />
                 </SelectTrigger>
                 <SelectContent>

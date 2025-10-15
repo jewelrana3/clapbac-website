@@ -32,7 +32,7 @@ const data = [
 ];
 
 export default async function FeatureBusiness() {
-  const featuresBussiness = await myFetch(" companies?isFeatured=true");
+  const featuresBussiness = await myFetch("/companies?isFeatured=true");
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -79,7 +79,9 @@ export default async function FeatureBusiness() {
                     <div className="flex items-center">
                       {renderStars(item.avgRating)}
                     </div>
-                    <p className="mt-1 lg:mt-0">3.5 (23 Reviews)</p>
+                    <p className="mt-1 lg:mt-0">
+                      3.5 ({item?.reviewCount} Reviews)
+                    </p>
                   </div>
                 </div>
               </div>
