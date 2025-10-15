@@ -37,11 +37,12 @@ export default function RecentlyViewCompanies({
                   {/* Profile Header */}
                   <div className="flex items-center space-x-3 mb-4">
                     <Image
-                      src={card.logo}
+                      src={process.env.NEXT_PUBLIC_BASE_URL + card.logo}
                       alt={card.name}
                       width={0}
                       height={0}
-                      className="w-full  object-cover"
+                      sizes="100vh"
+                      className="w-full h-60 object-cover"
                     />
                   </div>
 

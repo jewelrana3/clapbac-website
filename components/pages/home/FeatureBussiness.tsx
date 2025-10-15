@@ -58,7 +58,7 @@ export default async function FeatureBusiness() {
         <h2 className="text-orange-600 text-2xl font-bold mb-4">
           Featured Businesses
         </h2>
-        <div className=" grid md:grid-cols-3 gap-5 ">
+        <div className=" grid md:grid-cols-4 gap-5 ">
           {featuresBussiness?.data?.map((item: any) => (
             <div
               key={item?._id}
@@ -69,8 +69,7 @@ export default async function FeatureBusiness() {
                 alt={item.category.name}
                 width={100}
                 height={100}
-                sizes="100vw"
-                className="h-[70%] w-full object-cover"
+                className="h-[60%] w-full object-cover"
               />
               <div className="mt-5">
                 <h3 className="font-bold text-xl lg:text-2xl">{item.name}</h3>
@@ -80,7 +79,7 @@ export default async function FeatureBusiness() {
                       {renderStars(item.avgRating)}
                     </div>
                     <p className="mt-1 lg:mt-0">
-                      3.5 ({item?.reviewCount} Reviews)
+                      4.5 ({item?.reviewCount} Reviews)
                     </p>
                   </div>
                 </div>

@@ -44,20 +44,27 @@ const businessNames = [
 
 export default function Reviewers() {
   const searchParams = useSearchParams();
-  const page = searchParams.get("page");
+  const page = searchParams.get("page") || "1";
+  const search = searchParams.get("searchTerm") || "";
+  console.log(search);
+
   const [reviews, setReviews] = useState<any>(null);
+
   const [recentCompanies, setRecentCompanies] = useState<any>(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const reviews = await myFetch(
-        `/reviews/reviewers?page=${page?.toString()}&limit=8`
-      );
+      const url = `/reviews/reviewers?page=${page}&searchTerm=${encodeURIComponent(
+        search
+      )}`;
+
+      console.log(url, "url");
+      const reviews = await myFetch(url);
       setReviews(reviews);
     };
 
     fetchReviews();
-  }, [searchParams]);
+  }, [page, search]); // ✅ Use these values directly instead of searchParams
 
   // recent companies
   useEffect(() => {

@@ -35,8 +35,16 @@ const des = (
   </section>
 );
 
-export default async function BussinessCategories() {
-  const categories = await myFetch("/categories");
+export default async function BussinessCategories({
+  searchParams,
+}: {
+  searchParams: { searchTerm: string };
+}) {
+  const query = searchParams?.searchTerm
+    ? `?searchTerm=${encodeURIComponent(searchParams.searchTerm)}`
+    : "";
+
+  const categories = await myFetch(`/categories${query}`);
 
   return (
     <div className="mt-16">
