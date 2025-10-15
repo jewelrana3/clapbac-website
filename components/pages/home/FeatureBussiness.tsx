@@ -62,14 +62,14 @@ export default async function FeatureBusiness() {
           {featuresBussiness?.data?.map((item: any) => (
             <div
               key={item?._id}
-              className="bg-[#F5F5F5] p-5 text-[#3D454E] mb-  gap-16"
+              className="bg-[#F5F5F5] p-5 text-[#3D454E] mb- h-[300px] gap-16 flex flex-col"
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.category.icon}`}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`}
                 alt={item.category.name}
-                width={100}
+                width={300}
                 height={100}
-                className="h-[60%] w-full object-cover"
+                className="w-full flex-1"
               />
               <div className="mt-5">
                 <h3 className="font-bold text-xl lg:text-2xl">{item.name}</h3>

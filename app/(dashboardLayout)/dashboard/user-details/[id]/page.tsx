@@ -6,7 +6,7 @@ import { ChevronLeft } from "lucide-react";
 
 export default function id() {
   return (
-    <div className=" w-[90%] mx-auto">
+    <div className=" w-[60%] mx-auto">
       <div className="flex items-center mb-4">
         <span className="bg-[#F5F5F5] text-[#3D454E] p-2">
           <ChevronLeft />

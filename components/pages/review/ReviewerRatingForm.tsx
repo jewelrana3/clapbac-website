@@ -82,6 +82,8 @@ export default function ReviewerRatingForm() {
         body: payload,
       });
 
+      console.log(res);
+
       if (res?.success) {
         toast.success("Review submitted successfully!");
         reset();
@@ -230,8 +232,8 @@ export default function ReviewerRatingForm() {
             {...register("clapbacMessage", {
               required: "Review is required.",
               minLength: {
-                value: 10,
-                message: "Review must be at least 100 characters.",
+                value: 50,
+                message: "Review must be at least 50 characters.",
               },
             })}
           />

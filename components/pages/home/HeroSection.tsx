@@ -2,8 +2,10 @@ import React from "react";
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
 import bgImage from "../../../public/home-banner.jpg"; // replace with your actual image path
+import { myFetch } from "@/utils/myFetch";
+import Search from "./Search";
 
-export default function HeroSection() {
+export default async function HeroSection() {
   return (
     <>
       <div className="relative w-full h-[60vh] md:h-[100vh]">
@@ -25,7 +27,7 @@ export default function HeroSection() {
           </h1>
 
           {/* Search Bar */}
-          <div className="w-full max-w-xl flex items-center bg-white rounded-full shadow-md overflow-hidden">
+          {/* <div className="w-full max-w-xl flex items-center bg-white rounded-full shadow-md overflow-hidden">
             <input
               type="text"
               placeholder="Search reviewer or business category"
@@ -34,7 +36,9 @@ export default function HeroSection() {
             <button className=" text-gray-400 px-5 py-3 rounded-r-full cursor-pointer">
               <FaSearch size={22} />
             </button>
-          </div>
+          </div> */}
+
+          <Search />
         </div>
       </div>
       <section className="bg-black ">

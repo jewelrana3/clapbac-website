@@ -19,6 +19,8 @@ const businessNames = [
 
 export default async function FoodDrink() {
   const featuresBussiness = await myFetch("/companies");
+  const recentBusiness = await myFetch("/recent-companies");
+
   return (
     <div>
       <SectionTitle title="Food & Drink" />
@@ -27,7 +29,7 @@ export default async function FoodDrink() {
 
       <RecentlyViewCompanies
         title="Recently Viewed Companies"
-        data={businessNames}
+        data={recentBusiness?.data || []}
       />
     </div>
   );

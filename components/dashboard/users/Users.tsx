@@ -11,6 +11,8 @@ import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 import Image from "next/image";
 import Link from "next/link";
+import share from "../../../public/share-icon/share.webp";
+import logo from "../../../public/logo2.png";
 
 export default function Users({ users }: any) {
   return (
@@ -43,7 +45,11 @@ export default function Users({ users }: any) {
                   <div className="flex items-center gap-2">
                     <div>
                       <Image
-                        src={process.env.NEXT_PUBLIC_BASE_URL + invoice.image}
+                        src={
+                          invoice.image
+                            ? process.env.NEXT_PUBLIC_BASE_URL + invoice.image
+                            : share
+                        }
                         width={40}
                         height={40}
                         alt={`${invoice.firstName}'s profile`}
@@ -59,13 +65,14 @@ export default function Users({ users }: any) {
                     <div>
                       <Image
                         src={
-                          process.env.NEXT_PUBLIC_BASE_URL +
                           invoice?.company?.logo
+                            ? process.env.NEXT_PUBLIC_BASE_URL +
+                              invoice?.company?.logo
+                            : logo
                         }
-                        width={40}
-                        height={40}
+                        width={60}
+                        height={60}
                         alt={`${invoice.company?.name} logo`}
-                        sizes="100vh"
                         className=" rounded-full object-cover"
                       />
                     </div>

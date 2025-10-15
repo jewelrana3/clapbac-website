@@ -17,6 +17,7 @@ export default function RecentlyViewCompanies({
   data: any;
   title: string;
 }) {
+  console.log(data, "recent");
   return (
     <Container className="my-14">
       <h1 className=" mb-2 text-2xl font-bold">{title}</h1>
@@ -37,7 +38,7 @@ export default function RecentlyViewCompanies({
                   {/* Profile Header */}
                   <div className="flex items-center space-x-3 mb-4">
                     <Image
-                      src={process.env.NEXT_PUBLIC_BASE_URL + card.logo}
+                      src={`${process.env.NEXT_PUBLIC_BASE_URL}${card?.logo}`}
                       alt={card.name}
                       width={0}
                       height={0}

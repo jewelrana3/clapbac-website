@@ -6,6 +6,9 @@ import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 import React from "react";
 
 export default function Home() {
+  // const query = searchParams?.searchTerm
+  //   ? `?searchTerm=${encodeURIComponent(searchParams.searchTerm)}`
+  //   : "";
   return (
     <div className="">
       <HeroSection />

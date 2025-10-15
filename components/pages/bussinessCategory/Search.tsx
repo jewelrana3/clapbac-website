@@ -25,7 +25,11 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="bg-gray-200 w-full flex justify-center mt-3">
+    <div
+      className={`${
+        pathname !== "/" && "bg-gray-200 w-full"
+      } flex justify-center mt-3 w-full`}
+    >
       <div className="flex items-center bg-white rounded-full px-4 py-3 w-full md:max-w-2xl shadow-sm">
         <FaSearch className="text-gray-400 text-lg mr-2" />
         <input

@@ -13,23 +13,10 @@ import man from "../../../public/dashboard/users/man.png";
 import logo from "../../../public/dashboard/users/logo.png";
 import Image from "next/image";
 import ReviewsDetails from "./ReviewsDetails";
+import companyLogo from "../../../public/logo2.png";
+import defaultImage from "../../../public/share-icon/share.webp";
 
-const users = [
-  {
-    username: "arabian1423",
-    name: "Pete Wells",
-    bussinessName: "Arabica Coffee",
-    profileImage: man, // Replace with actual image URL
-    brandLogo: logo, // Replace with actual logo URL
-    email: "petewells1423@gmail.com",
-    category: "Food & Drink",
-    date: "21/03/23",
-    brand: "Arabica Coffee",
-    status: "Active",
-  },
-];
-
-export default function Reviews() {
+export default function Reviews({ reviews }: any) {
   return (
     <>
       <DropDownDashboard
@@ -51,8 +38,7 @@ export default function Reviews() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from({ length: 5 }).map((_, index) => {
-            const invoice = users[0];
+          {reviews.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">
@@ -60,14 +46,20 @@ export default function Reviews() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <p>{invoice.name}</p>
                     <div>
                       <Image
-                        src={invoice.profileImage}
-                        alt={`${invoice.name}'s profile`}
+                        src={
+                          invoice.user.image
+                            ? `${process.env.NEXT_PUBLIC_BASE_URL}${invoice.user.image}`
+                            : defaultImage
+                        }
+                        width={30}
+                        height={30}
+                        alt={`${invoice.user?.lastName}'s profile`}
                         className=" rounded-full object-cover"
                       />
                     </div>
+                    <p>{invoice.user.firstName}</p>
                   </div>
                 </TableCell>
 
@@ -75,20 +67,29 @@ export default function Reviews() {
                   <div className="flex items-center gap-2">
                     <div>
                       <Image
-                        src={invoice.brandLogo}
+                        src={
+                          invoice.company?.logo
+                            ? process.env.NEXT_PUBLIC_BASE_URL +
+                              invoice.company?.logo
+                            : companyLogo
+                        }
+                        width={70}
+                        height={40}
                         alt={`${invoice.bussinessName} logo`}
                         className=" rounded-full object-cover"
                       />
                     </div>
 
-                    <p> {invoice.bussinessName}</p>
+                    <p> {invoice.company?.name}</p>
                   </div>
                 </TableCell>
                 <TableCell>{invoice.email}</TableCell>
                 <TableCell className="">{invoice.category}</TableCell>
                 <TableCell className="">Beverly Hills, CA</TableCell>
-                <TableCell className="">{invoice.date}</TableCell>
-                <TableCell className="pl-8">0</TableCell>
+                <TableCell className="">
+                  {invoice.createdAt.slice(0, 10)}
+                </TableCell>
+                <TableCell className="pl-8">{invoice.helpfulCount}</TableCell>
                 <TableCell className="">
                   <ReviewsDetails
                     trigger={

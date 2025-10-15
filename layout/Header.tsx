@@ -3,14 +3,14 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 import Image from "next/image";
 
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
-import { deleteCookie, setCookie } from "cookies-next/client";
+import { deleteCookie } from "cookies-next/client";
+import share from "../public/share-icon/share.webp";
 
 interface profileData {
   firstName: string;
@@ -83,10 +83,14 @@ export function Header() {
                 aria-haspopup="true"
               >
                 <Image
-                  src={`http://10.10.7.7:5000/${profileData?.image}`}
+                  src={
+                    profileData?.image
+                      ? `http://10.10.7.7:5000/${profileData.image}`
+                      : share
+                  }
                   alt={`${profileData?.firstName || "User"} profile`}
-                  width={30}
-                  height={30}
+                  width={40}
+                  height={50}
                   className="rounded-full"
                 />
                 <span className="text-white font-medium">
@@ -134,22 +138,22 @@ export function Header() {
   );
 }
 
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
-  );
-}
+// function ListItem({
+//   title,
+//   children,
+//   href,
+//   ...props
+// }: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+//   return (
+//     <li {...props}>
+//       <NavigationMenuLink asChild>
+//         <Link href={href}>
+//           <div className="text-sm leading-none font-medium">{title}</div>
+//           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+//             {children}
+//           </p>
+//         </Link>
+//       </NavigationMenuLink>
+//     </li>
+//   );
+// }

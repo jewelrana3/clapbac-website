@@ -74,7 +74,7 @@ export default function CarouselPage() {
                     <div className="flex items-center space-x-3 mb-4">
                       <Image
                         src={
-                          process.env.NEXT_PUBLIC_BASE_URL + card.company.logo
+                          process.env.NEXT_PUBLIC_BASE_URL + card?.user?.image
                         }
                         alt={card.company.name}
                         width={48}
@@ -82,9 +82,11 @@ export default function CarouselPage() {
                         className="w-12 h-12 rounded-full object-cover"
                       />
                       <div>
-                        <h3 className="font-bold">{card.user.firstName}</h3>
+                        <h3 className="font-bold">
+                          {card.user.firstName + " " + card.user.lastName}
+                        </h3>
                         <p className="text-sm text-gray-600">
-                          {card.user.title}
+                          {card.company.name}
                         </p>
                       </div>
                     </div>
@@ -94,7 +96,9 @@ export default function CarouselPage() {
                       <p className="text-xs font-semibold text-gray-700">
                         {card.clapbacTitle}
                       </p>
-                      <h2 className="text-xl font-bold">{card.company.name}</h2>
+                      <h2 className="text-xl font-bold">
+                        {card?.reviewerName}
+                      </h2>
                     </div>
 
                     {/* Star Rating */}

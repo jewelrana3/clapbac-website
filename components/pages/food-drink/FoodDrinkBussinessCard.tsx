@@ -29,7 +29,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
         <div className="bg-white p-3 flex flex-col md:flex-row gap-7 justify-center items-center  shadow-md">
           <div className="flex items-center justify-center w-full max-w-[150px]">
             <Image
-              src={process.env.NEXT_PUBLIC_BASE_URL + item?.category?.icon}
+              src={process.env.NEXT_PUBLIC_BASE_URL + item?.logo}
               alt={item.name}
               width={100}
               height={100}
@@ -38,9 +38,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
           </div>
 
           <div className="">
-            <h3 className="font-bold text-xl lg:text-2xl">
-              {item?.category?.name}
-            </h3>
+            <h3 className="font-bold text-xl lg:text-2xl">{item?.name}</h3>
             <div className="font-bold lg:text-lg flex gap-5 items-center">
               <div className="my-2">
                 <div className="flex items-center">

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function id() {
   return (
-    <div className=" w-[80%] mx-auto">
+    <div className=" w-[60%] mx-auto">
       <Link href={"/dashboard/reviewers"}>
         {" "}
         <div className="flex items-center mb-4">

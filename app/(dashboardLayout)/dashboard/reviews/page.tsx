@@ -1,12 +1,13 @@
 import Reviews from "@/components/dashboard/reviews/Reviews";
+import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default function page() {
-  // const searchParams = useSearchParams();
+export default async function page() {
+  const reviews = await myFetch("/reviews/reviewers");
+
   return (
     <div>
-      {" "}
-      <Reviews />{" "}
+      <Reviews reviews={reviews?.data} />
     </div>
   );
 }
