@@ -42,7 +42,9 @@ export default function LoginPage() {
       } else {
         toast.error(res?.message || "Login failed", { id: "login" });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="max-w-xl mx-auto py-12  px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">

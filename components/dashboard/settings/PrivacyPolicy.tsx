@@ -5,15 +5,40 @@ import { useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import Button from "@/components/share/Button";
 import { JoditEditor } from "./JodiEditor";
+import toast from "react-hot-toast";
+import { myFetch } from "@/utils/myFetch";
 
-export default function PrivacyPolicy() {
+export default function PrivacyPolicy({
+  privacy,
+}: {
+  privacy: { content: string };
+}) {
   const editor = useRef(null);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(privacy?.content || "");
 
   const isLargeScreen = useMediaQuery({ minWidth: 1536 });
 
-  const handleOnSave = (value: string) => {
-    console.log(value);
+  const handleOnSave = async (value: string) => {
+    if (!value?.trim()) {
+      toast.error("Content cannot be empty");
+      return;
+    }
+
+    try {
+      const termsPost = await myFetch("/disclaimers", {
+        method: "POST",
+        body: { content: value, type: "privacy-policy" },
+      });
+
+      if (termsPost?.success) {
+        toast.success("Updated successfully");
+      } else {
+        toast.error(termsPost?.message || "Update failed");
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+      console.log(err);
+    }
   };
   return (
     <section className="p-3">

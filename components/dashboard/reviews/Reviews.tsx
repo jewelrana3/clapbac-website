@@ -9,12 +9,9 @@ import {
 } from "@/components/ui/table";
 import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
-import man from "../../../public/dashboard/users/man.png";
-import logo from "../../../public/dashboard/users/logo.png";
 import Image from "next/image";
 import ReviewsDetails from "./ReviewsDetails";
 import companyLogo from "../../../public/logo2.png";
-import defaultImage from "../../../public/share-icon/share.webp";
 
 export default function Reviews({ reviews }: any) {
   return (

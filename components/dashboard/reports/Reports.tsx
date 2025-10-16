@@ -12,63 +12,6 @@ import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 import ReportsDetails from "./ReportsDetails";
 
-const users = [
-  {
-    id: 1,
-    ReportID: "montreaux92",
-    item: "Review",
-    reporter: "Vaughn P.",
-    reason: "Spam",
-    date: "21/03/23",
-    status: "Open",
-  },
-  {
-    id: 2,
-    ReportID: "montreaux92",
-    item: "Review",
-    reporter: "Vaughn P.",
-    reason: "Spam",
-    date: "21/03/23",
-    status: "Open",
-  },
-  {
-    id: 3,
-    ReportID: "montreaux92",
-    item: "Review",
-    reporter: "Vaughn P.",
-    reason: "Spam",
-    date: "21/03/23",
-    status: "Open",
-  },
-  {
-    id: 4,
-    ReportID: "montreaux92",
-    item: "Review",
-    reporter: "Vaughn P.",
-    reason: "Spam",
-    date: "21/03/23",
-    status: "Open",
-  },
-  {
-    id: 5,
-    ReportID: "montreaux92",
-    item: "Review",
-    reporter: "Vaughn P.",
-    reason: "Spam",
-    date: "21/03/23",
-    status: "Open",
-  },
-  {
-    id: 6,
-    ReportID: "montreaux92",
-    item: "Review",
-    reporter: "Vaughn P.",
-    reason: "Spam",
-    date: "21/03/23",
-    status: "Resolved",
-  },
-];
-
 export default function Reports({ reports }: { reports: any }) {
   return (
     <>
@@ -117,6 +60,7 @@ export default function Reports({ reports }: { reports: any }) {
                 </TableCell>
                 <TableCell className="">
                   <ReportsDetails
+                    data={invoice}
                     trigger={<Eye className="text-[#3D454E] cursor-pointer" />}
                   />
                 </TableCell>

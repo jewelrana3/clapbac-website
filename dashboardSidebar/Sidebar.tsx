@@ -35,6 +35,12 @@ export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
 
+  const pathParts = pathname.split("/");
+  const id =
+    pathParts.includes("user-details") || pathParts.includes("reviewers")
+      ? pathParts.at(-1)
+      : null;
+
   const handleLogout = () => {
     deleteCookie("OWNER_TOKEN");
     deleteCookie("refreshToken");
@@ -48,12 +54,12 @@ export default function Sidebar() {
           const isActive = pathname === item.path;
           const isUserActive =
             item.path === "/dashboard/users" &&
-            pathname.startsWith("/dashboard/user-details/arabian1423");
+            pathname.startsWith(`/dashboard/user-details/${id}`);
 
           // reviews active
           const isReviewsActive =
             item.path === "/dashboard/reviewers" &&
-            pathname === "/dashboard/reviewers/nanbar38";
+            pathname.startsWith(`/dashboard/reviewers/${id}`);
 
           // Special case for logout
           if (item.name === "Log Out") {

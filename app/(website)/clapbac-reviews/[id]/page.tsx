@@ -18,7 +18,7 @@ export default async function Review({ params }: any) {
   const companyDetails = await myFetch(`/companies/${id}`);
 
   // commments
-  const comments = await myFetch(`/comments/review/${id}`);
+  // const comments = await myFetch(`/comments/review/${id}`);
 
   return (
     <>

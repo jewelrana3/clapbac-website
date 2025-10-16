@@ -81,13 +81,13 @@ export default function Users({ users }: any) {
                   </div>
                 </TableCell>
                 <TableCell>{invoice.email}</TableCell>
-                <TableCell className="">Food & Drink</TableCell>
+                <TableCell className="">{invoice?.title}</TableCell>
                 <TableCell className="">
                   {invoice.createdAt.slice(0, 10)}
                 </TableCell>
                 <TableCell className="">
                   <Badge
-                    className={`${
+                    className={` w-20 ${
                       invoice.status === "Active"
                         ? "bg-[#C5D92D] text-[#3D454E]"
                         : invoice.status === "Banned"
@@ -99,7 +99,7 @@ export default function Users({ users }: any) {
                   </Badge>
                 </TableCell>
                 <TableCell className="">
-                  <Link href={`/dashboard/user-details/${invoice.username}`}>
+                  <Link href={`/dashboard/user-details/${invoice._id}`}>
                     <Eye className="text-[#3D454E] cursor-pointer" />
                   </Link>
                 </TableCell>

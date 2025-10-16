@@ -10,7 +10,7 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
       <div className=" pl-4 space-y-6">
         {reviews?.map((reply: any) => {
           return (
-            <div>
+            <div key={reply._id}>
               {reply?.comments?.map((comment: any, idx: number) => (
                 <ReviewCommentDetails key={idx} reply={comment} index={idx} />
               ))}

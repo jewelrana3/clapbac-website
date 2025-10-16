@@ -4,18 +4,18 @@ import FeatureBusiness from "@/components/pages/home/FeatureBussiness";
 import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
 
-import one from "../../../../public/food-drink/one.png";
-import two from "../../../../public/food-drink/four.png";
-import three from "../../../../public/food-drink/three.png";
-import four from "../../../../public/food-drink/five.png";
+// import one from "../../../../public/food-drink/one.png";
+// import two from "../../../../public/food-drink/four.png";
+// import three from "../../../../public/food-drink/three.png";
+// import four from "../../../../public/food-drink/five.png";
 import { myFetch } from "@/utils/myFetch";
 
-const businessNames = [
-  { title: "Arabica Coffee", image: one },
-  { title: "Loop Coffee", image: two },
-  { title: "Cenchi Cafe", image: three },
-  { title: "Eiji Coffee Corner", image: four },
-];
+// const businessNames = [
+//   { title: "Arabica Coffee", image: one },
+//   { title: "Loop Coffee", image: two },
+//   { title: "Cenchi Cafe", image: three },
+//   { title: "Eiji Coffee Corner", image: four },
+// ];
 
 export default async function FoodDrink() {
   const featuresBussiness = await myFetch("/companies");

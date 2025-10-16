@@ -1,125 +1,28 @@
-import { Textarea } from "@/components/ui/textarea";
+import { UserInfoSection } from "./userIdDetails/UserInfoSection";
+import { CompanyDetailsSection } from "./userIdDetails/CompanyDetailsSection";
+import { StatsSection } from "./userIdDetails/StatsSection";
+import { UserActions } from "./userIdDetails/UserActions";
+import {
+  getBottomSection,
+  getTopSection,
+  getUserInfo,
+} from "@/components/dashboardData/usersDetailsData";
 
-const userInfo = [
-  { label: "User Name", value: "arabica123" },
-  { label: "Display Name", value: "Pete Wells" },
-  { label: "Business Name", value: "Arabica Coffee" },
-  { label: "Email", value: "petewells123@gmail.com" },
-  { label: "Business Category", value: "Food & Drink" },
-  { label: "Join Date", value: "2/10/23" },
-  { label: "Location", value: "Beverly Hills, CA" },
-];
+export default function UserDetails({ findUserById }: any) {
+  const userInfo = getUserInfo(findUserById);
+  const topSection = getTopSection(findUserById);
+  const bottomSection = getBottomSection(findUserById);
 
-const topSection = [
-  { label: "First Name", value: "Pete" },
-  { label: "Last Name", value: "Wells" },
-  { label: "Company Name", value: "Arabica Coffee" },
-  { label: "Title", value: "Owner" },
-  { label: "Phone", value: "310.570.3930" },
-  {
-    label: "Address",
-    value: "123 Main Street, Suite 8F\nBeverly Hills, CA 90210",
-  },
-  { label: "Website", value: "www.arabicacoffee.com" },
-];
-
-const bottomSection = [
-  { label: "Number of Clapbac Reviews", value: "34", isLink: true },
-  { label: "Last Login / Last Active", value: "8/29/25" },
-];
-
-const buttons = [
-  {
-    label: "Suspend",
-    style:
-      "bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full shadow-md",
-    aria: "suspend-user",
-  },
-  {
-    label: "Ban",
-    style:
-      "bg-orange-400 hover:bg-orange-500 text-white px-5 py-2 rounded-full shadow-md",
-    aria: "ban-user",
-  },
-  {
-    label: "Delete",
-    style:
-      "bg-black hover:bg-gray-900 text-white px-5 py-2 rounded-full shadow-md",
-    aria: "delete-user",
-  },
-];
-export default function UserDetails() {
   return (
     <section className=" text-[#3D454E]">
-      <div className=" p-4 text-sm">
-        <div className="space-y-1 ">
-          {userInfo.map((item) => (
-            <div key={item.label} className="grid grid-cols-2">
-              <p className="font-medium text-gray-600">{item.label}:</p>
-              <p> {item.value}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <UserInfoSection data={userInfo} />
       <hr />
-      <div className=" p-4 text-sm  space-y-3">
-        {/* Top Section */}
-        <div className="space-y-1 pb-2 border-b border-gray-300">
-          {topSection.map((item) => (
-            <div key={item.label} className="grid grid-cols-2">
-              <span className="w-40 font-medium text-gray-600">
-                {item.label}:
-              </span>
-              <span className="whitespace-pre-line">
-                <span className=" hover:underline">{item.value}</span>
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Section */}
-        <div className="space-y-1 pt-1">
-          {bottomSection.map((item) => (
-            <div key={item.label} className="flex">
-              <span className="w-56 font-medium text-gray-600">
-                {item.label}:
-              </span>
-
-              <span>{item.value}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <CompanyDetailsSection data={topSection} />
+      <StatsSection data={bottomSection} />
       <hr />
-      <div className="max-w-2xl p-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Notes About This User:
-        </label>
+      {/* <UserNotes /> */}
 
-        <Textarea
-          className="w-full h-28 p-4 bg-white   shadow-sm resize-none border-none rounded-sm"
-          placeholder=""
-          aria-label="Notes about this user"
-        />
-
-        <p className="mt-3 text-sm italic text-gray-500">
-          If you feel the user is fake in any way, you can block or delete the
-          user from here.
-        </p>
-      </div>
-
-      {/* btn */}
-      <div className="flex gap-4 ml-4">
-        <button className="bg-[#F05223] text-white p-2 rounded-xl font-bold w-24">
-          Suspend
-        </button>
-        <button className="bg-[#F05223] text-white p-2 rounded-xl font-bold w-24">
-          Ban
-        </button>
-        <button className="bg-[#000000] text-white p-2 rounded-xl font-bold w-24">
-          Delete
-        </button>
-      </div>
+      <UserActions findUser={findUserById} />
     </section>
   );
 }

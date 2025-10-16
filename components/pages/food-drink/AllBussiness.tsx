@@ -1,6 +1,5 @@
 import React from "react";
 import Container from "@/layout/Container";
-import { coffeeShops } from "@/demoData/food-drink";
 import CategoryHeader from "./CategoryHeader";
 import RelatedCategories from "./RalatedCategories";
 import FoodDrinkBussinessCard from "./FoodDrinkBussinessCard";

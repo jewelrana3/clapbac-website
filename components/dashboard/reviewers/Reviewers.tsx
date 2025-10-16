@@ -7,87 +7,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 
 import Link from "next/link";
 import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
-
-const users = [
-  {
-    id: 1,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Active",
-  },
-  {
-    id: 2,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Active",
-  },
-  {
-    id: 3,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Active",
-  },
-  {
-    id: 4,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Active",
-  },
-  {
-    id: 5,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Active",
-  },
-  {
-    id: 6,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Suspended",
-  },
-  {
-    id: 7,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Active",
-  },
-  {
-    id: 8,
-    username: "nanbar38",
-    name: "Nancy B.",
-    email: "NancyBarna38@gmail.com",
-    response: "22",
-    date: "21/03/23",
-    status: "Banned",
-  },
-];
 
 export default function Reviewers({ reviews }: any) {
   return (

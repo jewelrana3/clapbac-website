@@ -1,6 +1,5 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React from "react";
@@ -44,8 +43,8 @@ export default function Signup() {
       } else {
         toast.error("Sign up failed: " + res.message);
       }
-    } catch (error) {
-      toast.error("Error during sign up");
+    } catch (err: any) {
+      toast.error("Error during sign up", err);
     }
   };
 

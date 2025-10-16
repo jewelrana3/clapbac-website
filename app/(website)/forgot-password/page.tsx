@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import React from "react";
 import signUp from "../../../public/signup.jpg";
 import SectionTitle from "@/components/share/SectionTitle";
-import Link from "next/link";
 import Button from "@/components/share/Button";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";

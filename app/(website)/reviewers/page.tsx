@@ -3,10 +3,10 @@
 import RecentlyViewCompanies from "@/components/share/RecentlyViewCompines";
 import SectionTitle from "@/components/share/SectionTitle";
 
-import one from "../../../public/food-drink/one.png";
-import two from "../../../public/food-drink/four.png";
-import three from "../../../public/food-drink/three.png";
-import four from "../../../public/food-drink/five.png";
+// import one from "../../../public/food-drink/one.png";
+// import two from "../../../public/food-drink/four.png";
+// import three from "../../../public/food-drink/three.png";
+// import four from "../../../public/food-drink/five.png";
 import Container from "@/layout/Container";
 import CategoryHeader from "@/components/pages/food-drink/CategoryHeader";
 import Pagination from "@/components/share/Pagination";
@@ -33,13 +33,6 @@ const reviewerTypes = [
   "The Karen",
   "Star Legend",
   "VIP",
-];
-
-const businessNames = [
-  { title: "Danny K. on Arabica Coffee", image: one },
-  { title: "Sasha C. on Loop Coffee", image: two },
-  { title: "Nancy B. on Cenchi Cafe", image: three },
-  { title: "Keisha V. on Ejji Coffee", image: four },
 ];
 
 export default function Reviewers() {

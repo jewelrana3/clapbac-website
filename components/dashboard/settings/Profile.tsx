@@ -9,10 +9,7 @@ const profileFields = [
     label: "Username",
     placeholder: "Username",
   },
-  {
-    label: "Display Name",
-    placeholder: "Display Name",
-  },
+
   {
     label: "First Name",
     placeholder: "First Name",
@@ -23,50 +20,6 @@ const profileFields = [
   },
   { label: "Title", placeholder: "Title" },
   { label: "Email", placeholder: "Email" },
-];
-
-const companyFields = [
-  {
-    label: "Company Name",
-    placeholder: "Company Name",
-    value: "companyName",
-  },
-  {
-    label: "Business Category",
-    placeholder: "Business Category",
-    value: "businessCategory",
-  },
-  {
-    label: "Address Line 1",
-    placeholder: "Address Line 1",
-    value: "address1",
-  },
-  {
-    label: "Address Line 2",
-    placeholder: "Address Line 2",
-    value: "address2",
-  },
-  { label: "City", placeholder: "City", value: "city" },
-  {
-    label: "State, Zip",
-    placeholder: "State, Zip",
-    value: "stateZip",
-  },
-  {
-    label: "Phone Number",
-    placeholder: "Phone Number",
-    value: "phone",
-  },
-  {
-    label: "Company Email",
-    placeholder: "Company Email",
-    value: "email",
-  },
-  {
-    label: "Website",
-    placeholder: "Website",
-    value: "website",
-  },
 ];
 
 export default function Profile() {

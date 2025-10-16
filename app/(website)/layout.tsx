@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "../globals.css"; // Your global styles
-import Header from "@/layout/WebsiteHeader";
 
 const lato = Lato({
   subsets: ["latin"],

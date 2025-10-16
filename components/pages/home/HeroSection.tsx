@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { FaSearch } from "react-icons/fa";
 import bgImage from "../../../public/home-banner.jpg"; // replace with your actual image path
-import { myFetch } from "@/utils/myFetch";
 import Search from "./Search";
 
 export default async function HeroSection() {

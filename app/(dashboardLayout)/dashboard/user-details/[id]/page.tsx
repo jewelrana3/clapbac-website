@@ -3,8 +3,15 @@ import Image from "next/image";
 import React from "react";
 import man from "../../../../../public/dashboard/users/man2.png";
 import { ChevronLeft } from "lucide-react";
+import { myFetch } from "@/utils/myFetch";
 
-export default function id() {
+export default async function id({ params }: { params: { id: string } }) {
+  const userId = params.id;
+
+  const res = await myFetch(`/users/${userId}`);
+  const findUserById = res?.data;
+  console.log(findUserById, "user details");
+
   return (
     <div className=" w-[60%] mx-auto">
       <div className="flex items-center mb-4">
@@ -26,7 +33,7 @@ export default function id() {
           />
         </div>
         <div className="flex-1">
-          <UserDetails />
+          <UserDetails findUserById={findUserById} />
         </div>
       </div>
     </div>

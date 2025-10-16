@@ -1,35 +1,8 @@
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
-import coffeeImg from "../../../public/feature-bussiness/one.png";
-import two from "../../../public/feature-bussiness/two.png";
-import three from "../../../public/feature-bussiness/three.png";
 import Image from "next/image";
 import Container from "@/layout/Container";
 import { myFetch } from "@/utils/myFetch";
-
-const data = [
-  {
-    id: 1,
-    title: "Combi Coffee",
-    rating: 1.5,
-    review: "4.5 (34 Reviews)",
-    img: coffeeImg,
-  },
-  {
-    id: 2,
-    title: "Bruno Cafe",
-    rating: 5,
-    review: "5.0 (48 Reviews)",
-    img: two,
-  },
-  {
-    id: 3,
-    title: "All Press Espresso",
-    rating: 3.5,
-    review: "3.5 (23 Reviews)",
-    img: three,
-  },
-];
 
 export default async function FeatureBusiness() {
   const featuresBussiness = await myFetch("/companies?isFeatured=true");
