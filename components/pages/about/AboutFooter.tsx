@@ -26,7 +26,9 @@ export default function AboutFooter() {
             <p className=" mb-4 text-lg">Say it straight — we’re listening.</p>
 
             <Link href="/signup" className="cursor-pointer">
-              <Button className="">Log In or Sign Up</Button>
+              <Button className="bg-orange-500 text-white rounded-lg font-bold px-3">
+                Log In or Sign Up
+              </Button>
             </Link>
           </div>
         </div>

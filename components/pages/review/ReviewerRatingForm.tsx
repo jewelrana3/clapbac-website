@@ -198,9 +198,10 @@ export default function ReviewerRatingForm() {
           <Label>How the Original Reviewer Rated Your Business</Label>
           <div className="flex items-center space-x-1 mt-1">
             <StarRating
+              initialRating={1}
               starsLength={5}
               dimension={10}
-              isHalfRatingEnabled={true}
+              isHalfRatingEnabled={rating.bussinessRating === 1 ? false : true}
               onRatingChange={(ratingValue) =>
                 setRating((prev) => ({ ...prev, bussinessRating: ratingValue }))
               }
