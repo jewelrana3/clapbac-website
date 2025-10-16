@@ -1,11 +1,13 @@
+import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-const Card = () => {
+const Card = async () => {
+  const cards = await myFetch("/analytics/overview");
   const data = [
-    { title: "Total Users", value: "12,345" },
-    { title: "Total Reviewers", value: "8,892" },
-    { title: "Total Reviews", value: "25,290" },
-    { title: "New Sign Ups", value: "34" },
+    { title: "Total Users", value: cards?.data?.totalUsers },
+    { title: "Total Reviewers", value: cards?.data?.totalReviewers },
+    { title: "Total Reviews", value: cards?.data?.totalReviews },
+    { title: "New Sign Ups", value: cards?.data?.newUsers },
   ];
 
   return (

@@ -2,8 +2,14 @@ import React from "react";
 import { ChevronLeft } from "lucide-react";
 import ReviewersDetails from "@/components/dashboard/reviewers/ReviewersDetails";
 import Link from "next/link";
+import { myFetch } from "@/utils/myFetch";
 
-export default function id() {
+export default async function id({ params }: { params: { id: string } }) {
+  const reviewersId = params.id;
+  console.log(reviewersId);
+  const review = await myFetch(`/reviews/reviewers/${reviewersId}`);
+  console.log("review sssss", review);
+
   return (
     <div className=" w-[60%] mx-auto">
       <Link href={"/dashboard/reviewers"}>

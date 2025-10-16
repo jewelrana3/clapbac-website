@@ -20,7 +20,7 @@ const des = (
   </>
 );
 
-export default async function page() {
+export default function ForgotPasswordPage() {
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ export default async function page() {
         toast.error(res.message || "Email Sent Failed");
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   return (

@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React from "react";
@@ -22,11 +24,36 @@ const profileFields = [
   { label: "Email", placeholder: "Email" },
 ];
 
+const companyFields = [
+  { label: "Company Name", placeholder: "Company Name", value: "Company Name" },
+  {
+    label: "Bussiness Category",
+    placeholder: "Food Drink",
+    value: "Food Drink",
+  },
+  { label: "Address Line 1", placeholder: "123 main dhaka", value: "123 main" },
+  { label: "Address Line 2", placeholder: "Khulna", value: "Khulna" },
+  { label: "City", placeholder: "Dhaka", value: "Dhaka" },
+  { label: "Phone", placeholder: "Phone", value: "Phone" },
+  {
+    label: "Company Email",
+    placeholder: "Company@gmail.com",
+    value: "Company@gmail",
+  },
+  { label: "Website", placeholder: "Website", value: "Website" },
+  { label: "Company Details", placeholder: "Website", value: "lorem" },
+];
+
 export default function Profile() {
+  const handleChangeCompanyDetails = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+  };
   return (
-    <section className="w-[70%] mx-auto my-2">
+    <section className="w-[70%] mx-auto my-2 ">
       <header className="text-[#F05223] text-2xl font-bold">Profile</header>
-      <div className="bg-[#F8F8F8] ">
+      <div className="bg-[#F8F8F8] p-5">
         <div className="grid grid-cols-[30%_auto] gap-5 p-5">
           <div>
             <Image
@@ -57,41 +84,43 @@ export default function Profile() {
               </Button>
             </div>
           </div>
+        </div>
 
-          {/* bussiness info     */}
-          {/* <div className="max-w-3xl mx-auto p-6 bg-white space-y-5 mt-5">
-        {companyFields.map((field, index) => (
-          <div key={index} className="flex items-center gap-6">
-            <label className="w-48 font-medium text-[#000000]">
-              {field.label}:
-            </label>
-            <Input
-              type="text"
-              placeholder={field.placeholder}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded text-[#3D454E]"
-              value={field.value}
+        <hr className="h-[1px] bg-[#C9C9C9] border-0" />
+
+        {/* bussiness info     */}
+        <div className="grid grid-cols-[30%_auto] gap-5 p-5">
+          <div>
+            <Image
+              src={man}
+              alt="Profile"
+              width={150}
+              height={200}
+              className="rounded-full object-cover"
             />
           </div>
-        ))}
-
-        <div className="flex items-start gap-6">
-          <label className="w-48 font-medium text-[#000000]">
-            Company Details:
-          </label>
-          <textarea
-            className="flex-1 px-4 py-2 border border-gray-300 rounded text-[#3D454E] h-32 resize-none"
-            placeholder="Enter company description..."
-            // value={details}
-            // onChange={(e) => setDetails(e.target.value)}
-          />
-        </div>
-
-        <div className="text-right pt-4">
-          <button className="bg-[#F05223] text-white px-6 py-2 rounded-xl font-semibold hover:opacity-90">
-            Save Changes
-          </button>
-        </div>
-      </div> */}
+          <div>
+            {companyFields.map((field, index) => (
+              <div key={index} className="flex items-center my-3 gap-6 ">
+                <label className="w-36 font-medium text-[#A0A0A0]">
+                  {field.label}:
+                </label>
+                <Input
+                  type="text"
+                  placeholder={field.placeholder}
+                  className="w-[75%] px-4 py-2 border border-gray-300 rounded text-[#3D454E] ml-6"
+                  value={field.value}
+                  onChange={handleChangeCompanyDetails}
+                />
+              </div>
+            ))}
+            {/* btn */}
+            <div className="flex items-center justify-end">
+              <Button className="w-[72%] bg-[#F05223] !hover:none">
+                Save Changes
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

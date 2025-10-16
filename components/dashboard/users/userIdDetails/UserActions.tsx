@@ -11,12 +11,11 @@ export function UserActions({ findUser }: any) {
   const [value, setValue] = useState("");
 
   const handleDeleteUser = async (id: string) => {
+    console.log(id);
     try {
       const userDelete = await myFetch(`/users/${findUser?._id}`, {
         method: "DELETE",
       });
-
-      console.log(userDelete);
 
       if (userDelete.success) {
         toast.success("User deleted successfully");
@@ -28,7 +27,7 @@ export function UserActions({ findUser }: any) {
         toast.error(userDelete.message || "User delete failed");
       }
     } catch (error) {
-      console.log("Delete error:", error);
+      console.error("Delete error:", error);
     }
   };
 
@@ -59,7 +58,7 @@ export function UserActions({ findUser }: any) {
         toast.error(userUpdate.message || "User update failed");
       }
     } catch (error) {
-      console.log("Update error:", error);
+      console.error("Update error:", error);
     }
   };
 

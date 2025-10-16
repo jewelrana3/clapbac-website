@@ -36,7 +36,7 @@ export default function TermsCondition({
       }
     } catch (err) {
       toast.error("Something went wrong");
-      console.log(err);
+      console.error(err);
     }
   };
 

@@ -38,7 +38,7 @@ export default function InputOTPPattern() {
         toast.error(res.message || "Email Sent Failed");
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

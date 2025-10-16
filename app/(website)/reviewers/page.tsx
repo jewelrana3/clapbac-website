@@ -39,7 +39,6 @@ export default function Reviewers() {
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || "1";
   const search = searchParams.get("searchTerm") || "";
-  console.log(search);
 
   const [reviews, setReviews] = useState<any>(null);
 
@@ -51,7 +50,6 @@ export default function Reviewers() {
         search
       )}`;
 
-      console.log(url, "url");
       const reviews = await myFetch(url);
       setReviews(reviews);
     };

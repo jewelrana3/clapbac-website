@@ -89,6 +89,7 @@ export default function Reviews({ reviews }: any) {
                 <TableCell className="pl-8">{invoice.helpfulCount}</TableCell>
                 <TableCell className="">
                   <ReviewsDetails
+                    data={invoice}
                     trigger={
                       <div>
                         <Eye className="text-[#3D454E] cursor-pointer" />

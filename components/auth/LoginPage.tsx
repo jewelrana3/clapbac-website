@@ -15,10 +15,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
-  // GET PROFILE
-
   const router = useRouter();
-  const redirect = useSearchParams()?.get("redirect");
+  const redirect = useSearchParams().get("redirect");
 
   const [passwordVisible, setPasswordVisible] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,7 +41,7 @@ export default function LoginPage() {
         toast.error(res?.message || "Login failed", { id: "login" });
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (

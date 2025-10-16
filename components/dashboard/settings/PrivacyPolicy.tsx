@@ -37,7 +37,7 @@ export default function PrivacyPolicy({
       }
     } catch (err) {
       toast.error("Something went wrong");
-      console.log(err);
+      console.error(err);
     }
   };
   return (

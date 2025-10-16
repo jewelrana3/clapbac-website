@@ -67,7 +67,7 @@ export default function Reviewers({ reviews }: any) {
                   </Badge>
                 </TableCell> */}
                 <TableCell className="pl-3">
-                  <Link href={`/dashboard/reviewers/${invoice.username}`}>
+                  <Link href={`/dashboard/reviewers/${invoice._id}`}>
                     <Eye className="text-[#3D454E] cursor-pointer" />
                   </Link>
                 </TableCell>

@@ -3,7 +3,6 @@ import React from "react";
 import CommentsSection from "./CommentsSection";
 import ReviewCommentDetails from "./ReviewCommentDetails";
 export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
-  console.log(reviews, "reviews");
   return (
     <div className=" px-6 bg-white">
       {/* ReviewCommentDetails */}

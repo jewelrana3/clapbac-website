@@ -68,7 +68,7 @@ const users = [
   },
 ];
 
-export default function Announcements() {
+export default function Announcements({ data }: any) {
   return (
     <>
       <DropDownDashboard
@@ -88,19 +88,23 @@ export default function Announcements() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users.map((invoice, index) => {
+          {data?.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell className="font-medium">{invoice.ID}</TableCell>
+                <TableCell className="font-medium">
+                  {invoice._id.slice(0, 8).toLowerCase()}
+                </TableCell>
                 <TableCell>
-                  <p>{invoice.item}</p>
+                  <p>{invoice.title}</p>
                 </TableCell>
 
                 <TableCell className="">
                   <p> {invoice.audience}</p>
                 </TableCell>
 
-                <TableCell className="">{invoice.date}</TableCell>
+                <TableCell className="">
+                  {invoice.createdAt.slice(0, 10)}
+                </TableCell>
                 <TableCell className="">
                   <Badge
                     className={`w-20 ${
@@ -118,6 +122,7 @@ export default function Announcements() {
                 </TableCell>
                 <TableCell className="">
                   <AnnouncementForm
+                    data={invoice}
                     trigger={
                       <span className="text-[#3D454E] font-bold text cursor-pointer">
                         Edit
