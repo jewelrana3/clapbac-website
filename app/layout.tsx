@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css"; // Your global styles
-import { Header } from "@/layout/Header";
+
 import Footer from "@/layout/Footer";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import Header from "@/layout/Header";
 
 const lato = Lato({
   subsets: ["latin"],

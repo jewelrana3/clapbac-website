@@ -1,10 +1,12 @@
 import Reviewers from "@/components/dashboard/reviewers/Reviewers";
+import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const reviews = await myFetch("/reviews/reviewers");
   return (
     <div>
-      <Reviewers />
+      <Reviewers reviews={reviews?.data} />
     </div>
   );
 }

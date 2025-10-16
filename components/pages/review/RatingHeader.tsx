@@ -7,18 +7,20 @@ type Rating = {
 };
 
 type RatingHeaderProps = {
+  rating: Rating;
   setRating: React.Dispatch<React.SetStateAction<Rating>>;
 };
 
-export default function RatingHeader({ setRating }: RatingHeaderProps) {
+export default function RatingHeader({ rating, setRating }: RatingHeaderProps) {
   return (
     <div className="lg:flex justify-between">
       <div className="md:flex items-center space-x-1 ">
         <div className="flex gap-2">
           <StarRating
+            initialRating={1}
             starsLength={5}
             dimension={10}
-            isHalfRatingEnabled={true}
+            isHalfRatingEnabled={rating.yourRating === 1 ? false : true}
             onRatingChange={(rating) =>
               setRating((prev) => ({
                 ...prev,

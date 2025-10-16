@@ -26,13 +26,12 @@ export default function Reviews({ reviews }: any) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">User Name</TableHead>
             <TableHead>Display Name</TableHead>
             <TableHead>Bussiness Name</TableHead>
-            <TableHead className="">Email</TableHead>
+
             <TableHead className="">Bussiness Category</TableHead>
             <TableHead className="">Location</TableHead>
-            <TableHead className="">Date</TableHead>
+            <TableHead className="">Submited Date</TableHead>
             <TableHead className="">Helpful</TableHead>
             <TableHead className="">View</TableHead>
           </TableRow>
@@ -41,13 +40,10 @@ export default function Reviews({ reviews }: any) {
           {reviews.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell className="font-medium">
-                  {invoice.username}
-                </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <div>
-                      <Image
+                      {/* <Image
                         src={
                           invoice.user.image
                             ? `${process.env.NEXT_PUBLIC_BASE_URL}${invoice.user.image}`
@@ -57,7 +53,7 @@ export default function Reviews({ reviews }: any) {
                         height={30}
                         alt={`${invoice.user?.lastName}'s profile`}
                         className=" rounded-full object-cover"
-                      />
+                      /> */}
                     </div>
                     <p>{invoice.user.firstName}</p>
                   </div>
@@ -83,9 +79,13 @@ export default function Reviews({ reviews }: any) {
                     <p> {invoice.company?.name}</p>
                   </div>
                 </TableCell>
-                <TableCell>{invoice.email}</TableCell>
-                <TableCell className="">{invoice.category}</TableCell>
-                <TableCell className="">Beverly Hills, CA</TableCell>
+
+                <TableCell className="">
+                  {invoice?.company?.category?.name}
+                </TableCell>
+                <TableCell className="">
+                  {invoice?.address || "No Location"}
+                </TableCell>
                 <TableCell className="">
                   {invoice.createdAt.slice(0, 10)}
                 </TableCell>

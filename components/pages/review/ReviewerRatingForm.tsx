@@ -47,7 +47,7 @@ export default function ReviewerRatingForm() {
   } = useForm<FormValues>();
 
   const [rating, setRating] = useState<Rating>({
-    yourRating: 0,
+    yourRating: 1,
     bussinessRating: 0,
   });
 
@@ -103,7 +103,7 @@ export default function ReviewerRatingForm() {
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-2xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm"
       >
-        <RatingHeader setRating={setRating} />
+        <RatingHeader rating={rating} setRating={setRating} />
 
         {/* Reviewer Name */}
         <div>

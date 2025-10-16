@@ -69,7 +69,7 @@ const users = [
   },
 ];
 
-export default function Reports() {
+export default function Reports({ reports }: { reports: any }) {
   return (
     <>
       <DropDownDashboard
@@ -80,7 +80,7 @@ export default function Reports() {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Report ID</TableHead>
-            <TableHead>Reported Item</TableHead>
+            {/* <TableHead>Reported Item</TableHead> */}
             <TableHead>Reporter</TableHead>
             <TableHead className="">Reason </TableHead>
             <TableHead className="">Date Submitted</TableHead>
@@ -90,23 +90,20 @@ export default function Reports() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users.map((invoice, index) => {
+          {reports?.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">
-                  {invoice.ReportID}
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-2">
-                    <p>{invoice.item}</p>
-                  </div>
+                  {invoice._id.slice(0, 8).toUpperCase()}
                 </TableCell>
 
                 <TableCell className="">
-                  <p> {invoice.reporter}</p>
+                  <p> {invoice?.user?.firstName}</p>
                 </TableCell>
                 <TableCell>{invoice.reason}</TableCell>
-                <TableCell className="">{invoice.date}</TableCell>
+                <TableCell className="">
+                  {invoice.createdAt.slice(0, 10)}
+                </TableCell>
                 <TableCell className="">
                   <Badge
                     className={`w-20 ${

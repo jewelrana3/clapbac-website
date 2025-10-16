@@ -12,6 +12,7 @@ import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 
 import Link from "next/link";
+import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
 
 const users = [
   {
@@ -88,7 +89,7 @@ const users = [
   },
 ];
 
-export default function Reviewers() {
+export default function Reviewers({ reviews }: any) {
   return (
     <>
       <DropDownDashboard
@@ -98,37 +99,37 @@ export default function Reviewers() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">User Name</TableHead>
+            {/* <TableHead className="w-[100px]">User Name</TableHead> */}
             <TableHead>Display Name</TableHead>
 
-            <TableHead className="">Email</TableHead>
+            {/* <TableHead className="">Email</TableHead> */}
             <TableHead className=""># of R esponses</TableHead>
             <TableHead className="">Avg Rating</TableHead>
             <TableHead className="">Join Date</TableHead>
-            <TableHead className="">Status</TableHead>
+            {/* <TableHead className="">Status</TableHead> */}
             <TableHead className="">View</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users.map((invoice, index) => {
+          {reviews.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell className="font-medium">
-                  {invoice.username}
-                </TableCell>
-                <TableCell>
+                <TableCell className="p-5">
                   <div className="flex items-center gap-2">
-                    <p>{invoice.name}</p>
+                    <p>{invoice.reviewerName}</p>
                   </div>
                 </TableCell>
-                <TableCell>{invoice.email}</TableCell>
-                <TableCell className="pl-16">{invoice.response}</TableCell>
+
+                <TableCell className="pl-16">{invoice.helpfulCount}</TableCell>
                 <TableCell className="">
-                  {" "}
-                  <div className="rating overall-rating">★★☆☆☆</div>
+                  <div className="rating overall-rating flex">
+                    {ratingCaculate(invoice?.clapbacRating)}
+                  </div>
                 </TableCell>
-                <TableCell className="">{invoice.date}</TableCell>
-                <TableCell className="pl-">
+                <TableCell className="">
+                  {invoice.createdAt.slice(0, 10)}
+                </TableCell>
+                {/* <TableCell className="pl-">
                   <Badge
                     className={`w-20 ${
                       invoice.status === "Active"
@@ -140,7 +141,7 @@ export default function Reviewers() {
                   >
                     {invoice.status}
                   </Badge>
-                </TableCell>
+                </TableCell> */}
                 <TableCell className="pl-3">
                   <Link href={`/dashboard/reviewers/${invoice.username}`}>
                     <Eye className="text-[#3D454E] cursor-pointer" />

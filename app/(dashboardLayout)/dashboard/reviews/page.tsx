@@ -3,7 +3,7 @@ import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
 export default async function page() {
-  const reviews = await myFetch("/reviews/reviewers");
+  const reviews = await myFetch("/reviews");
 
   return (
     <div>
