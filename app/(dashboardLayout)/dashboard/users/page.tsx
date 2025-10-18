@@ -10,6 +10,7 @@ export default async function page({
   const { status } = await searchParams;
 
   const res = await myFetch(`${status ? `/users?status=${status}` : `/users`}`);
+  console.log(res, "res");
 
   return (
     <div>

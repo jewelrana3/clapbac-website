@@ -73,7 +73,12 @@ export default function Announcements({ data }: any) {
     <>
       <DropDownDashboard
         title="Announcements"
-        data={["All", "Active", "Suspended", "Ban"]}
+        data={[
+          { title: "Active", value: "Active" },
+          { title: "Draft", value: "Draft" },
+          { title: "Scheduled", value: "Scheduled" },
+          { title: "Archived", value: "Archived" },
+        ]}
       />
       <Table>
         <TableHeader>

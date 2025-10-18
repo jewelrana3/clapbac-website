@@ -5,7 +5,7 @@ import Button from "@/components/share/Button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const inputs = [
   {
@@ -115,6 +115,7 @@ export default function ContactForm() {
           Submit
         </Button>
       </form>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }

@@ -49,73 +49,71 @@ export default function Sidebar() {
   };
 
   return (
-    <section>
-      <div className="bg-[#F2F2F2] w-[340px] text-black h-screen py-14">
-        {paths.map((item) => {
-          const isActive = pathname === item.path;
-          const isUserActive =
-            item.path === "/dashboard/users" &&
-            pathname.startsWith(`/dashboard/user-details/${id}`);
+    <section className="bg-[#F2F2F2] w-[340px] text-black py-14">
+      {paths.map((item) => {
+        const isActive = pathname === item.path;
+        const isUserActive =
+          item.path === "/dashboard/users" &&
+          pathname.startsWith(`/dashboard/user-details/${id}`);
 
-          // reviews active
-          const isReviewsActive =
-            item.path === "/dashboard/reviewers" &&
-            pathname.startsWith(`/dashboard/reviewers/${id}`);
+        // reviews active
+        const isReviewsActive =
+          item.path === "/dashboard/reviewers" &&
+          pathname.startsWith(`/dashboard/reviewers/${id}`);
 
-          // Special case for logout
-          if (item.name === "Log Out") {
-            return (
-              <div key={item.id} className="px-10 my-3">
-                <button
-                  onClick={handleLogout}
-                  className="block font-bold px-4 py-2 cursor-pointer  text-[#F05223] "
-                >
-                  {item.name}
-                </button>
-              </div>
-            );
-          }
-
+        // Special case for logout
+        if (item.name === "Log Out") {
           return (
             <div key={item.id} className="px-10 my-3">
-              {/* Parent Link */}
-              <Link
-                href={item.path}
-                className={`block font-bold px-4 py-2 rounded w-full ${
-                  isActive || isUserActive || isReviewsActive
-                    ? "bg-[#F05223] text-white"
-                    : "text-black"
-                }`}
+              <button
+                onClick={handleLogout}
+                className="block font-bold px-4 py-2 cursor-pointer  text-[#F05223] "
               >
                 {item.name}
-              </Link>
-
-              {/* Children (if any) */}
-              {item.children && (
-                <div className="ml-6 mt-2 space-y-2">
-                  {item.children.map((child) => {
-                    const isChildActive = pathname === child.path;
-
-                    return (
-                      <Link
-                        href={child.path}
-                        key={child.id}
-                        className={`block font-bold px-4 py-2 rounded w-full text-sm ${
-                          isChildActive
-                            ? "bg-[#F05223] text-white"
-                            : "text-gray-700"
-                        }`}
-                      >
-                        {child.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
+              </button>
             </div>
           );
-        })}
-      </div>
+        }
+
+        return (
+          <div key={item.id} className="px-10 my-3">
+            {/* Parent Link */}
+            <Link
+              href={item.path}
+              className={`block font-bold px-4 py-2 rounded w-full ${
+                isActive || isUserActive || isReviewsActive
+                  ? "bg-[#F05223] text-white"
+                  : "text-black"
+              }`}
+            >
+              {item.name}
+            </Link>
+
+            {/* Children (if any) */}
+            {item.children && (
+              <div className="ml-6 mt-2 space-y-2">
+                {item.children.map((child) => {
+                  const isChildActive = pathname === child.path;
+
+                  return (
+                    <Link
+                      href={child.path}
+                      key={child.id}
+                      className={`block font-bold px-4 py-2 rounded w-full text-sm ${
+                        isChildActive
+                          ? "bg-[#F05223] text-white"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {child.name}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </section>
   );
 }

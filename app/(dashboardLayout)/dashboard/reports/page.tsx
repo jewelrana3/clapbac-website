@@ -5,8 +5,15 @@ import RevenueChart from "@/components/dashboard/reports/RevenueChart";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default async function page() {
-  const reports = await myFetch("/reports");
+export default async function page({
+  searchParams,
+}: {
+  searchParams: { status: string };
+}) {
+  const { status } = await searchParams;
+  const reports = await myFetch(
+    `${status ? `/reports?status=${status}` : `/reports`}`
+  );
   return (
     <>
       <div className="grid grid-cols-[35%_auto] gap-5">

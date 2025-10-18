@@ -12,14 +12,23 @@ import DropDownDashboard from "@/components/share/DropDownDashboard";
 
 import Link from "next/link";
 import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
+import ReviewersDetails from "./ReviewersDetails";
 
 export default function Reviewers({ reviews }: any) {
   return (
     <>
-      <DropDownDashboard
+      {/* <DropDownDashboard
         title="Reviewers"
-        data={["All", "Latest Date Submitted", "Latest Date Submitted"]}
-      />
+        data={[
+          { title: "Active", value: "Active" },
+          { title: "Suspended", value: "Suspended" },
+          { title: "Banned", value: "Banned" },
+        ]}
+      /> */}
+
+      <div className="text-[#F05223] text-3xl font-semibold mb-3">
+        Reviewers
+      </div>
       <Table>
         <TableHeader>
           <TableRow>
@@ -67,9 +76,7 @@ export default function Reviewers({ reviews }: any) {
                   </Badge>
                 </TableCell> */}
                 <TableCell className="pl-3">
-                  <Link href={`/dashboard/reviewers/${invoice._id}`}>
-                    <Eye className="text-[#3D454E] cursor-pointer" />
-                  </Link>
+                  <ReviewersDetails data={invoice} />
                 </TableCell>
               </TableRow>
             );

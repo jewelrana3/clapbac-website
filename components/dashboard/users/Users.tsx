@@ -19,7 +19,11 @@ export default function Users({ users }: any) {
     <>
       <DropDownDashboard
         title="Users"
-        data={["Active", "Suspended", "Banned"]}
+        data={[
+          { title: "Active", value: "Active" },
+          { title: "Suspended", value: "Suspended" },
+          { title: "Banned", value: "Banned" },
+        ]}
       />
       <Table>
         <TableHeader>

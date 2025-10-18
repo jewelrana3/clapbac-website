@@ -10,7 +10,7 @@ const PieChart = ({ data }: any) => {
   // ];
   // console.log(segments);
 
-  const newCount = data.map(
+  const newCount = data?.map(
     ({ category, count }: { category: string; count: number }) => ({
       percent: count === 0 ? 32 : count,
       color:
@@ -21,8 +21,6 @@ const PieChart = ({ data }: any) => {
           : "#F05223",
     })
   );
-
-  console.log(newCount);
 
   // Convert percentages to SVG arc paths
   const createArc = (startAngle: number, endAngle: number) => {
@@ -45,7 +43,7 @@ const PieChart = ({ data }: any) => {
       <div className="flex items-center justify-center">
         {" "}
         <svg width="200" height="200" viewBox="0 0 200 200">
-          {newCount.map((segment: any, index: number) => {
+          {newCount?.map((segment: any, index: number) => {
             const start = currentAngle;
             const end = currentAngle + (segment.percent / 100) * 360;
             const path = createArc(start, end);

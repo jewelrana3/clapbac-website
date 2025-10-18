@@ -20,10 +20,8 @@ export default function DashboardLayout({
 }>) {
   return (
     <main className={`flex ${lato.variable} font-sans`}>
-      <div>
-        <Sidebar />
-      </div>
-      <div className="mt-16 flex-1 px-9">{children}</div>
+      <Sidebar />
+      <div className="mt-16 flex-1 px-9 ">{children}</div>
     </main>
   );
 }

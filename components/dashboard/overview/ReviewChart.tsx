@@ -11,7 +11,7 @@ const colors = [
 ];
 
 const ReviewChart = async ({ data }: any) => {
-  const newbar = data.map((item: any, index: number) => ({
+  const newbar = data?.map((item: any, index: number) => ({
     day: item.day,
     count: item.count,
     color: colors[index],
@@ -22,7 +22,7 @@ const ReviewChart = async ({ data }: any) => {
         Review Activity | Weekly
       </h2>
       <div className="flex items-end justify-between h-48  border-gray-300 pt-4">
-        {newbar.map(
+        {newbar?.map(
           ({
             day,
             count,

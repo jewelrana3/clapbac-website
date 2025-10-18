@@ -1,81 +1,59 @@
-import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Eye } from "lucide-react";
+import ReviewersDetailsInfo from "./ReviewersDetailsInfo";
+import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
 
-const userInfo = [
-  // { label: "User Name", value: "nanbar38" },
-  { label: "Display Name", value: "Nancy B." },
-  // { label: "Email", value: "NancyBarna38@gmail.com" },
-  { label: "Location", value: "Los Angeles, CA" },
-];
+export default function ReviewersDetails({ data }: any) {
+  const userInfo = [
+    { label: "Display Name", value: data?.reviewerName },
+    { label: "Location", value: data?.reviewerAddress },
+  ];
 
-const topSection = [
-  { label: "Name", value: "Nancy" },
-  // { label: "Last Name", value: "Barna" },
-  // { label: "Phone", value: "310.570.3930" },
-  {
-    label: "Address",
-    value: "123 Main Street,Beverly Hills, CA 90210",
-  },
-];
+  const topSection = [
+    { label: "Name", value: data?.company?.name },
+    {
+      label: "Address",
+      value: data?.reviewerAddress,
+    },
+  ];
 
-const bottomSection = [
-  { label: "Original Reviews:", value: "3" },
-  { label: "Number of Responses:", value: "18" },
-  {
-    label: "Avg Rating:",
-    value: (
-      <>
-        <div className="text-[#F05223] text-xl">★★☆☆☆</div>
-      </>
-    ),
-  },
-  // { label: "Last Login / Last Active:", value: "9/5/25" },
-  { label: "Reviewer Type:", value: "The Drama Queen" },
-  { label: "Reviewer Consequence:", value: "Name on the Wall of Shame" },
-];
+  const bottomSection = [
+    { label: "Original Reviews:", value: "3" },
+    { label: "Number of Responses:", value: data?.helpfulCount },
+    {
+      label: "Avg Rating:",
+      value: (
+        <>
+          <div className="text-[#F05223] text-xl flex">
+            {ratingCaculate(data?.reviewRating)}
+          </div>
+        </>
+      ),
+    },
 
-export default function ReviewersDetails() {
+    { label: "Reviewer Type:", value: data?.reviewerType },
+    { label: "Reviewer Consequence:", value: data?.reviewerConsequence },
+  ];
   return (
-    <section className=" text-[#3D454E]">
-      <div className=" p-4 text-sm">
-        <div className="space-y-1 ">
-          {userInfo.map((item) => (
-            <div key={item.label} className="grid grid-cols-2">
-              <p className="font-medium text-gray-600">{item.label}:</p>
-              <p> {item.value}</p>
-            </div>
-          ))}
+    <Dialog>
+      <DialogTrigger asChild>
+        <Eye className="text-[#3D454E] cursor-pointer" />
+      </DialogTrigger>
+      <DialogContent className=" sm:max-w-[800px] mx-auto bg-[#F5F5F5]">
+        <div className="flex bg-[#F5F5F5] p-9 gap-14">
+          <div className="">
+            <h1 className="font-bold text-2xl ">{data?.reviewerName}</h1>
+            <p className="text-md">{data?.reviewerAddress || "N/A"}</p>
+          </div>
+          <div className="flex-1">
+            <ReviewersDetailsInfo
+              userInfo={userInfo}
+              topSection={topSection}
+              bottomSection={bottomSection}
+            />
+          </div>
         </div>
-      </div>
-      <hr />
-      <div className=" p-4 text-sm  space-y-3">
-        {/* Top Section */}
-        <div className="space-y-1 pb-2 border-b border-gray-300">
-          {topSection.map((item) => (
-            <div key={item.label} className="grid grid-cols-2">
-              <span className="w-40 font-medium text-gray-600">
-                {item.label}:
-              </span>
-              <span className="whitespace-pre-line">
-                <span className=" hover:underline">{item.value}</span>
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Section */}
-        <div className="space-y-1 pt-1">
-          {bottomSection.map((item) => (
-            <div key={item.label} className="grid grid-cols-2">
-              <span className="w-56 font-medium text-gray-600">
-                {item.label}
-              </span>
-
-              <span>{item.value}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <hr />
-    </section>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Select,
   SelectContent,
@@ -8,25 +9,46 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+interface DropDownItem {
+  title: string;
+  value: string;
+}
 
 export default function DropDownDashboard({
   title,
   data,
 }: {
   title: string;
-  data: string[];
+  data: DropDownItem[];
 }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
   const [status, setStatus] = useState("");
 
-  let param = searchParams.toString();
+  // On mount/update: sync status with current URL param
+  useEffect(() => {
+    const paramKey = title === "Reviews" ? "sort" : "status";
+    const currentParam = searchParams.get(paramKey) || "";
+    setStatus(currentParam);
+  }, [searchParams, title]);
 
   const handleStatusChange = (value: string) => {
-    param = `status=${value}`;
-    router.push(`${pathname}?${param}`);
+    const paramKey = title === "Reviews" ? "sort" : "status";
+
+    // Build new URLSearchParams to keep other params intact
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+
+    if (value === "all") {
+      // If empty, remove the param (show all)
+      newSearchParams.delete(paramKey);
+    } else {
+      newSearchParams.set(paramKey, value);
+    }
+
+    router.push(`${pathname}?${newSearchParams.toString()}`);
     setStatus(value);
   };
 
@@ -34,11 +56,7 @@ export default function DropDownDashboard({
     <div className="flex justify-between mb-5">
       <div className="text-[#F05223] text-3xl font-semibold">{title}</div>
       <div>
-        <Select
-          // value={status}
-          defaultValue={status}
-          onValueChange={handleStatusChange}
-        >
+        <Select value={status} onValueChange={handleStatusChange}>
           <SelectTrigger className="w-[180px] border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">
             <SelectValue placeholder="All" />
           </SelectTrigger>
@@ -47,10 +65,10 @@ export default function DropDownDashboard({
               {data.map((item, index) => (
                 <SelectItem
                   key={index}
-                  value={item}
+                  value={item?.value}
                   className="cursor-pointer px-3 py-2 text-sm"
                 >
-                  {item}
+                  {item.title}
                 </SelectItem>
               ))}
             </SelectGroup>

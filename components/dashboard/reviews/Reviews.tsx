@@ -18,7 +18,11 @@ export default function Reviews({ reviews }: any) {
     <>
       <DropDownDashboard
         title="Reviews"
-        data={["All", "Latest Date Submitted", "Latest Date Submitted"]}
+        data={[
+          { title: "All", value: "all" },
+          { title: "Latest Date Submitted", value: "-createdAt" },
+          { title: "Oldest Date Submitted", value: "createdAt" },
+        ]}
       />
       <Table>
         <TableHeader>
@@ -34,7 +38,7 @@ export default function Reviews({ reviews }: any) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {reviews.map((invoice: any, index: number) => {
+          {reviews?.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
                 <TableCell>

@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { myFetch } from "@/utils/myFetch";
 import Image from "next/image";
-import man from "../../../public/dashboard/users/man.png";
 import { Edit } from "lucide-react";
-import { Span } from "next/dist/trace";
 
 const profileFields = [
   //   { label: "username", placeholder: "Username" },
@@ -20,7 +18,6 @@ const profileFields = [
 ];
 
 export default function ProfilePage({ data }: any) {
-  console.log(data);
   const [profile, setProfile] = React.useState(data || {});
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -40,6 +37,16 @@ export default function ProfilePage({ data }: any) {
     e.preventDefault();
 
     const formData = new FormData();
+    console.log(profile);
+
+    // Add all profile fields
+    const allowedFields = ["firstName", "lastName", "title", "phone"]; // update based on backend
+
+    allowedFields.forEach((field) => {
+      if (profile[field]) {
+        formData.append(field, profile[field]);
+      }
+    });
 
     if (imageFile) {
       formData.append("image", imageFile);
@@ -67,6 +74,7 @@ export default function ProfilePage({ data }: any) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const update = { ...profile, [name]: value };
+    console.log(update);
 
     setProfile(update);
   };

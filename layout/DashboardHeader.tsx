@@ -60,20 +60,23 @@ export default function DashboardHeader() {
                 className="flex items-center space-x-2 focus:outline-none"
                 aria-haspopup="true"
               >
-                <Image
-                  src={
-                    profileData?.image
-                      ? `http://10.10.7.7:5000/${profileData.image}`
-                      : share
-                  }
-                  alt={`${profileData?.firstName || "User"} profile`}
-                  width={40}
-                  height={50}
-                  className="rounded-full"
-                />
-                <span className="text-white font-medium">
-                  {profileData?.firstName || "User"}
-                </span>
+                <Link href="/dashboard">
+                  {" "}
+                  <Image
+                    src={
+                      profileData?.image
+                        ? `http://10.10.7.7:5000/${profileData.image}`
+                        : share
+                    }
+                    alt={`${profileData?.firstName || "User"} profile`}
+                    width={40}
+                    height={50}
+                    className="rounded-full"
+                  />
+                  <span className="text-white font-medium">
+                    {profileData?.firstName || "User"}
+                  </span>
+                </Link>
               </div>
             ) : (
               <Link href="/login">
