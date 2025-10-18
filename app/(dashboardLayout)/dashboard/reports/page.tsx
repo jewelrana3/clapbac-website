@@ -16,16 +16,17 @@ export default async function page({
   );
 
   const reportCard = await myFetch("/analytics/report-overview");
+
   return (
     <>
       <div className="grid grid-cols-[35%_auto] gap-5">
         <ReportsCard data={reportCard?.data} />
         <div className="grid grid-cols-[auto_30%] my- gap-5">
           <div>
-            <RevenueChart />
+            <RevenueChart barChart={reportCard?.data?.weeklyReportActivity} />
           </div>
           <div>
-            <ReportsPieChart />
+            <ReportsPieChart pieChart={reportCard?.data?.ratingDistribution} />
           </div>
         </div>
       </div>

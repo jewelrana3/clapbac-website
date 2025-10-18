@@ -14,7 +14,7 @@ import ReportsDetails from "./ReportsDetails";
 
 export default function Reports({ reports }: { reports: any }) {
   return (
-    <>
+    <div className="mt-9">
       <DropDownDashboard
         title="Users"
         data={[
@@ -73,6 +73,6 @@ export default function Reports({ reports }: { reports: any }) {
           })}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }

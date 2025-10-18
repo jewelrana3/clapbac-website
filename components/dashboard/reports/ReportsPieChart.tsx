@@ -1,23 +1,25 @@
+import { createArc } from "@/components/share/PieChartDevideColor";
 import React from "react";
 
-const ReportsPieChart = () => {
-  // Define segments with percentage and color
-  const segments = [
-    { percent: 32, color: "#3D454E" }, // Lime Green
-    { percent: 32, color: "#C5D92D" }, // Red-Orange
-    { percent: 37, color: "#F05223" }, // Dark Gray (Tailwind's gray-700)
-  ];
+// Define segments with percentage and color
+// const segments = [
+//   { percent: 32, color: "#3D454E" }, // Lime Green
+//   { percent: 32, color: "#C5D92D" }, // Red-Orange
+//   { percent: 37, color: "#F05223" }, // Dark Gray (Tailwind's gray-700)
+// ];
+
+const ReportsPieChart = ({ pieChart }: any) => {
+  const totalPercentage = pieChart?.map((pie: any) => ({
+    percent: pie.count,
+    color:
+      pie.category === "bad"
+        ? "#3D44E5"
+        : pie.category === "average"
+        ? "#C5D92D"
+        : "#F05223",
+  }));
 
   // Convert percentages to SVG arc paths
-  const createArc = (startAngle: number, endAngle: number) => {
-    const radius = 80;
-    const x1 = 100 + radius * Math.cos((Math.PI * startAngle) / 180);
-    const y1 = 100 + radius * Math.sin((Math.PI * startAngle) / 180);
-    const x2 = 100 + radius * Math.cos((Math.PI * endAngle) / 180);
-    const y2 = 100 + radius * Math.sin((Math.PI * endAngle) / 180);
-    const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-    return `M100,100 L${x1},${y1} A${radius},${radius} 0 ${largeArc},1 ${x2},${y2} Z`;
-  };
 
   let currentAngle = 0;
 
@@ -29,7 +31,7 @@ const ReportsPieChart = () => {
       <div className="flex items-center justify-center">
         {" "}
         <svg width="200" height="200" viewBox="0 0 200 200">
-          {segments.map((segment, index) => {
+          {totalPercentage?.map((segment: any, index: number) => {
             const start = currentAngle;
             const end = currentAngle + (segment.percent / 100) * 360;
             const path = createArc(start, end);
