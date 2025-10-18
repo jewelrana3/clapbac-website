@@ -26,8 +26,8 @@ export default async function FeatureBusiness() {
   };
 
   return (
-    <Container className=" max-w-screen-2xl">
-      <div className="bg-white py-12">
+    <Container className="">
+      <div className=" py-20">
         <h2 className="text-orange-600 text-2xl font-bold mb-4">
           Featured Businesses
         </h2>
@@ -35,13 +35,13 @@ export default async function FeatureBusiness() {
           {featuresBussiness?.data?.map((item: any) => (
             <div
               key={item?._id}
-              className="bg-[#F5F5F5] p-5 text-[#3D454E] mb- h-[300px] gap-16 flex flex-col"
+              className="bg-[#F5F5F5] p-5 text-[#3D454E] flex flex-col"
             >
               <Image
                 src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`}
                 alt={item.category.name}
                 width={300}
-                height={100}
+                height={80}
                 className="w-full flex-1"
               />
               <div className="mt-5">

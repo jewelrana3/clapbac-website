@@ -14,6 +14,7 @@ import Image from "next/image";
 import Container from "@/layout/Container";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
+import one from "../../../public/food-drink/four.png";
 
 export default function CarouselPage() {
   const [featuresCompany, setFeaturesCompany] = React.useState<any>([]);
@@ -74,7 +75,10 @@ export default function CarouselPage() {
                     <div className="flex items-center space-x-3 mb-4">
                       <Image
                         src={
-                          process.env.NEXT_PUBLIC_BASE_URL + card?.user?.image
+                          card?.user?.image
+                            ? process.env.NEXT_PUBLIC_BASE_URL +
+                              card?.user?.image
+                            : one
                         }
                         alt={card.company.name}
                         width={48}

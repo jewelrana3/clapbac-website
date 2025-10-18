@@ -21,7 +21,7 @@ We don’t just read reviews, we call it out, we clap back.
 Loudly. Fairly. No Filters. No Passes."
       />
       <FeatureBusiness />
-      <AboutFooter />
+      {/* <AboutFooter /> */}
     </div>
   );
 }

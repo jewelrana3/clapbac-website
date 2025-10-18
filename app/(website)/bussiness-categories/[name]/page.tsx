@@ -25,7 +25,10 @@ export default async function FoodDrink() {
     <div>
       <SectionTitle title="Food & Drink" />
       <FeatureBusiness />
-      <AllBussiness data={featuresBussiness?.data} />
+      <AllBussiness
+        data={featuresBussiness?.data}
+        total={featuresBussiness?.pagination?.total}
+      />
 
       <RecentlyViewCompanies
         title="Recently Viewed Companies"

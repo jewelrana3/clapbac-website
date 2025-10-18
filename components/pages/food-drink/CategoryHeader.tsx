@@ -1,14 +1,10 @@
 const CategoryHeader = ({ reviews }: any) => {
-  console.log(reviews);
   return (
     <div className="flex flex-col sm:flex-row justify-between sm:items-center py-2">
       {/* Left: Category Title */}
       <div>
         <h2 className="text-lg font-semibold">
-          Food & Drink :{" "}
-          <span className="font-bold">
-            {reviews?.pagination?.total} Businesses
-          </span>
+          Food & Drink : <span className="font-bold">{reviews} Businesses</span>
         </h2>
       </div>
 

@@ -3,19 +3,13 @@
 import RecentlyViewCompanies from "@/components/share/RecentlyViewCompines";
 import SectionTitle from "@/components/share/SectionTitle";
 
-// import one from "../../../public/food-drink/one.png";
-// import two from "../../../public/food-drink/four.png";
-// import three from "../../../public/food-drink/three.png";
-// import four from "../../../public/food-drink/five.png";
 import Container from "@/layout/Container";
 import CategoryHeader from "@/components/pages/food-drink/CategoryHeader";
 import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
 import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
-import { myFetch } from "@/utils/myFetch";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const reviewerIndexOptions = [
   "Most Controversial",
@@ -35,37 +29,8 @@ const reviewerTypes = [
   "VIP",
 ];
 
-export default function Reviewers() {
-  const searchParams = useSearchParams();
-  const page = searchParams.get("page") || "1";
-  const search = searchParams.get("searchTerm") || "";
-
-  const [reviews, setReviews] = useState<any>(null);
-
-  const [recentCompanies, setRecentCompanies] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const url = `/reviews/reviewers?page=${page}&searchTerm=${encodeURIComponent(
-        search
-      )}`;
-
-      const reviews = await myFetch(url);
-      setReviews(reviews);
-    };
-
-    fetchReviews();
-  }, [page, search]); // ✅ Use these values directly instead of searchParams
-
-  // recent companies
-  useEffect(() => {
-    const fetchRecentCompanies = async () => {
-      const recentCompanys = await myFetch("/recent-companies");
-      setRecentCompanies(recentCompanys);
-    };
-
-    fetchRecentCompanies();
-  }, []);
+export default function Reviewers({ reviews, recentCompanies }: any) {
+  console.log(reviews?.pagination?.total, "double check");
 
   return (
     <div>
@@ -79,7 +44,7 @@ export default function Reviewers() {
       <Container className="mt-10">
         <section className="flex flex-col lg:flex-row gap-12">
           <div className="basis-[70%] mb-8">
-            <CategoryHeader reviews={reviews} />
+            <CategoryHeader reviews={reviews?.pagination?.total} />
 
             {reviews?.data?.map((item: any) => (
               <ReviewersCard item={item} key={item._id} />

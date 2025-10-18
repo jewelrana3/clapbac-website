@@ -25,13 +25,19 @@ const searches = [
   "Ice Cream",
   "Family Restaurant",
 ];
-export default function AllBussiness({ data }: { data: Props[] }) {
+export default function AllBussiness({
+  data,
+  total,
+}: {
+  data: Props[];
+  total: number | undefined;
+}) {
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">
         <div className="basis-[70%] mb-8">
           {/* category header */}
-          <CategoryHeader />
+          <CategoryHeader reviews={total} />
 
           {/* bussiness cards */}
           {data?.map((item) => (
