@@ -1,17 +1,26 @@
 import React from "react";
 
-const ReportsCard = () => {
-  const data = [
-    { title: "Total Spam", value: "5" },
-    { title: "Total Harassments", value: "5" },
-    { title: "Total Fake Reviews", value: "3" },
-    { title: "New Entries", value: "34" },
+const ReportsCard = ({
+  data,
+}: {
+  data: {
+    totalSpam: number;
+    totalHarassment: number;
+    totalFakeReview: number;
+    newReports: number;
+  };
+}) => {
+  const allCard = [
+    { title: "Total Spam", value: data?.totalSpam },
+    { title: "Total Harassments", value: data?.totalHarassment },
+    { title: "Total Fake Reviews", value: data?.totalFakeReview },
+    { title: "New Entries", value: data?.newReports },
   ];
 
   return (
     <div className="">
       <div className="grid grid-cols-2 gap-4">
-        {data.map(({ title, value }) => (
+        {allCard?.map(({ title, value }) => (
           <div
             key={title}
             className="bg-[#F8F8F8] shadow-md  p-3 w- flex flex-col"

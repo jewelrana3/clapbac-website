@@ -115,7 +115,6 @@ export default function ContactForm() {
           Submit
         </Button>
       </form>
-      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 }

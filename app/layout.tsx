@@ -24,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${lato.className}  antialiased`}>
+    <html lang="en" className="scrollbar-hide">
+      <body className={`${lato.className}  antialiased `}>
         <div>
           <Header />
         </div>

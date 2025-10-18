@@ -40,15 +40,12 @@ const AnnouncementForm = ({
       // buttonValue,
     };
 
-    console.log(payload, "payload");
-
     try {
       const res = await myFetch(`/announcements/${data?._id}`, {
         method: "PATCH",
         body: payload,
       });
 
-      console.log(res);
       if (res.success) {
         toast.success("Announcement updated successfully.");
       } else {

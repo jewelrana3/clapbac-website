@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
+import one from "../../../public/food-drink/one.png";
 
 export default function FoodDrinkBussinessCard({ item }: { item: any }) {
   const renderStars = (rating: number) => {
@@ -29,7 +30,9 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
         <div className="bg-white p-3 flex flex-col md:flex-row gap-7 justify-center items-center  shadow-md">
           <div className="flex items-center justify-center w-full max-w-[150px]">
             <Image
-              src={process.env.NEXT_PUBLIC_BASE_URL + item?.logo}
+              src={
+                item?.logo ? process.env.NEXT_PUBLIC_BASE_URL + item.logo : one
+              }
               alt={item.name}
               width={100}
               height={100}

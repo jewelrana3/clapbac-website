@@ -47,7 +47,6 @@ const fields = [
 ];
 
 export default function BussinessInformation({ company }: { company: any }) {
-  console.log(company);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
@@ -123,7 +122,7 @@ export default function BussinessInformation({ company }: { company: any }) {
     });
 
     // image
-    console.log(imageFile);
+
     if (imageFile) {
       formData.append("image", imageFile);
     }
@@ -133,8 +132,6 @@ export default function BussinessInformation({ company }: { company: any }) {
         method: "PATCH",
         body: formData,
       });
-
-      console.log(res);
 
       if (res.success) {
         toast.success("Bussiness updated successfully.");

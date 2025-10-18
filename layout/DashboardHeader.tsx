@@ -2,14 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
-
 import Image from "next/image";
-
-import { Bell, Mail, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
-import { deleteCookie } from "cookies-next/client";
+
 import share from "../public/share-icon/share.webp";
 
 interface profileData {
@@ -19,8 +15,6 @@ interface profileData {
 
 export default function DashboardHeader() {
   const [profileData, setProfileData] = React.useState<profileData>("" as any);
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -30,10 +24,6 @@ export default function DashboardHeader() {
 
     fetchData();
   }, []);
-
-  const handleLogout = () => {
-    deleteCookie("OWNER_TOKEN");
-  };
 
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
@@ -60,7 +50,10 @@ export default function DashboardHeader() {
                 className="flex items-center space-x-2 focus:outline-none"
                 aria-haspopup="true"
               >
-                <Link href="/dashboard">
+                <Link
+                  href="/dashboard/profile"
+                  className="flex items-center gap-4"
+                >
                   {" "}
                   <Image
                     src={

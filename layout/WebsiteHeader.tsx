@@ -2,15 +2,14 @@
 
 import * as React from "react";
 import Link from "next/link";
-
 import Image from "next/image";
-
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
-import { deleteCookie } from "cookies-next/client";
 import share from "../public/share-icon/share.webp";
+import { UserDropdownMenu } from "./HoverNavber";
+// import HoverNavber from "./HoverNavber";
 
 interface profileData {
   firstName: string;
@@ -27,7 +26,9 @@ const mobileMenuItems = [
 ];
 
 export default function WebsiteHeader() {
+  const [navbar, setNavbar] = React.useState(false);
   const [profileData, setProfileData] = React.useState<profileData>("" as any);
+
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -42,7 +43,7 @@ export default function WebsiteHeader() {
 
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
-      <div className="flex justify-between items-center h-16 bg-[#191919] px-7 ">
+      <div className="flex justify-between items-center h-16 bg-[#191919] px-12 ">
         {/* logo */}
         <div className="">
           <Link href="/" className="flex items-center space-x-2">
@@ -73,10 +74,27 @@ export default function WebsiteHeader() {
             })}
 
             {profileData ? (
-              <div
-                className="flex items-center space-x-2 focus:outline-none"
-                aria-haspopup="true"
-              >
+              // <div
+              //   className="flex items-center space-x-2 focus:outline-none"
+              //   aria-haspopup="true"
+              // >
+              //   <Image
+              //     src={
+              //       profileData?.image
+              //         ? `http://10.10.7.7:5000/${profileData.image}`
+              //         : share
+              //     }
+              //     alt={`${profileData?.firstName || "User"} profile`}
+              //     width={40}
+              //     height={50}
+              //     className="rounded-full"
+              //   />
+              //   <span className="text-white font-medium" onClick={handleHover}>
+              //     {profileData?.firstName || "User"}
+              //   </span>
+              // </div>
+
+              <>
                 <Image
                   src={
                     profileData?.image
@@ -88,10 +106,8 @@ export default function WebsiteHeader() {
                   height={50}
                   className="rounded-full"
                 />
-                <span className="text-white font-medium">
-                  {profileData?.firstName || "User"}
-                </span>
-              </div>
+                <UserDropdownMenu />
+              </>
             ) : (
               <Link href="/login">
                 <button
@@ -129,6 +145,9 @@ export default function WebsiteHeader() {
           </div>
         </div>
       )}
+
+      {/* navbar */}
+      {/* {navbar && <HoverNavber />} */}
     </header>
   );
 }

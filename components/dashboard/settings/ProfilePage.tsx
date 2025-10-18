@@ -37,7 +37,6 @@ export default function ProfilePage({ data }: any) {
     e.preventDefault();
 
     const formData = new FormData();
-    console.log(profile);
 
     // Add all profile fields
     const allowedFields = ["firstName", "lastName", "title", "phone"]; // update based on backend
@@ -58,8 +57,6 @@ export default function ProfilePage({ data }: any) {
         body: formData,
       });
 
-      console.log(res);
-
       if (res.success) {
         toast.success("Profile updated successfully.");
       } else {
@@ -74,7 +71,6 @@ export default function ProfilePage({ data }: any) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const update = { ...profile, [name]: value };
-    console.log(update);
 
     setProfile(update);
   };

@@ -11,7 +11,6 @@ export function UserActions({ findUser }: any) {
   const [value, setValue] = useState("");
 
   const handleDeleteUser = async (id: string) => {
-    console.log(id);
     try {
       const userDelete = await myFetch(`/users/${findUser?._id}`, {
         method: "DELETE",

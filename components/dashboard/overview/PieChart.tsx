@@ -1,15 +1,6 @@
 import React from "react";
 
 const PieChart = ({ data }: any) => {
-  console.log(data);
-  // Define segments with percentage and color
-  // const segments = [
-  //   { percent: 32, color: "#3D44E5" }, // Lime Green
-  //   { percent: 32, color: "#C5D92D" }, // Red-Orange
-  //   { percent: 37, color: "#F05223" }, // Dark Gray (Tailwind's gray-700)
-  // ];
-  // console.log(segments);
-
   const newCount = data?.map(
     ({ category, count }: { category: string; count: number }) => ({
       percent: count === 0 ? 32 : count,
