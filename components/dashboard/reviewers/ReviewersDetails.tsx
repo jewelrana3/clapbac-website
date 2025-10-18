@@ -1,16 +1,16 @@
 import { Textarea } from "@/components/ui/textarea";
 
 const userInfo = [
-  { label: "User Name", value: "nanbar38" },
+  // { label: "User Name", value: "nanbar38" },
   { label: "Display Name", value: "Nancy B." },
-  { label: "Email", value: "NancyBarna38@gmail.com" },
+  // { label: "Email", value: "NancyBarna38@gmail.com" },
   { label: "Location", value: "Los Angeles, CA" },
 ];
 
 const topSection = [
-  { label: "First Name", value: "Nancy" },
-  { label: "Last Name", value: "Barna" },
-  { label: "Phone", value: "310.570.3930" },
+  { label: "Name", value: "Nancy" },
+  // { label: "Last Name", value: "Barna" },
+  // { label: "Phone", value: "310.570.3930" },
   {
     label: "Address",
     value: "123 Main Street,Beverly Hills, CA 90210",
@@ -28,7 +28,7 @@ const bottomSection = [
       </>
     ),
   },
-  { label: "Last Login / Last Active:", value: "9/5/25" },
+  // { label: "Last Login / Last Active:", value: "9/5/25" },
   { label: "Reviewer Type:", value: "The Drama Queen" },
   { label: "Reviewer Consequence:", value: "Name on the Wall of Shame" },
 ];

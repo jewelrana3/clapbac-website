@@ -1,12 +1,28 @@
 import React from "react";
 
-const PieChart = () => {
+const PieChart = ({ data }: any) => {
+  console.log(data);
   // Define segments with percentage and color
-  const segments = [
-    { percent: 32, color: "#3D454E" }, // Lime Green
-    { percent: 32, color: "#C5D92D" }, // Red-Orange
-    { percent: 37, color: "#F05223" }, // Dark Gray (Tailwind's gray-700)
-  ];
+  // const segments = [
+  //   { percent: 32, color: "#3D44E5" }, // Lime Green
+  //   { percent: 32, color: "#C5D92D" }, // Red-Orange
+  //   { percent: 37, color: "#F05223" }, // Dark Gray (Tailwind's gray-700)
+  // ];
+  // console.log(segments);
+
+  const newCount = data.map(
+    ({ category, count }: { category: string; count: number }) => ({
+      percent: count === 0 ? 32 : count,
+      color:
+        category === "bad"
+          ? "#3D44E5"
+          : category === "average"
+          ? "#C5D92D"
+          : "#F05223",
+    })
+  );
+
+  console.log(newCount);
 
   // Convert percentages to SVG arc paths
   const createArc = (startAngle: number, endAngle: number) => {
@@ -29,7 +45,7 @@ const PieChart = () => {
       <div className="flex items-center justify-center">
         {" "}
         <svg width="200" height="200" viewBox="0 0 200 200">
-          {segments.map((segment, index) => {
+          {newCount.map((segment: any, index: number) => {
             const start = currentAngle;
             const end = currentAngle + (segment.percent / 100) * 360;
             const path = createArc(start, end);

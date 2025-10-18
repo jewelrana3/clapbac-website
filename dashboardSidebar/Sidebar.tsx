@@ -28,7 +28,8 @@ const paths = [
     ],
   },
   { id: 8, name: "Profile", path: "/dashboard/profile" },
-  { id: 9, name: "Log Out", path: "/login" },
+  { id: 9, name: "Change Password", path: "/dashboard/change-password" },
+  { id: 10, name: "Log Out", path: "/login" },
 ];
 
 export default function Sidebar() {
