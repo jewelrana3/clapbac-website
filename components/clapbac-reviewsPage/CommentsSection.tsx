@@ -4,7 +4,7 @@ import React from "react";
 import HelpFull from "./HelpFull";
 import ReportModal from "./ReportModal";
 import { ChevronDown, XIcon } from "lucide-react";
-import CommentSection from "./comments/CommentSection";
+import CommentInput from "./comments/CommentInput";
 
 export default function CommentsSection({
   review,
@@ -54,7 +54,7 @@ export default function CommentsSection({
         </div>
       )}
       {isOpen && (
-        <CommentSection
+        <CommentInput
           replyComment={replyComment}
           review={review}
           setReplyComment={setReplyComment}

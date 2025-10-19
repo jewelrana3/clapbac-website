@@ -13,7 +13,7 @@ interface CommentSectionProps {
   setReplyComment: any;
 }
 
-export default function CommentSection({
+export default function CommentInput({
   replyComment,
   review,
   setReplyComment,
