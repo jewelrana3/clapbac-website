@@ -62,7 +62,7 @@ export default function SignupPageUser() {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-12 px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
+    <div className="max-w-xl mx-auto py-12 px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 mt-0 border-r-2">
       {/* Social Buttons */}
       {/* <SocialLogin /> */}
       {/* Divider */}

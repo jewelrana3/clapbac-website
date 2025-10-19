@@ -71,7 +71,7 @@ export default function SignupPageOwner({ categories }: any) {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-12 px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
+    <div className="max-w-xl mx-auto py-12 px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 mt-0 border-r-2">
       {/* Social Buttons */}
       {/* <SocialLogin /> */}
       {/* Divider */}
@@ -164,7 +164,7 @@ export default function SignupPageOwner({ categories }: any) {
                 <FormControl>
                   <select
                     {...field}
-                    className="w-full px-3 py-2 border-none rounded bg-white "
+                    className="w-full px-3 py-2 rounded bg-white h-12"
                   >
                     {categories.map((category: any) => (
                       <option key={category._id} value={category._id}>

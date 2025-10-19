@@ -8,24 +8,24 @@ export default function SignUp({ categories }: any) {
   const [check, setCheck] = useState("user");
   return (
     <div>
-      <div className="flex items-center justify-center space-x-4 mt-4">
+      <div className="grid grid-cols-2 items-center space-x-4 my-6 mt-8 max-w-xl mx-auto">
         <button
           onClick={() => setCheck("user")}
           className={`${
             check === "user" &&
-            " bg-green-600 text-white border border-green-500 "
-          } px-6 py-2 border border-blue-500 rounded cursor-pointer  transition font-bold `}
+            " bg-[#F05223] text-white border !border-[#F05223]"
+          } px-6 py-2 border border-gray-400 rounded cursor-pointer  transition font-bold `}
         >
-          User Signup
+          Reviewer
         </button>
         <button
           onClick={() => setCheck("owner")}
           className={`px-6 py-2 ${
             check === "owner" &&
-            " bg-green-600 text-white border border-green-500"
-          } border border-blue-500  rounded cursor-pointer transition font-bold`}
+            " bg-[#F05223] text-white border !border-[#F05223]"
+          } border border-gray-400  rounded cursor-pointer transition font-bold`}
         >
-          Owner Signup
+          Business Owner
         </button>
       </div>
 
