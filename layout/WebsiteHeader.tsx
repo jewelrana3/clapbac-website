@@ -42,12 +42,18 @@ export default function WebsiteHeader() {
   }, []);
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
-      <div className="flex justify-between items-center h-16 bg-[#191919] px-12 ">
+    <header className="fixed w-full top-0 z-50 bg-[#191919]">
+      <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 py-2">
         {/* logo */}
         <div className="">
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/logo.svg" alt="Logo" width={200} height={30} />
+            <Image
+              src="/logo-white.png"
+              alt="Logo"
+              width={200}
+              height={30}
+              className="w-auto max-h-16"
+            />
           </Link>
         </div>
         {/* navigation */}

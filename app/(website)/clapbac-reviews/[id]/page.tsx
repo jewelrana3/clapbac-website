@@ -38,6 +38,7 @@ export default async function Review({ params }: any) {
                   {/* review card */}
                   <ReviewCard reviews={companyReviews[0]} />
                   <SingleComment reply={companyReviews[0]} index={0} />
+
                   {/* comments section */}
                   {/* <ReviewAndComment reviews={comments?.data} /> */}
                   {<ReviewAndComment reviews={companyReviews} />}

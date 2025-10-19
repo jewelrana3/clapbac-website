@@ -1,6 +1,7 @@
 // components/Footer.tsx
 import Link from "next/link";
 import Container from "./Container";
+import Image from "next/image";
 
 const footerLinks = [
   {
@@ -35,14 +36,14 @@ export default function Footer() {
       <Container className="max-w-screen-2xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-8 text-sm font-lato">
           {/* Logo Section */}
-          <Link href="/">
-            {" "}
-            <div>
-              <h1 className="text-2xl font-bold">
-                <span className="text-[#ff4d00]">CLAP</span>
-                <span className="text-[#a0d911]">BAC</span>
-              </h1>
-            </div>
+          <Link href="/" className="flex items-center space-x-2 h-fit">
+            <Image
+              src="/logo-white.png"
+              alt="Logo"
+              width={200}
+              height={30}
+              className="w-auto max-h-16"
+            />
           </Link>
 
           {footerLinks.map((section) => (

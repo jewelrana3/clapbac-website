@@ -26,14 +26,18 @@ export default function DashboardHeader() {
   }, []);
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-[#191919] h-16">
-      <div className="flex justify-between items-center h-16 bg-[#191919] px-7 ">
-        {/* logo */}
-        <div className="">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image src="/logo.svg" alt="Logo" width={200} height={30} />
-          </Link>
-        </div>
+    <header className="fixed w-full top-0 z-50 bg-[#191919] py-2">
+      <div className="flex justify-between items-center h-16 bg-[#191919] px-7">
+        {/* Logo Section */}
+        <Link href="/" className="flex items-center space-x-2 h-fit">
+          <Image
+            src="/logo-white.png"
+            alt="Logo"
+            width={200}
+            height={30}
+            className="w-auto max-h-16"
+          />
+        </Link>
         {/* navigation */}
         <div>
           <ul className="hidden lg:flex items-center space-x-4">
