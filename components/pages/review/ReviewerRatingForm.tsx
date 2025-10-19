@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 type FormValues = {
   reviewerName: string;
+  reviewerAddress: string;
   reviewMessage: string;
   reviewSource: string;
   sourceLink: string;
@@ -81,6 +82,7 @@ export default function ReviewerRatingForm() {
         method: "POST",
         body: payload,
       });
+      console.log(res);
 
       if (res?.success) {
         toast.success("Review submitted successfully!");
@@ -118,6 +120,25 @@ export default function ReviewerRatingForm() {
           {errors.reviewerName && (
             <p className="text-sm text-red-500">
               {errors.reviewerName.message}
+            </p>
+          )}
+        </div>
+
+        {/* Reviewer Address */}
+        <div>
+          <Label htmlFor="reviewerAddress">
+            Address of Reviewer that you are Rating
+          </Label>
+          <Input
+            id="reviewerAddress"
+            placeholder="e.g. 123 Main St, Anytown, USA"
+            {...register("reviewerAddress", {
+              required: "Reviewer address is required.",
+            })}
+          />
+          {errors.reviewerAddress && (
+            <p className="text-sm text-red-500">
+              {errors.reviewerAddress.message}
             </p>
           )}
         </div>

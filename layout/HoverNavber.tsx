@@ -64,7 +64,7 @@ export function UserDropdownMenu({ profileData }: any) {
             </Link>
           ))}
 
-        <Link href="/dashboard/profile">
+        <Link href="/profile">
           <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
             <User className="h-4 w-4 text-gray-600" />
             <span>Profile</span>
