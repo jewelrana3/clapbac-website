@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// import share from "../public/share-icon/share.webp";
+import share from "../public/share-icon/share.webp";
 
 import { LogOut, LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
@@ -34,7 +34,7 @@ export function UserDropdownMenu({ profileData }: any) {
             src={
               profileData?.image
                 ? `http://10.10.7.7:5000/${profileData.image}`
-                : ""
+                : share
             }
             alt={`${profileData?.firstName || "User"} profile`}
             width={40}

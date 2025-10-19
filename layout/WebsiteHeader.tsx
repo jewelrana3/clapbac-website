@@ -28,6 +28,7 @@ const mobileMenuItems = [
 export default function WebsiteHeader() {
   const [navbar, setNavbar] = React.useState(false);
   const [profileData, setProfileData] = React.useState<profileData>("" as any);
+  console.log(profileData, "sign up");
 
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
