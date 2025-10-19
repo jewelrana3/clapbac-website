@@ -61,7 +61,7 @@ export default function TablePagination({ total }: { total?: any }) {
         {pageNumbers?.map((page) => (
           <PaginationItem key={page}>
             <PaginationLink
-              className="hover:text-[#FFFFFF]"
+              className=""
               href="#"
               isActive={page === Number(activePage)}
               onClick={(e) => {

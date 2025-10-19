@@ -32,18 +32,19 @@ export default function AllBussiness({
   data: Props[];
   total: number | undefined;
 }) {
+  console.log("pagination", data);
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">
         <div className="basis-[70%] mb-8">
           {/* category header */}
-          <CategoryHeader reviews={total} />
+          <CategoryHeader total={total} />
 
           {/* bussiness cards */}
           {data?.map((item) => (
             <FoodDrinkBussinessCard item={item} key={item?._id} />
           ))}
-          <Pagination />
+          <Pagination total={total} />
         </div>
 
         {/* categories ralted  */}

@@ -13,6 +13,8 @@ import { useForm, Controller } from "react-hook-form";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import { myFetch } from "@/utils/myFetch";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 type FormValues = {
   firstName: string;
@@ -22,6 +24,8 @@ type FormValues = {
 };
 
 export default function SignupPageUser() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const form = useForm<FormValues>({
     defaultValues: {
       firstName: "",
@@ -39,7 +43,7 @@ export default function SignupPageUser() {
 
   const onSubmit = async (data: FormValues) => {
     try {
-      const res = await myFetch("/users/create-owner", {
+      const res = await myFetch("/users/create-user", {
         method: "POST",
         body: data,
       });
@@ -47,13 +51,13 @@ export default function SignupPageUser() {
       console.log(res);
 
       if (res.success) {
-        toast.success("Sign up successful!");
+        toast.success("Signup User successful!");
 
         // setTimeout(() => {
         //   window.location.replace("/");
         // }, 500);
       } else {
-        toast.error("Sign up failed: " + res.message);
+        toast.error("Signup failed: " + res.message);
       }
     } catch (err: any) {
       toast.error("Error during sign up");
@@ -142,7 +146,21 @@ export default function SignupPageUser() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Password" {...field} />
+                  <div className="relative">
+                    <Input
+                      type={passwordVisible ? "text" : "password"}
+                      placeholder="Password"
+                      {...field}
+                      className="pr-16" // space for toggle button
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setPasswordVisible(!passwordVisible)}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-sm cursor-pointer"
+                    >
+                      {passwordVisible ? <EyeOff /> : <Eye />}
+                    </button>
+                  </div>
                 </FormControl>
                 <FormMessage>
                   {errors.password ? (errors.password.message as string) : null}

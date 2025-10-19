@@ -17,8 +17,15 @@ import { myFetch } from "@/utils/myFetch";
 //   { title: "Eiji Coffee Corner", image: four },
 // ];
 
-export default async function FoodDrink() {
-  const featuresBussiness = await myFetch("/companies");
+export default async function FoodDrink({
+  searchParams,
+}: {
+  searchParams: { page: string };
+}) {
+  const { page } = await searchParams;
+  const featuresBussiness = await myFetch(
+    `${page ? `/companies?page=${page}` : `/companies`}`
+  );
   const recentBusiness = await myFetch("/recent-companies");
 
   return (
