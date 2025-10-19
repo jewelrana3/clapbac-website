@@ -9,7 +9,6 @@ import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
 import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
-import { useSearchParams } from "next/navigation";
 
 const reviewerIndexOptions = [
   "Most Controversial",

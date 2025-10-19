@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import man from "../../../public/dashboard/users/man.png";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";

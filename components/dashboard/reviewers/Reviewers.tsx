@@ -7,10 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye } from "lucide-react";
-import DropDownDashboard from "@/components/share/DropDownDashboard";
 
-import Link from "next/link";
 import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
 import ReviewersDetails from "./ReviewersDetails";
 

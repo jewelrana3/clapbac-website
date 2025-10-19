@@ -2,12 +2,10 @@
 
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 export function UserActions({ findUser }: any) {
-  const router = useRouter();
   const [value, setValue] = useState("");
 
   const handleDeleteUser = async (id: string) => {
