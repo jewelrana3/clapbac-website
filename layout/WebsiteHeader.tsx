@@ -80,39 +80,8 @@ export default function WebsiteHeader() {
             })}
 
             {profileData ? (
-              // <div
-              //   className="flex items-center space-x-2 focus:outline-none"
-              //   aria-haspopup="true"
-              // >
-              //   <Image
-              //     src={
-              //       profileData?.image
-              //         ? `http://10.10.7.7:5000/${profileData.image}`
-              //         : share
-              //     }
-              //     alt={`${profileData?.firstName || "User"} profile`}
-              //     width={40}
-              //     height={50}
-              //     className="rounded-full"
-              //   />
-              //   <span className="text-white font-medium" onClick={handleHover}>
-              //     {profileData?.firstName || "User"}
-              //   </span>
-              // </div>
-
               <>
-                <Image
-                  src={
-                    profileData?.image
-                      ? `http://10.10.7.7:5000/${profileData.image}`
-                      : share
-                  }
-                  alt={`${profileData?.firstName || "User"} profile`}
-                  width={40}
-                  height={50}
-                  className="rounded-full"
-                />
-                <UserDropdownMenu />
+                <UserDropdownMenu profileData={profileData} />
               </>
             ) : (
               <Link href="/login">

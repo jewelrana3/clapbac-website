@@ -11,24 +11,38 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { LogOut, LayoutDashboard } from "lucide-react";
+// import share from "../public/share-icon/share.webp";
+
+import { LogOut, LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-export function UserDropdownMenu() {
+export function UserDropdownMenu({ profileData }: any) {
   const router = useRouter();
   const handleLogout = () => {
-    deleteCookie("OWNER_TOKEN");
+    deleteCookie("accessToken");
     router.push("/login");
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="text-white font-bold cursor-pointer">
-          Juyel
-        </Button>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <Image
+            src={
+              profileData?.image
+                ? `http://10.10.7.7:5000/${profileData.image}`
+                : ""
+            }
+            alt={`${profileData?.firstName || "User"} profile`}
+            width={40}
+            height={50}
+            className="rounded-full"
+          />
+          <Button className="text-white font-bold">Juyel</Button>
+        </div>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
@@ -49,7 +63,7 @@ export function UserDropdownMenu() {
         </Link>
         <Link href="/dashboard/profile">
           <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
-            <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
+            <User className="h-4 w-4 text-gray-600" />
             <span>Profile</span>
           </DropdownMenuItem>
         </Link>
