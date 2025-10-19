@@ -26,7 +26,7 @@ type FormValues = {
   businessCategory: string;
 };
 
-export default function SignupPageOwner() {
+export default function SignupPageOwner({ categories }: any) {
   const form = useForm<FormValues>({
     defaultValues: {
       firstName: "",
@@ -156,23 +156,22 @@ export default function SignupPageOwner() {
             control={control}
             name="businessCategory"
             rules={{
-              required: "Business category ID is required",
-              pattern: {
-                value: /^[0-9a-fA-F]{24}$/,
-                message: "Business category ID is required",
-              },
+              required: "Business category is required",
             }}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Business Category ID</FormLabel>
+                <FormLabel>Business Category</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Enter Category ID"
+                  <select
                     {...field}
-                    maxLength={24}
-                    minLength={10}
-                    pattern="[0-9a-fA-F]{24}"
-                  />
+                    className="w-full px-3 py-2 border-none rounded bg-white "
+                  >
+                    {categories.map((category: any) => (
+                      <option key={category._id} value={category._id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
                 </FormControl>
 
                 {errors.businessCategory && (

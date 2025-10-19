@@ -49,7 +49,7 @@ export default function ReviewerRatingForm() {
 
   const [rating, setRating] = useState<Rating>({
     yourRating: 1,
-    bussinessRating: 0,
+    bussinessRating: 1,
   });
 
   const [reviewTypes, setReviewTypes] = useState({

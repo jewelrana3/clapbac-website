@@ -17,13 +17,8 @@ import { myFetch } from "@/utils/myFetch";
 type FormValues = {
   firstName: string;
   lastName: string;
-  companyName: string;
   email: string;
   password: string;
-  phone: string;
-  website: string;
-  title: string;
-  businessCategory: string;
 };
 
 export default function SignupPageUser() {
@@ -31,20 +26,14 @@ export default function SignupPageUser() {
     defaultValues: {
       firstName: "",
       lastName: "",
-      companyName: "",
       email: "",
       password: "",
-      phone: "",
-      website: "",
-      title: "",
-      businessCategory: "",
     },
   });
 
   const {
     handleSubmit,
     control,
-    setError,
     formState: { errors },
   } = form;
 
@@ -54,6 +43,8 @@ export default function SignupPageUser() {
         method: "POST",
         body: data,
       });
+
+      console.log(res);
 
       if (res.success) {
         toast.success("Sign up successful!");

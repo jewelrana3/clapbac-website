@@ -4,7 +4,7 @@ import SignupPageOwner from "./SignupPageOwner";
 import { Sign } from "crypto";
 import SignupPageUser from "./SignupPageUser";
 
-export default function SignUp() {
+export default function SignUp({ categories }: any) {
   const [check, setCheck] = useState("user");
   return (
     <div>
@@ -29,7 +29,7 @@ export default function SignUp() {
         </button>
       </div>
 
-      {check === "owner" && <SignupPageOwner />}
+      {check === "owner" && <SignupPageOwner categories={categories} />}
       {check === "user" && <SignupPageUser />}
     </div>
   );

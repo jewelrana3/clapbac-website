@@ -7,6 +7,7 @@ import signUp from "../../../public/signup.jpg";
 import one from "../../../public/share-icon/one.svg";
 import two from "../../../public/share-icon/two.svg";
 import Image from "next/image";
+import { myFetch } from "@/utils/myFetch";
 
 const des = (
   <section className="flex  gap-4 bg-gray-100 ">
@@ -29,14 +30,15 @@ const des = (
   </section>
 );
 
-export default function SignupPage() {
+export default async function SignupPage() {
+  const categories = await myFetch("/categories");
   return (
     <div>
       <SectionTitle
         title="Sign Up"
         subTitle=" Join now and give reviewers a taste of their own stars."
       />
-      <Signup />
+      <Signup categories={categories?.data} />
 
       <ProfileSection
         image={signUp}
