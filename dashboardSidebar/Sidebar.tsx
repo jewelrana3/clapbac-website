@@ -43,7 +43,7 @@ export default function Sidebar() {
       : null;
 
   const handleLogout = () => {
-    deleteCookie("OWNER_TOKEN");
+    deleteCookie("accessToken");
     deleteCookie("refreshToken");
     router.push("/login");
   };

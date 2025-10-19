@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 
 const getProfile = async () => {
-  const token = (await cookies()).get("OWNER_TOKEN")?.value;
+  const token = (await cookies()).get("accessToken")?.value;
 
   const res = await fetch(`${process.env.BASE_URL}/users/profile`, {
     next: {

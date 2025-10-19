@@ -34,7 +34,7 @@ export default function LoginPage() {
 
       if (res.success) {
         toast.success("Login successful", { id: "login" });
-        setCookie("OWNER_TOKEN", res.data);
+        setCookie("accessToken", res.data);
         setCookie("refreshToken", res.data.refreshToken);
         router.push(redirect || "/");
       } else {
