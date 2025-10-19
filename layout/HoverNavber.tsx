@@ -20,10 +20,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export function UserDropdownMenu({ profileData }: any) {
-  const router = useRouter();
   const handleLogout = () => {
     deleteCookie("accessToken");
-    router.push("/login");
+    window.location.replace("/login");
   };
 
   return (
@@ -55,12 +54,16 @@ export function UserDropdownMenu({ profileData }: any) {
 
         <DropdownMenuSeparator />
 
-        <Link href="/dashboard">
-          <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
-            <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
-            <span>Dashboard</span>
-          </DropdownMenuItem>
-        </Link>
+        {profileData?.role === "Admin" ||
+          (profileData?.role === "Super Admin" && (
+            <Link href="/dashboard">
+              <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
+                <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
+                <span>Dashboard</span>
+              </DropdownMenuItem>
+            </Link>
+          ))}
+
         <Link href="/dashboard/profile">
           <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
             <User className="h-4 w-4 text-gray-600" />

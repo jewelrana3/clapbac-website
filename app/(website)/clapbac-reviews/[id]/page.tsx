@@ -12,6 +12,7 @@ export default async function Review({ params }: any) {
   const { id } = await params;
   const res = await myFetch(`/reviews/company/${id}`);
   const companyReviews = res?.data;
+  console.log(companyReviews);
 
   // compnay details
   const companyDetails = await myFetch(`/companies/${id}`);

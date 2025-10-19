@@ -35,8 +35,8 @@ export default function LoginPage() {
       if (res.success) {
         toast.success("Login successful", { id: "login" });
         setCookie("accessToken", res.data);
-        setCookie("refreshToken", res.data.refreshToken);
-        router.push(redirect || "/");
+        // setCookie("refreshToken", res.data.refreshToken);
+        window.location.replace(redirect || "/");
       } else {
         toast.error(res?.message || "Login failed", { id: "login" });
       }
@@ -89,6 +89,7 @@ export default function LoginPage() {
             type={passwordVisible ? "text" : "password"}
             placeholder="Password"
             className="form-input"
+            required
           />
 
           <span

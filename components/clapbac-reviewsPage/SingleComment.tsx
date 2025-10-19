@@ -3,6 +3,7 @@ import React from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
 import left from "../../public/clapbac-reviews/left.svg";
+import share from "../../public/clapbac-reviews/man.jpg";
 
 const ratingCaculate = (rating: number) => {
   const fullStars = Math.floor(rating);
@@ -54,10 +55,15 @@ export default function SingleComment({
             <div>
               {reply && (
                 <Image
-                  src={reply?.user?.image}
+                  src={
+                    reply?.user?.image
+                      ? process.env.NEXT_PUBLIC_BASE_URL + reply?.user?.image
+                      : share
+                  }
                   width={0}
                   height={0}
                   alt="Logo"
+                  sizes="100vh"
                   className="w-8 h-8 sm:w-20 sm:h-20 rounded-full"
                 />
               )}

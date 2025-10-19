@@ -1,16 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import left from "../../public/clapbac-reviews/left.svg";
+import CommentWithReply from "./replyMessage/ReplyMessage";
 
 export default function ReviewCommentDetails({
   reply,
   index,
+  setReplyComment,
 }: {
   reply: any;
   index: number;
+  setReplyComment: any;
 }) {
+  const handleReplyComment = (reply: any) => {
+    setReplyComment(reply);
+  };
   return (
-    <div className=" flex flex-col xl:flex-row my-4">
+    <div
+      className=" flex flex-col xl:flex-row my-4"
+      onClick={() => handleReplyComment(reply)}
+    >
       <div
         className={`flex items-start gap-3 `}
         style={{ marginLeft: index === 0 ? 0 : "" }}
@@ -57,8 +68,16 @@ export default function ReviewCommentDetails({
           </div>
 
           <p className="text-sm text-gray-700 mt-1">{reply?.message}</p>
+          <CommentWithReply reply={reply} />
+
+          {/* <p className="ml-5">
+            {reply?.replies?.length > 0
+              ? reply?.replies?.length + " replies"
+              : "ok"}
+          </p> */}
         </div>
       </div>
+
       {/* <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">
         <p className="font-bold text-md">{reply.ownerside}</p>
       </div> */}

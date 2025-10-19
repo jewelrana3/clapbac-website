@@ -60,8 +60,6 @@ export default function Signup() {
         body: data,
       });
 
-      console.log(res);
-
       if (res.success) {
         toast.success("Sign up successful!");
 

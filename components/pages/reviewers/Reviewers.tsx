@@ -29,8 +29,6 @@ const reviewerTypes = [
 ];
 
 export default function Reviewers({ reviews, recentCompanies }: any) {
-  console.log(reviews?.pagination?.total, "double check");
-
   return (
     <div>
       <SectionTitle

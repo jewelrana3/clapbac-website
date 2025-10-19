@@ -6,7 +6,7 @@ import ReportModal from "./ReportModal";
 import { ChevronDown } from "lucide-react";
 import CommentSection from "./comments/CommentSection";
 
-export default function CommentsSection({ reviews }: any) {
+export default function CommentsSection({ reviews, replyComment }: any) {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     // <div className="grid grid-cols-[50%] sm:grid-cols-[30%_30%_20%] gap-3 mt-10">
@@ -33,7 +33,13 @@ export default function CommentsSection({ reviews }: any) {
           <HelpFull reviews={reviews} />
         </div>
       </div>
-      {isOpen && <CommentSection reviews={reviews} setIsOpen={setIsOpen} />}
+      {isOpen && (
+        <CommentSection
+          replyComment={replyComment}
+          setIsOpen={setIsOpen}
+          reviews={reviews}
+        />
+      )}
     </>
   );
 }

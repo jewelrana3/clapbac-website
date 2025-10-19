@@ -1,8 +1,11 @@
-import React from "react";
+"use client";
 
+import { useState } from "react";
 import CommentsSection from "./CommentsSection";
 import ReviewCommentDetails from "./ReviewCommentDetails";
 export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
+  const [replyComment, setReplyComment] = useState({});
+
   return (
     <div className=" px-6 bg-white">
       {/* ReviewCommentDetails */}
@@ -11,14 +14,19 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
           return (
             <div key={reply._id}>
               {reply?.comments?.map((comment: any, idx: number) => (
-                <ReviewCommentDetails key={idx} reply={comment} index={idx} />
+                <ReviewCommentDetails
+                  key={idx}
+                  reply={comment}
+                  index={idx}
+                  setReplyComment={setReplyComment}
+                />
               ))}
             </div>
           );
         })}
       </div>
 
-      <CommentsSection reviews={reviews} />
+      <CommentsSection reviews={reviews} replyComment={replyComment} />
     </div>
   );
 }

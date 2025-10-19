@@ -1,25 +1,22 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 interface CommentSectionProps {
-  reviews: {
-    _id: string;
-    company: {
-      _id: string;
-    };
-  };
+  replyComment: any;
   setIsOpen: (val: boolean) => void;
+  reviews: any;
 }
 
 export default function CommentSection({
-  reviews,
+  replyComment,
   setIsOpen,
+  reviews,
 }: CommentSectionProps) {
   const [message, setMessage] = useState("");
-  console.log("commmmmmm", reviews);
 
   const handleSubmitComment = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,8 +27,8 @@ export default function CommentSection({
     }
 
     const payload = {
-      parent: reviews?._id,
-      review: reviews?.company?._id,
+      parent: replyComment?._id,
+      review: replyComment?.company?._id,
       message,
     };
 
@@ -56,25 +53,19 @@ export default function CommentSection({
   return (
     <div className="w-[55%] mt-5">
       <Textarea
-        className="rounded mb-4"
+        className="rounded mb-4 placeholder:text-sm"
         placeholder="Write your comment..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
       <div className="flex space-x-4">
-        <button
-          className="px-4 py-2 border border-gray-300 text-blue-700 rounded-md hover:bg-gray-100 cursor-pointer"
-          onClick={() => setIsOpen(false)}
-        >
+        <Button type="submit" className="bg-black">
           Cancel
-        </button>
+        </Button>
 
-        <button
-          className="px-4 py-2 bg-[#14A9E3] text-white rounded-md hover:bg-[#1299cc] cursor-pointer"
-          onClick={handleSubmitComment}
-        >
+        <Button type="submit" className="bg-[#F05223]">
           Post Comment
-        </button>
+        </Button>
       </div>
     </div>
   );
