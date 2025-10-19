@@ -10,15 +10,13 @@ import ReviewAndComment from "@/components/clapbac-reviewsPage/ReviewAndComment"
 
 export default async function Review({ params }: any) {
   const { id } = await params;
-  const res = await myFetch(`/reviews/company/${id}`);
+  const res = await myFetch(`/reviews/company/${id}`, { tags: ["reviews"] });
   const companyReviews = res?.data;
-  console.log(companyReviews);
 
   // compnay details
-  const companyDetails = await myFetch(`/companies/${id}`);
-
-  // commments
-  // const comments = await myFetch(`/comments/review/${id}`);
+  const companyDetails = await myFetch(`/companies/${id}`, {
+    tags: ["companies"],
+  });
 
   return (
     <>
@@ -33,17 +31,18 @@ export default async function Review({ params }: any) {
         <section className="my-10 flex flex-col lg:flex-row gap-10">
           <div className="flex-1">
             <ComapyNameSection details={companyDetails?.data} />
-            <div className="bg-[#E9E9E9] p-6 ">
+            <div className="bg-[#E9E9E9] p-6 space-y-6">
               {companyReviews.length > 0 ? (
-                <div className="bg-white p-6">
-                  {/* review card */}
-                  <ReviewCard reviews={companyReviews[0]} />
-                  <SingleComment reply={companyReviews[0]} index={0} />
+                companyReviews?.map((item: any, index: number) => (
+                  <div key={index} className="bg-white p-6 shadow-lg">
+                    {/* review card */}
+                    <ReviewCard reviews={item} />
+                    <SingleComment reply={item} index={0} />
 
-                  {/* comments section */}
-                  {/* <ReviewAndComment reviews={comments?.data} /> */}
-                  {<ReviewAndComment reviews={companyReviews} />}
-                </div>
+                    {/* comments section */}
+                    {<ReviewAndComment review={item} />}
+                  </div>
+                ))
               ) : (
                 <p className="text-center">No reviews found</p>
               )}

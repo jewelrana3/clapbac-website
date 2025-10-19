@@ -1,22 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import CommentsSection from "./CommentsSection";
 import ReviewCommentDetails from "./ReviewCommentDetails";
-export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
-  const [replyComment, setReplyComment] = useState({});
+import CommentsSection from "./CommentsSection";
+export default function ReviewAndComment({ review }: { review: any }) {
+  const [replyComment, setReplyComment] = useState(null);
 
   return (
     <div className=" px-6 bg-white">
       {/* ReviewCommentDetails */}
       <div className=" pl-4 space-y-6">
-        {reviews?.map((reply: any) => {
+        {review?.comments?.map((comment: any) => {
           return (
-            <div key={reply._id}>
-              {reply?.comments?.map((comment: any, idx: number) => (
+            <div key={comment._id}>
+              {comment?.replies?.map((comment: any, idx: number) => (
                 <ReviewCommentDetails
                   key={idx}
-                  reply={comment}
+                  commentItem={comment}
                   index={idx}
                   setReplyComment={setReplyComment}
                 />
@@ -26,30 +26,11 @@ export default function ReviewAndComment({ reviews }: { reviews: any[] }) {
         })}
       </div>
 
-      <CommentsSection reviews={reviews} replyComment={replyComment} />
+      <CommentsSection
+        replyComment={replyComment}
+        setReplyComment={setReplyComment}
+        review={review}
+      />
     </div>
   );
 }
-
-//  <div className="space-y-10">
-//       {reviews.map((review) => {
-//         return (
-//           <div key={review.id} className=" p-6 bg-white">
-//             {/* ReviewCommentDetails */}
-//             <div className=" pl-4 space-y-6">
-//               {review.replies.map((reply: any, index: number) => {
-//                 return (
-//                   <ReviewCommentDetails
-//                     key={index}
-//                     reply={reply}
-//                     index={index}
-//                   />
-//                 );
-//               })}
-//             </div>
-
-//             <CommentsSection />
-//           </div>
-//         );
-//       })}
-//     </div>
