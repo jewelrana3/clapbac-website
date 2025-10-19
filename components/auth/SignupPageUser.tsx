@@ -52,12 +52,8 @@ export default function SignupPageUser() {
 
       if (res.success) {
         toast.success("Signup User successful!");
-
-        // setTimeout(() => {
-        //   window.location.replace("/");
-        // }, 500);
       } else {
-        toast.error("Signup failed: " + res.message);
+        toast.error(res.message || "Signup User failed.");
       }
     } catch (err: any) {
       toast.error("Error during sign up");

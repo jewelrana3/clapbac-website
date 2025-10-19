@@ -61,12 +61,8 @@ export default function SignupPageOwner({ categories }: any) {
 
       if (res.success) {
         toast.success("Sign up successful!");
-
-        // setTimeout(() => {
-        //   window.location.replace("/");
-        // }, 500);
       } else {
-        toast.error("Sign up failed: " + res.message);
+        toast.error(res.message || "Sign up failed.");
       }
     } catch (err: any) {
       toast.error("Error during sign up");
