@@ -27,8 +27,6 @@ export default function LoginPage() {
         body: { email, password },
       });
 
-      console.log("admin check", res?.data?.role);
-
       if (res.success) {
         toast.success("Login successful", { id: "login" });
         setCookie("accessToken", res?.data?.accessToken);

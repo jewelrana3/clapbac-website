@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
 
       if (res.success) {
         toast.success("Email Sent Successfully");
-        router.push("/verify-otp");
+        router.push(`/verify-otp?email=${email}`);
       } else {
         toast.error(res.message || "Email Sent Failed");
       }

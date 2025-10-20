@@ -82,7 +82,6 @@ export default function ReviewerRatingForm() {
         method: "POST",
         body: payload,
       });
-      console.log(res);
 
       if (res?.success) {
         toast.success("Review submitted successfully!");

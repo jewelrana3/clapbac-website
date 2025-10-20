@@ -15,7 +15,7 @@ export default function ReportModal({ review }: any) {
 
   const handleSubmitReport = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Reported reason:", selectedReason);
+
     // You can now send `selectedReason` to your API
 
     try {
@@ -26,8 +26,6 @@ export default function ReportModal({ review }: any) {
           reason: selectedReason,
         },
       });
-
-      console.log("res", res);
     } catch (err) {
       console.log(err);
     }

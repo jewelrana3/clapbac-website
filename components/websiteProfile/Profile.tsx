@@ -92,8 +92,6 @@ export default function Profile({ data }: any) {
     }
   };
 
-  console.log(man);
-
   return (
     <div className="grid grid-cols-[30%_auto] gap-5 p-5">
       {/* image */}

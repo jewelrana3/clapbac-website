@@ -59,6 +59,7 @@ export default function SignupPageOwner({ categories }: any) {
   } = form;
 
   const onSubmit = async (data: FormValues) => {
+    const email = data.email;
     try {
       const res = await myFetch("/users/create-owner", {
         method: "POST",
@@ -68,7 +69,7 @@ export default function SignupPageOwner({ categories }: any) {
       if (res.success) {
         toast.success("Sign up successful!");
         form.reset();
-        window.location.replace("/verify-otp");
+        window.location.replace(`/verify-otp?email=${email}`);
       } else {
         toast.error(res.message || "Sign up failed.");
       }
@@ -166,16 +167,17 @@ export default function SignupPageOwner({ categories }: any) {
             rules={{
               required: "Business category is required",
             }}
-            render={() => (
+            render={({ field }) => (
               <FormItem>
                 <FormLabel>Business Category</FormLabel>
                 <FormControl>
-                  <Select>
+                  <Select
+                    {...field}
+                    onValueChange={(value) => field.onChange(value)} // Ensure value change is handled
+                    value={field.value}
+                  >
                     <SelectTrigger className="w-full bg-white rounded-none !h-12 text-gray-500 font-medium text-[17px]">
-                      <SelectValue
-                        placeholder="Business Category"
-                        className=" text-gray-500"
-                      />
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       {categories?.map((category: any) => (

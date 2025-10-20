@@ -52,7 +52,6 @@ export default function BussinessInformationWebsite({
 }) {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
-  console.log(company);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -140,8 +139,6 @@ export default function BussinessInformationWebsite({
         method: "PATCH",
         body: formData,
       });
-
-      console.log(res);
 
       if (res.success) {
         toast.success("Bussiness updated successfully.");

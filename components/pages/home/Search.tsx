@@ -10,11 +10,6 @@ export default function Search() {
 
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // const handleSearch = (e) => {
-  //   setValue(e.target.value);
-  //   setShowDropdown(true);
-  // };
-
   const handleBlur = () => {
     // Optional: delay hiding to allow click
     setTimeout(() => setShowDropdown(false), 150);
@@ -67,7 +62,7 @@ export default function Search() {
         {value && (
           <div
             className={`absolute z-10 mt- w-full bg-white ${
-              showDropdown ? "rounded-b-lg" : ""
+              showDropdown ? "rounded-b-lg" : "rounded-b-lg"
             } shadow-lg `}
           >
             {filterData && filterData.length > 0 ? (

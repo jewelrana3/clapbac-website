@@ -14,10 +14,7 @@ export default function ReviewCommentDetails({
   index: number;
 }) {
   return (
-    <div
-      className=" flex flex-col xl:flex-row my-4"
-      // onClick={() => handleReplyComment(reply)}
-    >
+    <div className=" flex flex-col xl:flex-row my-4">
       <div
         className={`flex items-start gap-3 `}
         style={{ marginLeft: index === 0 ? 0 : "" }}
@@ -68,6 +65,7 @@ export default function ReviewCommentDetails({
           </div>
 
           <p className="text-sm text-gray-700 mt-1">{commentItem?.message}</p>
+          {/* <p className="text-sm text-gray-700 mt-1">{commentItem?.message}</p> */}
 
           <button
             className="hover:underline p-1 rounded text-sm font-semibold text-gray-500 cursor-pointer text-start"

@@ -11,6 +11,7 @@ const authRoutes = [
 ];
 const roleBasedRoutes = {
   USER: [
+    "/",
     /^\/bussiness-categories\/[^\/]+$/,
     /^\/clapbac-reviews\/[^\/]+$/,
     "/reviewers",

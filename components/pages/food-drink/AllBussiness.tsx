@@ -32,7 +32,6 @@ export default function AllBussiness({
   data: Props[];
   total: number | undefined;
 }) {
-  console.log("pagination", data);
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">

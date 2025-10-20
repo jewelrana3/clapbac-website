@@ -8,12 +8,14 @@ import {
 } from "@/components/ui/input-otp";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { use, useState } from "react";
 
 export default function InputOTPPattern() {
   const [otpValue, setOtpValue] = useState("");
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email");
 
   const handleOtpChange = (value: string) => {
     setOtpValue(value);
@@ -22,7 +24,7 @@ export default function InputOTPPattern() {
     e.preventDefault();
 
     const payload = {
-      email: "jbdcalling@gmail.com",
+      email: email,
       oneTimeCode: Number(otpValue),
     };
 
@@ -33,7 +35,11 @@ export default function InputOTPPattern() {
       });
 
       if (res.success) {
-        router.push(`/reset-password?token=${res.data}`);
+        if (res.data) {
+          router.push(`/reset-password?token=${res.data}`);
+        } else {
+          router.push("/");
+        }
       } else {
         toast.error(res.message || "Email Sent Failed");
       }
@@ -69,7 +75,7 @@ export default function InputOTPPattern() {
           </InputOTP>
 
           <div className="flex flex-col items-center justify-center mt-5">
-            <p className="text-gray-500 text-sm mb-3">Resent in 0:59</p>
+            {/* <p className="text-gray-500 text-sm mb-3">Resent in 0:59</p> */}
 
             <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-md transition">
               Continue

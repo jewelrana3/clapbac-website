@@ -11,7 +11,6 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function TablePagination({ total }: { total?: any }) {
-  console.log("total", total);
   const router = useRouter();
   const searchParams = useSearchParams();
 

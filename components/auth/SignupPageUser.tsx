@@ -45,14 +45,12 @@ export default function SignupPageUser() {
 
   const onSubmit = async (data: FormValues) => {
     const email = data.email;
-    console.log(email);
+
     try {
       const res = await myFetch("/users/create-user", {
         method: "POST",
         body: data,
       });
-
-      console.log(res);
 
       if (res.success) {
         toast.success("Signup User successful!");
