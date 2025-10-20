@@ -1,55 +1,67 @@
-import { createArc } from "@/components/share/PieChartDevideColor";
-import React from "react";
+"use client";
+import { Pie, PieChart } from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+export const description = "A simple pie chart";
 
-// Define segments with percentage and color
-// const segments = [
-//   { percent: 32, color: "#3D454E" }, // Lime Green
-//   { percent: 32, color: "#C5D92D" }, // Red-Orange
-//   { percent: 37, color: "#F05223" }, // Dark Gray (Tailwind's gray-700)
-// ];
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
+  },
+  chrome: {
+    label: "Chrome",
+    color: "var(--chart-1)",
+  },
+  safari: {
+    label: "Safari",
+    color: "var(--chart-2)",
+  },
+  firefox: {
+    label: "Firefox",
+    color: "var(--chart-3)",
+  },
+  edge: {
+    label: "Edge",
+    color: "var(--chart-4)",
+  },
+  other: {
+    label: "Other",
+    color: "var(--chart-5)",
+  },
+} satisfies ChartConfig;
+export function ReportsPieChart({ data }: any) {
+  const colors = ["#3D454E", "#C5D92D", "#F05223"];
 
-const ReportsPieChart = ({ pieChart }: any) => {
-  const totalPercentage = pieChart?.map((pie: any) => ({
-    percent: pie.count,
-    color:
-      pie.category === "bad"
-        ? "#3D44E5"
-        : pie.category === "average"
-        ? "#C5D92D"
-        : "#F05223",
+  const pieChartData = data?.map((item: any, index: number) => ({
+    browser: item.category,
+    visitors: item.count,
+    fill: colors[index],
   }));
 
-  // Convert percentages to SVG arc paths
-
-  let currentAngle = 0;
-
   return (
-    <div className="max-w-md mx-auto p-4 bg-[#F8F8F8]">
-      <h2 className="text-xl font-semibold mb-4 text-center">
-        Rating Distribution
-      </h2>
-      <div className="flex items-center justify-center">
-        {" "}
-        <svg width="200" height="200" viewBox="0 0 200 200">
-          {totalPercentage?.map((segment: any, index: number) => {
-            const start = currentAngle;
-            const end = currentAngle + (segment.percent / 100) * 360;
-            const path = createArc(start, end);
-            currentAngle = end;
-            return (
-              <path
-                key={index}
-                d={path}
-                fill={segment.color}
-                stroke="white"
-                strokeWidth="10"
-              />
-            );
-          })}
-        </svg>
-      </div>
-    </div>
+    <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Rating Distribution</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[200px]"
+        >
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie data={pieChartData} dataKey="visitors" nameKey="browser" />
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
   );
-};
-
-export default ReportsPieChart;
+}

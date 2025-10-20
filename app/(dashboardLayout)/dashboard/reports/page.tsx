@@ -1,6 +1,6 @@
 import Reports from "@/components/dashboard/reports/Reports";
 import ReportsCard from "@/components/dashboard/reports/ReportsCard";
-import ReportsPieChart from "@/components/dashboard/reports/ReportsPieChart";
+import { ReportsPieChart } from "@/components/dashboard/reports/ReportsPieChart";
 import RevenueChart from "@/components/dashboard/reports/RevenueChart";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
@@ -26,7 +26,7 @@ export default async function page({
             <RevenueChart barChart={reportCard?.data?.weeklyReportActivity} />
           </div>
           <div>
-            <ReportsPieChart pieChart={reportCard?.data?.ratingDistribution} />
+            <ReportsPieChart data={reportCard?.data?.ratingDistribution} />
           </div>
         </div>
       </div>

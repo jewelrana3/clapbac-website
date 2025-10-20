@@ -1,58 +1,67 @@
-import React from "react";
+"use client";
+import { Pie, PieChart } from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+export const description = "A simple pie chart";
 
-const PieChart = ({ data }: any) => {
-  const newCount = data?.map(
-    ({ category, count }: { category: string; count: number }) => ({
-      percent: count === 0 ? 32 : count,
-      color:
-        category === "bad"
-          ? "#3D44E5"
-          : category === "average"
-          ? "#C5D92D"
-          : "#F05223",
-    })
-  );
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
+  },
+  chrome: {
+    label: "Chrome",
+    color: "var(--chart-1)",
+  },
+  safari: {
+    label: "Safari",
+    color: "var(--chart-2)",
+  },
+  firefox: {
+    label: "Firefox",
+    color: "var(--chart-3)",
+  },
+  edge: {
+    label: "Edge",
+    color: "var(--chart-4)",
+  },
+  other: {
+    label: "Other",
+    color: "var(--chart-5)",
+  },
+} satisfies ChartConfig;
+export function PieChartPage({ data }: any) {
+  const colors = ["#3D454E", "#C5D92D", "#F05223"];
 
-  // Convert percentages to SVG arc paths
-  const createArc = (startAngle: number, endAngle: number) => {
-    const radius = 80;
-    const x1 = 100 + radius * Math.cos((Math.PI * startAngle) / 180);
-    const y1 = 100 + radius * Math.sin((Math.PI * startAngle) / 180);
-    const x2 = 100 + radius * Math.cos((Math.PI * endAngle) / 180);
-    const y2 = 100 + radius * Math.sin((Math.PI * endAngle) / 180);
-    const largeArc = endAngle - startAngle > 180 ? 1 : 0;
-    return `M100,100 L${x1},${y1} A${radius},${radius} 0 ${largeArc},1 ${x2},${y2} Z`;
-  };
-
-  let currentAngle = 0;
+  const pieChartData = data?.map((item: any, index: number) => ({
+    browser: item.category,
+    visitors: item.count,
+    fill: colors[index],
+  }));
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-[#F8F8F8]">
-      <h2 className="text-xl font-semibold mb-4 text-center">
-        Rating Distribution
-      </h2>
-      <div className="flex items-center justify-center">
-        {" "}
-        <svg width="200" height="200" viewBox="0 0 200 200">
-          {newCount?.map((segment: any, index: number) => {
-            const start = currentAngle;
-            const end = currentAngle + (segment.percent / 100) * 360;
-            const path = createArc(start, end);
-            currentAngle = end;
-            return (
-              <path
-                key={index}
-                d={path}
-                fill={segment.color}
-                stroke="white"
-                strokeWidth="10"
-              />
-            );
-          })}
-        </svg>
-      </div>
-    </div>
+    <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Rating Distribution</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[200px]"
+        >
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie data={pieChartData} dataKey="visitors" nameKey="browser" />
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
   );
-};
-
-export default PieChart;
+}

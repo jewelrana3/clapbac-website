@@ -1,5 +1,6 @@
 import Card from "@/components/dashboard/overview/Card";
-import PieChart from "@/components/dashboard/overview/PieChart";
+import { PieChartPage } from "@/components/dashboard/overview/PieChart";
+// import PieChart from "@/components/dashboard/overview/PieChart";
 import ReviewChart from "@/components/dashboard/overview/ReviewChart";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
@@ -14,7 +15,8 @@ export default async function DashboardHomePage() {
           <ReviewChart data={res?.data?.weeklyReviews} />
         </div>
         <div>
-          <PieChart data={res?.data?.ratingDistribution} />
+          <PieChartPage data={res?.data?.ratingDistribution} />
+          {/* <PieChartPage data={res?.data?.ratingDistribution} /> */}
         </div>
       </div>
     </div>
