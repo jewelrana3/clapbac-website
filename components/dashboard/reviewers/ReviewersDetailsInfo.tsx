@@ -3,7 +3,6 @@ import React from "react";
 export default function ReviewersDetailsInfo({
   userInfo,
   topSection,
-  topSection2,
   bottomSection,
 }: any) {
   return (

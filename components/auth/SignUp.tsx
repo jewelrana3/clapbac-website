@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import SignupPageOwner from "./SignupPageOwner";
-import { Sign } from "crypto";
 import SignupPageUser from "./SignupPageUser";
 
 export default function SignUp({ categories }: any) {

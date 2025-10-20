@@ -29,6 +29,7 @@ const reviewerTypes = [
 ];
 
 export default function Reviewers({ reviews, recentCompanies }: any) {
+  console.log("pagination", reviews?.pagination?.total);
   return (
     <div>
       <SectionTitle
@@ -41,7 +42,7 @@ export default function Reviewers({ reviews, recentCompanies }: any) {
       <Container className="mt-10">
         <section className="flex flex-col lg:flex-row gap-12">
           <div className="basis-[70%] mb-8">
-            <CategoryHeader reviews={reviews?.pagination?.total} />
+            <CategoryHeader total={reviews?.pagination?.total} />
 
             {reviews?.data?.map((item: any) => (
               <ReviewersCard item={item} key={item._id} />

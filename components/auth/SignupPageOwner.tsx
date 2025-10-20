@@ -55,7 +55,6 @@ export default function SignupPageOwner({ categories }: any) {
   const {
     handleSubmit,
     control,
-    setError,
     formState: { errors },
   } = form;
 
@@ -167,7 +166,7 @@ export default function SignupPageOwner({ categories }: any) {
             rules={{
               required: "Business category is required",
             }}
-            render={({ field }) => (
+            render={() => (
               <FormItem>
                 <FormLabel>Business Category</FormLabel>
                 <FormControl>

@@ -75,7 +75,6 @@ export default function ReviewCommentDetails({
           >
             Reply
           </button>
-          {/* <CommentWithReply reply={commentItem} /> */}
         </div>
       </div>
     </div>

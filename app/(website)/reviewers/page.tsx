@@ -2,20 +2,20 @@ import Reviewers from "@/components/pages/reviewers/Reviewers";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default async function page({
+export default async function Page({
   searchParams,
 }: {
-  searchParams: { page: string; searchTerm: string };
+  searchParams: { page?: string; searchTerm?: string };
 }) {
-  const { page, searchTerm } = await searchParams;
+  const { page, searchTerm } = searchParams;
 
-  const check = page || searchTerm;
+  const query = new URLSearchParams();
 
-  // reviews
+  if (page) query.append("page", page);
+  if (searchTerm) query.append("searchTerm", searchTerm);
+
   const reviews = await myFetch(
-    check
-      ? `/reviews/reviewers?page=${page}&searchTerm=${searchTerm}`
-      : `/reviews/reviewers`
+    `/reviews/reviewers${query.toString() ? `?${query.toString()}` : ""}`
   );
 
   // recent companies

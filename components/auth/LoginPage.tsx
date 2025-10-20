@@ -1,11 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import React, { useState } from "react";
-import { FaApple } from "react-icons/fa";
-import google from "../../public/auth/google.png";
-import facebook from "../../public/auth/facebook.jpg";
 import Link from "next/link";
 import Button from "../share/Button";
 import { myFetch } from "@/utils/myFetch";
@@ -16,7 +12,6 @@ import { Eye, EyeOff } from "lucide-react";
 import SocialLogin from "../share/rating/SocialLogin";
 
 export default function LoginPage() {
-  const router = useRouter();
   const redirect = useSearchParams().get("redirect");
 
   const [passwordVisible, setPasswordVisible] = useState(false);
