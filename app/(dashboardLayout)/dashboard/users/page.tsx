@@ -14,7 +14,10 @@ export default async function Page({
   if (status) params.append("status", status);
 
   const res = await myFetch(
-    `/users${params.toString() ? `?${params.toString()}` : ""}`
+    `/users${params.toString() ? `?${params.toString()}` : ""}`,
+    {
+      tags: ["users"],
+    }
   );
 
   // const res = await myFetch(`/users/${params.toString() ? ?${params.toString()} : ""`);

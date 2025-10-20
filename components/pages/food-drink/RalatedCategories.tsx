@@ -14,7 +14,7 @@ const RelatedCategories = ({
 
   const handleType = (cat: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set("reviewerType", cat);
+    newSearchParams.set("revewerIndex", cat);
     router.push(`?${newSearchParams.toString()}`);
   };
   return (

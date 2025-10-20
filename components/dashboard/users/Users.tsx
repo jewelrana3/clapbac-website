@@ -94,7 +94,7 @@ export default function Users({ users }: any) {
                     className={` w-20 ${
                       invoice.status === "Active"
                         ? "bg-[#C5D92D] text-[#3D454E]"
-                        : invoice.status === "Banned"
+                        : invoice.status === "Ban"
                         ? "bg-[#000000] text-white"
                         : "bg-[#F05223]"
                     }`}

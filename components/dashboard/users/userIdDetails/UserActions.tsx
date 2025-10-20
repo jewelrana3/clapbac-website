@@ -2,6 +2,7 @@
 
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
+import { revalidate } from "@/utils/revalidateTags";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -16,7 +17,7 @@ export function UserActions({ findUser }: any) {
 
       if (userDelete.success) {
         toast.success("User deleted successfully");
-
+        revalidate("users");
         setTimeout(() => {
           history.go(-1);
         }, 1000);
