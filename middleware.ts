@@ -16,6 +16,7 @@ const roleBasedRoutes = {
     "/reviewers",
   ],
   OWNER: [
+    "/",
     "/rate-reviewer",
     /^\/bussiness-categories\/[^\/]+$/,
     /^\/clapbac-reviews\/[^\/]+$/,
@@ -31,29 +32,39 @@ type TRole = keyof typeof roleBasedRoutes;
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Step 1: Allow access to auth routes
-  if (authRoutes.includes(pathname)) {
-    return NextResponse.next();
-  }
-
-  // Step 2: redirect to login page if accessToken not found
+  // Step 1: redirect to login page if accessToken not found
   const accessToken = request.cookies.get("accessToken")?.value;
   if (!accessToken) {
+    // allow access to auth routes
+    if (authRoutes.includes(pathname)) {
+      return NextResponse.next();
+    }
+    // Not logged in → redirect to login
     const loginUrl = new URL(`/login?redirect=${pathname}`, request.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  // Step 3: Get the current user from the session
+  // Step 2: Get the current user from the session
   const user = await getProfile();
 
+  // Step 3: Allow access to auth routes to not logged in users
   if (!user) {
+    if (authRoutes.includes(pathname)) {
+      return NextResponse.next();
+    }
+    // Not logged in → redirect to login
     const loginUrl = new URL(`/login?redirect=${pathname}`, request.url);
     return NextResponse.redirect(loginUrl);
+  }
+
+  // Step 4: not Allow access to auth routes for logged in users
+  if (authRoutes.includes(pathname)) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   const role = (user.role as string).toUpperCase() as TRole;
 
-  // Step 4: Check role-based access
+  // Step 5: Check role-based access
   if (role && roleBasedRoutes[role]) {
     const allowedRoutes = roleBasedRoutes[role];
 
@@ -81,6 +92,12 @@ export const config = {
     "/forgot-password",
     "/verify-otp",
     "/reset-password",
+
+    // dashboard
+    // "/bussiness-categories",
+    // "/faq",
+    // "/about-us",
+    // "/contact-us",
 
     // Add missing routes here:
     "/bussiness-categories/:id",

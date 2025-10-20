@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { myFetch } from "@/utils/myFetch";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 type FormValues = {
   firstName: string;
@@ -24,6 +25,7 @@ type FormValues = {
 };
 
 export default function SignupPageUser() {
+  const searchParams = useSearchParams();
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const form = useForm<FormValues>({
@@ -42,6 +44,8 @@ export default function SignupPageUser() {
   } = form;
 
   const onSubmit = async (data: FormValues) => {
+    const email = data.email;
+    console.log(email);
     try {
       const res = await myFetch("/users/create-user", {
         method: "POST",
@@ -53,7 +57,9 @@ export default function SignupPageUser() {
       if (res.success) {
         toast.success("Signup User successful!");
         form.reset();
-        window.location.replace("/verify-otp");
+        const currentParams = new URLSearchParams(searchParams);
+        currentParams.set("email", res?.data?.email);
+        window.location.replace(`/verify-otp?${currentParams}`);
       } else {
         toast.error(res.message || "Signup User failed.");
       }
@@ -138,7 +144,7 @@ export default function SignupPageUser() {
             name="password"
             rules={{
               required: "Password is required",
-              minLength: { value: 6, message: "Min 6 characters" },
+              minLength: { value: 8, message: "Min 8 characters" },
             }}
             render={({ field }) => (
               <FormItem>
