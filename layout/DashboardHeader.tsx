@@ -54,10 +54,7 @@ export default function DashboardHeader() {
                 className="flex items-center space-x-2 focus:outline-none"
                 aria-haspopup="true"
               >
-                <Link
-                  href="/dashboard/profile"
-                  className="flex items-center gap-4"
-                >
+                <Link href="/profile" className="flex items-center gap-4">
                   {" "}
                   <Image
                     src={
