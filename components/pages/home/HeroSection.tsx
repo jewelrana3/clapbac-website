@@ -24,18 +24,6 @@ export default async function HeroSection() {
             They rated you – now rate them back.
           </h1>
 
-          {/* Search Bar */}
-          {/* <div className="w-full max-w-xl flex items-center bg-white rounded-full shadow-md overflow-hidden">
-            <input
-              type="text"
-              placeholder="Search reviewer or business category"
-              className="flex-grow px-5 py-3 text-gray-700 outline-none rounded-l-full"
-            />
-            <button className=" text-gray-400 px-5 py-3 rounded-r-full cursor-pointer">
-              <FaSearch size={22} />
-            </button>
-          </div> */}
-
           <Search />
         </div>
       </div>

@@ -171,10 +171,10 @@ export default function SignupPageOwner({ categories }: any) {
                 <FormLabel>Business Category</FormLabel>
                 <FormControl>
                   <Select>
-                    <SelectTrigger className="w-full bg-white rounded-none !h-12 text-gray-500 font-semibold">
+                    <SelectTrigger className="w-full bg-white rounded-none !h-12 text-gray-500 font-medium text-[17px]">
                       <SelectValue
-                        placeholder="Select a year"
-                        className="text-xl text-gray-500"
+                        placeholder="Business Category"
+                        className=" text-gray-500"
                       />
                     </SelectTrigger>
                     <SelectContent>

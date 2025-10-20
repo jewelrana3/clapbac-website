@@ -7,9 +7,8 @@ import Button from "../share/Button";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { setCookie } from "cookies-next";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
-import SocialLogin from "../share/rating/SocialLogin";
 
 export default function LoginPage() {
   const redirect = useSearchParams().get("redirect");
@@ -28,11 +27,17 @@ export default function LoginPage() {
         body: { email, password },
       });
 
+      console.log("admin check", res?.data?.role);
+
       if (res.success) {
         toast.success("Login successful", { id: "login" });
-        setCookie("accessToken", res.data);
-        // setCookie("refreshToken", res.data.refreshToken);
-        window.location.replace(redirect || "/");
+        setCookie("accessToken", res?.data?.accessToken);
+
+        const isAdmin =
+          res?.data?.role === "Admin" || res?.data?.role === "Super Admin";
+        const target = redirect || (isAdmin ? "/dashboard" : "/");
+
+        window.location.replace(target);
       } else {
         toast.error(res?.message || "Login failed", { id: "login" });
       }

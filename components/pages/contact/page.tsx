@@ -95,6 +95,7 @@ export default function ContactForm() {
             type={type}
             value={form[name as keyof ContactFormProps]}
             onChange={handleChange}
+            required
           />
         ))}
 

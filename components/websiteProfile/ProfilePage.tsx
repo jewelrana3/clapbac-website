@@ -18,7 +18,7 @@ export default async function ProfilePage() {
 
         <hr className="h-[1px] bg-[#C9C9C9] border-0" />
 
-        {company?.data?.owner === "68ea220513262fbf6e9e605c" && (
+        {res?.data?.role === "Owner" && (
           <div className="grid grid-cols-[30%_auto] gap-5 p-5">
             <BussinessInformationWebsite company={company?.data} />
           </div>

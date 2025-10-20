@@ -41,36 +41,6 @@ export default function Search() {
 
   return (
     <>
-      {/* <div className="w-full max-w-xl flex items-center bg-white rounded-full shadow-md overflow-hidden">
-        <input
-          onChange={handleSearch}
-          type="text"
-          placeholder="Search reviewer or business category"
-          className="flex-grow px-5 py-3 text-gray-700 outline-none rounded-l-lg"
-        />
-        <button className="text-gray-400 px-5 py-3 rounded-r-full cursor-pointer">
-          <FaSearch size={22} />
-        </button>
-      </div>
-
-      {value && (
-        <div className="mt- bg-white p-4 rounded-md shadow-sm w-[30%]">
-          {filterData && filterData.length > 0 ? (
-            filterData.map((item) => (
-              <Link
-                href={`/bussiness-categories/${item.name}`}
-                key={item._id}
-                className="block py-2 text-black  rounded px-2"
-              >
-                {item.name}
-              </Link>
-            ))
-          ) : (
-            <p className="text-gray-500 italic">No results found.</p>
-          )}
-        </div>
-      )} */}
-
       <div className="relative w-full max-w-xl mx-auto">
         {/* Search Bar */}
         <div
@@ -105,7 +75,7 @@ export default function Search() {
                 <Link
                   href={`/bussiness-categories/${item.name}`}
                   key={item._id}
-                  className="block px-4 py-2 text-sm text-gray-800  transition"
+                  className="block px-4 py-2 text-sm text-gray-800  transition hover:bg-gray-100 rounded-lg"
                 >
                   {item.name}
                 </Link>

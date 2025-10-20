@@ -72,12 +72,12 @@ export default function ChangePassword() {
                 onChange={(e) =>
                   setFormData({ ...formData, currentPassword: e.target.value })
                 }
-                className="w-full px-4 py-2 rounded border bg-orange-50 focus:outline-none"
+                className="w-full px-4 py-2 rounded border  focus:outline-none"
               />
               <button
                 type="button"
                 onClick={() => toggleVisibility("currentPassword")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
               >
                 {showPassword.currentPassword ? (
                   <Eye className="w-5 h-5" />
@@ -100,12 +100,12 @@ export default function ChangePassword() {
                 onChange={(e) =>
                   setFormData({ ...formData, newPassword: e.target.value })
                 }
-                className="w-full px-4 py-2 rounded border bg-orange-50 focus:outline-none"
+                className="w-full px-4 py-2 rounded border  focus:outline-none"
               />
               <button
                 type="button"
                 onClick={() => toggleVisibility("newPassword")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
               >
                 {showPassword.newPassword ? (
                   <Eye className="w-5 h-5" />
@@ -128,12 +128,12 @@ export default function ChangePassword() {
                 onChange={(e) =>
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
-                className="w-full px-4 py-2 rounded border bg-orange-50 focus:outline-none"
+                className="w-full px-4 py-2 rounded border  focus:outline-none "
               />
               <button
                 type="button"
                 onClick={() => toggleVisibility("confirmPassword")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
               >
                 {showPassword.confirmPassword ? (
                   <Eye className="w-5 h-5" />
@@ -145,7 +145,7 @@ export default function ChangePassword() {
           </div>
 
           {/* Confirm Button */}
-          <button className="w-full bg-yellow-400 text-black font-semibold py-2 rounded cursor-pointer mt-7">
+          <button className="w-full bg-[#E95022] text-white font-semibold py-2 rounded cursor-pointer mt-7">
             Confirm
           </button>
         </form>
