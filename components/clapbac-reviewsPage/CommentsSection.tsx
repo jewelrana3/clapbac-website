@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import HelpFull from "./HelpFull";
 import ReportModal from "./ReportModal";
 import { ChevronDown, XIcon } from "lucide-react";
 import CommentInput from "./comments/CommentInput";
+import { myFetch } from "@/utils/myFetch";
 
 export default function CommentsSection({
   review,
@@ -12,7 +13,15 @@ export default function CommentsSection({
   setReplyComment,
 }: any) {
   const isOpen = replyComment ? true : false;
+  const [profileData, setProfileData] = React.useState<any>(null);
 
+  useEffect(() => {
+    const getProfile = async () => {
+      const res = await myFetch("/users/profile");
+      setProfileData(res.data);
+    };
+    getProfile();
+  }, []);
   return (
     <>
       <div className="flex flex-col sm:flex-row gap-3 mt-10 mb-4">
@@ -26,10 +35,11 @@ export default function CommentsSection({
           </button>
         </div>
         {/* Report Button */}
-
-        <div>
-          <ReportModal />
-        </div>
+        {profileData?._id !== review?.user?._id && (
+          <div>
+            <ReportModal review={review?._id} />
+          </div>
+        )}
 
         {/* Helpful Button */}
 

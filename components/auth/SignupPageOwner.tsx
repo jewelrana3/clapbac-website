@@ -15,6 +15,13 @@ import toast from "react-hot-toast";
 import { myFetch } from "@/utils/myFetch";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 type FormValues = {
   firstName: string;
@@ -61,6 +68,8 @@ export default function SignupPageOwner({ categories }: any) {
 
       if (res.success) {
         toast.success("Sign up successful!");
+        form.reset();
+        window.location.replace("/verify-otp");
       } else {
         toast.error(res.message || "Sign up failed.");
       }
@@ -162,16 +171,21 @@ export default function SignupPageOwner({ categories }: any) {
               <FormItem>
                 <FormLabel>Business Category</FormLabel>
                 <FormControl>
-                  <select
-                    {...field}
-                    className="w-full px-3 py-2 rounded bg-white h-12"
-                  >
-                    {categories.map((category: any) => (
-                      <option key={category._id} value={category._id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
+                  <Select>
+                    <SelectTrigger className="w-full bg-white rounded-none !h-12 text-gray-500 font-semibold">
+                      <SelectValue
+                        placeholder="Select a year"
+                        className="text-xl text-gray-500"
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories?.map((category: any) => (
+                        <SelectItem key={category._id} value={category._id}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </FormControl>
 
                 {errors.businessCategory && (

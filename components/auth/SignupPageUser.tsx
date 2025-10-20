@@ -52,6 +52,8 @@ export default function SignupPageUser() {
 
       if (res.success) {
         toast.success("Signup User successful!");
+        form.reset();
+        window.location.replace("/verify-otp");
       } else {
         toast.error(res.message || "Signup User failed.");
       }

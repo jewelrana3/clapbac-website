@@ -13,6 +13,7 @@ import toast from "react-hot-toast";
 import { setCookie } from "cookies-next";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import SocialLogin from "../share/rating/SocialLogin";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -47,33 +48,7 @@ export default function LoginPage() {
   return (
     <div className="max-w-xl mx-auto py-12  px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
       {/* Social Buttons */}
-      <div className="space-y-3 text-[#A0A0A0]">
-        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-2  bg-white">
-          <Image src={google} width={30} height={30} alt="google" />
-          <span>Sign Up with Google</span>
-        </button>
-        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3] py-1  bg-white">
-          <FaApple className="text-4xl text-black" />
-          <span className="mr-3">Sign Up with Apple</span>
-        </button>
-        <button className="w-full flex items-center justify-center gap-3 border border-[#D3D3D3]  py-2 bg-white">
-          <Image
-            src={facebook}
-            width={30}
-            height={30}
-            alt="fb"
-            className="ml-4"
-          />
-          <span>Sign Up with Facebook</span>
-        </button>
-      </div>
-
-      {/* Divider */}
-      <div className="flex items-center my-4">
-        <div className="flex-grow h-px bg-gray-300" />
-        <span className="px-3 text-gray-500 text-sm">or</span>
-        <div className="flex-grow h-px bg-gray-300" />
-      </div>
+      {/* <SocialLogin /> */}
 
       {/* Form Fields */}
       <form className="space-y-3" onSubmit={handleSubmit}>
