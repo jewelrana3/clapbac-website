@@ -31,14 +31,16 @@ export default function ReviewersCard({ item }: { item: any }) {
     return format(parseISO(date), "d/ d/ yyyy");
   };
   return (
-    <Link href={`/clapbac-reviews/${item._id}`}>
+    <Link href={`/clapbac-reviews/${item?.company?._id}`}>
       <div className="border-[#C5D92D] border-8 mb-8 p-4">
         <div className="bg-white flex flex-col md:flex-row lg:items-center gap-10 p-4">
           <div className="flex flex-col ">
             <h2 className="text-lg md:text-xl font-bold text-gray-800">
               {item?.reviewerName}
             </h2>
-            <p className="text-sm text-gray-600 mb-2">Los Angeles, CA</p>
+            <p className="text-sm text-gray-600 mb-2">
+              {item?.reviewerAddress}
+            </p>
 
             <div className="flex items-center text-orange-400 text-sm">
               {renderStars(item.clapbacRating)}
@@ -60,16 +62,16 @@ export default function ReviewersCard({ item }: { item: any }) {
                   </p>
                   <p className="text-sm font-bold text-gray-800">
                     {item.reviewerName}
-                    <span className="font-normal">, Owner</span>
+                    <span className="font-normal">,{item?.user?.title}</span>
                   </p>
-                  <p className="text-sm text-gray-700">Arabica Coffee</p>
+                  <p className="text-sm text-gray-700">{item?.company?.name}</p>
                   <p className="text-sm text-gray-500">
-                    {formattedDate(item.createdAt)}
+                    {new Date(item?.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
               <div className="w-full mt-2 text-sm text-gray-700">
-                {item.reviewMessage}
+                {item.clapbacMessage}
               </div>
             </div>
           </div>

@@ -40,7 +40,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
             />
           </div>
 
-          <div className="">
+          <div className="basis-1/3">
             <h3 className="font-bold text-xl lg:text-2xl">{item?.name}</h3>
             <div className="font-bold lg:text-lg flex gap-5 items-center">
               <div className="my-2">
@@ -54,8 +54,8 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
               </div>
             </div>
           </div>
-          <div className="basis-auto">
-            <p>
+          <div className="basis-2/3">
+            <p className="text-left">
               {item.about ||
                 "In vehicula velit vel sollicitudin malesuada. Quisque posuere purus sit amet dictum ultricies. Phasellus eget elit at libero porta porttitor. In malesuada libero fermentum nulla bibendum elementum. Proin dolor erat, efficitur a pellentesque id, auctor in augue."}
             </p>
