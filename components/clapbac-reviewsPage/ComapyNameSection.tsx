@@ -13,12 +13,11 @@ export default function ComapyNameSection({ details }: any) {
 
   return (
     <>
-      {" "}
       <h1 className="flex items-center">
         {details?.category?.name}{" "}
         <span>
           <MdOutlineKeyboardArrowRight />
-        </span>{" "}
+        </span>
         {details?.name}
       </h1>
       <div className=" shadow-lg  border-8 border-[#C5D92D] my-4">
