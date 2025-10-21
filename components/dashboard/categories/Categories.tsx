@@ -16,7 +16,6 @@ export default function Categories({ categories }: any) {
   const [, setCategorySelect] = useState([]);
 
   const handleSelect = (item: any) => {
-    console.log(item);
     setCategorySelect((prev: any) => ({ ...prev, item }));
   };
   return (

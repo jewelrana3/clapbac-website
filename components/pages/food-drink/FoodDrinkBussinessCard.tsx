@@ -2,9 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
-import one from "../../../public/food-drink/one.png";
+
+import LogoImage from "@/components/share/LogoImage";
 
 export default function FoodDrinkBussinessCard({ item }: { item: any }) {
+  console.log(item);
+
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;
@@ -29,15 +32,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
       <div className=" shadow-lg  border-8 border-[#C5D92D] my-4">
         <div className="bg-white p-3 flex flex-col md:flex-row gap-7 justify-center items-center  shadow-md">
           <div className="flex items-center justify-center w-full max-w-[150px]">
-            <Image
-              src={
-                item?.logo ? process.env.NEXT_PUBLIC_BASE_URL + item.logo : one
-              }
-              alt={item.name}
-              width={100}
-              height={100}
-              className=" object-cover "
-            />
+            <LogoImage item={item?.logo} name={item?.name} />
           </div>
 
           <div className="basis-1/3">

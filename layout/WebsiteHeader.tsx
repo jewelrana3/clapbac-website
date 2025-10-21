@@ -31,8 +31,6 @@ export default function WebsiteHeader() {
     null
   );
 
-  console.log(profileData);
-
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

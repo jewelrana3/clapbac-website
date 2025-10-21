@@ -5,7 +5,6 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 export default function ComapyNameSection({ details }: any) {
   const currentDate = new Date();
   const createAtDate = new Date(details?.createdAt);
-  console.log(createAtDate);
 
   const timeDifferenceMs = currentDate.getTime() - createAtDate.getTime();
 

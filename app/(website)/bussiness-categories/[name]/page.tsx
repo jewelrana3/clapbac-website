@@ -30,7 +30,7 @@ export default async function FoodDrink({
 
   return (
     <div>
-      <SectionTitle title="Food & Drink" />
+      <SectionTitle title={featuresBussiness?.data[0]?.name} />
       <FeatureBusiness />
       <AllBussiness
         data={featuresBussiness?.data}

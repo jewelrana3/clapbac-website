@@ -37,7 +37,7 @@ export default function AllBussiness({
       <section className="flex flex-col lg:flex-row gap-12">
         <div className="basis-[70%] mb-8">
           {/* category header */}
-          <CategoryHeader total={total} />
+          <CategoryHeader total={total} data={data} />
 
           {/* bussiness cards */}
           {data?.map((item) => (

@@ -1,10 +1,11 @@
-const CategoryHeader = ({ total }: any) => {
+const CategoryHeader = ({ total, data }: any) => {
   return (
     <div className="flex flex-col sm:flex-row justify-between sm:items-center py-2">
       {/* Left: Category Title */}
       <div>
         <h2 className="text-lg font-semibold">
-          Food & Drink : <span className="font-bold">{total} Businesses</span>
+          {data?.[0].name} :{" "}
+          <span className="font-bold">{total} Businesses</span>
         </h2>
       </div>
 

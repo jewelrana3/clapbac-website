@@ -1,135 +1,81 @@
 "use client";
 
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { myFetch } from "@/utils/myFetch";
-import toast from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { Edit } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { myFetch } from "@/utils/myFetch";
 
-const fields = [
-  {
-    name: "name",
-    label: "Company Name",
-    placeholder: "Company Name",
-    type: "text",
-  },
-  // {
-  //   name: "category",
-  //   label: "Category",
-  //   placeholder: "Food Drink",
-  //   type: "text",
-  // },
-  {
-    name: "address",
-    label: "Address",
-    placeholder: "123 main",
-    type: "text",
-  },
-  // {
-  //   name: "addressLine2",
-  //   label: "Address Line 2",
-  //   placeholder: "Khulna",
-  //   type: "text",
-  // },
-  // { name: "city", label: "City", placeholder: "Dhaka", type: "text" },
-  { name: "phone", label: "Phone", placeholder: "Phone", type: "text" },
-  {
-    name: "email",
-    label: "Company Email",
-    placeholder: "Company@gmail.com",
-    type: "email",
-  },
-  { name: "website", label: "Website", placeholder: "Website", type: "text" },
-];
+// Define schema
+const formSchema = z.object({
+  name: z.string().min(1),
+  address: z.string().min(1),
+  phone: z.string().min(1),
+  email: z.string().email(),
+  website: z.string().url().optional(),
+  about: z.string().min(1).optional(),
+});
 
-export default function BussinessInformationWebsite({
-  company,
-}: {
-  company: any;
-}) {
-  console.log(company);
+type FormValues = z.infer<typeof formSchema>;
+
+export default function BusinessInformationForm({ company }: { company: any }) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const [companyDetails, setCompanyDetails] = useState({
-    name: "",
-    // category: "",
-    address: "",
-    // addressLine2: "",
-    // city: "",
-    phone: "",
-    email: "",
-    website: "",
-    about: "",
-    image: "",
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      address: "",
+      phone: "",
+      email: "",
+      website: "",
+      about: "",
+    },
   });
 
   useEffect(() => {
     if (company) {
-      setCompanyDetails({
-        name: company?.name || "",
-        // category: company?.category || "",
-        address: company?.address || "",
-        // addressLine2: company?.addressLine2 || "",
-        // city: company?.city || "",
-        phone: company?.phone || "",
-        email: company?.email || "",
-        website: company?.website || "",
-        about: company?.about || "",
-        image: company?.image || "",
+      form.reset({
+        name: company.name || "",
+        address: company.address || "",
+        phone: company.phone || "",
+        email: company.email || "",
+        website: company.website || "",
+        about: company.about || "",
       });
+
+      const logo = company?.logo;
+      if (logo) {
+        const imageUrl = logo.startsWith("http")
+          ? logo
+          : process.env.NEXT_PUBLIC_BASE_URL + logo;
+        setPreviewImage(imageUrl);
+      }
     }
   }, [company]);
 
-  useEffect(() => {
-    if (company?.logo) {
-      const imageUrl = company.logo.startsWith("http")
-        ? company.logo
-        : process.env.NEXT_PUBLIC_BASE_URL + company.logo;
-      setPreviewImage(imageUrl);
-    }
-  }, [company]);
-
-  const handleChange = (field: string, value: string) => {
-    setCompanyDetails((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleChangeCompanyDetails = (field: string, value: string) => {
-    setCompanyDetails((prev) => ({ ...prev, [field]: value }));
-  };
-
-  // handle image
-  const handleEditClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  // Handle file selection
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setPreviewImage(URL.createObjectURL(file));
-      setImageFile(file);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (values: FormValues) => {
     const formData = new FormData();
 
-    if (!companyDetails) {
-      return toast.error("Please fill all the fields.");
-    }
-
-    Object.entries(companyDetails).forEach(([key, value]) => {
-      formData.append(key, value);
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, value || "");
     });
-
-    // image
 
     if (imageFile) {
       formData.append("image", imageFile);
@@ -142,9 +88,9 @@ export default function BussinessInformationWebsite({
       });
 
       if (res.success) {
-        toast.success("Bussiness updated successfully.");
+        toast.success("Business updated successfully.");
       } else {
-        toast.error(res.message || "Bussiness Update failed.");
+        toast.error(res.message || "Business update failed.");
       }
     } catch (err) {
       console.error(err);
@@ -152,10 +98,22 @@ export default function BussinessInformationWebsite({
     }
   };
 
+  const handleEditClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setPreviewImage(URL.createObjectURL(file));
+      setImageFile(file);
+    }
+  };
+
   return (
     <>
-      {/* image */}
-      <div className="relative w-max">
+      {/* Image upload section */}
+      <div className="relative w-max mb-6">
         <div className="border border-gray-300 rounded-full w-[150px] h-[150px] overflow-hidden">
           {previewImage ? (
             <Image
@@ -172,7 +130,6 @@ export default function BussinessInformationWebsite({
           )}
         </div>
 
-        {/* Hidden file input */}
         <input
           type="file"
           accept="image/*"
@@ -181,7 +138,6 @@ export default function BussinessInformationWebsite({
           className="hidden"
         />
 
-        {/* Edit icon, clickable to open file picker */}
         <span
           className="absolute left-28 top-28 cursor-pointer text-gray-700 hover:text-gray-900"
           onClick={handleEditClick}
@@ -191,40 +147,175 @@ export default function BussinessInformationWebsite({
         </span>
       </div>
 
-      <form onSubmit={handleSubmit}>
-        {fields.map(({ name, label, placeholder, type }) => (
-          <div key={name} className="flex items-center my-3 gap-6">
-            <label className="w-36 font-medium text-[#A0A0A0]">{label}:</label>
-            <Input
-              name={name}
-              type={type}
-              placeholder={placeholder}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded text-[#3D454E] ml-6"
-              value={companyDetails[name as keyof typeof companyDetails]}
-              onChange={(e) => handleChange(name, e.target.value)}
-            />
-          </div>
-        ))}
-        <div className="flex items-center my-3 gap-6">
-          <label className="w-36 font-medium text-[#A0A0A0]">
-            Company Details:
-          </label>
-
-          <Textarea
-            name="about"
-            value={companyDetails?.about}
-            onChange={(e) =>
-              handleChangeCompanyDetails("about", e.target.value)
-            }
-            className="flex-1 px-4 py-2 border border-gray-300 rounded text-[#3D454E] ml-6"
+      {/* Form */}
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          {/** Company Name */}
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-6">
+                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
+                    Company Name:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="Company Name"
+                      className="flex-1 ml-6 text-[#3D454E]"
+                    />
+                  </FormControl>
+                </div>
+                <div className="ml-[12rem] mt-1">
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
           />
-        </div>
-        <div className="flex items-center justify-end">
-          <Button className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223]">
-            Save Changes
-          </Button>
-        </div>
-      </form>
+
+          {/** Address */}
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-6">
+                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
+                    Address:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="123 Main St"
+                      className="flex-1 ml-6 text-[#3D454E]"
+                    />
+                  </FormControl>
+                </div>
+                <div className="ml-[12rem] mt-1">
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          {/** Phone */}
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-6">
+                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
+                    Phone:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="Phone"
+                      className="flex-1 ml-6 text-[#3D454E]"
+                    />
+                  </FormControl>
+                </div>
+                <div className="ml-[12rem] mt-1">
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          {/** Email */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-6">
+                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
+                    Company Email:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="email"
+                      placeholder="company@gmail.com"
+                      className="flex-1 ml-6 text-[#3D454E]"
+                    />
+                  </FormControl>
+                </div>
+                <div className="ml-[12rem] mt-1">
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          {/** Website */}
+          <FormField
+            control={form.control}
+            name="website"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-6">
+                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
+                    Website:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      placeholder="https://company.com"
+                      className="flex-1 ml-6 text-[#3D454E]"
+                    />
+                  </FormControl>
+                </div>
+                <div className="ml-[12rem] mt-1">
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          {/** About */}
+          <FormField
+            control={form.control}
+            name="about"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center gap-6">
+                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
+                    Company Details:
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="Describe your company..."
+                      className="flex-1 ml-6 text-[#3D454E]"
+                    />
+                  </FormControl>
+                </div>
+                <div className="ml-[12rem] mt-1">
+                  <FormMessage />
+                </div>
+              </FormItem>
+            )}
+          />
+
+          {/** Submit */}
+          <div className="flex justify-end">
+            <Button
+              type="submit"
+              className="w-[77.5%] bg-[#F05223] hover:bg-[#d3441f]"
+            >
+              Save Changes
+            </Button>
+          </div>
+        </form>
+      </Form>
     </>
   );
 }

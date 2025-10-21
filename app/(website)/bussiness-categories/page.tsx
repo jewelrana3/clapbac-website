@@ -45,6 +45,7 @@ export default async function BussinessCategories({
     : "";
 
   const categories = await myFetch(`/categories${query}`);
+  console.log(categories);
 
   return (
     <div className="mt-16">

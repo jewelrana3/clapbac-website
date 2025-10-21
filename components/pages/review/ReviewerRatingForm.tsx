@@ -18,6 +18,8 @@ import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { revalidate } from "@/utils/revalidateTags";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   reviewerName: string;
@@ -39,6 +41,7 @@ type Rating = {
 };
 
 export default function ReviewerRatingForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -86,7 +89,9 @@ export default function ReviewerRatingForm() {
       if (res?.success) {
         toast.success("Review submitted successfully!");
         reset();
+        revalidate("reviews");
         setRating({ yourRating: 0, bussinessRating: 0 });
+        router.push(`/clapbac-reviews/${res?.data?.company}`);
       } else {
         toast.error(res?.message || "Review submission failed.");
       }
