@@ -6,8 +6,6 @@ import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import LogoImage from "@/components/share/LogoImage";
 
 export default function FoodDrinkBussinessCard({ item }: { item: any }) {
-  console.log(item);
-
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;

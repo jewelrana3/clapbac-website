@@ -12,7 +12,6 @@ const LogoImage = ({
   width?: number;
   height?: number;
 }) => {
-  console.log(item);
   const logoSrc = item?.startsWith("http")
     ? item
     : `${process.env.NEXT_PUBLIC_BASE_URL}${item}`;

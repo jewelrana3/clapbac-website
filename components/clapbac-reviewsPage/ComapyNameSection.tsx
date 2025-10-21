@@ -40,8 +40,8 @@ export default function ComapyNameSection({ details }: any) {
                 {details?.name}
               </h3>
               <p className="text-[#3D454E]">
-                {details?.category?.name} | {details?.reviewCount} Reviews |
-                Updated {Math.floor(daysDifference)} Days ago
+                {details?.name} | {details?.reviewCount} Reviews | Updated{" "}
+                {Math.floor(daysDifference)} Days ago
               </p>
             </div>
           </div>
