@@ -3,6 +3,14 @@ import Image from "next/image";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 export default function ComapyNameSection({ details }: any) {
+  const currentDate = new Date();
+  const createAtDate = new Date(details?.createdAt);
+  console.log(createAtDate);
+
+  const timeDifferenceMs = currentDate.getTime() - createAtDate.getTime();
+
+  const daysDifference = timeDifferenceMs / (1000 * 60 * 60 * 24);
+
   return (
     <>
       {" "}
@@ -11,7 +19,7 @@ export default function ComapyNameSection({ details }: any) {
         <span>
           <MdOutlineKeyboardArrowRight />
         </span>{" "}
-        Arabica Coffee
+        {details?.name}
       </h1>
       <div className=" shadow-lg  border-8 border-[#C5D92D] my-4">
         <div className="bg-white p-3 flex flex-col md:flex-row gap-7 md:justify-around md:items-center ">
@@ -31,11 +39,11 @@ export default function ComapyNameSection({ details }: any) {
 
             <div className="">
               <h3 className="font-bold text-xl lg:text-2xl text-[#3D454E]">
-                Arabica Coffee
+                {details?.name}
               </h3>
               <p className="text-[#3D454E]">
                 {details?.category?.name} | {details?.reviewCount} Reviews |
-                Updated 3 Days ago
+                Updated {Math.floor(daysDifference)} Days ago
               </p>
             </div>
           </div>

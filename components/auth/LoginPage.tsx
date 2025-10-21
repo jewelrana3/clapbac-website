@@ -21,15 +21,11 @@ export default function LoginPage() {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    console.log(email, password);
-
     try {
       const res = await myFetch("/auth/login", {
         method: "POST",
         body: { email, password },
       });
-
-      console.log("res", res);
 
       if (res.success) {
         toast.success("Login successful", { id: "login" });
