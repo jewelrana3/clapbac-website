@@ -9,6 +9,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "../ui/label";
 import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
 
 export default function ReportModal({ review }: any) {
   const [selectedReason, setSelectedReason] = useState("spam");
@@ -26,8 +27,8 @@ export default function ReportModal({ review }: any) {
           reason: selectedReason,
         },
       });
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      toast.error(err);
     }
   };
 

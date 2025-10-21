@@ -71,15 +71,34 @@ import AnnouncementForm from "./AnnouncementForm";
 export default function Announcements({ data }: any) {
   return (
     <>
-      <DropDownDashboard
-        title="Announcements"
-        data={[
-          { title: "Active", value: "Active" },
-          { title: "Draft", value: "Draft" },
-          { title: "Scheduled", value: "Scheduled" },
-          { title: "Archived", value: "Archived" },
-        ]}
-      />
+      <div className="flex justify-between">
+        <div className="text-[#F05223] text-3xl font-semibold">
+          Announcements
+        </div>
+        {/* left side btn */}
+        <div className="flex gap-8">
+          <div>
+            <AnnouncementForm
+              title="Add Announcement"
+              trigger={
+                <button className="border p-2 rounded-md bg-[#F05223] text-white font-bold cursor-pointer">
+                  Add Announcement
+                </button>
+              }
+            />
+          </div>
+          <DropDownDashboard
+            title=""
+            data={[
+              { title: "All", value: "all" },
+              { title: "Active", value: "Active" },
+              { title: "Draft", value: "Draft" },
+              { title: "Scheduled", value: "Scheduled" },
+              { title: "Archived", value: "Archived" },
+            ]}
+          />
+        </div>
+      </div>
       <Table>
         <TableHeader>
           <TableRow>

@@ -14,9 +14,13 @@ export default async function page({
   if (page) params.append("page", page);
   if (status) params.append("status", status);
 
-  const announcements = await myFetch(
-    `/announcements${params.toString() ? `?${params.toString()}` : ""}`
-  );
+  const url = `/announcements${
+    params.toString() ? `?${params.toString()}` : ""
+  }`;
+
+  const announcements = await myFetch(url, {
+    tags: ["announcements"],
+  });
   return (
     <div>
       <Announcements data={announcements?.data} />

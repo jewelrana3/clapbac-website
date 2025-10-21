@@ -48,6 +48,7 @@ export function UserActions({ findUser }: any) {
 
       if (userUpdate.success) {
         toast.success("User updated successfully");
+        revalidate("users");
 
         setTimeout(() => {
           history.go(-1);
@@ -109,7 +110,7 @@ export function UserActions({ findUser }: any) {
           }`}
           onClick={() => setValue("Banned")}
         >
-          Ban
+          Banned
         </button>
         <button
           onClick={() => handleDeleteUser(findUser?._id)}
