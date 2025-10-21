@@ -3,7 +3,6 @@ import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import one from "../../../public/food-drink/one.png";
 import Link from "next/link";
-import { parseISO, format } from "date-fns";
 
 export default function ReviewersCard({ item }: { item: any }) {
   const renderStars = (rating: number) => {
@@ -27,9 +26,9 @@ export default function ReviewersCard({ item }: { item: any }) {
   };
 
   // date format
-  const formattedDate = (date: string) => {
-    return format(parseISO(date), "d/ d/ yyyy");
-  };
+  // const formattedDate = (date: string) => {
+  //   return format(parseISO(date), "d/ d/ yyyy");
+  // };
   return (
     <Link href={`/clapbac-reviews/${item?.company?._id}`}>
       <div className="border-[#C5D92D] border-8 mb-8 p-4">

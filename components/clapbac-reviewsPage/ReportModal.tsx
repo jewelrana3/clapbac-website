@@ -20,7 +20,7 @@ export default function ReportModal({ review }: any) {
     // You can now send `selectedReason` to your API
 
     try {
-      const res = await myFetch("/reports/create", {
+      await myFetch("/reports/create", {
         method: "POST",
         body: {
           review,

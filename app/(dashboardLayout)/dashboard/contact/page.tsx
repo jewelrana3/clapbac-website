@@ -1,4 +1,3 @@
-import Contact from "@/app/(website)/contact-us/page";
 import ContactPage from "@/components/dashboard/contactPage/ContactPage";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";

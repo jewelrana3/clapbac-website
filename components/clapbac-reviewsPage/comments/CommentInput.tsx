@@ -53,7 +53,7 @@ export default function CommentInput({
           id: "comment",
         });
       }
-    } catch (err: any) {
+    } catch (err) {
       toast.error("An error occurred. Please try again.", { id: "comment" });
     }
   };

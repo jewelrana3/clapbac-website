@@ -1,10 +1,14 @@
 import Categories from "@/components/dashboard/categories/Categories";
+import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const categories = await myFetch("/categories", {
+    tags: ["categories"],
+  });
   return (
     <div>
-      <Categories />
+      <Categories categories={categories} />
     </div>
   );
 }

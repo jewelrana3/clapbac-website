@@ -29,7 +29,7 @@ const AnnouncementForm = ({
   trigger: React.ReactNode;
 }) => {
   const [buttonValue, setButtonValue] = useState("");
-  const [audienceValue, setAudienceValue] = useState("");
+  // const [audienceValue, setAudienceValue] = useState("");
   const [dateValue, setDateValue] = useState("");
 
   const [formData, setFormData] = useState({

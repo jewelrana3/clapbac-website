@@ -44,7 +44,7 @@ export default function SignupPageUser() {
   } = form;
 
   const onSubmit = async (data: FormValues) => {
-    const email = data.email;
+    // const email = data.email;
 
     try {
       const res = await myFetch("/users/create-user", {

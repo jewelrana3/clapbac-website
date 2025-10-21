@@ -46,7 +46,7 @@ export default function ChangePassword() {
       } else {
         toast.error(res.message || "Password change failed");
       }
-    } catch (err: any) {
+    } catch (err) {
       toast.error("Something went wrong");
     }
   };

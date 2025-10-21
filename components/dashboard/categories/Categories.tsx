@@ -1,6 +1,7 @@
-import { myFetch } from "@/utils/myFetch";
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Select,
@@ -11,20 +12,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default async function Categories() {
-  const categories = await myFetch("/categories", {
-    tags: ["categories"],
-  });
-
-  console.log(categories);
+export default function Categories({ categories }: any) {
+  const [, setCategorySelect] = useState([]);
 
   const handleSelect = (item: any) => {
     console.log(item);
+    setCategorySelect((prev: any) => ({ ...prev, item }));
   };
   return (
     <div className="grid grid-cols-4 gap-6">
       {categories?.data?.map((item: any) => (
-        <div className="border p-3 rounded-lg flex flex-col ">
+        <div className="border p-3 rounded-lg flex flex-col " key={item?._id}>
           <div className="flex items-center justify-center">
             <Image
               src={process.env.NEXT_PUBLIC_BASE_URL + item?.icon}

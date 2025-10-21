@@ -9,7 +9,7 @@ import {
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
-import { use, useState } from "react";
+import { useState } from "react";
 
 export default function InputOTPPattern() {
   const [otpValue, setOtpValue] = useState("");
