@@ -18,7 +18,8 @@ export default function BussinessCard({ data }: { data: props[] }) {
             <div className="bg-white  h-32 flex items-center justify-center gap-4 shadow-md">
               <div className="">
                 <Image
-                  className="p-1"
+                  sizes="100vh"
+                  className="p-1 h-16 xl:h-[80px] w-auto"
                   src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.icon}`}
                   width={70}
                   height={70}

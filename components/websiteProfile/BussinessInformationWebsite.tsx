@@ -50,6 +50,7 @@ export default function BussinessInformationWebsite({
 }: {
   company: any;
 }) {
+  console.log(company);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
@@ -135,7 +136,7 @@ export default function BussinessInformationWebsite({
     }
 
     try {
-      const res = await myFetch("/companies/68ea220513262fbf6e9e605a", {
+      const res = await myFetch(`/companies/${company._id}`, {
         method: "PATCH",
         body: formData,
       });

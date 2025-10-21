@@ -38,7 +38,7 @@ export default function InputOTPPattern() {
         if (res.data) {
           router.push(`/reset-password?token=${res.data}`);
         } else {
-          router.push("/");
+          router.push("/login");
         }
       } else {
         toast.error(res.message || "Email Sent Failed");
@@ -53,8 +53,8 @@ export default function InputOTPPattern() {
       <form className="" onSubmit={handleSubmit}>
         <div className="bg-[#E8E8E8] shadow-md rounded-md p-10 max-w-2xl mx-auto">
           <p className="text-[#3E464F] text-lg mb-7">
-            We’ve sent a one-time password (OTP) to your email/phone. <br />{" "}
-            Please enter the code below to continue.
+            We’ve sent a one-time password (OTP) to your email. <br /> Please
+            enter the code below to continue.
           </p>
 
           <InputOTP
