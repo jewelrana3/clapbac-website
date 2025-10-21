@@ -86,21 +86,14 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/",
-    "/dashboard/:path*",
     "/signup",
     "/login",
     "/forgot-password",
     "/verify-otp",
     "/reset-password",
 
-    // dashboard
-    // "/bussiness-categories",
-    // "/faq",
-    // "/about-us",
-    // "/contact-us",
-
     // Add missing routes here:
+    "/dashboard/:path*",
     "/bussiness-categories/:id",
     "/clapbac-reviews/:id",
     "/reviewers",

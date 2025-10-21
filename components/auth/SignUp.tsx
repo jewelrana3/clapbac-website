@@ -9,15 +9,6 @@ export default function SignUp({ categories }: any) {
     <div>
       <div className="grid grid-cols-2 items-center space-x-4 my-6 mt-8 max-w-xl mx-auto">
         <button
-          onClick={() => setCheck("user")}
-          className={`${
-            check === "user" &&
-            " bg-[#F05223] text-white border !border-[#F05223]"
-          } px-6 py-2 border border-gray-400 rounded cursor-pointer  transition font-bold `}
-        >
-          Reviewer
-        </button>
-        <button
           onClick={() => setCheck("owner")}
           className={`px-6 py-2 ${
             check === "owner" &&
@@ -25,6 +16,15 @@ export default function SignUp({ categories }: any) {
           } border border-gray-400  rounded cursor-pointer transition font-bold`}
         >
           Business Owner
+        </button>
+        <button
+          onClick={() => setCheck("user")}
+          className={`${
+            check === "user" &&
+            " bg-[#F05223] text-white border !border-[#F05223]"
+          } px-6 py-2 border border-gray-400 rounded cursor-pointer  transition font-bold `}
+        >
+          Reviewer
         </button>
       </div>
 

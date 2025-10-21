@@ -320,6 +320,24 @@ export default function ReviewerRatingForm() {
                   <SelectItem value="banned">Banned for Life</SelectItem>
                   <SelectItem value="warned">Issued a Warning</SelectItem>
                   <SelectItem value="ignored">Ignored</SelectItem>
+                  <SelectItem value="VIP Star Legend Badg">
+                    VIP Star Legend Badge
+                  </SelectItem>
+                  <SelectItem value="Owners Choice: Custom Consequence">
+                    Owners Choice: Custom Consequence
+                  </SelectItem>
+                  <SelectItem value="One-Month Cooling-Off Period">
+                    One-Month Cooling-Off Period
+                  </SelectItem>
+                  <SelectItem value="Free Dessert on Us">
+                    Free Dessert on Us
+                  </SelectItem>
+                  <SelectItem value="Name on the Wall of Shame">
+                    Name on the Wall of Shame
+                  </SelectItem>
+                  <SelectItem value="Loyalty Upgrade: 20% Off Next Order">
+                    Loyalty Upgrade: 20% Off Next Order
+                  </SelectItem>
                 </SelectContent>
               </Select>
             )}

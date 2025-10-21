@@ -69,7 +69,7 @@ export default function CarouselPage() {
                     : "border-16 border-[#C5D92D] "
                 } h-[350px] flex flex-col w-[90%] full mx-auto`}
               >
-                <div className="bg-white h-full mx-auto flex flex-col ">
+                <div className="bg-white h-full mx-auto flex flex-col p-3">
                   <CardContent className="flex flex-col justify-between">
                     {/* Profile Header */}
                     <div className="flex items-center space-x-3 mb-4">
