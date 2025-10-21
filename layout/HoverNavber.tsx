@@ -16,7 +16,6 @@ import share from "../public/share-icon/share.webp";
 import { LogOut, LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export function UserDropdownMenu({ profileData }: any) {
@@ -25,22 +24,24 @@ export function UserDropdownMenu({ profileData }: any) {
     window.location.replace("/login");
   };
 
+  const imageUrl = profileData?.image.startsWith("http")
+    ? profileData?.image
+    : `${process.env.NEXT_PUBLIC_BASE_URL}${profileData?.image}`;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex items-center gap-2 cursor-pointer">
           <Image
-            src={
-              profileData?.image
-                ? `http://10.10.7.7:5000/${profileData.image}`
-                : share
-            }
+            src={imageUrl}
             alt={`${profileData?.firstName || "User"} profile`}
             width={40}
             height={50}
             className="rounded-full"
           />
-          <Button className="text-white font-bold">Juyel</Button>
+          <Button className="text-white font-bold">
+            {profileData?.firstName}
+          </Button>
         </div>
       </DropdownMenuTrigger>
 

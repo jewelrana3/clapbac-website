@@ -8,6 +8,7 @@ import { myFetch } from "@/utils/myFetch";
 import Image from "next/image";
 import { Edit } from "lucide-react";
 import man from "../../public/home-man.png";
+import { revalidate } from "@/utils/revalidateTags";
 
 const profileFields = [
   //   { label: "username", placeholder: "Username" },
@@ -59,6 +60,7 @@ export default function Profile({ data }: any) {
       });
 
       if (res.success) {
+        revalidate("image");
         toast.success("Profile updated successfully.");
       } else {
         toast.error(res.message || "Profile update failed.");

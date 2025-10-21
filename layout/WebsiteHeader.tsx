@@ -9,9 +9,10 @@ import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
 import share from "../public/share-icon/share.webp";
 import { UserDropdownMenu } from "./HoverNavber";
+import { set } from "date-fns";
 // import HoverNavber from "./HoverNavber";
 
-interface profileData {
+interface ProfileData {
   firstName: string;
   image: string;
 }
@@ -26,15 +27,21 @@ const mobileMenuItems = [
 ];
 
 export default function WebsiteHeader() {
-  const [navbar, setNavbar] = React.useState(false);
-  const [profileData, setProfileData] = React.useState<profileData>("" as any);
+  const [profileData, setProfileData] = React.useState<ProfileData | null>(
+    null
+  );
+
+  console.log(profileData);
 
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const res = await myFetch("/users/profile");
+      const res = await myFetch("/users/profile", {
+        tags: ["image"],
+      });
+
       setProfileData(res.data);
     };
 

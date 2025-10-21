@@ -10,6 +10,7 @@ const paths = [
   { id: 4, name: "Reviewers", path: "/dashboard/reviewers" },
   { id: 5, name: "Reports", path: "/dashboard/reports" },
   { id: 6, name: "Announcements", path: "/dashboard/announcements" },
+  { id: 16, name: "Categories", path: "/dashboard/categories" },
   {
     id: 7,
     name: "Settings",
