@@ -8,7 +8,7 @@ export default function AboutFooter() {
     <>
       {/* footer */}
       <section className="bg-[#E9E9E9]">
-        <div className="flex flex-col lg:flex-row items-center justify-center py-12 px-5 gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center py-16 px-5 gap-8">
           {/* Left image */}
           <Image
             src="/about-footer.png"

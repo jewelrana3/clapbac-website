@@ -10,11 +10,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
-import Image from "next/image";
 import Container from "@/layout/Container";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
-import one from "../../../public/food-drink/four.png";
+import UserImage from "@/components/share/customImageHandle/UserImage";
 
 export default function CarouselPage() {
   const [featuresCompany, setFeaturesCompany] = React.useState<any>([]);
@@ -27,6 +26,7 @@ export default function CarouselPage() {
     fetchData();
   }, []);
   const pathname = usePathname();
+
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalf = rating % 1 >= 0.5;
@@ -39,7 +39,7 @@ export default function CarouselPage() {
         ))}
         {hasHalf && <FaRegStarHalfStroke className="text-[#F05223] text-2xl" />}
         {[...Array(emptyStars)].map((_, i) => (
-          <FaRegStar key={`empty-${i}`} className="text-[#F05223] text-2xl" />
+          <FaRegStar key={`empty-${i}`} className="text-gray-400 text-2xl" />
         ))}
       </>
     );
@@ -47,7 +47,7 @@ export default function CarouselPage() {
 
   return (
     <Container className="py-20 lg:max-w-screen-2xl">
-      <h1 className="text-[#F05223] mb-2 text-2xl font-bold">
+      <h1 className="text-[#F05223] mb-2 text-2xl font-bold ml-4">
         Latest Loud Voices
       </h1>
       <Carousel
@@ -73,18 +73,7 @@ export default function CarouselPage() {
                   <CardContent className="flex flex-col justify-between">
                     {/* Profile Header */}
                     <div className="flex items-center space-x-3 mb-4">
-                      <Image
-                        src={
-                          card?.user?.image
-                            ? process.env.NEXT_PUBLIC_BASE_URL +
-                              card?.user?.image
-                            : one
-                        }
-                        alt={card.company.name}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
+                      <UserImage item={card?.user?.image} />
                       <div>
                         <h3 className="font-bold">
                           {card.user.firstName + " " + card.user.lastName}
@@ -94,6 +83,12 @@ export default function CarouselPage() {
                         </p>
                       </div>
                     </div>
+
+                    <h1 className="font-semibold">
+                      {card.reviewRating > 3
+                        ? "GAVE PROPS TO..."
+                        : "CLAPBAC’D ON..."}
+                    </h1>
 
                     {/* Action and Target */}
                     <div className="mb-2">

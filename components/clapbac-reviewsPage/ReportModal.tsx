@@ -12,28 +12,38 @@ import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 
 export default function ReportModal({ review }: any) {
-  const [selectedReason, setSelectedReason] = useState("spam");
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedReason, setSelectedReason] = useState("");
 
   const handleSubmitReport = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // You can now send `selectedReason` to your API
+    if (!selectedReason) {
+      toast.error("Please select a reason");
+      return;
+    }
 
     try {
-      await myFetch("/reports/create", {
+      const res = await myFetch("/reports/create", {
         method: "POST",
         body: {
           review,
           reason: selectedReason,
         },
       });
+
+      if (res.success) {
+        toast.success(res.message || "Report submitted successfully!");
+      } else {
+        toast.error(res.message || "Report submission failed.");
+      }
     } catch (err: any) {
       toast.error(err);
     }
   };
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <button className="px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition cursor-pointer w-[128px]">
           Report
@@ -56,7 +66,11 @@ export default function ReportModal({ review }: any) {
             </div>
           </RadioGroup>
           <DialogFooter className="mt-4">
-            <Button className="bg-[#F05223]" type="submit">
+            <Button
+              type="submit"
+              disabled={!selectedReason}
+              className="bg-[#F05223]"
+            >
               Submit
             </Button>
           </DialogFooter>

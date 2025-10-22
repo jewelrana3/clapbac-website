@@ -3,14 +3,15 @@ import Description from "@/components/pages/home/Description";
 import FeatureBusiness from "@/components/pages/home/FeatureBussiness";
 import HeroSection from "@/components/pages/home/HeroSection";
 import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
+import TestCarousel from "@/components/pages/home/TestCarousel";
 import React from "react";
 
 export default function Home() {
   return (
     <div className="">
       <HeroSection />
-      <LatestLoudVoices />
-
+      {/* <LatestLoudVoices /> */}
+      <TestCarousel />
       <Description
         className="md:w-[45%] mx-auto"
         description="One-star warriors, keyboard critics — your spotlight’s on.

@@ -25,7 +25,7 @@ const RelatedCategories = ({
           return (
             <li
               key={index}
-              className="text-center"
+              className="text-center cursor-pointer"
               onClick={() => handleType(cat)}
             >
               <p className="text-gray-800">{cat}</p>

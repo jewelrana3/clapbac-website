@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import CompanyImage from "../share/customImageHandle/CompanyImage";
 
 export default function ComapyNameSection({ details }: any) {
   const currentDate = new Date();
@@ -24,13 +25,10 @@ export default function ComapyNameSection({ details }: any) {
           <div className="flex items-center md:justify-center gap-5">
             <div className="">
               {details?.category?.icon && (
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${details?.category?.icon}`}
-                  width={0}
-                  height={0}
-                  alt="card"
-                  sizes="100vw"
-                  className="w-30 lg:w-48 object-cover "
+                <CompanyImage
+                  item={details?.category?.icon}
+                  width={100}
+                  height={100}
                 />
               )}
             </div>

@@ -31,15 +31,3 @@ export default function ReviewAndComment({ review }: { review: any }) {
     </div>
   );
 }
-
-// <div key={comment._id}>
-//             {comment?.replies?.map((reply: any, idx: number) => (
-//               <ReviewCommentDetails
-//                 key={idx}
-//                 commentItem={reply}
-//                 newComment={comment}
-//                 index={idx}
-//                 setReplyComment={setReplyComment}
-//               />
-//             ))}
-//           </div>

@@ -18,15 +18,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${lato.className}  antialiased`}>
-        <div>{/* <Header /> */}</div>
-        <div className="mt-16">{children}</div>
-        {/* <div>
-          <Footer />
-        </div> */}
-      </body>
-    </html>
-  );
+  return <main className="mt-16">{children}</main>;
 }
