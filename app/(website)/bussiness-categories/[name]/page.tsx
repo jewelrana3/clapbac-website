@@ -27,6 +27,7 @@ export default async function FoodDrink({
     `${page ? `/companies?page=${page}` : `/companies`}`
   );
   const recentBusiness = await myFetch("/recent-companies");
+  console.log("recentBusiness", recentBusiness);
 
   return (
     <div>

@@ -41,6 +41,7 @@ type Rating = {
 };
 
 export default function ReviewerRatingForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -68,6 +69,9 @@ export default function ReviewerRatingForm() {
   };
 
   const onSubmit = async (data: any) => {
+    setIsSubmitting(true);
+    toast.loading("Submitting...", { id: "review" });
+
     const payload = {
       ...data,
       reviewerType: reviewTypes.reviewType,
@@ -87,7 +91,7 @@ export default function ReviewerRatingForm() {
       });
 
       if (res?.success) {
-        toast.success("Review submitted successfully!");
+        toast.success("Review submitted successfully!", { id: "review" });
         reset();
         revalidate("reviews");
         setRating({ yourRating: 0, bussinessRating: 0 });
@@ -97,7 +101,9 @@ export default function ReviewerRatingForm() {
       }
     } catch (err) {
       console.error("Error submitting review:", err);
-      toast.error("Something went wrong.");
+      toast.error("Something went wrong.", { id: "review" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -372,7 +378,7 @@ export default function ReviewerRatingForm() {
         )} */}
 
         {/* Submit Button */}
-        <Button type="submit" className="bg-[#F05223]">
+        <Button disabled={isSubmitting} type="submit" className="bg-[#F05223]">
           Submit Your Review
         </Button>
       </form>

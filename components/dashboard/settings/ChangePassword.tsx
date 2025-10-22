@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { myFetch } from "@/utils/myFetch";
 
 export default function ChangePassword() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
@@ -29,6 +30,8 @@ export default function ChangePassword() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    toast.loading("Submitting...", { id: "change-password" });
 
     try {
       const res = await myFetch("/auth/change-password", {
@@ -37,17 +40,23 @@ export default function ChangePassword() {
       });
 
       if (res.success) {
-        toast.success("Password changed successfully");
+        toast.success("Password changed successfully", {
+          id: "change-password",
+        });
         setFormData({
           currentPassword: "",
           newPassword: "",
           confirmPassword: "",
         });
       } else {
-        toast.error(res.message || "Password change failed");
+        toast.error(res.message || "Password change failed", {
+          id: "change-password",
+        });
       }
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong", { id: "change-password" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -62,7 +71,7 @@ export default function ChangePassword() {
         <form onSubmit={handleSubmit}>
           {/* Old Password */}
           <div>
-            <Label className="block text-sm  mb-1">Old Password</Label>
+            <Label className="block text-sm  mb-1">Current Password</Label>
             <div className="relative">
               <Input
                 type={showPassword.currentPassword ? "text" : "password"}
@@ -73,6 +82,7 @@ export default function ChangePassword() {
                   setFormData({ ...formData, currentPassword: e.target.value })
                 }
                 className="w-full px-4 py-2 rounded border  focus:outline-none"
+                required
               />
               <button
                 type="button"
@@ -101,6 +111,7 @@ export default function ChangePassword() {
                   setFormData({ ...formData, newPassword: e.target.value })
                 }
                 className="w-full px-4 py-2 rounded border  focus:outline-none"
+                required
               />
               <button
                 type="button"
@@ -129,6 +140,7 @@ export default function ChangePassword() {
                   setFormData({ ...formData, confirmPassword: e.target.value })
                 }
                 className="w-full px-4 py-2 rounded border  focus:outline-none "
+                required
               />
               <button
                 type="button"
@@ -145,8 +157,12 @@ export default function ChangePassword() {
           </div>
 
           {/* Confirm Button */}
-          <button className="w-full bg-[#E95022] text-white font-semibold py-2 rounded cursor-pointer mt-7">
-            Confirm
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-[#E95022] text-white font-semibold py-2 rounded mt-7 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
+          >
+            {isSubmitting ? "Submitting..." : "Confirm"}
           </button>
         </form>
       </div>

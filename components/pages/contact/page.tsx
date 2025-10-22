@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import Button from "@/components/share/Button";
+// import Button from "@/components/share/Button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
+import { Button } from "@/components/ui/button";
 
 const inputs = [
   {
@@ -31,6 +32,8 @@ interface ContactFormProps {
 }
 
 export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // State to hold form inputs
   const [form, setForm] = useState<ContactFormProps>({
     firstName: "",
@@ -53,8 +56,9 @@ export default function ContactForm() {
 
   // Submit handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    toast.loading("Submitting...", { id: "contact" });
     e.preventDefault();
+    toast.loading("Submitting...", { id: "contact" });
+    setIsSubmitting(true);
 
     const payload = { ...form };
 
@@ -87,6 +91,8 @@ export default function ContactForm() {
       toast.error("An error occurred. Please try again.", {
         id: "contact",
       });
+    } finally {
+      setIsSubmitting(false); // re-enable button
     }
   };
 
@@ -116,10 +122,11 @@ export default function ContactForm() {
         />
 
         <Button
-          htmlType="submit"
-          className="bg-orange-600 hover:bg-orange-700 w-full sm:w-[206px] h-10 text-md text-white rounded-xl font-semibold"
+          disabled={isSubmitting}
+          type="submit"
+          className="bg-orange-600 hover:bg-orange-700 w-full  h-10 text-md text-white rounded-xl font-semibold"
         >
-          Submit
+          {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>
     </div>
