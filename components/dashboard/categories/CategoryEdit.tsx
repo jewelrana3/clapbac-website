@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import { useRef, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
@@ -43,13 +42,23 @@ export default function CategoryEdit({
   title: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [preview, setPreview] = useState<string | null>(item?.image || null);
+  const [preview, setPreview] = useState<string | null>("");
+
   const [file, setFile] = useState<File | null>(null);
   const [items] = useState([
     { _id: "1", name: "Category A" },
     { _id: "2", name: "Category B" },
     { _id: "3", name: "Category C" },
   ]);
+
+  useEffect(() => {
+    if (item?.icon) {
+      const url = item.icon.startsWith("http")
+        ? item.icon
+        : `${process.env.NEXT_PUBLIC_BASE_URL}${item.icon}`;
+      setPreview(url);
+    }
+  }, [item]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -72,9 +81,7 @@ export default function CategoryEdit({
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted!");
-    console.log("Form values:", values);
-    // Here you can handle file upload, API call, etc.
+    console.log("Form values:", values, file);
   };
 
   return (
