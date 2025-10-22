@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
 
 import share from "../public/share-icon/share.webp";
+import UserImage from "@/components/share/customImageHandle/UserImage";
 
 interface profileData {
   firstName: string;
@@ -55,18 +56,7 @@ export default function DashboardHeader() {
                 aria-haspopup="true"
               >
                 <Link href="/profile" className="flex items-center gap-4">
-                  {" "}
-                  <Image
-                    src={
-                      profileData?.image
-                        ? `http://10.10.7.7:5000/${profileData.image}`
-                        : share
-                    }
-                    alt={`${profileData?.firstName || "User"} profile`}
-                    width={40}
-                    height={50}
-                    className="rounded-full"
-                  />
+                  <UserImage item={profileData.image} />
                   <span className="text-white font-medium">
                     {profileData?.firstName || "User"}
                   </span>

@@ -1,15 +1,16 @@
 import UserDetails from "@/components/dashboard/users/UserDetails";
-import Image from "next/image";
 import React from "react";
-import man from "../../../../../public/dashboard/users/man2.png";
 import { ChevronLeft } from "lucide-react";
 import { myFetch } from "@/utils/myFetch";
+import UserImage from "@/components/share/customImageHandle/UserImage";
+// import avatar from "../../../../../public/avatar.jpg";
 
 export default async function id({ params }: { params: { id: string } }) {
   const userId = params.id;
 
   const res = await myFetch(`/users/${userId}`);
   const findUserById = res?.data;
+  console.log("image", findUserById.image);
 
   return (
     <div className=" w-[60%] mx-auto">
@@ -23,13 +24,7 @@ export default async function id({ params }: { params: { id: string } }) {
       </div>
       <div className="flex bg-[#F5F5F5] p-9 gap-14">
         <div className="">
-          <Image
-            src={man}
-            alt="Alexander S."
-            width={158}
-            height={158}
-            className="rounded-full"
-          />
+          <UserImage item={findUserById?.image} width={100} height={100} />
         </div>
         <div className="flex-1">
           <UserDetails findUserById={findUserById} />

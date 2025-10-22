@@ -9,7 +9,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Weebsite Layout",
+  title: "Clapbac Dashboard",
   description: "This is the main layout for the website section",
 };
 

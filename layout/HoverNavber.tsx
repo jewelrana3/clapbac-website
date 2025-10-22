@@ -17,6 +17,7 @@ import { LogOut, LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
 import Image from "next/image";
+import UserImage from "@/components/share/customImageHandle/UserImage";
 
 export function UserDropdownMenu({ profileData }: any) {
   const handleLogout = () => {
@@ -24,21 +25,24 @@ export function UserDropdownMenu({ profileData }: any) {
     window.location.replace("/login");
   };
 
-  const imageUrl = profileData?.image.startsWith("http")
-    ? profileData?.image
-    : `${process.env.NEXT_PUBLIC_BASE_URL}${profileData?.image}`;
+  console.log(profileData?.image);
+
+  // const imageUrl = profileData?.image.startsWith("http")
+  //   ? profileData?.image
+  //   : `${process.env.NEXT_PUBLIC_BASE_URL}${profileData?.image}`;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex items-center gap-2 cursor-pointer">
-          <Image
+          {/* <Image
             src={imageUrl}
             alt={`${profileData?.firstName || "User"} profile`}
             width={40}
             height={50}
             className="rounded-full"
-          />
+          /> */}
+          <UserImage item={profileData?.image} />
           <Button className="text-white font-bold">
             {profileData?.firstName}
           </Button>

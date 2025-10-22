@@ -15,7 +15,7 @@ export default function SignUp({ categories }: any) {
             " bg-[#F05223] text-white border !border-[#F05223]"
           } border border-gray-400  rounded cursor-pointer transition font-bold`}
         >
-          Business Owner
+          I'm a Business Owner
         </button>
         <button
           onClick={() => setCheck("user")}
@@ -24,7 +24,7 @@ export default function SignUp({ categories }: any) {
             " bg-[#F05223] text-white border !border-[#F05223]"
           } px-6 py-2 border border-gray-400 rounded cursor-pointer  transition font-bold `}
         >
-          Reviewer
+          I'm a Reviewer
         </button>
       </div>
 

@@ -13,6 +13,8 @@ import Image from "next/image";
 import Link from "next/link";
 import share from "../../../public/share-icon/share.webp";
 import logo from "../../../public/logo2.png";
+import LogoImage from "@/components/share/customImageHandle/UserImage";
+import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function Users({ users }: any) {
   return (
@@ -48,7 +50,7 @@ export default function Users({ users }: any) {
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <div>
-                      <Image
+                      {/* <Image
                         src={
                           invoice.image
                             ? process.env.NEXT_PUBLIC_BASE_URL + invoice.image
@@ -58,7 +60,8 @@ export default function Users({ users }: any) {
                         height={40}
                         alt={`${invoice.firstName}'s profile`}
                         className=" rounded-full object-cover"
-                      />
+                      /> */}
+                      <LogoImage item={invoice.image} />
                     </div>
                     <p>{invoice.lastName}</p>
                   </div>
@@ -67,7 +70,7 @@ export default function Users({ users }: any) {
                 <TableCell className="">
                   <div className="flex items-center gap-2">
                     <div>
-                      <Image
+                      {/* <Image
                         src={
                           invoice?.company?.logo
                             ? process.env.NEXT_PUBLIC_BASE_URL +
@@ -78,7 +81,8 @@ export default function Users({ users }: any) {
                         height={60}
                         alt={`${invoice.company?.name} logo`}
                         className=" rounded-full object-cover"
-                      />
+                      /> */}
+                      <CompanyImage item={invoice?.company?.logo} />
                     </div>
 
                     <p>{invoice.company?.name}</p>
@@ -91,7 +95,7 @@ export default function Users({ users }: any) {
                 </TableCell>
                 <TableCell className="">
                   <Badge
-                    className={` w-20 ${
+                    className={`w-20 ${
                       invoice.status === "Active"
                         ? "bg-[#C5D92D] text-[#3D454E]"
                         : invoice.status === "Banned"

@@ -20,7 +20,6 @@ export default function UserDetails({ findUserById }: any) {
       <CompanyDetailsSection data={topSection} />
       <StatsSection data={bottomSection} />
       <hr />
-      {/* <UserNotes /> */}
 
       <UserActions findUser={findUserById} />
     </section>

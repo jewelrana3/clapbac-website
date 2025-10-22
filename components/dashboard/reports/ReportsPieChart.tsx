@@ -35,7 +35,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 export function ReportsPieChart({ data }: any) {
-  const colors = ["#3D454E", "#C5D92D", "#F05223"];
+  const colors = ["#3D454E", "#84cc16", "#F05223"];
 
   const pieChartData = data?.map((item: any, index: number) => ({
     browser: item.category,

@@ -12,6 +12,8 @@ import DropDownDashboard from "@/components/share/DropDownDashboard";
 import Image from "next/image";
 import ReviewsDetails from "./ReviewsDetails";
 import companyLogo from "../../../public/logo2.png";
+import UserImage from "@/components/share/customImageHandle/UserImage";
+import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function Reviews({ reviews }: any) {
   return (
@@ -27,6 +29,7 @@ export default function Reviews({ reviews }: any) {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>User Name</TableHead>
             <TableHead>Display Name</TableHead>
             <TableHead>Bussiness Name</TableHead>
 
@@ -43,38 +46,23 @@ export default function Reviews({ reviews }: any) {
               <TableRow key={index}>
                 <TableCell>
                   <div className="flex items-center gap-2">
+                    <p>{invoice.user.username}</p>
+                  </div>
+                </TableCell>
+                <TableCell className="">
+                  <div className="flex items-center gap-2">
                     <div>
-                      {/* <Image
-                        src={
-                          invoice.user.image
-                            ? `${process.env.NEXT_PUBLIC_BASE_URL}${invoice.user.image}`
-                            : defaultImage
-                        }
-                        width={30}
-                        height={30}
-                        alt={`${invoice.user?.lastName}'s profile`}
-                        className=" rounded-full object-cover"
-                      /> */}
+                      <UserImage item={invoice.user?.image} />
                     </div>
-                    <p>{invoice.user.firstName}</p>
+
+                    <p>{invoice.user?.firstName}</p>
                   </div>
                 </TableCell>
 
                 <TableCell className="">
                   <div className="flex items-center gap-2">
                     <div>
-                      <Image
-                        src={
-                          invoice.company?.logo
-                            ? process.env.NEXT_PUBLIC_BASE_URL +
-                              invoice.company?.logo
-                            : companyLogo
-                        }
-                        width={70}
-                        height={40}
-                        alt={`${invoice.bussinessName} logo`}
-                        className=" rounded-full object-cover"
-                      />
+                      <CompanyImage item={invoice.company?.logo} />
                     </div>
 
                     <p> {invoice.company?.name}</p>
@@ -85,10 +73,12 @@ export default function Reviews({ reviews }: any) {
                   {invoice?.company?.category?.name}
                 </TableCell>
                 <TableCell className="">
-                  {invoice?.address || "No Location"}
+                  {invoice?.reviewerAddress || "No Location"}
                 </TableCell>
                 <TableCell className="">
-                  {invoice.createdAt.slice(0, 10)}
+                  {invoice.createdAt
+                    ? new Date(invoice.createdAt).toLocaleDateString()
+                    : "No Date"}
                 </TableCell>
                 <TableCell className="pl-8">{invoice.helpfulCount}</TableCell>
                 <TableCell className="">

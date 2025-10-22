@@ -50,11 +50,9 @@ export function UserActions({ findUser }: any) {
         toast.success("User updated successfully");
         revalidate("users");
 
-        setTimeout(() => {
-          history.go(-1);
-        }, 1000);
+        history.go(-1);
       } else {
-        toast.error(userUpdate.message || "User update failed");
+        toast.error("User update failed");
       }
     } catch (error) {
       console.error("Update error:", error);
@@ -69,12 +67,21 @@ export function UserActions({ findUser }: any) {
           Notes About This User:
         </label>
 
-        <Textarea
-          name="adminNotes"
-          className="w-full h-28 p-4 bg-white shadow-sm resize-none border-none rounded-sm"
-          placeholder=""
-          aria-label="Notes about this user"
-        />
+        <div>
+          <Textarea
+            name="adminNotes"
+            className="w-full h-28 p-4 bg-white shadow-sm resize-none border-none rounded-sm"
+            placeholder=""
+            aria-label="Notes about this user"
+          />
+
+          <button
+            type="button"
+            className="bg-[#F05223] py-2 px-4  rounded font-bold text-white cursor-pointer"
+          >
+            Update
+          </button>
+        </div>
 
         <p className="mt-3 text-sm italic text-gray-500">
           If you feel the user is fake in any way, you can block or delete the
@@ -87,7 +94,6 @@ export function UserActions({ findUser }: any) {
         <button
           disabled={findUser?.status === "Suspended"}
           type="submit"
-          name="action"
           value="suspend"
           className={`bg-[#F05223] text-white p-2 rounded-xl font-bold w-24  ${
             findUser?.status === "Suspended"
@@ -101,7 +107,6 @@ export function UserActions({ findUser }: any) {
         <button
           disabled={findUser?.status === "Banned"}
           type="submit"
-          name="action"
           value="ban"
           className={`bg-[#F05223] text-white p-2 rounded-xl font-bold w-24  ${
             findUser?.status === "Banned"
@@ -110,7 +115,7 @@ export function UserActions({ findUser }: any) {
           }`}
           onClick={() => setValue("Banned")}
         >
-          Banned
+          Ban
         </button>
         <button
           onClick={() => handleDeleteUser(findUser?._id)}

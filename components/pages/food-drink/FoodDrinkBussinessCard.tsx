@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 
-import LogoImage from "@/components/share/LogoImage";
+import LogoImage from "@/components/share/customImageHandle/UserImage";
 
 export default function FoodDrinkBussinessCard({ item }: { item: any }) {
   const renderStars = (rating: number) => {
