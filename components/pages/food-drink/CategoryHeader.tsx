@@ -1,11 +1,13 @@
-const CategoryHeader = ({ total, data }: any) => {
+const CategoryHeader = ({ total, data, pathname }: any) => {
   return (
     <div className="flex flex-col sm:flex-row justify-between sm:items-center py-2">
       {/* Left: Category Title */}
       <div>
         <h2 className="text-lg font-semibold">
-          {data?.[0].name} :{" "}
-          <span className="font-bold">{total} Businesses</span>
+          {data?.[0].name} {pathname !== "/reviewers" && ":"}{" "}
+          <span className="font-bold">
+            {total} {pathname === "/reviewers" ? "Reviewers" : "  Businesses"}
+          </span>
         </h2>
       </div>
 

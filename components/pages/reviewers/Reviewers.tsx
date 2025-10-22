@@ -9,6 +9,7 @@ import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
 import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
+import { usePathname } from "next/navigation";
 
 const reviewerIndexOptions = [
   "Most Controversial",
@@ -29,6 +30,7 @@ const reviewerTypes = [
 ];
 
 export default function Reviewers({ reviews, recentCompanies }: any) {
+  const pathname = usePathname();
   return (
     <div>
       <SectionTitle
@@ -41,7 +43,10 @@ export default function Reviewers({ reviews, recentCompanies }: any) {
       <Container className="mt-10">
         <section className="flex flex-col lg:flex-row gap-12">
           <div className="basis-[70%] mb-8">
-            <CategoryHeader total={reviews?.pagination?.total} />
+            <CategoryHeader
+              total={reviews?.pagination?.total}
+              pathname={pathname}
+            />
 
             {reviews?.data?.map((item: any) => (
               <ReviewersCard item={item} key={item._id} />

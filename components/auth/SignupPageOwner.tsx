@@ -302,13 +302,23 @@ export default function SignupPageOwner({ categories }: any) {
             <input type="checkbox" className="mt-1 bg-white" />
             <label className="text-md text-[#3D454E] ml-3 leading-6">
               I have read and agree to Clapbac’s{" "}
-              <Link href="/privacy-policy" className="text-[#F05223]">
+              <a
+                target="_blank"
+                href="/privacy-policy"
+                rel="noopener noreferrer"
+                className="text-[#F05223]"
+              >
                 Terms of Service
-              </Link>{" "}
+              </a>
               and{" "}
-              <Link href="/privacy-policy" className="text-[#F05223]">
+              <a
+                target="_blank"
+                href="/privacy-policy"
+                rel="noopener noreferrer"
+                className="text-[#F05223]"
+              >
                 Privacy Policy
-              </Link>
+              </a>
               .
             </label>
           </div>

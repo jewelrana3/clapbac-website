@@ -23,10 +23,12 @@ export default function AboutFooter() {
             <p className=" font-bold 800 mb-1 text-xl sm:text-3xl">
               Your story helps someone else choose better.
             </p>
-            <p className=" mb-4 text-lg">Say it straight — we’re listening.</p>
+            <p className=" mb-4 text-xl sm:text-3xl">
+              Say it straight — we’re listening.
+            </p>
 
             <Link href="/signup" className="cursor-pointer">
-              <Button className="bg-orange-500 text-white rounded-lg font-bold px-3">
+              <Button className="bg-[#F05223] text-white rounded-lg font-bold px-5">
                 Log In or Sign Up
               </Button>
             </Link>

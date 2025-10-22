@@ -37,7 +37,6 @@ export default function ContactForm() {
     lastName: "",
     email: "",
     phone: "",
-
     subject: "",
     message: "",
   });
@@ -54,6 +53,7 @@ export default function ContactForm() {
 
   // Submit handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    toast.loading("Submitting...", { id: "contact" });
     e.preventDefault();
 
     const payload = { ...form };
@@ -65,7 +65,9 @@ export default function ContactForm() {
       });
 
       if (res.success) {
-        toast.success("Contact submitted successfully!");
+        toast.success("Contact submitted successfully!", {
+          id: "contact",
+        });
         // Reset form after successful submit
         setForm({
           firstName: "",
@@ -76,11 +78,15 @@ export default function ContactForm() {
           message: "",
         });
       } else {
-        toast.error(res.message || "Contact submission failed.");
+        toast.error(res.message || "Contact submission failed.", {
+          id: "contact",
+        });
       }
     } catch (err) {
       console.error(err);
-      toast.error("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.", {
+        id: "contact",
+      });
     }
   };
 

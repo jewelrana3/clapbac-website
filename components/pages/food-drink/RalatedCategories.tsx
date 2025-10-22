@@ -14,7 +14,7 @@ const RelatedCategories = ({
 
   const handleType = (cat: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set("revewerIndex", cat);
+    newSearchParams.set("revewerType", cat);
     router.push(`?${newSearchParams.toString()}`);
   };
   return (
