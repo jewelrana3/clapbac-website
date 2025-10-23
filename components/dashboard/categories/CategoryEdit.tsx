@@ -30,7 +30,7 @@ import {
 // Schema
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  // categories: z.array(z.string()).min(1, "Select at least one category"),
+  categories: z.array(z.string()).min(1, "Select at least one category"),
 });
 
 type Props = {
@@ -42,18 +42,32 @@ type Props = {
   };
   trigger: React.ReactNode;
   title: string;
+  category?: any;
+  categoryEdit?: any;
 };
 
-export default function CategoryEdit({ item, trigger }: Props) {
+const items = [
+  { value: "category1", label: "Category 1" },
+  { value: "category2", label: "Category 2" },
+  { value: "category3", label: "Category 3" },
+];
+
+export default function CategoryEdit({
+  item,
+  trigger,
+  category,
+  categoryEdit,
+}: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [relatedTo, setRelatedTo] = useState(category || []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: item?.name || "",
-      // categories: item?.categories || [],
+      categories: item?.categories || [],
     },
   });
 
@@ -77,9 +91,21 @@ export default function CategoryEdit({ item, trigger }: Props) {
   const handleClick = () => inputRef.current?.click();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values);
     const formData = new FormData();
     formData.append("name", values.name);
     if (file) formData.append("image", file);
+
+    // if (relatedTo) formData.append("relatedTo", relatedTo);
+    if (
+      values.categories &&
+      values.categories.length > 0 &&
+      Array.isArray(values.categories)
+    ) {
+      values.categories.forEach((id) => {
+        formData.append("relatedTo", id);
+      });
+    }
 
     const method = item?._id ? "PATCH" : "POST";
     const url = item?._id ? `/categories/${item._id}` : `/categories/create`;
@@ -89,11 +115,13 @@ export default function CategoryEdit({ item, trigger }: Props) {
         method,
         body: formData,
       });
+
+      console.log(res);
       if (res.success) {
         toast.success("Category updated successfully.");
         revalidate("categories");
       } else {
-        toast.error("Category update failed.");
+        toast.error("Category failed.");
       }
     } catch (err) {
       console.error("Submit error:", err);
@@ -136,8 +164,8 @@ export default function CategoryEdit({ item, trigger }: Props) {
                     src={preview}
                     alt="Preview"
                     width={200}
-                    height={200}
-                    className="mt-2 object-cover"
+                    height={100}
+                    className="mt-2 object-cover h-40"
                   />
                 ) : (
                   <span className="text-center">No Image</span>
@@ -153,39 +181,81 @@ export default function CategoryEdit({ item, trigger }: Props) {
             </div>
             {/* Multi-select */}
 
-            {/* <FormField
-              control={form.control}
-              name="name_6092856238"
-              render={({ field }) => (
-                <FormItem>
-                  <label className="block mt-3 font-semibold">
-                    Select Category
-                  </label>
-                  <FormControl>
-                    <MultiSelector
-                      values={field.value}
-                      onValuesChange={field.onChange}
-                      loop
-                      className="w-full"
-                    >
-                      <MultiSelectorTrigger>
-                        <MultiSelectorInput placeholder="Select Item(s)" />
-                      </MultiSelectorTrigger>
-                      <MultiSelectorContent>
-                        <MultiSelectorList>
-                          {items.map((cat) => (
-                            <MultiSelectorItem key={cat._id} value={cat._id}>
-                              {cat.name}
-                            </MultiSelectorItem>
-                          ))}
-                        </MultiSelectorList>
-                      </MultiSelectorContent>
-                    </MultiSelector>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+            {category ? (
+              <FormField
+                control={form.control}
+                name="categories"
+                render={({ field }) => (
+                  <FormItem>
+                    <label className="block mt-3 font-semibold">
+                      Select Category
+                    </label>
+                    <FormControl>
+                      <MultiSelector
+                        values={field.value}
+                        onValuesChange={field.onChange}
+                        loop
+                        className="w-full"
+                      >
+                        <MultiSelectorTrigger>
+                          <MultiSelectorInput placeholder="Select Item(s)" />
+                        </MultiSelectorTrigger>
+                        <MultiSelectorContent>
+                          <MultiSelectorList>
+                            {category?.data?.map((item: any) => (
+                              <MultiSelectorItem
+                                key={item._id}
+                                value={item._id}
+                              >
+                                {item.name}
+                              </MultiSelectorItem>
+                            ))}
+                          </MultiSelectorList>
+                        </MultiSelectorContent>
+                      </MultiSelector>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ) : (
+              <FormField
+                control={form.control}
+                name="categories"
+                render={({ field }) => (
+                  <FormItem>
+                    <label className="block mt-3 font-semibold">
+                      Select Category
+                    </label>
+                    <FormControl>
+                      <MultiSelector
+                        values={field.value}
+                        onValuesChange={field.onChange}
+                        loop
+                        className="w-full"
+                      >
+                        <MultiSelectorTrigger>
+                          <MultiSelectorInput placeholder="Select Item(s)" />
+                        </MultiSelectorTrigger>
+                        <MultiSelectorContent>
+                          <MultiSelectorList>
+                            {categoryEdit?.data?.map((item: any) => (
+                              <MultiSelectorItem
+                                key={item._id}
+                                value={item._id}
+                              >
+                                {item.name}
+                              </MultiSelectorItem>
+                            ))}
+                          </MultiSelectorList>
+                        </MultiSelectorContent>
+                      </MultiSelector>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             {/* Submit */}
             <div className="flex justify-end">
               <Button className="bg-[#F05223]" type="submit">

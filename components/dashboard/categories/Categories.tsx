@@ -11,6 +11,7 @@ export default function Categories({ categories }: any) {
         <h1 className="text-2xl font-bold mb-6 text-[#F05223]">Categories</h1>
         <div>
           <CategoryEdit
+            category={categories}
             title="Add Category"
             trigger={
               <div className="flex justify-end cursor-pointer bg-[#F05223] font-bold text-white py-2 px-4 rounded">
@@ -28,6 +29,7 @@ export default function Categories({ categories }: any) {
               <CategoryEdit
                 title="Edit Category"
                 item={item}
+                categoryEdit={categories}
                 trigger={
                   <div className="flex justify-end cursor-pointer">
                     <Edit />
