@@ -1,20 +1,23 @@
 "use client";
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
+import { revalidate } from "@/utils/revalidateTags";
 import {
   MultiSelector,
   MultiSelectorContent,
@@ -27,29 +30,32 @@ import {
 // Schema
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  name_6092856238: z.array(z.string()).min(1, {
-    message: "Please select at least one item",
-  }),
+  // categories: z.array(z.string()).min(1, "Select at least one category"),
 });
 
-export default function CategoryEdit({
-  item,
-  trigger,
-  title,
-}: {
-  item?: any;
+type Props = {
+  item?: {
+    _id?: string;
+    name?: string;
+    icon?: string;
+    categories?: string[];
+  };
   trigger: React.ReactNode;
   title: string;
-}) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [preview, setPreview] = useState<string | null>("");
+};
 
+export default function CategoryEdit({ item, trigger }: Props) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [items] = useState([
-    { _id: "1", name: "Category A" },
-    { _id: "2", name: "Category B" },
-    { _id: "3", name: "Category C" },
-  ]);
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: item?.name || "",
+      // categories: item?.categories || [],
+    },
+  });
 
   useEffect(() => {
     if (item?.icon) {
@@ -60,28 +66,38 @@ export default function CategoryEdit({
     }
   }, [item]);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: item?.name || "",
-      name_6092856238: item?.name_6092856238 || [],
-    },
-  });
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-      setFile(file);
+    const selected = e.target.files?.[0];
+    if (selected) {
+      setFile(selected);
+      setPreview(URL.createObjectURL(selected));
     }
   };
 
-  const handleClick = () => {
-    inputRef?.current?.click();
-  };
+  const handleClick = () => inputRef.current?.click();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form valuess:", values, file);
+    const formData = new FormData();
+    formData.append("name", values.name);
+    if (file) formData.append("image", file);
+
+    const method = item?._id ? "PATCH" : "POST";
+    const url = item?._id ? `/categories/${item._id}` : `/categories/create`;
+
+    try {
+      const res = await myFetch(url, {
+        method,
+        body: formData,
+      });
+      if (res.success) {
+        toast.success("Category updated successfully.");
+        revalidate("categories");
+      } else {
+        toast.error("Category update failed.");
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+    }
   };
 
   return (
@@ -108,8 +124,7 @@ export default function CategoryEdit({
                 </FormItem>
               )}
             />
-
-            {/* Image */}
+            {/* Image Upload */}
             <div>
               <label className="block mt-3 font-semibold">Category Image</label>
               <div
@@ -136,9 +151,9 @@ export default function CategoryEdit({
                 />
               </div>
             </div>
-
             {/* Multi-select */}
-            <FormField
+
+            {/* <FormField
               control={form.control}
               name="name_6092856238"
               render={({ field }) => (
@@ -170,8 +185,7 @@ export default function CategoryEdit({
                   <FormMessage />
                 </FormItem>
               )}
-            />
-
+            /> */}
             {/* Submit */}
             <div className="flex justify-end">
               <Button className="bg-[#F05223]" type="submit">
