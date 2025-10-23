@@ -199,7 +199,7 @@ export default function SignupPageUser() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-[#E95022] w-full text-white font-bold py-2 rounded-xl"
+            className="bg-[#E95022] w-full text-white font-bold py-2 rounded-xl cursor-pointer"
           >
             Create My Account
           </button>

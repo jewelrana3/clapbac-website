@@ -32,7 +32,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#181716] text-white py-10 px-6 md:px">
+    <footer className="bg-[#181716] text-white py-20 px-6 md:px">
       <Container className="max-w-screen-2xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between gap-8 text-sm font-lato">
           {/* Logo Section */}

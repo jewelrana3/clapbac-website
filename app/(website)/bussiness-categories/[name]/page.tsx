@@ -27,8 +27,7 @@ export default async function FoodDrink({
     `${page ? `/companies?page=${page}` : `/companies`}`
   );
   const recentBusiness = await myFetch("/recent-companies");
-  console.log("recentBusiness", recentBusiness);
-
+  const profile = await myFetch("/users/profile");
   return (
     <div>
       <SectionTitle title={featuresBussiness?.data[0]?.name} />
@@ -38,10 +37,12 @@ export default async function FoodDrink({
         total={featuresBussiness?.pagination?.total}
       />
 
-      <RecentlyViewCompanies
-        title="Recently Viewed Companies"
-        data={recentBusiness?.data || []}
-      />
+      {profile?.data && (
+        <RecentlyViewCompanies
+          title="Recently Viewed Companies"
+          data={recentBusiness?.data || []}
+        />
+      )}
     </div>
   );
 }

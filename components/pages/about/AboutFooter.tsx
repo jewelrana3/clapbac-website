@@ -8,7 +8,7 @@ export default function AboutFooter() {
     <>
       {/* footer */}
       <section className="bg-[#E9E9E9]">
-        <div className="flex flex-col lg:flex-row items-center justify-center py-16 px-5 gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-center py-16 gap-8">
           {/* Left image */}
           <Image
             src="/about-footer.png"
@@ -20,7 +20,7 @@ export default function AboutFooter() {
 
           {/* Right text */}
           <div className="flex flex-col justify-center  text-[#000000]">
-            <p className=" font-bold 800 mb-1 text-xl sm:text-3xl">
+            <p className=" font-bold mb-1 text-xl sm:text-3xl">
               Your story helps someone else choose better.
             </p>
             <p className=" mb-4 text-xl sm:text-3xl">

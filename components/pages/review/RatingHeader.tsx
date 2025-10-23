@@ -17,7 +17,7 @@ export default function RatingHeader({ rating, setRating }: RatingHeaderProps) {
       <div className="md:flex items-center space-x-1 ">
         <div className="flex gap-2">
           <StarRating
-            initialRating={1}
+            initialRating={rating.yourRating}
             starsLength={5}
             dimension={10}
             isHalfRatingEnabled={rating.yourRating === 1 ? false : true}

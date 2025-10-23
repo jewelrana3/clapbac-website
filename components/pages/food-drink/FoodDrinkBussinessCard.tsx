@@ -19,7 +19,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
         {hasHalf && <FaRegStarHalfStroke className="text-[#F05223] text-2xl" />}
 
         {[...Array(emptyStars)].map((_, i) => (
-          <FaRegStar key={`empty-${i}`} className="text-[#F05223] text-2xl" />
+          <FaRegStar key={`empty-${i}`} className="text-gray-400 text-2xl" />
         ))}
       </>
     );

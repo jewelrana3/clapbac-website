@@ -15,7 +15,7 @@ export default function Button({
   htmlType = "button",
 }: ButtonProps) {
   return (
-    <div className="flex  p-2">
+    <div className="flex">
       <button
         style={style}
         type={htmlType}

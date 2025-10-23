@@ -111,7 +111,7 @@ export default function ReviewerRatingForm() {
     <section className="my-14">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-2xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm"
+        className="max-w-3xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm"
       >
         <RatingHeader rating={rating} setRating={setRating} />
 
@@ -127,6 +127,11 @@ export default function ReviewerRatingForm() {
               required: "Reviewer name is required.",
             })}
           />
+          <p className="mt-1" style={{ fontStyle: "italic", color: "#666666" }}>
+            Please use first name and last initial only (e.g., Sarah M.) to
+            respect privacy and comply with Fair Use.
+          </p>
+
           {errors.reviewerName && (
             <p className="text-sm text-red-500">
               {errors.reviewerName.message}
@@ -159,11 +164,16 @@ export default function ReviewerRatingForm() {
             Paste Excerpt from Original Review Here
           </Label>
           <Textarea
+            style={{ height: "130px" }}
             id="reviewMessage"
             {...register("reviewMessage", {
               required: "Review excerpt is required.",
             })}
           />
+          <p className="mt-1" style={{ fontStyle: "italic", color: "#666666" }}>
+            Review needs to be short excerpts from original review to comply
+            with the Fair Use.
+          </p>
           {errors.reviewMessage && (
             <p className="text-sm text-red-500">
               {errors.reviewMessage.message}
