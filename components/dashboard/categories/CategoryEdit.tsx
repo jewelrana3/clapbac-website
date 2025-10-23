@@ -81,7 +81,7 @@ export default function CategoryEdit({
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("Form values:", values, file);
+    console.log("Form valuess:", values, file);
   };
 
   return (
