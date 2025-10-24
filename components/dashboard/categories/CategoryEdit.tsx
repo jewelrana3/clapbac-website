@@ -97,6 +97,9 @@ export default function CategoryEdit({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const formData = new FormData();
     formData.append("name", values.name);
+    if (!file) {
+      setError("Image is required.");
+    }
     if (file) formData.append("image", file);
 
     const selectedCategories = category?.data || categoryEdit?.data || [];
@@ -112,10 +115,11 @@ export default function CategoryEdit({
 
     try {
       const res = await myFetch(url, { method, body: formData });
-      console.log(res);
+
       if (res.success) {
         toast.success("Category updated successfully.");
         revalidate("categories");
+        window.location.reload();
       } else {
         toast.error(res.message || "Category failed.");
       }
@@ -185,7 +189,7 @@ export default function CategoryEdit({
               render={({ field }) => (
                 <FormItem>
                   <label className="block mt-3 font-semibold">
-                    Select Category
+                    Select Categories
                   </label>
                   <FormControl>
                     <MultiSelector
@@ -195,7 +199,7 @@ export default function CategoryEdit({
                       className="w-full"
                     >
                       <MultiSelectorTrigger>
-                        <MultiSelectorInput placeholder="Select Item(s)" />
+                        <MultiSelectorInput placeholder="Select Categories" />
                       </MultiSelectorTrigger>
                       <MultiSelectorContent>
                         <MultiSelectorList>
@@ -220,7 +224,7 @@ export default function CategoryEdit({
 
             {/* Submit */}
             <div className="flex justify-end">
-              <Button className="bg-[#F05223]" type="submit">
+              <Button disabled={!file} className="bg-[#F05223]" type="submit">
                 {item ? "Update" : "Add"}
               </Button>
             </div>
