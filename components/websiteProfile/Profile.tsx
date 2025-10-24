@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Edit } from "lucide-react";
 import man from "../../public/home-man.png";
 import { revalidate } from "@/utils/revalidateTags";
+import { set } from "date-fns";
 
 const profileFields = [
   //   { label: "username", placeholder: "Username" },
@@ -23,6 +24,7 @@ export default function Profile({ data }: any) {
   const [profile, setProfile] = React.useState(data || {});
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>("");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -88,6 +90,16 @@ export default function Profile({ data }: any) {
   // Handle file selection
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+    if (!validTypes.includes(file.type)) {
+      setError("Only PNG, JPG and JPEG images are allowed.");
+      setPreviewImage(null);
+      setImageFile(null);
+      return;
+    }
+
     if (file) {
       setPreviewImage(URL.createObjectURL(file));
       setImageFile(file);
