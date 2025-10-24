@@ -25,8 +25,6 @@ export function UserDropdownMenu({ profileData }: any) {
     window.location.replace("/login");
   };
 
-  console.log(profileData?.image);
-
   // const imageUrl = profileData?.image.startsWith("http")
   //   ? profileData?.image
   //   : `${process.env.NEXT_PUBLIC_BASE_URL}${profileData?.image}`;

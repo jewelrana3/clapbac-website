@@ -10,7 +10,6 @@ export default async function id({ params }: { params: { id: string } }) {
 
   const res = await myFetch(`/users/${userId}`);
   const findUserById = res?.data;
-  console.log("image", findUserById.image);
 
   return (
     <div className=" w-[60%] mx-auto">
