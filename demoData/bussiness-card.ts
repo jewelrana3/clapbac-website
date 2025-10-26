@@ -10,7 +10,6 @@ import nine from "../public/bussiness-card/nine.svg";
 import ten from "../public/bussiness-card/ten.svg";
 import eleven from "../public/bussiness-card/eleven.svg";
 import towle from "../public/bussiness-card/towle.svg";
-import Container from "@/layout/Container";
 
 export const categoryCards = [
   {

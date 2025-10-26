@@ -15,6 +15,7 @@ export default function TablePagination({ total }: { total?: any }) {
   const searchParams = useSearchParams();
 
   const activePage = searchParams.get("page") || "1";
+  console.log(activePage);
 
   let pageCalculate = 1;
   if (total > 10) {
@@ -61,7 +62,9 @@ export default function TablePagination({ total }: { total?: any }) {
         {pageNumbers?.map((page) => (
           <PaginationItem key={page}>
             <PaginationLink
-              className=""
+              className={`${
+                Number(activePage) === page ? "bg-[#F05223] text-white" : ""
+              }`}
               href="#"
               isActive={page === Number(activePage)}
               onClick={(e) => {

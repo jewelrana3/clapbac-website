@@ -23,6 +23,10 @@ export const reviewerTypes = [
     label: "Dory",
     description: "Forgets details, leaves inaccurate reviews (Finding Nemo)",
   },
+  {
+    label: "Others",
+    description: "Others",
+  },
 ];
 export const businessCategories = [
   { label: "Food and Drink" },
