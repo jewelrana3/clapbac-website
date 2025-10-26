@@ -1,3 +1,4 @@
+// real data
 export const reviewerTypes = [
   { label: "The Drama Queen", description: "Theatrical rants over nothing" },
   { label: "One-Star Sniper", description: "Single stars, no reason" },
@@ -28,6 +29,21 @@ export const reviewerTypes = [
     description: "Others",
   },
 ];
+
+// real data
+export const consequenceOptions = [
+  "Banned for Life",
+  "Issued a Warning",
+  "Ignored",
+  "VIP Star Legend Badge",
+  "Owners Choice: Custom Consequence",
+  "Cooling-Off Period",
+  "Free Dessert",
+  "Wall of Shame",
+  "20% Off Next Order",
+  "Others",
+];
+
 export const businessCategories = [
   { label: "Food and Drink" },
   { label: "Home Services" },
