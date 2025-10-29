@@ -57,7 +57,7 @@ export default function DropDownDashboard({
       <div className="text-[#F05223] text-3xl font-semibold">{title}</div>
       <div>
         <Select value={status} onValueChange={handleStatusChange}>
-          <SelectTrigger className="w-[180px] border border-gray-300 rounded-md px-3 py-5 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">
+          <SelectTrigger className="w-[180px]  border border-gray-300 rounded-md px-3 py-5 text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent className=" bg-white rounded-md shadow-md">
@@ -66,7 +66,7 @@ export default function DropDownDashboard({
                 <SelectItem
                   key={index}
                   value={item?.value}
-                  className="cursor-pointer px-3 py-2 text-sm"
+                  className="cursor-pointer px-3 py-2 text-sm flex items-center justify-center"
                 >
                   {item.title}
                 </SelectItem>

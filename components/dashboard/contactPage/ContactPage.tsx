@@ -8,6 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Pencil, SquarePen } from "lucide-react";
+import ContactModal from "./ContactModal";
 
 export default function ContactPage({ contact }: any) {
   return (
@@ -45,7 +47,7 @@ export default function ContactPage({ contact }: any) {
 
                 <TableCell className="">{invoice.phone}</TableCell>
                 <TableCell className="">{invoice.subject}</TableCell>
-                <TableCell className="">{invoice.status}</TableCell>
+                {/* <TableCell className="">{invoice.status}</TableCell> */}
                 <TableCell className="">
                   <Badge
                     className={`w-20 ${
@@ -60,6 +62,9 @@ export default function ContactPage({ contact }: any) {
                   >
                     {invoice.status}
                   </Badge>
+                </TableCell>
+                <TableCell className="">
+                  <ContactModal invoice={invoice} />
                 </TableCell>
               </TableRow>
             );

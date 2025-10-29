@@ -16,7 +16,6 @@ export default async function DashboardHomePage() {
         </div>
         <div>
           <PieChartPage data={res?.data?.ratingDistribution} />
-          {/* <PieChartPage data={res?.data?.ratingDistribution} /> */}
         </div>
       </div>
     </div>

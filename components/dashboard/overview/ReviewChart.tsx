@@ -13,7 +13,7 @@ const colors = [
 const ReviewChart = async ({ data }: any) => {
   const newbar = data?.map((item: any, index: number) => ({
     day: item.day,
-    count: item.count,
+    count: item.count === 0 ? 20 : item.count,
     color: colors[index],
   }));
   return (
