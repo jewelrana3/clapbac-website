@@ -28,7 +28,7 @@ const paths = [
       },
     ],
   },
-  { id: 8, name: "Contact", path: "/dashboard/contact" },
+  { id: 8, name: "Contact Us", path: "/dashboard/contact" },
   { id: 9, name: "Change Password", path: "/dashboard/change-password" },
   { id: 10, name: "Log Out", path: "/login" },
 ];

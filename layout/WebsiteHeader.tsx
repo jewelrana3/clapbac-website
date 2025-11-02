@@ -7,10 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
-import share from "../public/share-icon/share.webp";
 import { UserDropdownMenu } from "./HoverNavber";
-import { set } from "date-fns";
-// import HoverNavber from "./HoverNavber";
 
 interface ProfileData {
   firstName: string;
@@ -44,7 +41,7 @@ export default function WebsiteHeader() {
     };
 
     fetchData();
-  }, []);
+  }, [profileData]);
 
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919]">
@@ -121,32 +118,14 @@ export default function WebsiteHeader() {
                 {item.title}
               </Link>
             ))}
+
+            {/* image */}
+            <div>
+              <UserDropdownMenu />
+            </div>
           </div>
         </div>
       )}
-
-      {/* navbar */}
-      {/* {navbar && <HoverNavber />} */}
     </header>
   );
 }
-
-// function ListItem({
-//   title,
-//   children,
-//   href,
-//   ...props
-// }: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-//   return (
-//     <li {...props}>
-//       <NavigationMenuLink asChild>
-//         <Link href={href}>
-//           <div className="text-sm leading-none font-medium">{title}</div>
-//           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-//             {children}
-//           </p>
-//         </Link>
-//       </NavigationMenuLink>
-//     </li>
-//   );
-// }

@@ -9,14 +9,11 @@ import Image from "next/image";
 import { Edit } from "lucide-react";
 import man from "../../public/home-man.png";
 import { revalidate } from "@/utils/revalidateTags";
-import { set } from "date-fns";
 
 const profileFields = [
-  //   { label: "username", placeholder: "Username" },
   { label: "firstName", placeholder: "First Name" },
   { label: "lastName", placeholder: "Last Name" },
   { label: "title", placeholder: "Title" },
-  //   { label: "email", placeholder: "Email" },
   { label: "phone", placeholder: "phone" },
 ];
 
@@ -36,42 +33,6 @@ export default function Profile({ data }: any) {
       setPreviewImage(imageUrl);
     }
   }, [data]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-
-    // Add all profile fields
-    const allowedFields = ["firstName", "lastName", "title", "phone"]; // update based on backend
-
-    allowedFields.forEach((field) => {
-      if (profile[field]) {
-        formData.append(field, profile[field]);
-      }
-    });
-
-    if (imageFile) {
-      formData.append("image", imageFile);
-    }
-
-    try {
-      const res = await myFetch("/users/profile", {
-        method: "PATCH",
-        body: formData,
-      });
-
-      if (res.success) {
-        revalidate("image");
-        toast.success("Profile updated successfully.");
-      } else {
-        toast.error(res.message || "Profile update failed.");
-      }
-    } catch (err) {
-      console.error("Error updating profile:", err);
-      toast.error("An error occurred while updating the profile.");
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -103,6 +64,42 @@ export default function Profile({ data }: any) {
     if (file) {
       setPreviewImage(URL.createObjectURL(file));
       setImageFile(file);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    // Add all profile fields
+    const allowedFields = ["firstName", "lastName", "title", "phone"]; // update based on backend
+
+    allowedFields.forEach((field) => {
+      if (profile[field]) {
+        formData.append(field, profile[field]);
+      }
+    });
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    try {
+      const res = await myFetch("/users/profile", {
+        method: "PATCH",
+        body: formData,
+      });
+
+      if (res.success) {
+        toast.success("Profile updated successfully.");
+        revalidate("image");
+      } else {
+        toast.error(res.message || "Profile update failed.");
+      }
+    } catch (err) {
+      console.error("Error updating profile:", err);
+      toast.error("An error occurred while updating the profile.");
     }
   };
 

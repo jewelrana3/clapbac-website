@@ -10,39 +10,41 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-import share from "../public/share-icon/share.webp";
-
 import { LogOut, LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
-import Image from "next/image";
 import UserImage from "@/components/share/customImageHandle/UserImage";
+import { redirect, useRouter } from "next/navigation";
 
-export function UserDropdownMenu({ profileData }: any) {
+interface ProfileData {
+  firstName?: string;
+  image?: string;
+  role?: "Admin" | "Super Admin" | "User" | string;
+}
+
+interface Props {
+  profileData?: ProfileData;
+}
+
+export function UserDropdownMenu({ profileData }: Props) {
+  const router = useRouter();
+
   const handleLogout = () => {
     deleteCookie("accessToken");
     window.location.replace("/login");
   };
 
-  // const imageUrl = profileData?.image.startsWith("http")
-  //   ? profileData?.image
-  //   : `${process.env.NEXT_PUBLIC_BASE_URL}${profileData?.image}`;
+  const handleDashboard = () => {
+    redirect("/dashboard");
+  };
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild aria-label="User menu">
         <div className="flex items-center gap-2 cursor-pointer">
-          {/* <Image
-            src={imageUrl}
-            alt={`${profileData?.firstName || "User"} profile`}
-            width={40}
-            height={50}
-            className="rounded-full"
-          /> */}
           <UserImage item={profileData?.image} />
           <Button className="text-white font-bold">
-            {profileData?.firstName}
+            {profileData?.firstName || "User"}
           </Button>
         </div>
       </DropdownMenuTrigger>
@@ -57,15 +59,15 @@ export function UserDropdownMenu({ profileData }: any) {
 
         <DropdownMenuSeparator />
 
-        {profileData?.role === "Admin" ||
-          (profileData?.role === "Super Admin" && (
-            <Link href="/dashboard">
-              <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
-                <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
-                <span>Dashboard</span>
-              </DropdownMenuItem>
-            </Link>
-          ))}
+        {["Admin", "Super Admin"].includes(profileData?.role || "") && (
+          <DropdownMenuItem
+            className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2"
+            onClick={handleDashboard}
+          >
+            <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
+            <span>Dashboard</span>
+          </DropdownMenuItem>
+        )}
 
         <Link href="/profile">
           <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">

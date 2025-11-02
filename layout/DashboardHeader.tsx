@@ -3,10 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { myFetch } from "@/utils/myFetch";
 
-import share from "../public/share-icon/share.webp";
 import UserImage from "@/components/share/customImageHandle/UserImage";
 
 interface profileData {
@@ -19,12 +17,14 @@ export default function DashboardHeader() {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const res = await myFetch("/users/profile");
+      const res = await myFetch("/users/profile", {
+        tags: ["image"],
+      });
       setProfileData(res.data);
     };
 
     fetchData();
-  }, []);
+  }, [profileData]);
 
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919] py-2">

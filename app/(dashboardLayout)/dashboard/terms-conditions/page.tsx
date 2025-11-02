@@ -7,7 +7,7 @@ export default async function page() {
   return (
     <div>
       <h1 className="text-lg 2xl:text-2xl font-medium px-4 capitalize">
-        term & condition
+        Terms & Conditions
       </h1>
       <TermsCondition terms={terms?.data} />
     </div>
