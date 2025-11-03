@@ -2,6 +2,7 @@ import ProfileSection from "@/components/share/ProfileSection";
 import signUp from "../../../public/signup.jpg";
 import SectionTitle from "@/components/share/SectionTitle";
 import ResetPasswordForm from "@/components/forms/ResetPasswordForm";
+import { Suspense } from "react";
 
 const des = (
   <>
@@ -18,7 +19,9 @@ export default function ResetPassword() {
     <>
       <SectionTitle title="Reset Password" />
       <section className="mt-0 py-20">
-        <ResetPasswordForm />
+        <Suspense>
+          <ResetPasswordForm />
+        </Suspense>
       </section>
       <ProfileSection
         image={signUp}

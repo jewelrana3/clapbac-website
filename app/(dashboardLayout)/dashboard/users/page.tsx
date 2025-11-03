@@ -17,10 +17,9 @@ export default async function Page({
     `/users${params.toString() ? `?${params.toString()}` : ""}`,
     {
       tags: ["users"],
+      cache: "no-store",
     }
   );
-
-  // const res = await myFetch(`/users/${params.toString() ? ?${params.toString()} : ""`);
 
   return (
     <div>

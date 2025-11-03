@@ -5,7 +5,6 @@ import "./globals.css"; // Your global styles
 import Footer from "@/layout/Footer";
 import { Toaster } from "react-hot-toast";
 import Header from "@/layout/Header";
-export const dynamic = "force-dynamic";
 
 const lato = Lato({
   subsets: ["latin"],

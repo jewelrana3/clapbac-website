@@ -1,7 +1,7 @@
 import LoginPage from "@/components/auth/LoginPage";
 import ProfileSection from "@/components/share/ProfileSection";
 import SectionTitle from "@/components/share/SectionTitle";
-import React from "react";
+import React, { Suspense } from "react";
 import signUp from "../../../public/signup.jpg";
 import one from "../../../public/share-icon/one.svg";
 import two from "../../../public/share-icon/two.svg";
@@ -36,7 +36,9 @@ export default function Login() {
         subTitle="The reviews are in. Time to clap back."
       />
 
-      <LoginPage />
+      <Suspense>
+        <LoginPage />
+      </Suspense>
 
       <ProfileSection
         image={signUp}

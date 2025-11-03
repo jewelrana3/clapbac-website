@@ -9,10 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
-import Image from "next/image";
 import Link from "next/link";
-import share from "../../../public/share-icon/share.webp";
-import logo from "../../../public/logo2.png";
 import LogoImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 

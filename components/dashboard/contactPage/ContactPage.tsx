@@ -8,7 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Pencil, SquarePen } from "lucide-react";
 import ContactModal from "./ContactModal";
 
 export default function ContactPage({ contact }: any) {
@@ -24,7 +23,6 @@ export default function ContactPage({ contact }: any) {
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead className="">Phone</TableHead>
-            <TableHead className="">Subject</TableHead>
             <TableHead className="">Status</TableHead>
 
             <TableHead className="">Actions</TableHead>
@@ -46,17 +44,12 @@ export default function ContactPage({ contact }: any) {
                 </TableCell>
 
                 <TableCell className="">{invoice.phone}</TableCell>
-                <TableCell className="">{invoice.subject}</TableCell>
-                {/* <TableCell className="">{invoice.status}</TableCell> */}
+
                 <TableCell className="">
                   <Badge
                     className={`w-20 ${
-                      invoice.status === "Draft"
+                      invoice.status === "Closed"
                         ? "bg-[#D9D9D9] text-[#3D454E]"
-                        : invoice.status === "Sheduled"
-                        ? "bg-[#F05223] text-white"
-                        : invoice.status === "Archived"
-                        ? "bg-[#000000] "
                         : "bg-[#C5D92D] text-[#3D454E]"
                     }`}
                   >

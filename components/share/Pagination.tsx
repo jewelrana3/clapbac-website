@@ -15,7 +15,6 @@ export default function TablePagination({ total }: { total?: any }) {
   const searchParams = useSearchParams();
 
   const activePage = searchParams.get("page") || "1";
-  console.log(activePage);
 
   let pageCalculate = 1;
   if (total > 10) {

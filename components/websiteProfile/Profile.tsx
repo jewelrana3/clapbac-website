@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Edit } from "lucide-react";
 import man from "../../public/home-man.png";
 import { revalidate } from "@/utils/revalidateTags";
+import { useRouter } from "next/navigation";
 
 const profileFields = [
   { label: "firstName", placeholder: "First Name" },
@@ -22,6 +23,7 @@ export default function Profile({ data }: any) {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>("");
+  const router = useRouter();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -93,7 +95,8 @@ export default function Profile({ data }: any) {
 
       if (res.success) {
         toast.success("Profile updated successfully.");
-        revalidate("image");
+        revalidate("users-profile");
+        window.location.reload();
       } else {
         toast.error(res.message || "Profile update failed.");
       }

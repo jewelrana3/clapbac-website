@@ -3,7 +3,9 @@ import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
 export default async function Page() {
-  const contact = await myFetch("/supports");
+  const contact = await myFetch("/supports", {
+    tags: ["supports"],
+  });
   return (
     <div>
       <ContactPage contact={contact?.data} />

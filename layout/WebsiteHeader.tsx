@@ -14,7 +14,7 @@ interface ProfileData {
   image: string;
 }
 
-const mobileMenuItems = [
+const navItems = [
   { title: "Rate a Reviewer", href: "/rate-reviewer" },
   { title: "Business Categories", href: "/bussiness-categories" },
   { title: "Reviewers", href: "/reviewers" },
@@ -24,80 +24,83 @@ const mobileMenuItems = [
 ];
 
 export default function WebsiteHeader() {
+  const pathname = usePathname();
   const [profileData, setProfileData] = React.useState<ProfileData | null>(
     null
   );
-
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
+  // Fetch profile data once
   React.useEffect(() => {
-    const fetchData = async () => {
-      const res = await myFetch("/users/profile", {
-        tags: ["image"],
-      });
-
-      setProfileData(res.data);
+    const fetchProfile = async () => {
+      try {
+        const res = await myFetch("/users/profile", {
+          tags: ["users-profile"],
+        });
+        setProfileData(res.data);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchData();
-  }, [profileData]);
+    fetchProfile();
+  }, []);
 
   return (
     <header className="fixed w-full top-0 z-50 bg-[#191919]">
       <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 py-2">
-        {/* logo */}
-        <div className="">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src="/logo-white.png"
-              alt="Logo"
-              width={200}
-              height={30}
-              className="w-auto max-h-16"
-            />
-          </Link>
-        </div>
-        {/* navigation */}
-        <div>
-          <ul className="hidden lg:flex items-center space-x-4">
-            {mobileMenuItems.map(({ href, title }) => {
-              const isActive = pathname === href;
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2 cursor-pointer">
+          <Image
+            src="/logo-white.png"
+            alt="Logo"
+            width={200}
+            height={30}
+            className="w-auto max-h-16"
+          />
+        </Link>
 
-              return (
-                <section key={href}>
-                  <li key={href}>
-                    <Link
-                      href={href}
-                      className={`px-3 py-2 rounded transition-colors duration-200 
-              
-                ${isActive ? "bg-white text-black" : "text-white "} 
-                `}
-                    >
-                      {title}
-                    </Link>
-                  </li>
-                </section>
-              );
-            })}
-
-            {profileData ? (
-              <>
-                <UserDropdownMenu profileData={profileData} />
-              </>
-            ) : (
-              <Link href="/login">
-                <button
-                  className={`px-3 py-2 rounded transition-colors duration-200 font-bold bg-orange-600 text-white cursor-pointer `}
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex items-center space-x-4">
+          {navItems.map(({ href, title }) => {
+            const active = pathname === href;
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className={`px-3 py-2 rounded transition-colors duration-200 ${
+                    active
+                      ? "bg-white text-black"
+                      : "text-white hover:text-gray-300"
+                  }`}
                 >
-                  Login
-                </button>
-              </Link>
-            )}
-          </ul>
-        </div>
+                  {title}
+                </Link>
+              </li>
+            );
+          })}
 
-        {/* Mobile menu button */}
+          {/* Profile / Login */}
+          {loading ? (
+            <span className="text-gray-400">Loading...</span>
+          ) : error ? (
+            <span className="text-red-500">Error loading profile</span>
+          ) : profileData ? (
+            <UserDropdownMenu profileData={profileData} />
+          ) : (
+            <Link href="/login">
+              <button className="px-3 py-2 rounded bg-orange-600 text-white font-bold transition-colors hover:bg-orange-700">
+                Login
+              </button>
+            </Link>
+          )}
+        </ul>
+
+        {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <Button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -105,24 +108,40 @@ export default function WebsiteHeader() {
         </div>
       </div>
 
+      {/* Mobile Dropdown */}
       {isMenuOpen && (
         <div className="lg:hidden absolute top-20 right-0 w-[220px] bg-zinc-900 shadow-md">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            {mobileMenuItems.map((item) => (
+            {navItems.map(({ href, title }) => (
               <Link
-                key={item.title}
+                key={href}
+                href={href}
                 onClick={() => setIsMenuOpen(false)}
-                href={item.href}
-                className="block px-3 py-2 font-semibold text-white hover:text-red-500  transition-colors"
+                className="block px-3 py-2 font-semibold text-white hover:text-red-500 transition-colors"
               >
-                {item.title}
+                {title}
               </Link>
             ))}
 
-            {/* image */}
-            <div>
-              <UserDropdownMenu />
-            </div>
+            {/* Profile / Login in mobile */}
+            {loading ? (
+              <span className="block px-3 py-2 text-gray-400">Loading...</span>
+            ) : error ? (
+              <span className="block px-3 py-2 text-red-500">
+                Error loading profile
+              </span>
+            ) : profileData ? (
+              <UserDropdownMenu profileData={profileData} />
+            ) : (
+              <Link href="/login">
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-left px-3 py-2 font-semibold text-white hover:text-red-500 transition-colors"
+                >
+                  Login
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       )}

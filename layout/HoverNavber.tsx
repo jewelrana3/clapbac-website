@@ -14,12 +14,14 @@ import { LogOut, LayoutDashboard, User } from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
 import UserImage from "@/components/share/customImageHandle/UserImage";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+
+type UserRole = "Admin" | "Super Admin" | "User" | string;
 
 interface ProfileData {
   firstName?: string;
   image?: string;
-  role?: "Admin" | "Super Admin" | "User" | string;
+  role?: UserRole;
 }
 
 interface Props {
@@ -31,27 +33,29 @@ export function UserDropdownMenu({ profileData }: Props) {
 
   const handleLogout = () => {
     deleteCookie("accessToken");
-    window.location.replace("/login");
+    router.push("/login"); // ✅ client-side navigation
   };
 
   const handleDashboard = () => {
-    redirect("/dashboard");
+    router.push("/dashboard");
   };
+
+  if (!profileData) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild aria-label="User menu">
-        <div className="flex items-center gap-2 cursor-pointer">
-          <UserImage item={profileData?.image} />
+        <div className="flex items-center gap-2 cursor-pointer hover:opacity-80">
+          <UserImage item={profileData.image || ""} />
           <Button className="text-white font-bold">
-            {profileData?.firstName || "User"}
+            {profileData.firstName || "User"}
           </Button>
         </div>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
         align="end"
-        className="w-40 bg-white shadow-lg rounded-md"
+        className="w-44 bg-white shadow-lg rounded-md cursor-pointer"
       >
         <DropdownMenuLabel className="text-sm font-semibold text-gray-700">
           My Account
@@ -59,29 +63,29 @@ export function UserDropdownMenu({ profileData }: Props) {
 
         <DropdownMenuSeparator />
 
-        {["Admin", "Super Admin"].includes(profileData?.role || "") && (
+        {["Admin", "Super Admin"].includes(profileData.role || "") && (
           <DropdownMenuItem
-            className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2"
             onClick={handleDashboard}
+            className="text-sm cursor-pointer hover:bg-gray-100 flex items-center"
           >
             <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
-            <span>Dashboard</span>
+            Dashboard
           </DropdownMenuItem>
         )}
 
         <Link href="/profile">
-          <DropdownMenuItem className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2">
-            <User className="h-4 w-4 text-gray-600" />
-            <span>Profile</span>
+          <DropdownMenuItem className="text-sm cursor-pointer hover:bg-gray-100 flex items-center">
+            <User className="h-4 w-4 mr-2 text-gray-600" />
+            Profile
           </DropdownMenuItem>
         </Link>
 
         <DropdownMenuItem
           onClick={handleLogout}
-          className="cursor-pointer hover:bg-gray-100 flex items-center space-x-2"
+          className="text-sm cursor-pointer hover:bg-gray-100 flex items-center"
         >
           <LogOut className="h-4 w-4 mr-2 text-gray-600" />
-          <span>Logout</span>
+          Logout
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

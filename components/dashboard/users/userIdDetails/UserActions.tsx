@@ -3,10 +3,12 @@
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
 import { revalidate } from "@/utils/revalidateTags";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 export function UserActions({ findUser }: any) {
+  const router = useRouter();
   const [value, setValue] = useState("");
 
   const handleDeleteUser = async (id: string) => {
@@ -49,6 +51,7 @@ export function UserActions({ findUser }: any) {
       if (userUpdate.success) {
         toast.success("User updated successfully");
         revalidate("users");
+        router.refresh();
 
         history.go(-1);
       } else {
@@ -91,6 +94,19 @@ export function UserActions({ findUser }: any) {
 
       {/* user actions */}
       <div className="flex gap-4 ml-4">
+        <button
+          disabled={findUser?.status === "Active"}
+          type="submit"
+          value="suspend"
+          className={`bg-[#F05223] text-white p-2 rounded-xl font-bold w-24  ${
+            findUser?.status === "Active"
+              ? "opacity-50 cursor-not-allowed"
+              : "cursor-pointer"
+          }`}
+          onClick={() => setValue("Active")}
+        >
+          Active
+        </button>
         <button
           disabled={findUser?.status === "Suspended"}
           type="submit"
