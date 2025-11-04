@@ -132,12 +132,12 @@ export default function Announcements({ data }: any) {
                 <TableCell className="">
                   <Badge
                     className={`w-20 ${
-                      invoice.status === "Draft"
+                      invoice.status === "Active"
                         ? "bg-[#D9D9D9] text-[#3D454E]"
                         : invoice.status === "Sheduled"
                         ? "bg-[#F05223] text-white"
                         : invoice.status === "Archived"
-                        ? "bg-[#000000] "
+                        ? "bg-[#000000] text-white"
                         : "bg-[#C5D92D] text-[#3D454E]"
                     }`}
                   >

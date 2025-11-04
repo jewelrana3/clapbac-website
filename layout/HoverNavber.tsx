@@ -48,9 +48,6 @@ export function UserDropdownMenu({ profileData }: Props) {
       <DropdownMenuTrigger asChild aria-label="User menu">
         <div className="flex items-center gap-2 cursor-pointer hover:opacity-80">
           <UserImage item={profileData.image || ""} />
-          <Button className="text-white font-bold">
-            {profileData.firstName || "User"}
-          </Button>
         </div>
       </DropdownMenuTrigger>
 

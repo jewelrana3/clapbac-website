@@ -21,6 +21,7 @@ export default async function page({
   const announcements = await myFetch(url, {
     tags: ["announcements"],
   });
+
   return (
     <div>
       <Announcements data={announcements?.data} />

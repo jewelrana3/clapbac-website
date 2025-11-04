@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
-import "../globals.css"; // Your global styles
-
-const lato = Lato({
-  subsets: ["latin"],
-  variable: "--font-lato",
-  weight: ["400", "700"],
-});
+import "../globals.css";
 
 export const metadata: Metadata = {
   title: "Clapbac Website",
@@ -18,5 +11,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="mt-16">{children}</main>;
+  return <>{children}</>;
 }

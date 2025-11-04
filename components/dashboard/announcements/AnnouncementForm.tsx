@@ -29,7 +29,6 @@ const AnnouncementForm = ({
   trigger: React.ReactNode;
 }) => {
   const [buttonValue, setButtonValue] = useState("");
-  // const [audienceValue, setAudienceValue] = useState("");
   const [dateValue, setDateValue] = useState("");
 
   const [formData, setFormData] = useState({
@@ -37,6 +36,7 @@ const AnnouncementForm = ({
     title: data?.title || "",
     message: data?.message || "",
     url: data?.url || "",
+    scheduleDate: data?.scheduleDate || "",
   });
 
   const handleEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,32 +48,40 @@ const AnnouncementForm = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const payload = {
+    const payload: {
+      audience: string;
+      title: string;
+      message: string;
+      url: string;
+      status: string;
+      scheduleDate?: string;
+    } = {
       audience: formData.audience,
       title: formData.title,
       message: formData.message,
       url: formData.url,
       status: buttonValue,
-      // scheduleDate: dateValue,
-
-      // buttonValue,
     };
 
-    try {
-      const isEdit = Boolean(data?._id);
-      const url = isEdit
-        ? `/announcements/${data?._id}`
-        : "/announcements/create";
-      const method = isEdit ? "PATCH" : "POST";
+    if (dateValue) {
+      payload.scheduleDate = new Date(dateValue).toISOString();
+    }
 
-      const res = await myFetch(url, {
-        method,
+    try {
+      // const isEdit: boolean = data?._id ? true : false;
+      // const url = isEdit
+      //   ? `/announcements/${data?._id}`
+      //   : "/announcements/create";
+      // const method = isEdit ? "PATCH" : "POST";
+
+      const res = await myFetch(`/announcements/${data?._id}`, {
+        method: "PATCH",
         body: payload,
       });
 
       if (res.success) {
-        revalidate("announcements");
         toast.success("Announcement updated successfully.");
+        revalidate("announcements");
       } else {
         toast.error(res?.message || "Announcement update failed.");
       }
@@ -197,11 +205,21 @@ const AnnouncementForm = ({
                 <div>
                   <input
                     type="date"
-                    value={dateValue}
+                    value={formData?.scheduleDate.slice(0, 10)}
                     onChange={(e) => setDateValue(e.target.value)}
                     className="cursor-pointer bg-[#F05223] text-white px-4 font-semibold rounded-xl py-1.5"
                   />
                 </div>
+
+                {dateValue && (
+                  <button
+                    type="submit"
+                    onClick={() => setButtonValue("Scheduled")}
+                    className="cursor-pointer bg-[#F05223] text-white px-4 py-1.5 rounded-xl font-semibold"
+                  >
+                    Schedule
+                  </button>
+                )}
                 <button
                   type="submit"
                   onClick={() => setButtonValue("Draft")}
@@ -210,16 +228,6 @@ const AnnouncementForm = ({
                   Save Draft
                 </button>
               </div>
-              {/* {dateValue && (
-                <div>
-                  <button
-                    type="submit"
-                    className="cursor-pointer bg-[#F05223] text-white px-4 py-1.5 rounded-xl font-semibold"
-                  >
-                    Submit
-                  </button>
-                </div>
-              )} */}
             </div>
           </div>
         </form>

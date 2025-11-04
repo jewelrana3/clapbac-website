@@ -25,13 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scrollbar-hide">
       <body className={`${lato.className}  antialiased `}>
-        <div>
-          <Header />
-        </div>
-        <main className="mt-16">{children}</main>
-        <div>
-          <Footer />
-        </div>
+        <Header />
+        <main>{children}</main>
+        <Footer />
         <Toaster position="bottom-right" />
       </body>
     </html>
