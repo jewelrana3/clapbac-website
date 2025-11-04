@@ -12,10 +12,12 @@ import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const redirect = useSearchParams().get("redirect");
-
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    toast.loading("Logging in...", { id: "login" });
 
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
@@ -40,14 +42,13 @@ export default function LoginPage() {
         toast.error(res?.message || "Login failed", { id: "login" });
       }
     } catch (error) {
-      console.error(error);
+      toast.error("Error during login", { id: "login" });
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <div className="max-w-xl mx-auto py-12  px-8 md:px-16 shadow-xl bg-[#E8E8E8] rounded my-10 border-r-2">
-      {/* Social Buttons */}
-      {/* <SocialLogin /> */}
-
       {/* Form Fields */}
       <form className="space-y-3" onSubmit={handleSubmit}>
         <Input
@@ -81,9 +82,10 @@ export default function LoginPage() {
         <div className="grid sm:grid-cols-2 gap-3 my-4">
           <Button
             htmlType="submit"
+            disabled={loading}
             className="bg-[#E95022] w-full md:flex-1 text-white font-bold py-2 rounded-xl"
           >
-            Login
+            {loading ? "Loading..." : "Login"}
           </Button>
 
           <Link href="/forgot-password">

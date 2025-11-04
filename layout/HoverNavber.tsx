@@ -33,7 +33,8 @@ export function UserDropdownMenu({ profileData }: Props) {
 
   const handleLogout = () => {
     deleteCookie("accessToken");
-    router.push("/login"); // ✅ client-side navigation
+    router.push("/login");
+    window.location.replace("/login");
   };
 
   const handleDashboard = () => {

@@ -28,9 +28,15 @@ export default async function Page({
   // recent companies
   const recentCompanies = await myFetch("/recent-companies");
 
+  const getProfile = await myFetch("/users/profile");
+
   return (
     <div>
-      <Reviewers reviews={reviews} recentCompanies={recentCompanies?.data} />
+      <Reviewers
+        reviews={reviews}
+        recentCompanies={recentCompanies?.data}
+        getProfile={getProfile?.data}
+      />
     </div>
   );
 }

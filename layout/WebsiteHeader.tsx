@@ -39,6 +39,7 @@ export default function WebsiteHeader() {
         const res = await myFetch("/users/profile", {
           tags: ["users-profile"],
         });
+
         setProfileData(res.data);
       } catch (err) {
         setError(true);
@@ -93,7 +94,7 @@ export default function WebsiteHeader() {
             <UserDropdownMenu profileData={profileData} />
           ) : (
             <Link href="/login">
-              <button className="px-3 py-2 rounded bg-orange-600 text-white font-bold transition-colors hover:bg-orange-700">
+              <button className="px-3 py-2 rounded bg-orange-600 text-white font-bold transition-colors hover:bg-orange-700 cursor-pointer">
                 Login
               </button>
             </Link>

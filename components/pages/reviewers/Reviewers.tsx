@@ -29,7 +29,11 @@ const reviewerTypes = [
   "VIP",
 ];
 
-export default function Reviewers({ reviews, recentCompanies }: any) {
+export default function Reviewers({
+  reviews,
+  recentCompanies,
+  getProfile,
+}: any) {
   const pathname = usePathname();
   return (
     <div>
@@ -69,15 +73,14 @@ export default function Reviewers({ reviews, recentCompanies }: any) {
             />
           </div>
         </section>
-
-        {/* pagination */}
-        {/* <Pagination /> */}
       </Container>
 
-      <RecentlyViewCompanies
-        title="Recently Viewed Reviewers"
-        data={recentCompanies?.data || []}
-      />
+      {getProfile?.role && recentCompanies?.length > 0 && (
+        <RecentlyViewCompanies
+          title="Recently Viewed Reviewers"
+          data={recentCompanies?.data || []}
+        />
+      )}
     </div>
   );
 }
