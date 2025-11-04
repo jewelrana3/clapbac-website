@@ -14,10 +14,10 @@ To run this project locally, follow the steps below:
 npm install
 # or
 yarn install
+# application run
+yarn dev
 # or
-pnpm install
-# or
-bun install
+npm run dev
 
 
 Open http://localhost:3000
@@ -37,13 +37,13 @@ This project uses next/font
 Here are some helpful links to deepen your Next.js knowledge:
 
 📘 Next.js Documentation
- – Learn about core features and APIs.
+ – https://nextjs.org/docs
 
 🧪 Learn Next.js
  – Interactive tutorial to get started quickly.
 
 💻 Next.js GitHub Repo
- – Contribute or explore the source code.
+ – https://github.com/jewelrana3/clapbac-website
 
 🚢 Deployment
 
