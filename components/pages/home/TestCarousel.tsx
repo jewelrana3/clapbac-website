@@ -20,17 +20,22 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
 
 export default function TestCarousel() {
-  const [featuresCompany, setFeaturesCompany] = React.useState<any>([]);
+  const [latestLoudVoices, setLatestLoudVoices] = React.useState<any>([]);
+  console.log(latestLoudVoices);
   React.useEffect(() => {
     const fetchData = async () => {
-      const featuresCompany = await myFetch("/reviews/reviewers");
-      setFeaturesCompany(featuresCompany?.data);
+      try {
+        const res = await myFetch("/reviews/reviewers");
+        setLatestLoudVoices(res?.data);
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     fetchData();
   }, []);
   const pathname = usePathname();
-  const swiperRef = React.useRef<any>(null); // Add ref to control Swiper
+  const swiperRef = React.useRef<any>(null);
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -51,8 +56,11 @@ export default function TestCarousel() {
   };
   return (
     <div className=" py-20 lg:max-w-screen-2xl mx-auto">
+      <h1 className="text-[#F05223] mb-2 text-2xl font-bold ml-8">
+        Latest Loud Voices
+      </h1>
       <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)} // Store swiper instance in ref
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         spaceBetween={0}
         slidesPerView={4}
         autoplay={{
@@ -88,7 +96,7 @@ export default function TestCarousel() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper "
       >
-        {featuresCompany?.map((card: any, index: number) => (
+        {latestLoudVoices?.map((card: any, index: number) => (
           <SwiperSlide key={index}>
             <div
               className={`${

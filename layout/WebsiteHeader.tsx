@@ -10,6 +10,7 @@ import { myFetch } from "@/utils/myFetch";
 import { UserDropdownMenu } from "./HoverNavber";
 import ActiveOffer from "@/components/share/ActiveOffer";
 import { Skeleton } from "@/components/ui/skeleton";
+import path from "path";
 
 interface ProfileData {
   firstName: string;
@@ -55,7 +56,7 @@ export default function WebsiteHeader() {
 
   return (
     <>
-      <ActiveOffer />
+      {pathname !== "/dashboard" && <ActiveOffer />}
       <header className="sticky top-0 w-full z-50 bg-[#191919]">
         <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 py-3">
           {/* Logo */}

@@ -183,10 +183,10 @@ export default function ReviewerRatingForm() {
               <>
                 <Select
                   onValueChange={(val) => {
-                    setIsOtherType(val === "Others");
-                    field.onChange(val === "Others" ? "" : val);
+                    setIsOtherType(val === "Other");
+                    field.onChange(val === "Other" ? "" : val);
                   }}
-                  value={isOtherType ? "Others" : field.value}
+                  value={isOtherType ? "Other" : field.value}
                 >
                   <SelectTrigger className="w-full !h-14">
                     <SelectValue placeholder="Select Reviewer Type" />
@@ -227,10 +227,10 @@ export default function ReviewerRatingForm() {
               <>
                 <Select
                   onValueChange={(val) => {
-                    setIsOtherConsequence(val === "Others");
-                    field.onChange(val === "Others" ? "" : val);
+                    setIsOtherConsequence(val === "Other");
+                    field.onChange(val === "Other" ? "" : val);
                   }}
-                  value={isOtherConsequence ? "Others" : field.value}
+                  value={isOtherConsequence ? "Other" : field.value}
                 >
                   <SelectTrigger className="w-full !h-14">
                     <SelectValue placeholder="Select Consequence" />
