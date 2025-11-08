@@ -41,13 +41,14 @@ export default function ReviewCommentDetails({
             </div>
 
             {/* name & owner */}
-            <div className="font-semibold text-sm">
+            <div className=" text-sm">
               <div>
                 <div>
-                  <p>Clapbac From</p> <p className="text-gray-500"></p>
-                  <div className="flex gap-1 ">
-                    <p>{commentItem?.name}</p>
-                    <p className="font-medium">{commentItem?.user?.title}</p>
+                  <p className="uppercase font-medium text-sm">Clapbac From</p>{" "}
+                  <p className="text-gray-500"></p>
+                  <div className="flex gap-1 font-bold text-md">
+                    <p>{commentItem?.user?.firstName}</p>
+                    <p>{commentItem?.user?.lastName}</p>
                   </div>
                   <p>{commentItem?.subName}</p>
                   {commentItem.author}

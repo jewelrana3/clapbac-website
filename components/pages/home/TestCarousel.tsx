@@ -22,7 +22,7 @@ import Link from "next/link";
 
 export default function TestCarousel() {
   const [latestLoudVoices, setLatestLoudVoices] = React.useState<any>([]);
-  console.log(latestLoudVoices);
+
   React.useEffect(() => {
     const fetchData = async () => {
       try {
