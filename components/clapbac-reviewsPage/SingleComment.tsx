@@ -64,7 +64,7 @@ export default function SingleComment({
                   height={0}
                   alt="Logo"
                   sizes="100vh"
-                  className="w-8 h-8 sm:w-12 sm:h-12 rounded-full"
+                  className="w-8 h-8 sm:w-20 sm:h-20 rounded-full border p-1"
                 />
               )}
             </div>
@@ -82,7 +82,7 @@ export default function SingleComment({
                     <p>{reply?.name}</p>
                     {/* <p className="font-medium">{reply?.owner}</p> */}
                     <div className="flex items-center gap-2">
-                      <p className="font-semibold text-lg">
+                      <p className="font-semibold text-base">
                         {reply?.reviewerName} ,
                       </p>
                       <p>{reply?.user?.title}</p>
@@ -103,7 +103,12 @@ export default function SingleComment({
             </div>
           </div>
 
-          <p className="text-sm text-gray-700 mt-6">{reply?.clapbacMessage}</p>
+          <p
+            style={{ whiteSpace: "pre-line" }}
+            className="text-sm text-gray-700 mt-6"
+          >
+            {reply?.clapbacMessage}
+          </p>
         </div>
       </div>
       <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">

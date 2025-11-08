@@ -78,27 +78,30 @@ export default function ReviewerRatingForm() {
     setIsSubmitting(true);
     toast.loading("Submitting...", { id: "review" });
 
-    try {
-      const res = await myFetch("/reviews/create", {
-        method: "POST",
-        body: {
-          ...data,
-          reviewRating: rating.yourRating,
-          clapbacRating: rating.bussinessRating,
-        },
-      });
-      if (res?.success) {
-        toast.success("Review submitted successfully!", { id: "review" });
-        reset();
-        revalidate("reviews");
-        setRating({ yourRating: 0, bussinessRating: 0 });
-        router.push(`/clapbac-reviews/${res?.data?.company}`);
-      } else toast.error(res?.message || "Review submission failed.");
-    } catch {
-      toast.error("Something went wrong.", { id: "review" });
-    } finally {
-      setIsSubmitting(false);
-    }
+    console.log(data);
+
+    // try {
+    //   const res = await myFetch("/reviews/create", {
+    //     method: "POST",
+    //     body: {
+    //       ...data,
+    //       reviewRating: rating.yourRating,
+    //       clapbacRating: rating.bussinessRating,
+    //     },
+    //   });
+
+    //   if (res?.success) {
+    //     toast.success("Review submitted successfully!", { id: "review" });
+    //     reset();
+    //     revalidate("reviews");
+    //     setRating({ yourRating: 0, bussinessRating: 0 });
+    //     router.push(`/clapbac-reviews/${res?.data?.company}`);
+    //   } else toast.error(res?.message || "Review submission failed.");
+    // } catch {
+    //   toast.error("Something went wrong.", { id: "review" });
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   return (
@@ -121,7 +124,8 @@ export default function ReviewerRatingForm() {
           </div>
           <div className="flex items-end mt-2 md:mt-0">
             <Link
-              href="/review-guildliness "
+              target="_blank"
+              href="/review-guildliness"
               className="text-sm text-[#3D454E] font-semibold hover:underline"
             >
               Read Our Review Guidelines

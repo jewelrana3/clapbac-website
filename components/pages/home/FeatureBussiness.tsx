@@ -39,10 +39,14 @@ export default async function FeatureBusiness() {
                 className="bg-[#F5F5F5] p-5 text-[#3D454E] flex flex-col"
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`}
+                  src={
+                    item?.logo
+                      ? `${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`
+                      : "/default-company-logo.png"
+                  }
                   alt={item.category.name}
-                  width={300}
-                  height={80}
+                  width={1000}
+                  height={1000}
                   className="w-full flex-1"
                 />
                 <div className="mt-5">
