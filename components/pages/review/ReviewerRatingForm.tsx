@@ -120,7 +120,7 @@ export default function ReviewerRatingForm() {
         </div>
         <InputField
           id="reviewerAddress"
-          label="Address of Reviewer that you are Rating"
+          label="City and State of Reviewer you are Rating"
           rules={{ required: "Reviewer address is required." }}
           placeholder="123 Main St, Anytown"
         />

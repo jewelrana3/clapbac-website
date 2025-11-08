@@ -4,13 +4,14 @@ import React from "react";
 import CarouselPage from "./Carusel";
 import Description from "./Description";
 import { usePathname } from "next/navigation";
+import TestCarousel from "./TestCarousel";
 
 export default function LatestLoudVoices() {
   const pathname = usePathname();
 
   return (
     <div>
-      <CarouselPage />
+      <TestCarousel />
       {pathname === "/reviews" && (
         <Description
           className="md:w-[40%] mx-auto"

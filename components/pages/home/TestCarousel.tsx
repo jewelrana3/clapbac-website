@@ -99,7 +99,7 @@ export default function TestCarousel() {
       >
         {latestLoudVoices?.map((card: any, index: number) => (
           <SwiperSlide key={index}>
-            <Link href={`/clapbac-reviews/${card?._id}`}>
+            <Link href={`/clapbac-reviews/${card?.company?._id}`}>
               <div
                 className={`${
                   pathname === "/reviewers"
@@ -108,7 +108,7 @@ export default function TestCarousel() {
                 } w-[80%] mx-auto h-[370px]`}
               >
                 <div className="bg-white mx-auto p-3">
-                  <CardContent className="">
+                  <CardContent className="overflow-hidden">
                     {/* Profile Header */}
                     <div className="flex items-center space-x-3 mb-4">
                       <UserImage item={card?.user?.image} />

@@ -60,7 +60,7 @@ export default function ReviewersCard({ item }: { item: any }) {
                     Clapbac from...
                   </p>
                   <p className="text-sm font-bold text-gray-800">
-                    {item.reviewerName}
+                    {item.user?.firstName} {item.user?.lastName}
                     <span className="font-normal">,{item?.user?.title}</span>
                   </p>
                   <p className="text-sm text-gray-700">{item?.company?.name}</p>

@@ -12,21 +12,36 @@ import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 import { usePathname } from "next/navigation";
 
 const reviewerIndexOptions = [
-  "Most Controversial",
-  "Most Highly Rated",
-  "Most Flagged",
-  "Most Hilarious",
-  "Alphabetical",
+  "mostControversial",
+  "mostHilarious",
+  "mostHighlyRated",
+  "mostFlagged",
+  "alphabetical",
 ];
 
 const reviewerTypes = [
   "The Drama Queen",
-  "The Under-Tipper",
-  "The One-Star Sniper",
-  "The Essayist",
-  "The Karen",
-  "Star Legend",
+  "One-Star Sniper",
+  "Karen",
   "VIP",
+  "Star Legend",
+  "No-Show Ninja",
+  "Nitpicker",
+  "Rage Typer",
+  "Bargain Bandit",
+  "Superfan",
+  "Clout Chaser",
+  "Coupon Scammer",
+  "Cheerleader",
+  "Troll Lord",
+  "Fake Reviewer",
+  "Loyal Rockstar",
+  "Meltdown Maven",
+  "Discount Diva",
+  "Truth Teller",
+  "Chaos Starter",
+  "Dory",
+  "Other",
 ];
 
 export default function Reviewers({
@@ -65,10 +80,12 @@ export default function Reviewers({
           <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
             <RelatedCategories
               title="Reviewer Index"
+              setParams="reviewerIndex"
               categories={reviewerIndexOptions}
             />
             <RelatedCategories
               title="Reviewer Type"
+              setParams="reviewerType"
               categories={reviewerTypes}
             />
           </div>

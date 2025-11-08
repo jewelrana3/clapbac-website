@@ -8,7 +8,7 @@ export default function Description({
   className?: string;
 }) {
   return (
-    <div className="bg-[#E9E9E9] px-10 py-20 sm:text-2xl font-bold text-center ">
+    <div className="bg-[#e4d8d8] px-10 py-20 sm:text-2xl font-bold text-center ">
       <p className={`${className} `}>{description}</p>
     </div>
   );

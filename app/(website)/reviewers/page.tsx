@@ -9,17 +9,17 @@ export default async function Page({
     page?: string;
     searchTerm?: string;
     reviewerType?: string;
-    revewerIndex?: string;
+    reviewerIndex?: string;
   };
 }) {
-  const { page, searchTerm, reviewerType, revewerIndex } = searchParams;
+  const { page, searchTerm, reviewerType, reviewerIndex } = searchParams;
 
   const query = new URLSearchParams();
 
   if (page) query.append("page", page);
   if (searchTerm) query.append("searchTerm", searchTerm);
   if (reviewerType) query.append("reviewerType", reviewerType);
-  if (revewerIndex) query.append("revewerIndex", revewerIndex);
+  if (reviewerIndex) query.append("reviewerIndex", reviewerIndex);
 
   const reviews = await myFetch(
     `/reviews/reviewers${query.toString() ? `?${query.toString()}` : ""}`
