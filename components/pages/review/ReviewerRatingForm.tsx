@@ -12,13 +12,15 @@ import {
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { consequenceOptions, reviewerTypes } from "@/demoData/reviewPage";
-import RatingHeader from "./RatingHeader";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { revalidate } from "@/utils/revalidateTags";
 import { useRouter } from "next/navigation";
+import { StarRating } from "react-flexible-star-rating";
+import RenderStars from "@/components/share/rating/RenderStars";
+import Link from "next/link";
 
 type FormValues = {
   reviewerName: string;
@@ -75,16 +77,18 @@ export default function ReviewerRatingForm() {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     toast.loading("Submitting...", { id: "review" });
+    console.log({ rating });
     try {
       const res = await myFetch("/reviews/create", {
         method: "POST",
         body: {
           ...data,
-          clapbacRating: rating.bussinessRating,
           reviewRating: rating.yourRating,
+          clapbacRating: rating.bussinessRating,
         },
       });
       if (res?.success) {
+        console.log(res);
         toast.success("Review submitted successfully!", { id: "review" });
         reset();
         revalidate("reviews");
@@ -104,7 +108,27 @@ export default function ReviewerRatingForm() {
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-3xl mx-auto space-y-6 p-6 border rounded-lg shadow-sm"
       >
-        <RatingHeader rating={rating} setRating={setRating} />
+        <div className="flex justify-between">
+          <div className="flex items-center gap-5">
+            <RenderStars
+              initialRating={rating.bussinessRating}
+              onRatingChange={(newRating: number) =>
+                setRating((prev) => ({ ...prev, yourRating: newRating }))
+              }
+            />
+            <div className="inline-block bg-[#c6db24] text-black font-semibold px-4 py-3 rounded-md text-sm relative  clip-tag mt-2 md:mt-0">
+              Choose Your Rating
+            </div>
+          </div>
+          <div className="flex items-end mt-2 md:mt-0">
+            <Link
+              href="/review-guildliness "
+              className="text-sm text-[#3D454E] font-semibold hover:underline"
+            >
+              Read Our Review Guidelines
+            </Link>
+          </div>
+        </div>
 
         <div>
           <InputField
@@ -159,12 +183,27 @@ export default function ReviewerRatingForm() {
           }}
           placeholder="https://..."
         />
-        <InputField
-          id="experienceDate"
-          label="Date of Experience"
-          type="date"
-          rules={{ required: "Date is required." }}
-        />
+        {/* date and rating */}
+        <div>
+          <InputField
+            id="experienceDate"
+            label="Date of Experience"
+            type="date"
+            rules={{ required: "Date is required." }}
+          />
+          <div className="mt-5">
+            <p className="text-[#3D454E] font-semibold mb-1">
+              How the Original Reviewer Rated Your Business
+            </p>
+            <RenderStars
+              initialRating={rating.bussinessRating}
+              onRatingChange={(newRating: number) =>
+                setRating((prev) => ({ ...prev, bussinessRating: newRating }))
+              }
+            />
+          </div>
+        </div>
+
         <InputField
           id="clapbacTitle"
           label="Title of Your Review"

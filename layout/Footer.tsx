@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import Link from "next/link";
 import Container from "./Container";
 import Image from "next/image";
@@ -24,7 +23,6 @@ const footerLinks = [
     title: "FOR BUSINESSES",
     links: [
       { label: "Advertise on Clapbac", href: "https://www.google.com" },
-      // { label: "Business Log In", href: "https://www.google.com" },
       { label: "Clapbac for Business", href: "https://www.google.com" },
     ],
   },
