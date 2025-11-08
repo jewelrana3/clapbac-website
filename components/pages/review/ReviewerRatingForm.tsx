@@ -78,30 +78,28 @@ export default function ReviewerRatingForm() {
     setIsSubmitting(true);
     toast.loading("Submitting...", { id: "review" });
 
-    console.log(data);
+    try {
+      const res = await myFetch("/reviews/create", {
+        method: "POST",
+        body: {
+          ...data,
+          reviewRating: rating.yourRating,
+          clapbacRating: rating.bussinessRating,
+        },
+      });
 
-    // try {
-    //   const res = await myFetch("/reviews/create", {
-    //     method: "POST",
-    //     body: {
-    //       ...data,
-    //       reviewRating: rating.yourRating,
-    //       clapbacRating: rating.bussinessRating,
-    //     },
-    //   });
-
-    //   if (res?.success) {
-    //     toast.success("Review submitted successfully!", { id: "review" });
-    //     reset();
-    //     revalidate("reviews");
-    //     setRating({ yourRating: 0, bussinessRating: 0 });
-    //     router.push(`/clapbac-reviews/${res?.data?.company}`);
-    //   } else toast.error(res?.message || "Review submission failed.");
-    // } catch {
-    //   toast.error("Something went wrong.", { id: "review" });
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+      if (res?.success) {
+        toast.success("Review submitted successfully!", { id: "review" });
+        reset();
+        revalidate("reviews");
+        setRating({ yourRating: 0, bussinessRating: 0 });
+        router.push(`/clapbac-reviews/${res?.data?.company}`);
+      } else toast.error(res?.message || "Review submission failed.");
+    } catch {
+      toast.error("Something went wrong.", { id: "review" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
