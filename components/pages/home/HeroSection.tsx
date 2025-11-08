@@ -50,11 +50,12 @@ export default async function HeroSection() {
 
           {/* Left image */}
           <Image
-            src="/home-man.png"
+            priority={true}
             alt="Person using phone"
             width={492}
             height={368}
             className=" object-cover"
+            src="/home-man.png"
           />
         </div>
       </section>

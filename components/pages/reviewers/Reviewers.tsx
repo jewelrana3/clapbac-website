@@ -8,8 +8,8 @@ import CategoryHeader from "@/components/pages/food-drink/CategoryHeader";
 import Pagination from "@/components/share/Pagination";
 import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
-import LatestLoudVoices from "@/components/pages/home/LatestLoudVoices";
 import { usePathname } from "next/navigation";
+import LatestLoudVoices from "../home/LatestLoudVoices";
 
 const reviewerIndexOptions = [
   "mostControversial",

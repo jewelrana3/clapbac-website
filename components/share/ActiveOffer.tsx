@@ -1,7 +1,7 @@
 "use client";
 import { myFetch } from "@/utils/myFetch";
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type AllName = {
   title: string;

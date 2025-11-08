@@ -77,7 +77,7 @@ export default function ReviewerRatingForm() {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     toast.loading("Submitting...", { id: "review" });
-    console.log({ rating });
+
     try {
       const res = await myFetch("/reviews/create", {
         method: "POST",
@@ -88,7 +88,6 @@ export default function ReviewerRatingForm() {
         },
       });
       if (res?.success) {
-        console.log(res);
         toast.success("Review submitted successfully!", { id: "review" });
         reset();
         revalidate("reviews");

@@ -7,16 +7,17 @@ const RelatedCategories = ({
   setParams,
   title,
 }: {
-  categories: any;
-  setParams: string;
-  title: string;
+  categories?: any;
+  setParams?: string | undefined;
+  title?: string;
 }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const handleType = (cat: string) => {
+    if (!setParams) return;
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set(setParams, cat);
+    newSearchParams.set(setParams, String(cat));
     router.push(`?${newSearchParams.toString()}`);
   };
   return (
