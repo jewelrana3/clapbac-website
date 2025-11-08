@@ -55,7 +55,7 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
           </span>
           {reviews?.clapbacTitle}
         </p>
-        <p className="text-sm text-gray-700 ">{reviews?.clapbacMessage}</p>
+        <p className="text-sm text-gray-700 ">{reviews?.reviewMessage}</p>
         <a
           href={reviews?.sourceLink}
           target="_blank"

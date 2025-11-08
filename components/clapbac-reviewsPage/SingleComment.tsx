@@ -68,7 +68,7 @@ export default function SingleComment({
                 />
               )}
             </div>
-            <div className="font-semibold text-sm">
+            <div className="text-sm">
               <div>
                 <div>
                   {/* <p>
@@ -78,22 +78,32 @@ export default function SingleComment({
                   </p> */}
                   <p>CLAPBAC FROM</p>
                   {/* name & owner */}
-                  <div className="flex gap-1 ">
+                  <div className="">
                     <p>{reply?.name}</p>
                     <p className="font-medium">{reply?.owner}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-semibold text-lg">
+                        {reply?.reviewerName} ,
+                      </p>
+                      <p>{reply?.user?.title}</p>
+                    </div>
+                    <p>{reply?.company?.name}</p>
+                    <p>
+                      {new Date(reply?.createdAt).toISOString().split("T")[0]}
+                    </p>
                   </div>
-                  <p>{reply?.subName}</p>
-                  {reply?.author}
+                  {/* <p>{reply?.subName}</p> */}
+                  {/* {reply?.author} */}
                 </div>
               </div>
-              {reply?.business && (
+              {/* {reply?.business && (
                 <span className="text-gray-500 text-xs">{reply?.business}</span>
               )}
-              <p className="text-xs text-gray-400 mb-1">{reply?.date}</p>
+              <p className="text-xs text-gray-400 mb-1">{reply?.date}</p> */}
             </div>
           </div>
 
-          <p className="text-sm text-gray-700 mt-1">{reply?.reviewMessage}</p>
+          <p className="text-sm text-gray-700 mt-6">{reply?.clapbacMessage}</p>
         </div>
       </div>
       <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">
