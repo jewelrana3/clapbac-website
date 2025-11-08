@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { StarRating } from "react-flexible-star-rating";
 
 type Rating = {
@@ -34,9 +35,12 @@ export default function RatingHeader({ rating, setRating }: RatingHeaderProps) {
         </div>
       </div>
       <p className="flex items-end mt-2 md:mt-0">
-        <a href="#" className="text-sm text-[#3D454E] font-semibold">
+        <Link
+          href="/review-guildliness "
+          className="text-sm text-[#3D454E] font-semibold hover:underline"
+        >
           Read Our Review Guidelines
-        </a>
+        </Link>
       </p>
     </div>
   );

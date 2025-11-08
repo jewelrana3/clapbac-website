@@ -18,6 +18,7 @@ import UserImage from "@/components/share/customImageHandle/UserImage";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { BiSolidLeftArrow, BiSolidRightArrow } from "react-icons/bi";
+import Link from "next/link";
 
 export default function TestCarousel() {
   const [latestLoudVoices, setLatestLoudVoices] = React.useState<any>([]);
@@ -98,54 +99,58 @@ export default function TestCarousel() {
       >
         {latestLoudVoices?.map((card: any, index: number) => (
           <SwiperSlide key={index}>
-            <div
-              className={`${
-                pathname === "/reviewers"
-                  ? "border-16 border-[#E1E1E1]"
-                  : "border-16 border-[#C5D92D]"
-              } w-[80%] mx-auto h-[370px]`}
-            >
-              <div className="bg-white mx-auto p-3">
-                <CardContent className="">
-                  {/* Profile Header */}
-                  <div className="flex items-center space-x-3 mb-4">
-                    <UserImage item={card?.user?.image} />
-                    <div>
-                      <h3 className="font-bold">
-                        {card.user.firstName + " " + card.user.lastName}
-                      </h3>
-                      <p className="text-sm text-gray-600">
-                        {card.company.name}
-                      </p>
+            <Link href={`/clapbac-reviews/${card?._id}`}>
+              <div
+                className={`${
+                  pathname === "/reviewers"
+                    ? "border-16 border-[#E1E1E1]"
+                    : "border-16 border-[#C5D92D]"
+                } w-[80%] mx-auto h-[370px]`}
+              >
+                <div className="bg-white mx-auto p-3">
+                  <CardContent className="">
+                    {/* Profile Header */}
+                    <div className="flex items-center space-x-3 mb-4">
+                      <UserImage item={card?.user?.image} />
+                      <div>
+                        <h3 className="font-bold">
+                          {card.user.firstName + " " + card.user.lastName}
+                        </h3>
+                        <p className="text-sm text-gray-600">
+                          {card.company.name}
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  <h1 className="font-semibold">
-                    {card.reviewRating > 3
-                      ? "GAVE PROPS TO..."
-                      : "CLAPBAC’D ON..."}
-                  </h1>
+                    <h1 className="font-semibold">
+                      {card.reviewRating > 3
+                        ? "GAVE PROPS TO..."
+                        : "CLAPBAC’D ON..."}
+                    </h1>
 
-                  {/* Action and Target */}
-                  <div className="mb-2">
-                    <p className="text-xs font-semibold text-gray-700">
-                      {card.clapbacTitle}
+                    {/* Action and Target */}
+                    <div className="mb-2">
+                      <p className="text-xs font-semibold text-gray-700">
+                        {card.clapbacTitle}
+                      </p>
+                      <h2 className="text-xl font-bold">
+                        {card?.reviewerName}
+                      </h2>
+                    </div>
+
+                    {/* Star Rating */}
+                    <div className="flex space-x-1 mb-3">
+                      {renderStars(card.reviewRating)}
+                    </div>
+
+                    {/* Review */}
+                    <p className="text-sm text-gray-800 font-semibold flex-grow">
+                      {card.reviewMessage.slice(0, 180)}...
                     </p>
-                    <h2 className="text-xl font-bold">{card?.reviewerName}</h2>
-                  </div>
-
-                  {/* Star Rating */}
-                  <div className="flex space-x-1 mb-3">
-                    {renderStars(card.reviewRating)}
-                  </div>
-
-                  {/* Review */}
-                  <p className="text-sm text-gray-800 font-semibold flex-grow">
-                    {card.reviewMessage.slice(0, 180)}...
-                  </p>
-                </CardContent>
+                  </CardContent>
+                </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
         {/* Custom Navigation Buttons */}

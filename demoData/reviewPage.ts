@@ -25,8 +25,8 @@ export const reviewerTypes = [
     description: "Forgets details, leaves inaccurate reviews (Finding Nemo)",
   },
   {
-    label: "Others",
-    description: "Others",
+    label: "Other",
+    description: "Other",
   },
 ];
 
@@ -41,7 +41,7 @@ export const consequenceOptions = [
   "Free Dessert",
   "Wall of Shame",
   "20% Off Next Order",
-  "Others",
+  "Other",
 ];
 
 export const businessCategories = [

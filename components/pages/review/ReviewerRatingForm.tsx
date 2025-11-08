@@ -106,12 +106,18 @@ export default function ReviewerRatingForm() {
       >
         <RatingHeader rating={rating} setRating={setRating} />
 
-        <InputField
-          id="reviewerName"
-          label="Name of Reviewer that you are Rating"
-          rules={{ required: "Reviewer name is required." }}
-          placeholder="e.g. Sarah M."
-        />
+        <div>
+          <InputField
+            id="reviewerName"
+            label="Name of Reviewer that you are Rating"
+            rules={{ required: "Reviewer name is required." }}
+            placeholder="e.g. Sarah M."
+          />
+          <p className="italic text-[#3D454E]">
+            Please use first name and last initial only (e.g., Sarah M.) to
+            respect privacy and comply with Fair Use.
+          </p>
+        </div>
         <InputField
           id="reviewerAddress"
           label="Address of Reviewer that you are Rating"
@@ -129,6 +135,10 @@ export default function ReviewerRatingForm() {
             style={{ height: 130 }}
           />
           <FieldError name="reviewMessage" />
+          <p className="italic text-[#3D454E]">
+            Review needs to be short excerpts from original review to comply
+            with the Fair Use.
+          </p>
         </div>
 
         <InputField
