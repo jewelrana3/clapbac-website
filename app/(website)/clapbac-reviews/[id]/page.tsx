@@ -47,6 +47,20 @@ export default async function Review({ params }: any) {
                 <p className="text-center">No reviews found</p>
               )}
             </div>
+
+            {/* disclaimer description */}
+            <div className="bg-[#e4e0e0] mt-2 text-justify p-6">
+              <h3 className="font-bold text-lg mb-5">Website Disclaimer :</h3>
+              “*The content featured on this site includes short excerpts of
+              publicly available reviews for the purpose of commentary,
+              critique, and community discussion. These excerpts are used under
+              the principles of fair use and are transformed by the addition of
+              ratings, commentary, and analysis. Clapbac is not affiliated with
+              or endorsed by Yelp, Google, TripAdvisor, or any other third-party
+              review platform. All reviewer names are anonymized or shown as
+              displayed publicly, and any copyrighted content will be removed
+              upon request in accordance with the DMCA.”
+            </div>
           </div>
           <div className="w-full lg:w-1/3">
             <CompanyDetails details={companyDetails?.data} />
