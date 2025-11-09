@@ -48,17 +48,17 @@ export default function CompaniesTable({ data }: any) {
           {data?.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell>
-                  {invoice?.logo ? (
-                    <Image
-                      src={invoice?.logo || ""}
-                      alt={invoice?.name}
-                      width={50}
-                      height={50}
-                    />
-                  ) : (
-                    <p>No Image</p>
-                  )}
+                <TableCell className="pl-8">
+                  <Image
+                    src={
+                      invoice?.logo
+                        ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${invoice?.logo}`
+                        : "/default-company-logo.png"
+                    }
+                    alt={invoice?.name}
+                    width={50}
+                    height={50}
+                  />
                 </TableCell>
 
                 <TableCell className="">
