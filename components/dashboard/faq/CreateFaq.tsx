@@ -12,8 +12,6 @@ export const handleUpdateFaq = async (formData: FormData) => {
   const method = isEdit ? "PATCH" : "POST";
   const url = isEdit ? `/faqs/${id}` : `/faqs/create`;
 
-  console.log(formData);
-
   try {
     const res = await myFetch(url, {
       method,
