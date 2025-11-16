@@ -29,6 +29,8 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const date = new Date();
+  const currentYear = date.getFullYear();
   return (
     <footer className="bg-[#181716] text-white py-20 px-6 md:px">
       <Container className="max-w-screen-2xl mx-auto">
@@ -64,7 +66,9 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className=" mt-10 pt-6 text-xs flex flex-col md:flex-row justify-between ">
-          <p className="condition">© 2025 Clapbac | All Rights Reserved.</p>
+          <p className="condition">
+            © {currentYear} Clapbac | All Rights Reserved.
+          </p>
           <div className="space-x-4 mt-2 md:mt-0">
             <Link className="condition" href="/privacy-policy">
               Terms of Service
