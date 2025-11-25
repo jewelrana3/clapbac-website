@@ -83,11 +83,11 @@ export default function SingleComment({
                     {/* <p className="font-medium">{reply?.owner}</p> */}
                     <div className="flex items-center gap-2">
                       <p className="font-semibold text-base">
-                        {reply?.reviewerName} ,
+                        {reply?.user?.firstName} {reply?.user?.lastName} ,
                       </p>
                       <p>{reply?.user?.title}</p>
                     </div>
-                    <p>{reply?.company?.name}</p>
+                    <p className="capitalize">{reply?.company?.name}</p>
                     <p>
                       {new Date(reply?.createdAt).toISOString().split("T")[0]}
                     </p>

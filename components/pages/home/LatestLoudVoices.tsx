@@ -130,9 +130,6 @@ export default function LatestLoudVoices() {
 
                     {/* Action and Target */}
                     <div className="mb-2">
-                      <p className="text-xs font-semibold text-gray-700">
-                        {card.clapbacTitle}
-                      </p>
                       <h2 className="text-xl font-bold">
                         {card?.reviewerName}
                       </h2>

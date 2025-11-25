@@ -7,7 +7,7 @@ const UserImage = ({
   item,
   name = "user logo",
   width = 50,
-  height = 50,
+  height = 10,
 }: {
   item: string | null | undefined;
   name?: string;
@@ -28,7 +28,7 @@ const UserImage = ({
       alt={name}
       width={width}
       height={height}
-      className="object-cover rounded-full"
+      className="object-cover rounded-full h-14 w-14"
       placeholder="blur"
       blurDataURL="/blur-placeholder.png"
     />

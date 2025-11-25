@@ -18,7 +18,7 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
         <div>
           <h3 className="font-bold text-lg">{reviews?.reviewerName}</h3>
           {/* location */}
-          <p className="text-sm ">Los Angeles, CA</p>
+          <p className="text-sm ">{reviews?.reviewerAddress}</p>
         </div>
 
         <div className="text-right">

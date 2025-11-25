@@ -27,7 +27,7 @@ export default async function FeatureBusiness() {
 
   return (
     <Container className="">
-      {featuresBussiness?.data.length > 0 ? (
+      {featuresBussiness?.data?.length > 0 ? (
         <div className=" py-20">
           <h2 className="text-orange-600 text-2xl font-bold mb-4">
             Featured Businesses
