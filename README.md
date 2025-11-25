@@ -56,3 +56,10 @@ The easiest way to deploy your app is through Vercel
 🌟 Feedback
 
 Feel free to open issues or contribute. We’d love to hear your thoughts and ideas to improve the project!
+
+
+# # env file
+
+# BASE_URL=http://82.180.137.106:5000/api/v1
+# NEXT_PUBLIC_BASE_URL=http://82.180.137.106:5000
+```
