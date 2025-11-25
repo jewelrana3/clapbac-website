@@ -85,7 +85,7 @@ export default function SingleComment({
                       <p className="font-semibold text-base">
                         {reply?.user?.firstName} {reply?.user?.lastName} ,
                       </p>
-                      <p>{reply?.user?.title}</p>
+                      <p>Owner</p>
                     </div>
                     <p className="capitalize">{reply?.company?.name}</p>
                     <p>
