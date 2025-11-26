@@ -36,6 +36,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>("");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -104,6 +105,23 @@ export default function BusinessInformationForm({ company }: { company: any }) {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+    if (!validTypes.includes(file.type)) {
+      toast.error("Only PNG, JPG and JPEG images are allowed.");
+      setPreviewImage(null);
+      setImageFile(null);
+      return;
+    }
+
+    if (file.size > 1 * 1024 * 1024) {
+      toast.error(`Please upload a file smaller than 1 MB`);
+      setError("Please upload a file smaller than 1 MB");
+      return;
+    }
+
     if (file) {
       setPreviewImage(URL.createObjectURL(file));
       setImageFile(file);
@@ -145,6 +163,12 @@ export default function BusinessInformationForm({ company }: { company: any }) {
         >
           <Edit size={22} />
         </span>
+
+        {error && (
+          <p className="text-sm text-red-500 mt-2">
+            Please upload a file smaller than 1 MB
+          </p>
+        )}
       </div>
 
       {/* Form */}

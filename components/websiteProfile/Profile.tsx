@@ -57,15 +57,22 @@ export default function Profile({ data }: any) {
 
     const validTypes = ["image/png", "image/jpeg", "image/jpg"];
     if (!validTypes.includes(file.type)) {
-      setError("Only PNG, JPG and JPEG images are allowed.");
+      toast.error("Only PNG, JPG and JPEG images are allowed.");
       setPreviewImage(null);
       setImageFile(null);
+      return;
+    }
+
+    if (file.size > 1 * 1024 * 1024) {
+      toast.error(`Please upload a file smaller than 1 MB`);
+      setError("Please upload a file smaller than 1 MB");
       return;
     }
 
     if (file) {
       setPreviewImage(URL.createObjectURL(file));
       setImageFile(file);
+      setError("");
     }
   };
 
@@ -117,7 +124,7 @@ export default function Profile({ data }: any) {
               alt="Profile"
               width={150}
               height={150}
-              className="rounded-full object-cover"
+              className="rounded-full object-cover h-[150px] w-[150px]"
             />
           ) : (
             <span className="flex items-center justify-center h-full text-gray-500">
@@ -131,18 +138,25 @@ export default function Profile({ data }: any) {
           type="file"
           accept="image/*"
           ref={fileInputRef}
+          multiple={false}
           onChange={handleImageChange}
           className="hidden"
         />
 
         {/* Edit icon, clickable to open file picker */}
         <span
-          className="absolute left-28 top-28 cursor-pointer text-gray-700 hover:text-gray-900"
+          className="absolute left-28 top-28 cursor-pointer text-gray-700 hover:text-gray-900 z-50"
           onClick={handleEditClick}
           title="Change profile picture"
         >
           <Edit size={22} />
         </span>
+
+        {error && (
+          <p className="text-sm text-red-500 mt-2">
+            Please upload a file smaller than 1 MB
+          </p>
+        )}
       </div>
 
       {/* form handle */}
