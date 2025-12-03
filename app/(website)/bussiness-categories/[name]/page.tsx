@@ -37,7 +37,7 @@ export default async function FoodDrink({
         total={featuresBussiness?.pagination?.total}
       />
 
-      {profile?.data && (
+      {profile?.data.length > 0 && (
         <RecentlyViewCompanies
           title="Recently Viewed Companies"
           data={recentBusiness?.data || []}
