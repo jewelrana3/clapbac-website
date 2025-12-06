@@ -8,14 +8,23 @@ export default async function HeroSection() {
     <>
       <div className="relative w-full h-[60vh] md:h-[100vh]">
         {/* Background Image */}
-        <Image
+        {/* <Image
           src={bgImage}
           alt="Restaurant Background"
           layout="fill"
           objectFit="cover"
           objectPosition="center"
           priority
-        />
+        /> */}
+
+        <video
+          src="/banner.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        ></video>
 
         {/* Overlay */}
         <div className="absolute inset-0  bg-opacity-40 flex flex-col items-center justify-center text-white px-4">

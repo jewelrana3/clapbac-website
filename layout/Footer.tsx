@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Container from "./Container";
 import Image from "next/image";
+import { Facebook, Instagram } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
 
 const footerLinks = [
   {
@@ -66,9 +69,25 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className=" mt-10 pt-6 text-xs flex flex-col md:flex-row justify-between ">
-          <p className="condition">
-            © {currentYear} Clapbac | All Rights Reserved.
-          </p>
+          <div>
+            <div className="flex items-center space-x-2 mb-3 mr-4">
+              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+                <Instagram size={24} />
+              </p>
+              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+                <BsTwitterX size={22} />
+              </p>
+              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+                <FaTiktok size={22} />
+              </p>
+              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+                <Facebook size={24} />
+              </p>
+            </div>
+            <p className="condition">
+              © {currentYear} Clapbac | All Rights Reserved.
+            </p>
+          </div>
           <div className="space-x-4 mt-2 md:mt-0">
             <Link className="condition" href="/privacy-policy">
               Terms of Service
