@@ -1,4 +1,5 @@
 import Description from "@/components/pages/home/Description";
+import DublicateReviewerRatingForm from "@/components/pages/review/DublicateReviewerForm";
 import ReviewerRatingForm from "@/components/pages/review/ReviewerRatingForm";
 import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
@@ -11,7 +12,8 @@ export default function Reviewer() {
         subTitle="Spotlight the winners, warn about the losers—your opinion matters."
       />
 
-      <ReviewerRatingForm />
+      {/* <ReviewerRatingForm /> */}
+      <DublicateReviewerRatingForm />
 
       <Description
         className="md:w-[45%] mx-auto"
