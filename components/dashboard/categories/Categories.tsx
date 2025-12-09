@@ -5,6 +5,8 @@ import CategoryEdit from "./CategoryEdit";
 import { Edit } from "lucide-react";
 
 export default function Categories({ categories }: any) {
+  console.log("categories", categories);
+
   return (
     <>
       <div className="flex justify-between">
@@ -44,6 +46,7 @@ export default function Categories({ categories }: any) {
                 width={50}
                 height={50}
                 className="h-20 w-auto"
+                sizes="100vh"
               />
             </div>
             <h1 className="font-bold text-gray-700 text-center mt-2">

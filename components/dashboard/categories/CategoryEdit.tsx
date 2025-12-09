@@ -32,7 +32,7 @@ import { revalidate } from "@/utils/revalidateTags";
 // Schema
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  categories: z.array(z.string()).min(1, "Select at least one category"),
+  categories: z.array(z.string()).optional(),
 });
 
 type Props = {
@@ -97,15 +97,16 @@ export default function CategoryEdit({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const formData = new FormData();
     formData.append("name", values.name);
-    if (!file) {
+    if (!item?._id && !file) {
       setError("Image is required.");
+      return;
     }
     if (file) formData.append("image", file);
 
     const selectedCategories = category?.data || categoryEdit?.data || [];
 
     selectedCategories
-      .filter((cat: any) => values.categories.includes(cat._id))
+      .filter((cat: any) => values?.categories?.includes(cat._id))
       .forEach((cat: any) => {
         formData.append("relatedTo", cat._id);
       });
@@ -165,8 +166,9 @@ export default function CategoryEdit({
                     src={preview}
                     alt="Preview"
                     width={200}
-                    height={100}
-                    className="mt-2 object-cover h-40"
+                    height={160}
+                    sizes="100vh"
+                    className="mt-2 object-cover"
                   />
                 ) : (
                   <span className="text-center">No Image</span>
@@ -193,7 +195,7 @@ export default function CategoryEdit({
                   </label>
                   <FormControl>
                     <MultiSelector
-                      values={field.value}
+                      values={field.value || []}
                       onValuesChange={field.onChange}
                       loop
                       className="w-full"
@@ -224,7 +226,11 @@ export default function CategoryEdit({
 
             {/* Submit */}
             <div className="flex justify-end">
-              <Button disabled={!file} className="bg-[#F05223]" type="submit">
+              <Button
+                disabled={item ? file : !file}
+                className="bg-[#F05223]"
+                type="submit"
+              >
                 {item ? "Update" : "Add"}
               </Button>
             </div>
