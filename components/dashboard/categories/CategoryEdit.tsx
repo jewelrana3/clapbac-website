@@ -227,11 +227,11 @@ export default function CategoryEdit({
             {/* Submit */}
             <div className="flex justify-end">
               <Button
-                disabled={item ? file : !file}
+                disabled={!item?._id && !file}
                 className="bg-[#F05223]"
                 type="submit"
               >
-                {item ? "Update" : "Add"}
+                {item?._id ? "Update" : "Add"}
               </Button>
             </div>
           </form>
