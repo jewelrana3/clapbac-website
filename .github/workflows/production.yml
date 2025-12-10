@@ -21,5 +21,14 @@ jobs:
             git pull origin production
             yarn install --frozen-lockfile
             yarn build
-            pm2 reload clapbac-website --update-env || pm2 start "yarn start" --name clapbac-website
+
+            # Conditional PM2 reload/start
+            if pm2 describe clapbac-website > /dev/null 2>&1; then
+              echo "Reloading existing PM2 process..."
+              pm2 reload clapbac-website --update-env
+            else
+              echo "Starting new PM2 process..."
+              pm2 start "yarn start" --name clapbac-website
+            fi
+
             pm2 save
