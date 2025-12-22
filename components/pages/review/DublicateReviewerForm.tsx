@@ -91,14 +91,14 @@ export default function DublicateReviewerRatingForm() {
         method: "POST",
         body: { text: payload },
       });
-      console.log("res", res);
+
       if (res?.success) {
         setValue("reviewerName", res?.data.reviewerName);
         setValue("reviewerAddress", res?.data.reviewerAddress);
         setValue("experienceDate", res?.data.experienceDate);
         setValue("reviewMessage", res?.data.reviewMessage);
       }
-    } catch (err) {
+    } catch (err: any) {
       toast.error(err?.message);
     }
   };
@@ -106,11 +106,11 @@ export default function DublicateReviewerRatingForm() {
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white space-y-6">
       <form onSubmit={handleAIAutoFill}>
-        <div>
+        <div className="p-6">
           <Label>AI Auto Fill</Label>
           <Textarea
             name="yelp"
-            className="border p-2 w-full"
+            className="border p-2 w-full h-24"
             placeholder="Copy your review from yelp then paste here"
           />
 

@@ -5,8 +5,6 @@ import CategoryEdit from "./CategoryEdit";
 import { Edit } from "lucide-react";
 
 export default function Categories({ categories }: any) {
-  console.log("categories", categories);
-
   return (
     <>
       <div className="flex justify-between">
