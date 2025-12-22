@@ -3,15 +3,17 @@ import ProfileSection from "@/components/share/ProfileSection";
 import SectionTitle from "@/components/share/SectionTitle";
 import React, { Suspense } from "react";
 import signUp from "../../../public/signup.jpg";
-import one from "../../../public/share-icon/one.svg";
-import two from "../../../public/share-icon/two.svg";
 import Image from "next/image";
 
 const des = (
   <section className="flex  gap-4 bg-gray-100 ">
     {/* Left quote image */}
-    <div className="flex-shrink-0">
-      <Image src={two} alt="Quote Start" className="w-10 md:w-[60px] mb-1" />
+    <div className="shrink-0">
+      <Image
+        src="/share-icon/two.svg"
+        alt="Quote Start"
+        className="w-10 md:w-[60px] mb-1"
+      />
     </div>
 
     {/* Text block */}
@@ -20,7 +22,7 @@ const des = (
       filter <br /> out the noise and focus on feedback from people who actually
       get it.
       <Image
-        src={one}
+        src="/share-icon/one.svg"
         alt="Quote End"
         className="w-10 md:w-[60px] ml-2 inline"
       />

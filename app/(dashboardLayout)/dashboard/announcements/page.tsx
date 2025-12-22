@@ -3,12 +3,13 @@ import TablePagination from "@/components/share/Pagination";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default async function page({
+export default async function Page({
   searchParams,
 }: {
-  searchParams: { page: string; status: string };
+  searchParams: Promise<{ page?: string; status?: string }>;
 }) {
-  const { page, status } = await searchParams;
+  // ✅ Await is REQUIRED in Next 15
+  const { page = "", status = "" } = await searchParams;
 
   const params = new URLSearchParams();
   if (page) params.append("page", page);

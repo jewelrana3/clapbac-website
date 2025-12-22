@@ -1,16 +1,20 @@
 import ProfileSection from "@/components/share/ProfileSection";
 import React from "react";
+import Image from "next/image";
 import FaqBody from "./FaqBody";
 import faq from "../../../public/faq-profile.png";
-import Image from "next/image";
-import one from "../../../public/share-icon/one.svg";
-import two from "../../../public/share-icon/two.svg";
 
 const des = (
   <section className="flex  gap-4 bg-gray-100 ">
     {/* Left quote image */}
-    <div className="flex-shrink-0">
-      <Image src={two} alt="Quote Start" className="w-10 md:w-[60px] mb-1" />
+    <div className="shrink-0">
+      <Image
+        src="/share-icon/two.svg"
+        alt="Quote Start"
+        className="w-10 md:w-[60px] mb-1"
+        width={10}
+        height={10}
+      />
     </div>
 
     {/* Text block */}
@@ -19,7 +23,7 @@ const des = (
       <br />
       This site calls out the BS and actually ranks the reviewers. Game-changer.
       <Image
-        src={one}
+        src="/share-icon/one.svg"
         alt="Quote End"
         className="w-10 md:w-[60px] ml-2 inline"
       />

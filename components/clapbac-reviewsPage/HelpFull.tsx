@@ -50,7 +50,7 @@ export default function HelpFull({ reviews }: any) {
       onClick={handleToggleHelpful}
       className={`flex items-center justify-center gap-1 px-4 py-2 rounded-md border border-[#a0d911] text-gray-900 font-semibold ${
         isHelpful ? "bg-[#a0d911]" : "bg-white"
-      } transition cursor-pointer text-nowrap text-sm w-[128px] h-11`}
+      } transition cursor-pointer text-nowrap text-sm w-32 h-11`}
     >
       <Image src={help} width={20} height={10} alt="help" />
       Helpful ({helpfulCount})

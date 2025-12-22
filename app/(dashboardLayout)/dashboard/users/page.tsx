@@ -6,9 +6,9 @@ import React from "react";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { page: string; status: string };
+  searchParams: Promise<{ page: string; status: string }>;
 }) {
-  const { page, status } = await searchParams;
+  const { page = "", status = "" } = await searchParams;
   const params = new URLSearchParams();
   if (page) params.append("page", page);
   if (status) params.append("status", status);

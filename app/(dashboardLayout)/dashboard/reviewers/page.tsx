@@ -6,9 +6,9 @@ import React from "react";
 export default async function page({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }) {
-  const { page } = await searchParams;
+  const { page = "" } = await searchParams;
   const reviews = await myFetch(
     `${page ? `/reviews/reviewers?page=${page}` : `/reviews/reviewers`}`
   );

@@ -5,17 +5,25 @@ import React from "react";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
     searchTerm?: string;
     reviewerType?: string;
     reviewerIndex?: string;
-  };
+  }>;
 }) {
-  const { page, searchTerm, reviewerType, reviewerIndex } = searchParams;
+  // ✅ Await the Promise first
+  const params = await searchParams;
 
+  const {
+    page = "",
+    searchTerm = "",
+    reviewerType = "",
+    reviewerIndex = "",
+  } = params;
+
+  // ✅ Build query string
   const query = new URLSearchParams();
-
   if (page) query.append("page", page);
   if (searchTerm) query.append("searchTerm", searchTerm);
   if (reviewerType) query.append("reviewerType", reviewerType);
@@ -25,9 +33,7 @@ export default async function Page({
     `/reviews/reviewers${query.toString() ? `?${query.toString()}` : ""}`
   );
 
-  // recent companies
   const recentCompanies = await myFetch("/recent-companies");
-
   const getProfile = await myFetch("/users/profile");
 
   return (

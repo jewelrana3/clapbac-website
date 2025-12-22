@@ -12,7 +12,7 @@ import { myFetch } from "@/utils/myFetch";
 const des = (
   <section className="flex  gap-4 bg-gray-100 ">
     {/* Left quote image */}
-    <div className="flex-shrink-0">
+    <div className="shrink-0">
       <Image src={two} alt="Quote Start" className="w-10 md:w-[60px] mb-1" />
     </div>
 
@@ -38,10 +38,17 @@ const des = (
 export default async function BussinessCategories({
   searchParams,
 }: {
-  searchParams: { searchTerm: string };
+  searchParams: Promise<{ searchTerm: string }>;
 }) {
-  const query = searchParams?.searchTerm
-    ? `?searchTerm=${encodeURIComponent(searchParams.searchTerm)}`
+  // ✅ first await the Promise
+  const params = await searchParams;
+
+  // ✅ safely get searchTerm with default
+  const searchTerm = params.searchTerm ?? "";
+
+  // ✅ build query string
+  const query = searchTerm
+    ? `?searchTerm=${encodeURIComponent(searchTerm)}`
     : "";
 
   const categories = await myFetch(`/categories${query}`);

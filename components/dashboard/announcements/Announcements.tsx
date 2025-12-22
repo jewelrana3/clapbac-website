@@ -11,63 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 import AnnouncementForm from "./AnnouncementForm";
 
-// const users = [
-//   {
-//     id: 1,
-//     ID: 7209318,
-//     item: "Top 10 Reviews ",
-//     audience: "Business Owners",
-//     reason: "Spam",
-//     date: "21/03/23",
-//     status: "Draft",
-//   },
-//   {
-//     id: 2,
-//     ID: 7209318,
-//     item: "Top 10 Reviews ",
-//     audience: "All",
-//     reason: "Spam",
-//     date: "21/03/23",
-//     status: "Sheduled",
-//   },
-//   {
-//     id: 3,
-//     ID: 7209318,
-//     item: "Top 10 Reviews ",
-//     audience: "Reviewers",
-//     reason: "Spam",
-//     date: "21/03/23",
-//     status: "Draft",
-//   },
-//   {
-//     id: 4,
-//     ID: 7209318,
-//     item: "Top 10 Reviews ",
-//     audience: "All",
-//     reason: "Spam",
-//     date: "21/03/23",
-//     status: "Archived",
-//   },
-//   {
-//     id: 5,
-//     ID: 7209318,
-//     item: "Top 10 Reviews ",
-//     audience: "All",
-//     reason: "Spam",
-//     date: "21/03/23",
-//     status: "Draft",
-//   },
-//   {
-//     id: 6,
-//     ID: 7209318,
-//     item: "Top 10 Reviews ",
-//     audience: "All",
-//     reason: "Spam",
-//     date: "21/03/23",
-//     status: "Active",
-//   },
-// ];
-
 export default function Announcements({ data }: any) {
   return (
     <>

@@ -8,9 +8,9 @@ import React from "react";
 export default async function page({
   searchParams,
 }: {
-  searchParams: { status: string };
+  searchParams: Promise<{ status: string }>;
 }) {
-  const { status } = await searchParams;
+  const { status = "" } = await searchParams;
   const reports = await myFetch(
     `${status ? `/reports?status=${status}` : `/reports`}`
   );

@@ -3,10 +3,13 @@ import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { myFetch } from "@/utils/myFetch";
 import UserImage from "@/components/share/customImageHandle/UserImage";
-// import avatar from "../../../../../public/avatar.jpg";
 
-export default async function id({ params }: { params: { id: string } }) {
-  const userId = params.id;
+export default async function id({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: userId } = await params;
 
   const res = await myFetch(`/users/${userId}`);
   const findUserById = res?.data;
