@@ -19,11 +19,13 @@ import { myFetch } from "@/utils/myFetch";
 import { revalidate } from "@/utils/revalidateTags";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+import { Loader2 } from "lucide-react";
 type Rating = { yourRating: number; bussinessRating: number };
 
 export default function DublicateReviewerRatingForm() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isAIAutoFillLoading, setIsAIAutoFillLoading] = useState(false);
   const [rating, setRating] = useState<Rating>({
     yourRating: 1,
     bussinessRating: 1,
@@ -82,6 +84,7 @@ export default function DublicateReviewerRatingForm() {
 
   const handleAIAutoFill = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsAIAutoFillLoading(true);
 
     const formData = new FormData(e.currentTarget);
     const payload = formData.get("yelp");
@@ -100,6 +103,8 @@ export default function DublicateReviewerRatingForm() {
       }
     } catch (err: any) {
       toast.error(err?.message);
+    } finally {
+      setIsAIAutoFillLoading(false);
     }
   };
 
@@ -107,14 +112,20 @@ export default function DublicateReviewerRatingForm() {
     <div className="max-w-3xl mx-auto p-6 bg-white space-y-6">
       <form onSubmit={handleAIAutoFill}>
         <div className="p-6">
-          <Label>AI Auto Fill</Label>
+          <Label>Auto Fill with AI</Label>
           <Textarea
             name="yelp"
             className="border p-2 w-full h-24"
             placeholder="Copy your review from yelp then paste here"
           />
 
-          <Button type="submit">Auto Fill</Button>
+          <Button type="submit" className="bg-[#F05223] w-[150px] mt-2">
+            {isAIAutoFillLoading ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              "Start Auto Fill"
+            )}
+          </Button>
         </div>
       </form>
       <form
