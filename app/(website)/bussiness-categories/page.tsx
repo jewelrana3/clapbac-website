@@ -13,7 +13,13 @@ const des = (
   <section className="flex  gap-4 bg-gray-100 ">
     {/* Left quote image */}
     <div className="shrink-0">
-      <Image src={two} alt="Quote Start" className="w-10 md:w-[60px] mb-1" />
+      <Image
+        src={two}
+        alt="Quote Start"
+        width={50}
+        height={50}
+        className="w-10 md:w-[60px] mb-1"
+      />
     </div>
 
     {/* Text block */}
@@ -27,6 +33,8 @@ const des = (
       <Image
         src={one}
         alt="Quote End"
+        width={50}
+        height={50}
         className="w-10 md:w-[60px] ml-2 inline"
       />
     </p>
