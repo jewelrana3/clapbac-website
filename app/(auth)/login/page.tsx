@@ -11,6 +11,8 @@ const des = (
     <div className="shrink-0">
       <Image
         src="/share-icon/two.svg"
+        width={1000}
+        height={1000}
         alt="Quote Start"
         className="w-10 md:w-[60px] mb-1"
       />
@@ -23,6 +25,8 @@ const des = (
       get it.
       <Image
         src="/share-icon/one.svg"
+        width={1000}
+        height={1000}
         alt="Quote End"
         className="w-10 md:w-[60px] ml-2 inline"
       />

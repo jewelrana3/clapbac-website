@@ -25,6 +25,8 @@ const des = (
       <Image
         src="/share-icon/one.svg"
         alt="Quote End"
+        width={10}
+        height={10}
         className="w-10 md:w-[60px] ml-2 inline"
       />
     </p>
