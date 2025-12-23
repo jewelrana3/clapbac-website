@@ -45,7 +45,7 @@ export default async function FaqBody() {
       <Container className="md:w-[60%] mx-auto px-4 py-10 text-sm">
         <div>
           <Image
-            src="/client-pic/FAQ.png"
+            src="/faq.png"
             alt="faq"
             width={1000}
             height={700}

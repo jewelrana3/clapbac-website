@@ -14,7 +14,7 @@ export default function AboutBody() {
       <Container className="w-[70%] my-14">
         <div className="">
           <Image
-            src="/client-pic/ABOUT.png"
+            src="/about-us.png"
             alt="Person using phone"
             width={1000}
             height={700}
