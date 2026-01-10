@@ -6,7 +6,7 @@ import Search from "./Search";
 export default async function HeroSection() {
   return (
     <>
-      <div className="relative w-full h-[60vh] md:h-[100vh]">
+      <div className="relative w-full h-[400px] md:h-[900px]  bg-[#FEE3B3] ">
         {/* Background Image */}
         {/* <Image
           src={bgImage}
@@ -23,22 +23,20 @@ export default async function HeroSection() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full mx-auto h-full object-contain ring-0 outline-none border border-[#FEE3B3]"
         ></video>
 
         {/* Overlay */}
-        <div className="absolute inset-0  bg-opacity-40 flex flex-col items-center justify-center text-white px-4">
-          {/* Heading */}
+        {/* <div className="absolute inset-0  bg-opacity-40 flex flex-col items-center justify-center text-white px-4">
           <h1 className="text-3xl md:text-5xl font-semibold text-center mb-6">
             They rated you – now rate them back.
           </h1>
 
           <Search />
-        </div>
+        </div> */}
       </div>
-      <section className="bg-black ">
+      <section className="bg-black">
         <div className="flex flex-col lg:flex-row items-center justify-around py-12 px-8 gap-16">
-          {/* Right text */}
           <div>
             <h1 className="text-xl md:text-3xl font-bold sm:flex items-center space-x-2 my-3">
               <span className="text-orange-600">We’re Clapbac</span>
@@ -57,7 +55,6 @@ export default async function HeroSection() {
             </div>
           </div>
 
-          {/* Left image */}
           <Image
             priority={true}
             alt="Person using phone"

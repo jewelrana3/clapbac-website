@@ -36,10 +36,10 @@ export default function Search() {
 
   return (
     <>
-      <div className="relative w-full max-w-xl mx-auto">
+      <div className="relative w-full mx-auto">
         {/* Search Bar */}
         <div
-          className={`flex items-center bg-white ${
+          className={`w-full flex items-center bg-white ${
             value ? "rounded-t-lg" : "rounded-full"
           } shadow-md overflow-hidden   transition`}
         >
@@ -50,7 +50,7 @@ export default function Search() {
             onFocus={() => setShowDropdown(true)}
             onBlur={handleBlur}
             placeholder="Search reviewer or business category"
-            className="flex-grow px-5 py-3 text-gray-700 outline-none bg-transparent"
+            className="grow px-5 py-1 sm:py-3 text-gray-700 outline-none bg-transparent w-full md:w-[400px]"
           />
           <button className="text-gray-500 px-5 py-3 hover:text-gray-700 transition">
             <FaSearch size={20} />

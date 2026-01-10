@@ -11,6 +11,7 @@ import { UserDropdownMenu } from "./HoverNavber";
 import ActiveOffer from "@/components/share/ActiveOffer";
 import { Skeleton } from "@/components/ui/skeleton";
 import path from "path";
+import Search from "@/components/pages/home/Search";
 
 interface ProfileData {
   firstName: string;
@@ -60,18 +61,28 @@ export default function WebsiteHeader() {
       <header className="sticky top-0 w-full z-50 bg-[#191919]">
         <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 py-3">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 cursor-pointer">
-            <Image
-              src="/logo-white.png"
-              alt="Logo"
-              width={200}
-              height={30}
-              className="w-auto max-h-16"
-            />
-          </Link>
+          <div className="flex items-center gap-2 w-full">
+            <div>
+              <Link
+                href="/"
+                className="flex items-center space-x-2 cursor-pointer"
+              >
+                <Image
+                  src="/logo-white.png"
+                  alt="Logo"
+                  width={200}
+                  height={30}
+                  className="w-auto max-h-16"
+                />
+              </Link>
+            </div>
+            <div className="w-[70%]">
+              <Search />
+            </div>
+          </div>
 
           {/* Desktop Menu */}
-          <ul className="hidden lg:flex items-center space-x-4">
+          <ul className="hidden 2xl:flex items-center space-x-1 2xl:space-x-4">
             {pathname !== "/dashboard" &&
               navItems.map(({ href, title }) => {
                 const active = pathname === href;
@@ -79,7 +90,7 @@ export default function WebsiteHeader() {
                   <li key={href}>
                     <Link
                       href={href}
-                      className={`px-3 py-2 rounded transition-colors duration-200 ${
+                      className={`px-3 py-2 rounded transition-colors duration-200 text-nowrap ${
                         active
                           ? "bg-white text-black"
                           : "text-white hover:text-gray-300"
@@ -110,7 +121,7 @@ export default function WebsiteHeader() {
           </ul>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="2xl:hidden">
             <Button onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </Button>
@@ -119,7 +130,7 @@ export default function WebsiteHeader() {
 
         {/* Mobile Dropdown */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-20 right-0 w-[220px] bg-zinc-900 shadow-md">
+          <div className="2xl:hidden absolute top-20 right-0 w-[220px] bg-zinc-900 shadow-md">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map(({ href, title }) => (
                 <Link
