@@ -61,7 +61,7 @@ export default function WebsiteHeader() {
       <header className="sticky top-0 w-full z-50 bg-[#191919]">
         <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 py-3">
           {/* Logo */}
-          <div className="flex items-center gap-2 w-full">
+          <div className="flex items-center gap-4 w-full">
             <div>
               <Link
                 href="/"
