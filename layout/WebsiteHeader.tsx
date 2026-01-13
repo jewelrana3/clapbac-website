@@ -76,9 +76,11 @@ export default function WebsiteHeader() {
                 />
               </Link>
             </div>
-            <div className="w-[70%]">
-              <Search />
-            </div>
+            {pathname !== "/dashboard" && (
+              <div className="w-[70%]">
+                <Search />
+              </div>
+            )}
           </div>
 
           {/* Desktop Menu */}
