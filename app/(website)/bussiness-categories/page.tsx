@@ -62,7 +62,7 @@ export default async function BussinessCategories({
   const categories = await myFetch(`/categories${query}`);
 
   return (
-    <div className="mt-16">
+    <div className="mt-">
       <SectionTitle
         title="Business Categories"
         subTitle="Find Out Who’s Worth It. Type It In. Expose or Endorse."

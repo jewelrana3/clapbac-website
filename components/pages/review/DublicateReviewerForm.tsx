@@ -27,8 +27,8 @@ export default function DublicateReviewerRatingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAIAutoFillLoading, setIsAIAutoFillLoading] = useState(false);
   const [rating, setRating] = useState<Rating>({
-    yourRating: 1,
-    bussinessRating: 1,
+    yourRating: 0.5,
+    bussinessRating: 0.5,
   });
   const [isOtherType, setIsOtherType] = useState(false);
   const [isOtherConsequence, setIsOtherConsequence] = useState(false);
@@ -147,7 +147,6 @@ export default function DublicateReviewerRatingForm() {
           </div>
           <div className="flex items-end mt-2 md:mt-0">
             <Link
-              target="_blank"
               href="/review-guildliness"
               className="text-sm text-[#3D454E] font-semibold hover:underline"
             >

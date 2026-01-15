@@ -64,7 +64,7 @@ export default function SingleComment({
                   height={0}
                   alt="Logo"
                   sizes="100vh"
-                  className="w-8 h-8 sm:w-20 sm:h-20 rounded-full border p-1"
+                  className="w-8 h-8 sm:w-20 sm:h-20 rounded-full object-cover"
                 />
               )}
             </div>

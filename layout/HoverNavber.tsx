@@ -46,7 +46,7 @@ export function UserDropdownMenu({ profileData }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild aria-label="User menu">
-        <div className="flex items-center gap-2 cursor-pointer hover:opacity-80">
+        <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 size-20">
           <UserImage item={profileData.image || ""} />
         </div>
       </DropdownMenuTrigger>

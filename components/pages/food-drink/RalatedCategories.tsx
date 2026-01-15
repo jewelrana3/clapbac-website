@@ -29,9 +29,9 @@ const RelatedCategories = ({
             <li
               key={index}
               className="text-center cursor-pointer"
-              onClick={() => handleType(cat)}
+              onClick={() => handleType(cat.value)}
             >
-              <p className="text-gray-800 capitalize">{cat}</p>
+              <p className="text-gray-800 capitalize">{cat.label}</p>
               {index !== categories.length - 1 && (
                 <hr className="mt-2 border-gray-200 w-2/3 mx-auto" />
               )}

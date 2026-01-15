@@ -50,7 +50,7 @@ export default function Search() {
             onFocus={() => setShowDropdown(true)}
             onBlur={handleBlur}
             placeholder="Search reviewer or business category"
-            className="grow px-5 py-1 sm:py-3 text-gray-700 outline-none bg-transparent w-full md:w-[400px]"
+            className="grow px-5 sm:py-1 text-gray-700 outline-none bg-transparent w-full md:w-[400px]"
           />
           <button className="text-gray-500 px-5 py-3 hover:text-gray-700 transition">
             <FaSearch size={20} />

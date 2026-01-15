@@ -8,7 +8,7 @@ export default function SectionTitle({
   subTitle,
 }: {
   title: string;
-  subTitle?: string;
+  subTitle?: string | undefined | React.ReactNode;
 }) {
   const pathname = usePathname();
   const currentPathname =
@@ -18,7 +18,7 @@ export default function SectionTitle({
       <h2 className="text-[18px] md:text-2xl text-[#F05223] font-bold">
         {title}
       </h2>
-      <p className="text-[#3D454E] md:text-2xl  mt-2 mx-auto lg:w-[37%]">
+      <p className="text-[#3D454E] text-lg xl:text-2xl  mt-2 mx-auto lg:w-[50%]">
         {subTitle}
       </p>
       {currentPathname && <SearchBar />}

@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { setCookie } from "cookies-next";
 import { useSearchParams } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import { set } from "zod";
 
 export default function LoginPage() {
   const redirect = useSearchParams().get("redirect");
@@ -32,6 +33,7 @@ export default function LoginPage() {
       if (res.success) {
         toast.success("Login successful", { id: "login" });
         setCookie("accessToken", res?.data?.accessToken);
+        setCookie("role", res?.data?.role);
 
         const isAdmin =
           res?.data?.role === "Admin" || res?.data?.role === "Super Admin";

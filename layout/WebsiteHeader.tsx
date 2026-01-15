@@ -32,6 +32,7 @@ export default function WebsiteHeader() {
   const [profileData, setProfileData] = React.useState<ProfileData | null>(
     null
   );
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
@@ -76,8 +77,8 @@ export default function WebsiteHeader() {
                 />
               </Link>
             </div>
-            {pathname !== "/dashboard" && (
-              <div className="w-[70%]">
+            {!pathname.startsWith("/dashboard") && (
+              <div className="w-[50%]">
                 <Search />
               </div>
             )}
@@ -85,7 +86,7 @@ export default function WebsiteHeader() {
 
           {/* Desktop Menu */}
           <ul className="hidden 2xl:flex items-center space-x-1 2xl:space-x-4">
-            {pathname !== "/dashboard" &&
+            {!pathname.startsWith("/dashboard") &&
               navItems.map(({ href, title }) => {
                 const active = pathname === href;
                 return (
@@ -109,18 +110,23 @@ export default function WebsiteHeader() {
               <div className="flex items-center space-x-4">
                 <Skeleton className="h-12 w-12 rounded-full" />
               </div>
-            ) : error ? (
-              <span className="text-red-500">Error loading profile</span>
-            ) : profileData ? (
-              <UserDropdownMenu profileData={profileData} />
             ) : (
-              <Link href="/login">
-                <button className="px-3 py-2 rounded bg-orange-600 text-white font-bold transition-colors hover:bg-orange-700 cursor-pointer">
-                  Login
-                </button>
-              </Link>
+              <div>
+                {profileData ? (
+                  <div>
+                    <UserDropdownMenu profileData={profileData!} />
+                  </div>
+                ) : (
+                  <Link href="/login">
+                    <button className="px-3 py-2 rounded bg-orange-600 text-white font-bold transition-colors hover:bg-orange-700 cursor-pointer">
+                      Login
+                    </button>
+                  </Link>
+                )}
+              </div>
             )}
           </ul>
+          {/* <UserDropdownMenu profileData={profileData!} /> */}
 
           {/* Mobile Menu Button */}
           <div className="2xl:hidden">

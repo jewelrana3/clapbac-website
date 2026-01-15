@@ -11,18 +11,18 @@ export default function AboutBody() {
         title="About Clapbac"
         subTitle="Turning the tables on the critics—because someone’s gotta rate the raters."
       />
-      <Container className="w-[70%] my-14">
-        <div className="">
+      <Container className="md:w-[60%] my-14">
+        <div className="flex justify-center ">
           <Image
             src="/about-us.png"
             alt="Person using phone"
-            width={1000}
-            height={700}
-            className="w-full h-[70%] object-cover"
+            width={824}
+            height={540}
+            className="object-cover"
           />
         </div>
 
-        <p className="mt-10">
+        <p className="mt-10 font-semibold">
           Clapbac is a fierce, mobile-friendly platform that flips the script on
           reviews, letting business owners rate customers, fire back at unfair
           critiques, and cheer their best patrons. Sick of Yelp’s one-way slams?

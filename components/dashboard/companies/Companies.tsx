@@ -16,9 +16,13 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 
 export default function CompaniesTable({ data }: any) {
+  console.log("data", data);
+
   const handleFeatured = async (id: any) => {
     try {
       const res = await myFetch(`/companies/featured/${id}`);
+
+      console.log("res", res);
 
       if (res?.success) {
         toast.success("Featured updated successfully.");
@@ -46,13 +50,15 @@ export default function CompaniesTable({ data }: any) {
         </TableHeader>
         <TableBody>
           {data?.map((invoice: any, index: number) => {
+            console.log("invioce", invoice.logo);
+
             return (
               <TableRow key={index}>
                 <TableCell className="pl-8">
                   <Image
                     src={
                       invoice?.logo
-                        ? `${process.env.NEXT_PUBLIC_IMAGE_URL}${invoice?.logo}`
+                        ? `${process.env.NEXT_PUBLIC_BASE_URL}${invoice?.logo}`
                         : "/default-company-logo.png"
                     }
                     alt={invoice?.name}

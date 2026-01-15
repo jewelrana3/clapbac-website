@@ -43,8 +43,8 @@ export default async function HeroSection() {
               <span className="text-white">|</span>
               <span className="text-[#C4D82D]">We Rate the Raters</span>
             </h1>
-            <div className="flex flex-col justify-center  text-[#C7C7C7]">
-              <p className=" font-medium 800 mb-1 leading-8">
+            <div className="flex flex-col justify-center  text-white">
+              <p className="text-lg  800 mb-1 leading-8">
                 This isn’t another review site. Clapbac is where business owners
                 fight back. <br /> No more silent frustration while trolls run
                 wild. Rate the reviewers, expose <br /> the haters, drop stars
@@ -58,7 +58,7 @@ export default async function HeroSection() {
           <Image
             priority={true}
             alt="Person using phone"
-            width={492}
+            width={402}
             height={368}
             className=" object-cover"
             src="/home-man.png"
