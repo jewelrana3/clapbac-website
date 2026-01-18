@@ -19,7 +19,9 @@ import { myFetch } from "@/utils/myFetch";
 import { revalidate } from "@/utils/revalidateTags";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2 } from "lucide-react";
+import { BotIcon, Loader2 } from "lucide-react";
+import CustomModal from "@/modal/CustomModal";
+import AIReviewGenerator from "./AIGenerateForm";
 type Rating = { yourRating: number; bussinessRating: number };
 
 export default function DublicateReviewerRatingForm() {
@@ -32,6 +34,8 @@ export default function DublicateReviewerRatingForm() {
   });
   const [isOtherType, setIsOtherType] = useState(false);
   const [isOtherConsequence, setIsOtherConsequence] = useState(false);
+  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -284,6 +288,7 @@ export default function DublicateReviewerRatingForm() {
         <div>
           <Label>Title of Your Review</Label>
           <input
+            placeholder="Enter your review title"
             className="border p-2 w-full"
             {...register("clapbacTitle", { required: "Title is required" })}
             type="text"
@@ -298,14 +303,29 @@ export default function DublicateReviewerRatingForm() {
         {/* Your Review */}
         <div>
           <Label>Your Review</Label>
-          <input
-            className="border p-2 w-full"
-            {...register("clapbacMessage", {
-              required: "Review is required.",
-              minLength: { value: 20, message: "At least 20 characters" },
-            })}
-            type="text"
-          />
+          <div className="relative">
+            <Textarea
+              placeholder="Enter your review"
+              className="border p-2 w-full h-24"
+              {...register("clapbacMessage", {
+                required: "Review is required.",
+                minLength: { value: 20, message: "At least 20 characters" },
+              })}
+            />
+            <CustomModal
+              dialogTrigger={
+                <Button
+                  type="button"
+                  className="absolute bottom-4 right-2 bg-primary rounded-full hover:shadow-md hover:shadow-orange-400 transition-all duration-300 ease-in-out"
+                >
+                  <BotIcon /> AI Generate
+                </Button>
+              }
+              className="w-[70vw] overflow-y-scroll scroll-hidden p-6"
+            >
+              <AIReviewGenerator />
+            </CustomModal>
+          </div>
           {errors.clapbacMessage && (
             <p className="text-red-500 text-sm">
               {errors.clapbacMessage.message}
