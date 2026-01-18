@@ -31,6 +31,8 @@ export default function DublicateReviewerRatingForm() {
     bussinessRating: 0.5,
   });
   const [isOtherType, setIsOtherType] = useState(false);
+  const [yelpText, setYelpText] = useState("");
+
   const [isOtherConsequence, setIsOtherConsequence] = useState(false);
   const {
     register,
@@ -46,7 +48,7 @@ export default function DublicateReviewerRatingForm() {
       reviewMessage: "",
       reviewSource: "",
       sourceLink: "",
-      experienceDate: "",
+      // experienceDate: "",
       clapbacTitle: "",
       clapbacMessage: "",
       reviewerType: "",
@@ -78,7 +80,7 @@ export default function DublicateReviewerRatingForm() {
     } catch {
       toast.error("Something went wrong.", { id: "review" });
     } finally {
-      setIsSubmitting(false);
+      setIsAIAutoFillLoading(false);
     }
   };
 
@@ -87,7 +89,7 @@ export default function DublicateReviewerRatingForm() {
     setIsAIAutoFillLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const payload = formData.get("yelp");
+    const payload = formData.get("yelp") as string;
 
     try {
       const res = await myFetch("/reviews/extract", {
@@ -98,7 +100,7 @@ export default function DublicateReviewerRatingForm() {
       if (res?.success) {
         setValue("reviewerName", res?.data.reviewerName);
         setValue("reviewerAddress", res?.data.reviewerAddress);
-        setValue("experienceDate", res?.data.experienceDate);
+        // setValue("experienceDate", res?.data.experienceDate);
         setValue("reviewMessage", res?.data.reviewMessage);
       }
     } catch (err: any) {
@@ -117,9 +119,14 @@ export default function DublicateReviewerRatingForm() {
             name="yelp"
             className="border p-2 w-full h-24"
             placeholder="Copy your review from yelp then paste here"
+            onChange={(e) => setYelpText(e.target.value)}
           />
 
-          <Button type="submit" className="bg-[#F05223] w-[150px] mt-2">
+          <Button
+            type="submit"
+            disabled={!yelpText.trim()}
+            className="bg-[#F05223] w-[150px] mt-2 disabled:opacity-50"
+          >
             {isAIAutoFillLoading ? (
               <Loader2 className="animate-spin" />
             ) : (
@@ -251,7 +258,7 @@ export default function DublicateReviewerRatingForm() {
         </div>
 
         {/* Experience Date */}
-        <div>
+        {/* <div>
           <Label>Date of Experience</Label>
           <input
             className="border p-2 w-full"
@@ -265,7 +272,7 @@ export default function DublicateReviewerRatingForm() {
               {errors.experienceDate.message}
             </p>
           )}
-        </div>
+        </div> */}
 
         {/* Original Reviewer Rating */}
         <div>
@@ -298,13 +305,12 @@ export default function DublicateReviewerRatingForm() {
         {/* Your Review */}
         <div>
           <Label>Your Review</Label>
-          <input
+          <Textarea
             className="border p-2 w-full"
             {...register("clapbacMessage", {
               required: "Review is required.",
               minLength: { value: 20, message: "At least 20 characters" },
             })}
-            type="text"
           />
           {errors.clapbacMessage && (
             <p className="text-red-500 text-sm">

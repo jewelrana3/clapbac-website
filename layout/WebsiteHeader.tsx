@@ -60,7 +60,7 @@ export default function WebsiteHeader() {
     <>
       {pathname !== "/dashboard" && <ActiveOffer />}
       <header className="sticky top-0 w-full z-50 bg-[#191919]">
-        <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 py-3">
+        <div className="flex justify-between items-center bg-[#191919] px-4 lg:px-16 h-20">
           {/* Logo */}
           <div className="flex items-center gap-4 w-full">
             <div>

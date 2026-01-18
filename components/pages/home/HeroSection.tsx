@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import bgImage from "../../../public/home-banner.jpg"; // replace with your actual image path
-import Search from "./Search";
 
 export default async function HeroSection() {
   return (
     <>
-      <div className="relative w-full h-[400px] md:h-[900px]  bg-[#FEE3B3] ">
+      <div
+        className="relative w-full bg-[#FEE3B3] h-[calc(100vh-80px)]"
+        style={{}}
+      >
         {/* Background Image */}
         {/* <Image
           src={bgImage}
