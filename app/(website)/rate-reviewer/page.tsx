@@ -6,7 +6,7 @@ import React from "react";
 
 export default function Reviewer() {
   return (
-    <div className="mt-12">
+    <div className="m">
       <SectionTitle
         title="Rate a Reviewer"
         subTitle="Spotlight the winners, warn about the losers—your opinion matters."

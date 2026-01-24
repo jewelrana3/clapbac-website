@@ -61,10 +61,12 @@ export default function ReviewGuidelines() {
         when submitting ratings or commentary.
       </p>
 
-      <ol className="space-y-4 list-decimal list-inside">
+      <ol className="space-y-4  list-inside">
         {reviewGuidelines.map((item, index) => (
           <li key={index}>
-            <span className="font-semibold text-xl">{item.title}</span>
+            <span className="font-semibold text-xl">
+              {index + 1}. {item.title}
+            </span>
             <p className="ml-5 mt-1 leading-relaxed text-lg">
               {item.description}
             </p>

@@ -19,7 +19,7 @@ export default async function HeroSection() {
         /> */}
 
         <video
-          src="/banner.mp4"
+          src="/banner-two.mp4"
           autoPlay
           loop
           muted

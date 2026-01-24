@@ -41,7 +41,6 @@ export default function AIReviewGenerator() {
       includeEmoji,
       postCount,
     };
-    console.log(payload);
 
     // try {
     //   const res = await fetch("/api/generate-content", {

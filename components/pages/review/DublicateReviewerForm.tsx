@@ -34,9 +34,7 @@ export default function DublicateReviewerRatingForm() {
   });
   const [isOtherType, setIsOtherType] = useState(false);
   const [yelpText, setYelpText] = useState("");
-
   const [isOtherConsequence, setIsOtherConsequence] = useState(false);
-  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
 
   const {
     register,
@@ -52,7 +50,7 @@ export default function DublicateReviewerRatingForm() {
       reviewMessage: "",
       reviewSource: "",
       sourceLink: "",
-      // experienceDate: "",
+      experienceDate: "",
       clapbacTitle: "",
       clapbacMessage: "",
       reviewerType: "",
@@ -80,16 +78,24 @@ export default function DublicateReviewerRatingForm() {
         revalidate("reviews");
         setRating({ yourRating: 0, bussinessRating: 0 });
         router.push(`/clapbac-reviews/${res?.data?.company}`);
-      } else toast.error(res?.message || "Review submission failed.");
+      } else {
+        toast.error(
+          (res as any)?.error[0].message || "Review submission failed.",
+          { id: "review" },
+        );
+      }
     } catch {
       toast.error("Something went wrong.", { id: "review" });
     } finally {
       setIsAIAutoFillLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   const handleAIAutoFill = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
+
     setIsAIAutoFillLoading(true);
 
     const formData = new FormData(e.currentTarget);
@@ -111,40 +117,18 @@ export default function DublicateReviewerRatingForm() {
       toast.error(err?.message);
     } finally {
       setIsAIAutoFillLoading(false);
+      setIsAIAutoFillLoading(false);
     }
   };
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white space-y-6">
-      <form onSubmit={handleAIAutoFill}>
-        <div className="p-6">
-          <Label>Auto Fill with AI</Label>
-          <Textarea
-            name="yelp"
-            className="border p-2 w-full h-24"
-            placeholder="Copy your review from yelp then paste here"
-            onChange={(e) => setYelpText(e.target.value)}
-          />
-
-          <Button
-            type="submit"
-            disabled={!yelpText.trim()}
-            className="bg-[#F05223] w-[150px] mt-2 disabled:opacity-50"
-          >
-            {isAIAutoFillLoading ? (
-              <Loader2 className="animate-spin" />
-            ) : (
-              "Start Auto Fill"
-            )}
-          </Button>
-        </div>
-      </form>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-3xl mx-auto p-6 bg-white space-y-6"
       >
         {/* Your Rating */}
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <div className="flex items-center gap-5">
             <RenderStars
               initialRating={rating.yourRating}
@@ -158,6 +142,7 @@ export default function DublicateReviewerRatingForm() {
           </div>
           <div className="flex items-end mt-2 md:mt-0">
             <Link
+              target="_blank"
               href="/review-guildliness"
               className="text-sm text-[#3D454E] font-semibold hover:underline"
             >
@@ -165,6 +150,31 @@ export default function DublicateReviewerRatingForm() {
             </Link>
           </div>
         </div>
+
+        {/* ai auto fill */}
+        <form onSubmit={handleAIAutoFill}>
+          <div className="p-">
+            <Label>Auto Fill with AI</Label>
+            <Textarea
+              name="yelp"
+              className="border p-2 w-full h-24"
+              placeholder="Copy your review from yelp then paste here"
+              onChange={(e) => setYelpText(e.target.value)}
+            />
+
+            <Button
+              type="submit"
+              disabled={!yelpText.trim()}
+              className="bg-[#F05223] w-[150px] mt-2 disabled:opacity-50"
+            >
+              {isAIAutoFillLoading ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                "Start Auto Fill"
+              )}
+            </Button>
+          </div>
+        </form>
 
         {/* Name */}
         <div>
@@ -223,6 +233,22 @@ export default function DublicateReviewerRatingForm() {
             Review needs to be short excerpts from original review to comply
             with the Fair Use.
           </p>
+        </div>
+        {/* Experience Date */}
+        <div>
+          <Label>Date of Experience</Label>
+          <input
+            className="border p-2 w-full"
+            {...register("experienceDate", {
+              required: "Experience date is required",
+            })}
+            type="date"
+          />
+          {errors.experienceDate && (
+            <p className="text-red-500 text-sm">
+              {errors.experienceDate.message}
+            </p>
+          )}
         </div>
 
         {/* Review Source */}
