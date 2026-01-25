@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { BotIcon, Loader2 } from "lucide-react";
 import CustomModal from "@/modal/CustomModal";
-import AIReviewGenerator from "./AIGenerateForm";
+import AIReviewGenerator from "./AIReviewGenerateForm";
 type Rating = { yourRating: number; bussinessRating: number };
 
 export default function DublicateReviewerRatingForm() {
@@ -35,6 +35,7 @@ export default function DublicateReviewerRatingForm() {
   const [isOtherType, setIsOtherType] = useState(false);
   const [yelpText, setYelpText] = useState("");
   const [isOtherConsequence, setIsOtherConsequence] = useState(false);
+  const [reviewMessage, setReviewMessage] = useState("");
 
   const {
     register,
@@ -112,11 +113,11 @@ export default function DublicateReviewerRatingForm() {
         setValue("reviewerAddress", res?.data.reviewerAddress);
         // setValue("experienceDate", res?.data.experienceDate);
         setValue("reviewMessage", res?.data.reviewMessage);
+        setReviewMessage(res?.data.reviewMessage);
       }
     } catch (err: any) {
       toast.error(err?.message);
     } finally {
-      setIsAIAutoFillLoading(false);
       setIsAIAutoFillLoading(false);
     }
   };
@@ -223,6 +224,7 @@ export default function DublicateReviewerRatingForm() {
             })}
             placeholder="Paste excerpt..."
             className="border w-full p-3"
+            onChange={(e) => setReviewMessage(e.target.value)}
           />
           {errors.reviewMessage && (
             <p className="text-red-500 text-sm">
@@ -350,13 +352,17 @@ export default function DublicateReviewerRatingForm() {
                 <Button
                   type="button"
                   className="absolute bottom-4 right-2 bg-primary rounded-full hover:shadow-md hover:shadow-orange-400 transition-all duration-300 ease-in-out"
+                  disabled={reviewMessage.trim().length === 0}
                 >
                   <BotIcon /> AI Generate
                 </Button>
               }
               className="w-[70vw] overflow-y-scroll scroll-hidden p-6"
             >
-              <AIReviewGenerator />
+              <AIReviewGenerator
+                context={reviewMessage || ""}
+                setValue={setValue}
+              />
             </CustomModal>
           </div>
           {errors.clapbacMessage && (

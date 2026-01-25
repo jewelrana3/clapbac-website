@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -5,16 +7,25 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Switch } from "@/components/ui/switch";
+import { myFetch } from "@/utils/myFetch";
+import toast from "react-hot-toast";
+import { Loader, LoaderCircle } from "lucide-react";
+import { DialogClose } from "@/components/ui/dialog";
 
-export default function AIReviewGenerator() {
-  const [prompt, setPrompt] = useState(
-    "Anything nice to say, say shady haters who think they can hide behind their screens...",
-  );
+export default function AIReviewGenerator({
+  context,
+  setValue,
+}: {
+  context: string;
+  setValue: any;
+}) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [prompt, setPrompt] = useState("");
   const [tone, setTone] = useState("Witty");
-  const [wordCount, setWordCount] = useState([69]);
-  const [generateHashtags, setGenerateHashtags] = useState(false);
-  const [includeEmoji, setIncludeEmoji] = useState(true);
-  const [postCount, setPostCount] = useState(3);
+  const [lengthInWords, setLengthInWords] = useState([50]);
+  const [useHashTags, setUseHashtags] = useState(false);
+  const [useEmojis, setUseEmojis] = useState(true);
+  const [resultCount, setResultCount] = useState(3);
   const tones = [
     "Polite",
     "Witty",
@@ -24,35 +35,36 @@ export default function AIReviewGenerator() {
     "Funny",
   ];
 
-  const [results, setResults] = useState<string[]>([
-    "We take all feedback seriously, but this review does not reflect the experience of the vast majority of our customers. We stand by the quality of our service and are always happy to address genuine concerns directly.",
-    "It’s unfortunate to see a review that lacks context. We encourage anyone with a real issue to reach out so we can resolve it properly and transparently.",
-    "We strive to provide consistent, high-quality service, and this comment does not align with our records or customer feedback. We remain open to constructive dialogue.",
-    "Our team works hard to deliver a positive experience, and while we welcome fair criticism, misleading statements do not represent who we are or how we operate.",
-  ]);
+  const [results, setResults] = useState<string[]>([]);
   const [selected, setSelected] = useState<number>(0);
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     const payload = {
+      context,
       prompt,
       tone,
-      wordCount: wordCount[0],
-      generateHashtags,
-      includeEmoji,
-      postCount,
+      lengthInWords: lengthInWords[0],
+      useHashTags,
+      useEmojis,
+      resultCount,
     };
 
-    // try {
-    //   const res = await fetch("/api/generate-content", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(payload),
-    //   });
-    //   const data = await res.json();
-    //   setResults(data.posts || []);
-    // } catch (err) {
-    //   console.error("Error generating content:", err);
-    // }
+    try {
+      const res = await myFetch("/reviews/generate", {
+        method: "POST",
+        body: payload,
+      });
+      if (res.success) {
+        setResults(res.data);
+      } else {
+        toast.error(res.message || "Failed to generate content.");
+      }
+    } catch (err) {
+      console.error("Error generating content:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -103,11 +115,12 @@ export default function AIReviewGenerator() {
                 <span className="font-bold text-gray-800">
                   Approximate words
                 </span>
-                <span className="text-gray-500">{wordCount[0]}</span>
+                <span className="text-gray-500">{lengthInWords[0]}</span>
               </div>
               <Slider
-                value={wordCount}
-                onValueChange={setWordCount}
+                value={lengthInWords}
+                onValueChange={setLengthInWords}
+                min={5}
                 max={120}
                 step={1}
               />
@@ -119,16 +132,16 @@ export default function AIReviewGenerator() {
                 Generate hashtags
               </span>
               <Switch
-                checked={generateHashtags}
-                onCheckedChange={(val) => setGenerateHashtags(!!val)}
+                checked={useHashTags}
+                onCheckedChange={(val) => setUseHashtags(!!val)}
               />
             </div>
 
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-700 font-medium">Include emoji</span>
               <Switch
-                checked={includeEmoji}
-                onCheckedChange={(val) => setIncludeEmoji(!!val)}
+                checked={useEmojis}
+                onCheckedChange={(val) => setUseEmojis(!!val)}
               />
             </div>
 
@@ -137,16 +150,21 @@ export default function AIReviewGenerator() {
               <span className="font-bold text-gray-800">Posts to generate</span>
               <input
                 type="number"
-                value={postCount}
-                onChange={(e) => setPostCount(Number(e.target.value))}
+                value={resultCount}
+                onChange={(e) => setResultCount(Number(e.target.value))}
                 className="px-3 py-1 rounded-lg border w-16 text-center"
-                min={1}
-                max={10}
+                min={3}
+                max={5}
               />
             </div>
 
-            <Button type="button" className="w-full rounded-md py-4">
-              Generate
+            <Button
+              onClick={handleSubmit}
+              type="button"
+              className="w-full rounded-md py-4"
+              disabled={isLoading}
+            >
+              {isLoading ? "Generating..." : "Generate"}
             </Button>
           </form>
         </CardContent>
@@ -166,34 +184,48 @@ export default function AIReviewGenerator() {
             </Button>
           </div>
 
-          {results.length === 0 && (
+          {isLoading && (
+            <div className="text-sm flex justify-center items-center gap-2 py-4">
+              <LoaderCircle className="animate-spin" /> Generating reviews,
+              please wait...
+            </div>
+          )}
+
+          {!isLoading && results.length === 0 && (
             <div className="text-sm text-gray-500">
               No results yet. Fill the form and click Generate.
             </div>
           )}
 
-          {results.map((text, idx) => (
-            <div
-              key={idx}
-              className={`border-2 rounded-xl p-4 flex gap-3 cursor-pointer ${
-                idx === selected ? "border-primary" : ""
-              }`}
-              onClick={() => setSelected(idx)}
-            >
-              <Checkbox checked={idx === selected} />
-              <p className="text-sm text-gray-700">{text}</p>
-            </div>
-          ))}
-
-          {results.length > 0 && (
-            <div className="flex justify-end pt-4 mt-auto">
-              <Button
-                type="button"
-                onClick={handleSubmit}
-                className="rounded-md px-6"
+          {!isLoading &&
+            results.length > 0 &&
+            results.map((text, idx) => (
+              <div
+                key={idx}
+                className={`border-2 rounded-xl p-4 flex gap-3 cursor-pointer ${
+                  idx === selected ? "border-primary" : ""
+                }`}
+                onClick={() => setSelected(idx)}
               >
-                Use selected result
-              </Button>
+                <Checkbox checked={idx === selected} />
+                <p className="text-sm text-gray-700">{text}</p>
+              </div>
+            ))}
+
+          {!isLoading && results.length > 0 && (
+            <div className="flex justify-end pt-4 mt-auto">
+              <DialogClose asChild>
+                <Button
+                  type="button"
+                  className="rounded-md px-6"
+                  onClick={() => {
+                    setValue("clapbacMessage", results[selected]);
+                    toast.success("Generated review inserted!");
+                  }}
+                >
+                  Use selected result
+                </Button>
+              </DialogClose>
             </div>
           )}
         </CardContent>

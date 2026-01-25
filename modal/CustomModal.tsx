@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 
 type ModalProps = {
-  open?: boolean;
+  isOpen?: boolean;
   dialogTrigger: React.ReactNode;
   children?: React.ReactNode;
   dialogTitle?: React.ReactNode;
@@ -15,18 +15,19 @@ type ModalProps = {
 };
 
 const CustomModal = ({
-  open,
+  isOpen,
   dialogTrigger,
   dialogTitle,
   children,
   className,
 }: ModalProps) => {
   return (
-    <Dialog open={open}>
+    <Dialog open={isOpen}>
       <DialogTrigger asChild>{dialogTrigger}</DialogTrigger>
       <DialogContent
         className={`
           ${className} rounded-xl`}
+        showCloseButton={true}
       >
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">
