@@ -93,27 +93,22 @@ export default function DublicateReviewerRatingForm() {
     }
   };
 
-  const handleAIAutoFill = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  const handleAIAutoFill = async () => {
     setIsAIAutoFillLoading(true);
-
-    const formData = new FormData(e.currentTarget);
-    const payload = formData.get("yelp") as string;
 
     try {
       const res = await myFetch("/reviews/extract", {
         method: "POST",
-        body: { text: payload },
+        body: { text: yelpText },
       });
 
       if (res?.success) {
         setValue("reviewerName", res?.data.reviewerName);
         setValue("reviewerAddress", res?.data.reviewerAddress);
-        // setValue("experienceDate", res?.data.experienceDate);
+        setValue("experienceDate", res?.data.experienceDate);
         setValue("reviewMessage", res?.data.reviewMessage);
         setReviewMessage(res?.data.reviewMessage);
+        toast.success("Auto fill successful!");
       }
     } catch (err: any) {
       toast.error(err?.message);
@@ -153,29 +148,28 @@ export default function DublicateReviewerRatingForm() {
         </div>
 
         {/* ai auto fill */}
-        <form onSubmit={handleAIAutoFill}>
-          <div className="p-">
-            <Label>Auto Fill with AI</Label>
-            <Textarea
-              name="yelp"
-              className="border p-2 w-full h-24"
-              placeholder="Copy your review from yelp then paste here"
-              onChange={(e) => setYelpText(e.target.value)}
-            />
+        <div className="p-">
+          <Label>Auto Fill with AI</Label>
+          <Textarea
+            name="yelp"
+            className="border p-2 w-full min-h-28 max-h-56"
+            placeholder="Copy your review from yelp then paste here"
+            onChange={(e) => setYelpText(e.target.value)}
+          />
 
-            <Button
-              type="submit"
-              disabled={!yelpText.trim()}
-              className="bg-[#F05223] w-[150px] mt-2 disabled:opacity-50"
-            >
-              {isAIAutoFillLoading ? (
-                <Loader2 className="animate-spin" />
-              ) : (
-                "Start Auto Fill"
-              )}
-            </Button>
-          </div>
-        </form>
+          <Button
+            type="button"
+            onClick={handleAIAutoFill}
+            disabled={!yelpText.trim()}
+            className="bg-[#F05223] w-[120px] mt-2 disabled:opacity-50"
+          >
+            {isAIAutoFillLoading ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              "Auto Fill"
+            )}
+          </Button>
+        </div>
 
         {/* Name */}
         <div>
@@ -218,12 +212,12 @@ export default function DublicateReviewerRatingForm() {
         {/* Review Excerpt */}
         <div>
           <Label>Paste Excerpt from Original Review Here</Label>
-          <textarea
+          <Textarea
             {...register("reviewMessage", {
               required: "Review excerpt is required",
             })}
             placeholder="Paste excerpt..."
-            className="border w-full p-3"
+            className="border p-2 w-full min-h-28 max-h-56"
             onChange={(e) => setReviewMessage(e.target.value)}
           />
           {errors.reviewMessage && (
@@ -289,23 +283,6 @@ export default function DublicateReviewerRatingForm() {
           )}
         </div>
 
-        {/* Experience Date */}
-        {/* <div>
-          <Label>Date of Experience</Label>
-          <input
-            className="border p-2 w-full"
-            {...register("experienceDate", {
-              required: "Experience date is required",
-            })}
-            type="date"
-          />
-          {errors.experienceDate && (
-            <p className="text-red-500 text-sm">
-              {errors.experienceDate.message}
-            </p>
-          )}
-        </div> */}
-
         {/* Original Reviewer Rating */}
         <div>
           <p className="text-[#3D454E] font-semibold mb-1">
@@ -341,7 +318,7 @@ export default function DublicateReviewerRatingForm() {
           <div className="relative">
             <Textarea
               placeholder="Enter your review"
-              className="border p-2 w-full h-24"
+              className="border p-2 w-full min-h-28 max-h-56"
               {...register("clapbacMessage", {
                 required: "Review is required.",
                 minLength: { value: 20, message: "At least 20 characters" },
@@ -351,10 +328,10 @@ export default function DublicateReviewerRatingForm() {
               dialogTrigger={
                 <Button
                   type="button"
-                  className="absolute bottom-4 right-2 bg-primary rounded-full hover:shadow-md hover:shadow-orange-400 transition-all duration-300 ease-in-out"
+                  className="absolute bottom-4 right-2 bg-primary rounded-full shadow-md shadow-orange-300 hover:shadow-md hover: transition-all duration-300 ease-in-out"
                   disabled={reviewMessage.trim().length === 0}
                 >
-                  <BotIcon /> AI Generate
+                  <BotIcon /> AI
                 </Button>
               }
               className="w-[70vw] overflow-y-scroll scroll-hidden p-6"

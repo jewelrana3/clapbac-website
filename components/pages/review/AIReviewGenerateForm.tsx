@@ -172,7 +172,7 @@ export default function AIReviewGenerator({
 
       {/* Right Panel */}
       <Card className="lg:col-span-2 rounded-2xl shadow-none border">
-        <CardContent className="p-6 space-y-4">
+        <CardContent className="p-6 space-y-4 max-h-[80vh] overflow-y-scroll scroll-hidden">
           <div className="flex justify-between items-center">
             <h2 className="font-semibold text-lg">Results</h2>
             <Button
