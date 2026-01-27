@@ -35,7 +35,9 @@ export default function AIReviewGenerator({
     "Funny",
   ];
 
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<{ title: string; message: string }[]>(
+    [],
+  );
   const [selected, setSelected] = useState<number>(0);
 
   const handleSubmit = async () => {
@@ -183,7 +185,8 @@ export default function AIReviewGenerator({
               Clear results
             </Button>
           </div>
-
+          
+          {/*  */}
           {isLoading && (
             <div className="text-sm flex justify-center items-center gap-2 py-4">
               <LoaderCircle className="animate-spin" /> Generating reviews,
@@ -191,15 +194,17 @@ export default function AIReviewGenerator({
             </div>
           )}
 
+          {/* Empty state */}
           {!isLoading && results.length === 0 && (
             <div className="text-sm text-gray-500">
               No results yet. Fill the form and click Generate.
             </div>
           )}
 
+          {/* Results */}
           {!isLoading &&
             results.length > 0 &&
-            results.map((text, idx) => (
+            results.map((item, idx) => (
               <div
                 key={idx}
                 className={`border-2 rounded-xl p-4 flex gap-3 cursor-pointer ${
@@ -207,11 +212,17 @@ export default function AIReviewGenerator({
                 }`}
                 onClick={() => setSelected(idx)}
               >
-                <Checkbox checked={idx === selected} />
-                <p className="text-sm text-gray-700">{text}</p>
+                <Checkbox checked={idx === selected} className="mt-1" />
+                <div>
+                  <h3 className="text-sm text-gray-700 font-bold">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-700 mt-1">{item.message}</p>
+                </div>
               </div>
             ))}
 
+          {/* Use selected button */}
           {!isLoading && results.length > 0 && (
             <div className="flex justify-end pt-4 mt-auto">
               <DialogClose asChild>
@@ -219,7 +230,11 @@ export default function AIReviewGenerator({
                   type="button"
                   className="rounded-md px-6"
                   onClick={() => {
-                    setValue("clapbacMessage", results[selected]);
+                    setValue("clapbacTitle", results[selected]?.title || "");
+                    setValue(
+                      "clapbacMessage",
+                      results[selected]?.message || "",
+                    );
                     toast.success("Generated review inserted!");
                   }}
                 >
