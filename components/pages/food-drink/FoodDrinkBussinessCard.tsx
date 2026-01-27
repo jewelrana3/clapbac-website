@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
+import { truncateText } from "@/utils/truncateText";
 
 export default function FoodDrinkBussinessCard({ item }: { item: any }) {
   const renderStars = (rating: number) => {
@@ -53,8 +53,7 @@ export default function FoodDrinkBussinessCard({ item }: { item: any }) {
           </div>
           <div className="basis-2/3">
             <p className="text-left">
-              {item.about ||
-                "In vehicula velit vel sollicitudin malesuada. Quisque posuere purus sit amet dictum ultricies. Phasellus eget elit at libero porta porttitor. In malesuada libero fermentum nulla bibendum elementum. Proin dolor erat, efficitur a pellentesque id, auctor in augue."}
+              {truncateText(item.about, 50) || "No description available."}
             </p>
           </div>
         </div>

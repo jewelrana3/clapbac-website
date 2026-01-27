@@ -3,6 +3,7 @@ import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import one from "../../../public/food-drink/one.png";
 import Link from "next/link";
+import { truncateText } from "@/utils/truncateText";
 
 export default function ReviewersCard({ item }: { item: any }) {
   const renderStars = (rating: number) => {
@@ -70,7 +71,7 @@ export default function ReviewersCard({ item }: { item: any }) {
                 </div>
               </div>
               <div className="w-full mt-2 text-sm text-gray-700">
-                {item.clapbacMessage}
+                {truncateText(item?.clapbacMessage, 60)}
               </div>
             </div>
           </div>

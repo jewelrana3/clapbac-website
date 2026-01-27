@@ -46,7 +46,7 @@ export default function ComapyNameSection({ details }: any) {
           <div className="font-bold lg:text-lg flex gap-5 items-center">
             <div className="my-2">
               <a
-                href={`https://${details?.website}`}
+                href={`${details?.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-blue-600 underline hover:text-blue-800"
