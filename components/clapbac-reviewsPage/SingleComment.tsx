@@ -41,13 +41,13 @@ export default function SingleComment({
   index: number;
 }) {
   return (
-    <div className=" flex flex-col xl:flex-row ">
+    <div className=" flex flex-col xl:flex-row justify-between">
       <div
         className={`flex items-start gap-3 `}
         style={{ marginLeft: index === 0 ? 0 : index * 33 }}
       >
-        {/* left logo */}
-        <Image src={left} alt="Logo" className="hidden sm:block h-10" />
+        {/* reply-L-line */}
+        <Image src={left} alt="reply-L-line" className="hidden sm:block h-10" />
 
         <div className="">
           <div className="flex flex-row items-center gap-2">
@@ -79,10 +79,8 @@ export default function SingleComment({
                   {/* <p>CLAPBAC FROM</p> */}
                   {/* name & owner */}
                   <div className="">
-                    <p>{reply?.name}</p>
-                    {/* <p className="font-medium">{reply?.owner}</p> */}
                     <div className="flex items-center gap-2">
-                      <p className="font-semibold text-base">
+                      <p className="font-bold text-lg">
                         {reply?.user?.firstName} {reply?.user?.lastName} ,
                       </p>
                       <p>Owner</p>
@@ -103,16 +101,25 @@ export default function SingleComment({
             </div>
           </div>
 
-          <p
-            style={{ whiteSpace: "pre-line" }}
-            className="text-sm text-gray-700 mt-6"
-          >
-            {reply?.clapbacMessage}
-          </p>
+          {/* clapbac message */}
+          <div className="mt-2">
+            <h2 className="text-lg font-bold">{reply?.clapbacTitle}</h2>
+            <h3 className="italic text-sm">
+              {reply?.reviewerType} | {reply?.reviewerConsequence}
+            </h3>
+            <p
+              style={{ whiteSpace: "pre-line" }}
+              className="text-gray-700 mt-6"
+            >
+              {reply?.clapbacMessage}
+            </p>
+          </div>
         </div>
       </div>
       <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">
-        <p className="font-bold text-md">{reply?.ownerside}</p>
+        <p className="font-bold text-md">
+          {reply?.company?.name}’s Rating of {reply?.reviewerName}
+        </p>
 
         {reply?.reviewRating && (
           <p className="mt-1 flex gap-1 xl:justify-end ">

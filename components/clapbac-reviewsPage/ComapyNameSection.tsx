@@ -1,7 +1,7 @@
 import React from "react";
-import Image from "next/image";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import CompanyImage from "../share/customImageHandle/CompanyImage";
+import { Button } from "../ui/button";
 
 export default function ComapyNameSection({ details }: any) {
   const currentDate = new Date();
@@ -51,7 +51,7 @@ export default function ComapyNameSection({ details }: any) {
                 rel="noopener noreferrer"
                 className="text-sm text-blue-600 underline hover:text-blue-800"
               >
-                View Website
+                <Button>View Website</Button>
               </a>
             </div>
           </div>

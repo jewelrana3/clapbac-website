@@ -22,7 +22,9 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
         </div>
 
         <div className="text-right">
-          <p className="text-sm  text-gray-500">Overall Reviewer Rating</p>
+          <p className="text-sm font-semibold  text-gray-500">
+            Overall Rating of {reviews?.reviewerName || "reviewer"}
+          </p>
           {reviews?.reviewRating && (
             <p className="flex gap-1">
               {ratingCaculate(reviews?.reviewRating)}
@@ -53,19 +55,20 @@ const ReviewCard = ({ reviews }: { reviews: any }) => {
               </span>
             )}
           </span>
-          {reviews?.clapbacTitle}
+          {/* {reviews?.clapbacTitle} */}
+          <span>
+            {reviews?.reviewerName}’s Original Rating of{" "}
+            {reviews?.company?.name || "the company"}
+          </span>
         </p>
-        <p
-          style={{ whiteSpace: "pre-line" }}
-          className="text-sm text-gray-700 "
-        >
-          {reviews?.reviewMessage}
+        <p style={{ whiteSpace: "pre-line" }} className="text-gray-700 ">
+          "{reviews?.reviewMessage}"
         </p>
         <a
           href={reviews?.sourceLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#1AA1B1] text-sm mt-2  flex justify-end underline"
+          className="text-[#1AA1B1] text-sm font-semibold mt-2  flex justify-end underline"
         >
           Read Full Review
         </a>
