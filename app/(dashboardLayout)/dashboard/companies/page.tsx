@@ -1,4 +1,5 @@
 import CompaniesTable from "@/components/dashboard/companies/Companies";
+import TablePagination from "@/components/share/Pagination";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
@@ -9,6 +10,11 @@ export default async function Companies() {
   return (
     <>
       <CompaniesTable data={res?.data} />{" "}
+      {res?.data?.length > 0 && (
+        <div className="mt-10">
+          <TablePagination total={res?.pagination?.total} />
+        </div>
+      )}
     </>
   );
 }

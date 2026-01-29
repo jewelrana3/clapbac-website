@@ -48,6 +48,12 @@ const AnnouncementForm = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const isEdit: boolean = data?._id ? true : false;
+    const url = isEdit
+      ? `/announcements/${data?._id}`
+      : "/announcements/create";
+    const method = isEdit ? "PATCH" : "POST";
+
     const payload: {
       audience: string;
       title: string;
@@ -68,14 +74,8 @@ const AnnouncementForm = ({
     }
 
     try {
-      // const isEdit: boolean = data?._id ? true : false;
-      // const url = isEdit
-      //   ? `/announcements/${data?._id}`
-      //   : "/announcements/create";
-      // const method = isEdit ? "PATCH" : "POST";
-
-      const res = await myFetch(`/announcements/${data?._id}`, {
-        method: "PATCH",
+      const res = await myFetch(url, {
+        method: method,
         body: payload,
       });
 

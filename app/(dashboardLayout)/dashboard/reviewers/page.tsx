@@ -10,15 +10,17 @@ export default async function page({
 }) {
   const { page = "" } = await searchParams;
   const reviews = await myFetch(
-    `${page ? `/reviews/reviewers?page=${page}` : `/reviews/reviewers`}`
+    `${page ? `/reviews/reviewers?page=${page}` : `/reviews/reviewers`}`,
   );
   return (
     <div>
       <Reviewers reviews={reviews?.data} />
 
-      <div className="mt-10">
-        <TablePagination total={reviews?.pagination?.total} />
-      </div>
+      {reviews?.data?.length > 0 && (
+        <div className="mt-10">
+          <TablePagination total={reviews?.pagination?.total} />
+        </div>
+      )}
     </div>
   );
 }

@@ -26,10 +26,11 @@ export default async function Page({
   return (
     <div>
       <Announcements data={announcements?.data} />
-
-      <div className="mt-10">
-        <TablePagination total={announcements?.pagination?.total} />
-      </div>
+      {announcements?.data?.length > 0 && (
+        <div className="mt-10">
+          <TablePagination total={announcements?.pagination?.total} />
+        </div>
+      )}
     </div>
   );
 }

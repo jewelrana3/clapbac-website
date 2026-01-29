@@ -13,13 +13,11 @@ export default function ReviewsDetails({
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[925px]">
+      <DialogContent className="md:w-[60vw] md:h-[50vh]">
         <div className="mt-4 p-4">
           <div className="review-header">
             <div>
-              <strong>
-                {data?.user?.firstName + " " + data?.user?.lastName}
-              </strong>{" "}
+              <strong>{data?.reviewerName}</strong>{" "}
               <span className="location">
                 {data?.company?.address || "N/A"}
               </span>
@@ -35,7 +33,7 @@ export default function ReviewsDetails({
             {/* overall rating */}
             <div>
               <span className="font-semibold text-[#3D454E]">
-                Overall Reviewer Rating
+                Overall Rating of {data?.reviewerName}
               </span>
               <div className="rating overall-rating flex">
                 {ratingCaculate(data?.clapbacRating)}
@@ -49,7 +47,7 @@ export default function ReviewsDetails({
                 {ratingCaculate(data?.clapbacRating)}
               </div>
               <strong className="review-title text-[#3D454E] font-semibold">
-                The experience was meh.
+                {data?.reviewerName} Original Rating of {data?.company?.name}
               </strong>
             </div>
             <p>{data?.reviewMessage}</p>
@@ -58,7 +56,8 @@ export default function ReviewsDetails({
           <div className="clapback-review">
             <div className="">
               <strong className="clapback-author">
-                Pete Wells’s Clapbac Review
+                {/* Pete Wells’s Clapbac Review */}
+                {data?.user?.firstName + " " + data?.user?.lastName}
               </strong>
               <span className="ml-3">{data?.createdAt.slice(0, 10)}</span>
             </div>
@@ -67,7 +66,7 @@ export default function ReviewsDetails({
                 {ratingCaculate(data?.reviewRating)}
               </div>
               <div className="font-bold text-[#3D454E] text-sm">
-                Clapbac Rating of this Review
+                {data?.company?.name} Rating of {data?.reviewerName}
               </div>
             </div>
             {/* description  */}

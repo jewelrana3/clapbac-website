@@ -6,7 +6,6 @@ import { myFetch } from "@/utils/myFetch";
 
 export default async function FeatureBusiness() {
   const featuresBussiness = await myFetch("/companies?isFeatured=true");
-  console.log("featuresBussiness", featuresBussiness);
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);

@@ -14,8 +14,6 @@ import UserImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function Reviews({ reviews }: any) {
-  console.log("reviews", reviews);
-
   return (
     <>
       <DropDownDashboard

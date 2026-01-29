@@ -24,9 +24,11 @@ export default async function Page({
   return (
     <div>
       <OwnerUsers users={res?.data} />
-      <div className="mt-10">
-        <TablePagination total={res?.pagination?.total} />
-      </div>
+      {res?.data?.length > 0 && (
+        <div className="mt-10">
+          <TablePagination total={res?.pagination?.total} />
+        </div>
+      )}
     </div>
   );
 }

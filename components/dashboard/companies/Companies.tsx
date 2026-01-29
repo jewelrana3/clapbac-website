@@ -104,8 +104,8 @@ export default function CompaniesTable({ data }: any) {
                     }`}
                   >
                     {invoice.isFeatured === true
-                      ? "Mark as unFeatured"
-                      : "Mark as Featured"}
+                      ? "Mark as unfeatured"
+                      : "Mark as featured"}
                   </Button>
                 </TableCell>
               </TableRow>

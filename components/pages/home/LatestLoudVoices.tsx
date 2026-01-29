@@ -22,7 +22,6 @@ import Link from "next/link";
 
 export default function LatestLoudVoices() {
   const [latestLoudVoices, setLatestLoudVoices] = React.useState<any>([]);
-  console.log("latestLoudVoices", latestLoudVoices);
 
   React.useEffect(() => {
     const fetchData = async () => {

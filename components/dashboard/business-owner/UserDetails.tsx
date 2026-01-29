@@ -11,7 +11,6 @@ import {
 export default function UserDetails({ findUserById }: any) {
   const userInfo = getUserInfo(findUserById);
   const topSection = getTopSection(findUserById);
-  console.log("comapny details", findUserById);
 
   const bottomSection = getBottomSection(findUserById);
 
