@@ -17,7 +17,7 @@ export default function Users({ users }: any) {
   return (
     <>
       <DropDownDashboard
-        title="Users"
+        title="Reg. Reviewers"
         data={[
           { title: "Active", value: "Active" },
           { title: "Suspended", value: "Suspended" },

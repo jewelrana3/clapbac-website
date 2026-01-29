@@ -12,6 +12,7 @@ import DropDownDashboard from "@/components/share/DropDownDashboard";
 import ReviewsDetails from "./ReviewsDetails";
 import UserImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
+import { truncateText } from "@/utils/truncateText";
 
 export default function Reviews({ reviews }: any) {
   return (
@@ -71,7 +72,7 @@ export default function Reviews({ reviews }: any) {
                   {invoice?.company?.category?.name}
                 </TableCell>
                 <TableCell className="">
-                  {invoice?.reviewerAddress || "No Location"}
+                  {truncateText(invoice?.company?.address, 5) || "No Location"}
                 </TableCell>
                 <TableCell className="">
                   {invoice.createdAt

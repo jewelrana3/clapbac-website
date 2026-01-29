@@ -9,14 +9,6 @@ export default function ReviewersDetails({ data }: any) {
     { label: "Location", value: data?.reviewerAddress },
   ];
 
-  const topSection = [
-    { label: "Name", value: data?.company?.name },
-    {
-      label: "Address",
-      value: data?.reviewerAddress,
-    },
-  ];
-
   const bottomSection = [
     { label: "Original Reviews:", value: "3" },
     { label: "Number of Responses:", value: data?.helpfulCount },
@@ -48,7 +40,6 @@ export default function ReviewersDetails({ data }: any) {
           <div className="flex-1">
             <ReviewersDetailsInfo
               userInfo={userInfo}
-              topSection={topSection}
               bottomSection={bottomSection}
             />
           </div>

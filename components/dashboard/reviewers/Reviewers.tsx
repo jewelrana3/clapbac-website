@@ -24,7 +24,7 @@ export default function Reviewers({ reviews }: any) {
       /> */}
 
       <div className="text-[#F05223] text-3xl font-semibold mb-3">
-        Reviewers
+        Unreg. Reviewers
       </div>
       <Table>
         <TableHeader>
@@ -33,7 +33,7 @@ export default function Reviewers({ reviews }: any) {
             <TableHead>Display Name</TableHead>
 
             {/* <TableHead className="">Email</TableHead> */}
-            <TableHead className=""># of R esponses</TableHead>
+            <TableHead className="">No. of Responses</TableHead>
             <TableHead className="">Avg Rating</TableHead>
             <TableHead className="">Join Date</TableHead>
             {/* <TableHead className="">Status</TableHead> */}

@@ -18,9 +18,7 @@ export default function ReviewsDetails({
           <div className="review-header">
             <div>
               <strong>{data?.reviewerName}</strong>{" "}
-              <span className="location">
-                {data?.company?.address || "N/A"}
-              </span>
+              <span className="location">{data?.reviewerAddress || "N/A"}</span>
               <div className="meta flex gap-3">
                 Original Review Excerpted from {data?.reviewSource} |
                 <span> Date of Review: {data?.createdAt.slice(0, 10)} </span> |
