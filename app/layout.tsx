@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lato } from "next/font/google";
-import "./globals.css"; // Your global styles
+import "./globals.css";
 
 import Footer from "@/layout/Footer";
-import { Toaster } from "react-hot-toast";
 import Header from "@/layout/Header";
+import { Toaster } from "react-hot-toast";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -12,25 +12,24 @@ const lato = Lato({
   weight: ["400", "700"],
 });
 
-//* SEO Metadata for the entire site *//
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Clapbac | Rate the Raters",
   description:
-    "Business owners: stop being silent victims of unfair reviews. Clapbac lets you rate the reviewers, expose the trolls, and honor your best patrons. Reclaim your reputation and fight back against shady critics.",
+    "Business owners: stop being silent victims of unfair reviews...",
   keywords: [
     "rate the raters",
     "business owner tools",
     "reputation management",
-    "review rebuttal",
-    "expose fake reviews",
-    "customer feedback",
-    "small business defense",
   ],
   authors: [{ name: "Clapbac Team" }],
   openGraph: {
     title: "Clapbac | The Business Owner's Revenge",
-    description:
-      "Tired of trolls? It's time to rate the raters. Flip the script on unfair reviews.",
+    description: "Tired of trolls? It's time to rate the raters.",
     url: "https://clapbac.com",
     siteName: "Clapbac",
     images: [
@@ -50,20 +49,19 @@ export const metadata: Metadata = {
     description:
       "No more silent frustration. Expose the haters and honor the great patrons.",
     images: ["/og-image.jpg"],
-    creator: "@clapbac", // Replace with your handle
+    creator: "@clapbac",
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="scrollbar-hide">
-      <body className={`${lato.className}  antialiased `}>
+      <body className={`${lato.className} antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />

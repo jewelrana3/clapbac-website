@@ -113,7 +113,7 @@ const AnnouncementForm = ({
                   setFormData((prev) => ({ ...prev, audience: value }))
                 }
               >
-                <SelectTrigger className="flex-1 border border-gray-300 !rounded-none px-3 py-5 text-sm focus:outline-none text-black">
+                <SelectTrigger className="flex-1 border border-gray-300 rounded-none! px-3 py-5 text-sm focus:outline-none text-black">
                   <SelectValue placeholder="All" />
                 </SelectTrigger>
                 <SelectContent className=" bg-white rounded-md shadow-md">
