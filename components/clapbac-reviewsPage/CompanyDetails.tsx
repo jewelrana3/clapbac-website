@@ -18,19 +18,14 @@ const CompanyDetails = ({ details }: { details: any }) => {
           <p>{details?.address}</p>
           <p>{details?.phone}</p>
           <p>
-            <a
-              href={`mailto:${details?.email}`}
-              className="text-blue-600 underline"
-            >
-              {details?.email}
-            </a>
+            <a href={`mailto:${details?.email}`}>{details?.email}</a>
           </p>
           <p>
             <a
-              href={`https://${details?.website}`}
+              href={`${details?.website}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline"
+              className="hover:underline"
             >
               {details?.website}
             </a>
