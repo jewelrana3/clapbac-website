@@ -3,7 +3,9 @@ import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
 export default async function Companies() {
-  const res = await myFetch("/companies");
+  const res = await myFetch("/companies", {
+    tags: ["companies"],
+  });
   return (
     <>
       <CompaniesTable data={res?.data} />{" "}

@@ -36,7 +36,6 @@ export const consequenceOptions = [
   "Issued a Warning",
   "Ignored",
   "VIP Star Legend Badge",
-  "Owners Choice: Custom Consequence",
   "Cooling-Off Period",
   "Free Dessert",
   "Wall of Shame",

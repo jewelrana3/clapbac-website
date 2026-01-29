@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/table";
 import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
-import Image from "next/image";
 import ReviewsDetails from "./ReviewsDetails";
-import companyLogo from "../../../public/logo2.png";
 import UserImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function Reviews({ reviews }: any) {
+  console.log("reviews", reviews);
+
   return (
     <>
       <DropDownDashboard

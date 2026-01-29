@@ -5,7 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 
 const paths = [
   { id: 1, name: "Overview", path: "/dashboard" },
-  { id: 2, name: "Users", path: "/dashboard/users" },
+  { id: 2, name: "Business Owner", path: "/dashboard/business-owner" },
+  { id: 2, name: "Reg. Users", path: "/dashboard/users" },
   { id: 18, name: "Companies", path: "/dashboard/companies" },
   { id: 3, name: "Reviews", path: "/dashboard/reviews" },
   { id: 4, name: "Reviewers", path: "/dashboard/reviewers" },

@@ -70,7 +70,7 @@ export async function middleware(request: NextRequest) {
     const allowedRoutes = roleBasedRoutes[role];
 
     const hasAccess = allowedRoutes.some((route) =>
-      typeof route === "string" ? pathname === route : pathname.match(route)
+      typeof route === "string" ? pathname === route : pathname.match(route),
     );
 
     if (!hasAccess) {

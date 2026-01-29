@@ -1,4 +1,4 @@
-import Users from "@/components/dashboard/users/Users";
+import OwnerUsers from "@/components/dashboard/business-owner/OwnerUsers";
 import TablePagination from "@/components/share/Pagination";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
@@ -14,7 +14,7 @@ export default async function Page({
   if (status) params.append("status", status);
 
   const res = await myFetch(
-    `/users?role=User${params.toString() ? `?${params.toString()}` : ""}`,
+    `/users${params.toString() ? `?${params.toString()}` : ""}`,
     {
       tags: ["users"],
       cache: "no-store",
@@ -23,12 +23,10 @@ export default async function Page({
 
   return (
     <div>
-      <Users users={res?.data} />
-      {res?.data.length > 0 && (
-        <div className="mt-10">
-          <TablePagination total={res?.pagination?.total} />
-        </div>
-      )}
+      <OwnerUsers users={res?.data} />
+      <div className="mt-10">
+        <TablePagination total={res?.pagination?.total} />
+      </div>
     </div>
   );
 }

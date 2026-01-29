@@ -14,16 +14,22 @@ import { Button } from "@/components/ui/button";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { revalidate } from "@/utils/revalidateTags";
 
 export default function CompaniesTable({ data }: any) {
   const handleFeatured = async (id: any) => {
     try {
-      const res = await myFetch(`/companies/featured/${id}`);
+      const res = await myFetch(`/companies/featured/${id}`, {
+        method: "PATCH",
+      });
 
       if (res?.success) {
         toast.success("Featured updated successfully.");
+        await revalidate("companies");
       } else {
-        toast.error(res.message || "Featured update failed.");
+        toast.error(
+          (res as any)?.error[0].message || "Featured update failed.",
+        );
       }
     } catch (error: any) {
       toast.error(error || "Something went wrong.");

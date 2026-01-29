@@ -13,7 +13,7 @@ import Link from "next/link";
 import LogoImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
-export default function Users({ users }: any) {
+export default function OwnerUsers({ users }: any) {
   return (
     <>
       <DropDownDashboard

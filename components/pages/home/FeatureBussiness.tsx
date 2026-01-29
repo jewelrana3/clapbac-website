@@ -6,6 +6,7 @@ import { myFetch } from "@/utils/myFetch";
 
 export default async function FeatureBusiness() {
   const featuresBussiness = await myFetch("/companies?isFeatured=true");
+  console.log("featuresBussiness", featuresBussiness);
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -44,20 +45,22 @@ export default async function FeatureBusiness() {
                       ? `${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`
                       : "/default-company-logo.png"
                   }
-                  alt={item.category.name}
+                  alt={item?.category?.name}
                   width={1000}
                   height={1000}
                   className="w-full flex-1"
                 />
                 <div className="mt-5">
-                  <h3 className="font-bold text-xl lg:text-2xl">{item.name}</h3>
+                  <h3 className="font-bold text-xl lg:text-2xl">
+                    {item?.name}
+                  </h3>
                   <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
                     <div className="lg:flex gap-5">
                       <div className="flex items-center">
-                        {renderStars(item.avgRating)}
+                        {renderStars(item?.avgRating)}
                       </div>
                       <p className="mt-1 lg:mt-0">
-                        4.5 ({item?.reviewCount} Reviews)
+                        {item?.avgRating} ({item?.reviewCount} Reviews)
                       </p>
                     </div>
                   </div>

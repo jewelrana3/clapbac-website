@@ -15,13 +15,16 @@ export default function BussinessCard({ data }: { data: props[] }) {
   return (
     <Container className="grid md:grid-cols-2 lg:grid-cols-3 gap-16 py-16">
       {data?.map((item) => (
-        <Link href={`/bussiness-categories/${item._id}`} key={item._id}>
+        <Link
+          href={`/bussiness-categories/${item._id}?title=${encodeURIComponent(item.name)}`}
+          key={item._id}
+        >
           <div className="bg-[#C5D92D] p-3  shadow-lg">
             <div className="bg-white  h-32 flex items-center justify-center gap-4 shadow-md">
               <div className="">
                 <Image
                   sizes="100vh"
-                  className="p-1 h-16 xl:h-[80px] w-auto"
+                  className="p-1 h-16 xl:h-20 w-auto"
                   src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.icon}`}
                   width={70}
                   height={70}

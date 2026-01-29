@@ -22,6 +22,7 @@ import Link from "next/link";
 
 export default function LatestLoudVoices() {
   const [latestLoudVoices, setLatestLoudVoices] = React.useState<any>([]);
+  console.log("latestLoudVoices", latestLoudVoices);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -141,8 +142,8 @@ export default function LatestLoudVoices() {
                     </div>
 
                     {/* Review */}
-                    <p className="text-sm text-gray-800 font-semibold flex-grow">
-                      {card.reviewMessage.slice(0, 180)}...
+                    <p className="text-sm text-gray-800 font-semibold grow">
+                      {card.clapbacMessage.slice(0, 180)}...
                     </p>
                   </CardContent>
                 </div>

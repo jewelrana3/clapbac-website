@@ -49,7 +49,7 @@ export default async function Review({ params }: any) {
             </div>
 
             {/* disclaimer description */}
-            <div className="bg-[#e4e0e0] mt-2 text-justify p-6">
+            <div className="bg-[#E9E9E9] mt-2 text-justify p-6">
               <h3 className="font-bold text-lg mb-5">Disclaimer :</h3>
               “*The content featured on this site includes short excerpts of
               publicly available reviews for the purpose of commentary,
