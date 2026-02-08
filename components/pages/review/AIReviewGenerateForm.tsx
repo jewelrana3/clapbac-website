@@ -11,6 +11,13 @@ import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
 import { Loader, LoaderCircle } from "lucide-react";
 import { DialogClose } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function AIReviewGenerator({
   context,
@@ -21,7 +28,7 @@ export default function AIReviewGenerator({
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [prompt, setPrompt] = useState("");
-  const [tone, setTone] = useState("Witty");
+  const [tone, setTone] = useState("Polite");
   const [lengthInWords, setLengthInWords] = useState([50]);
   const [useHashTags, setUseHashtags] = useState(false);
   const [useEmojis, setUseEmojis] = useState(true);
@@ -34,6 +41,22 @@ export default function AIReviewGenerator({
     "Informational",
     "Funny",
   ];
+  const moreTones = [
+    "Frustrated",
+    "Professional",
+    "Approachable",
+    "Assertive",
+    "Measured",
+    "Respectful",
+    "Clear",
+    "Informative",
+    "Calm",
+    "Confident",
+    "Neutral",
+    "Empathetic",
+    "Structured",
+  ];
+  const isMoreSelected = tone && moreTones.includes(tone);
 
   const [results, setResults] = useState<{ title: string; message: string }[]>(
     [],
@@ -41,6 +64,12 @@ export default function AIReviewGenerator({
   const [selected, setSelected] = useState<number>(0);
 
   const handleSubmit = async () => {
+    // validation
+    if (!prompt) {
+      toast.error("Please write your prompt.");
+      return;
+    }
+
     setIsLoading(true);
     const payload = {
       context,
@@ -101,13 +130,41 @@ export default function AIReviewGenerator({
                   <ToggleGroupItem
                     key={t}
                     value={t}
-                    className={`px-4 py-2 rounded-lg border text-sm
+                    className={`px-4 py-2 rounded-full border text-sm
                       data-[state=on]:bg-primary data-[state=on]:text-white
                       data-[state=off]:bg-white data-[state=off]:text-gray-700`}
                   >
                     {t}
                   </ToggleGroupItem>
                 ))}
+                {/* more tones */}
+                <ToggleGroupItem
+                  value="More"
+                  asChild
+                  data-state={isMoreSelected ? "on" : "off"}
+                >
+                  <Select
+                    value={isMoreSelected ? tone : ""}
+                    onValueChange={(val) => setTone(val)}
+                  >
+                    <SelectTrigger
+                      className="px-4 py-2 rounded-full border text-sm
+                      data-[state=on]:bg-primary data-[state=on]:text-white
+                      data-[state=off]:bg-white data-[state=off]:text-gray-700"
+                      data-state={isMoreSelected ? "on" : "off"}
+                    >
+                      <SelectValue placeholder="More" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      {moreTones.map((t) => (
+                        <SelectItem key={t} value={t}>
+                          {t}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </ToggleGroupItem>
               </ToggleGroup>
             </div>
 
@@ -174,7 +231,7 @@ export default function AIReviewGenerator({
 
       {/* Right Panel */}
       <Card className="lg:col-span-2 rounded-2xl shadow-none border">
-        <CardContent className="p-6 space-y-4 max-h-[80vh] overflow-y-scroll scroll-hidden">
+        <CardContent className="p-6 space-y-4 h-full max-h-[650px] overflow-y-scroll scroll-hidden">
           <div className="flex justify-between items-center">
             <h2 className="font-semibold text-lg">Results</h2>
             <Button
@@ -185,7 +242,7 @@ export default function AIReviewGenerator({
               Clear results
             </Button>
           </div>
-          
+
           {/*  */}
           {isLoading && (
             <div className="text-sm flex justify-center items-center gap-2 py-4">
