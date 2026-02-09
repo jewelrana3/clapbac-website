@@ -7,12 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Eye } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 import ReviewsDetails from "./ReviewsDetails";
 import UserImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 import { truncateText } from "@/utils/truncateText";
+import { DeleteReviews } from "./DeleteReviews";
 
 export default function Reviews({ reviews }: any) {
   return (
@@ -80,15 +81,23 @@ export default function Reviews({ reviews }: any) {
                     : "No Date"}
                 </TableCell>
                 <TableCell className="pl-8">{invoice.helpfulCount}</TableCell>
-                <TableCell className="">
-                  <ReviewsDetails
-                    data={invoice}
-                    trigger={
-                      <div>
-                        <Eye className="text-[#3D454E] cursor-pointer" />
-                      </div>
-                    }
-                  />
+                <TableCell className="-pl-16">
+                  <div className="flex items-center  gap-1  hover:none">
+                    <div>
+                      <ReviewsDetails
+                        data={invoice}
+                        trigger={
+                          <div>
+                            <Eye className="text-[#3D454E] cursor-pointer" />
+                          </div>
+                        }
+                      />
+                    </div>
+
+                    <div>
+                      <DeleteReviews id={invoice?._id} />
+                    </div>
+                  </div>
                 </TableCell>
               </TableRow>
             );

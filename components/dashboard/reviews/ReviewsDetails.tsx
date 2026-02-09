@@ -1,5 +1,6 @@
 import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Eye } from "lucide-react";
 
 import React from "react";
 
@@ -8,11 +9,15 @@ export default function ReviewsDetails({
   trigger,
 }: {
   data: any;
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
 }) {
   return (
     <Dialog>
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
+      <DialogTrigger asChild>
+        <div>
+          <Eye className="text-[#3D454E] cursor-pointer" />
+        </div>
+      </DialogTrigger>
       <DialogContent className="md:w-[60vw] md:h-[50vh]">
         <div className="mt-4 p-4">
           <div className="review-header">

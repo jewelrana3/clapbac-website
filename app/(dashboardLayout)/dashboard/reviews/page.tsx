@@ -14,7 +14,10 @@ export default async function page({
   if (sort) params.append("sort", sort);
 
   const reviews = await myFetch(
-    `/reviews${params.toString() ? `?${params.toString()}` : ""}`
+    `/reviews${params.toString() ? `?${params.toString()}` : ""}`,
+    {
+      tags: ["reviews"],
+    },
   );
 
   return (
