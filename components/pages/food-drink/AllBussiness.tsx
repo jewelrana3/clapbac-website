@@ -32,18 +32,26 @@ export default function AllBussiness({
   data: Props[];
   total: number | undefined;
 }) {
+  console.log("total", total);
+
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">
         <div className="basis-[70%] mb-8">
           {/* category header */}
-          <CategoryHeader total={total} data={data} />
+          <CategoryHeader total={total} data={data?.[0]?.category} />
 
           {/* bussiness cards */}
-          {data?.map((item) => (
-            <FoodDrinkBussinessCard item={item} key={item?._id} />
-          ))}
-          <Pagination total={total} />
+          {data?.length > 0 ? (
+            data?.map((item) => (
+              <FoodDrinkBussinessCard item={item} key={item?._id} />
+            ))
+          ) : (
+            <p className="text-center text-gray-500 my-10">
+              No businesses found.
+            </p>
+          )}
+          {total && total > 10 ? <Pagination total={total} /> : ""}
         </div>
 
         {/* categories ralted  */}

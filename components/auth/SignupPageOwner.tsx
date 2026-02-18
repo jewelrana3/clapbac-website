@@ -176,7 +176,7 @@ export default function SignupPageOwner({ categories }: any) {
                     onValueChange={(value) => field.onChange(value)} // Ensure value change is handled
                     value={field.value}
                   >
-                    <SelectTrigger className="w-full bg-white rounded-none !h-12 text-gray-500 font-medium text-[17px]">
+                    <SelectTrigger className="w-full bg-white rounded-none h-12! text-gray-500 font-medium text-[17px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

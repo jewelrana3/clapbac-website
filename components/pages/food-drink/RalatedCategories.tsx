@@ -8,14 +8,13 @@ const RelatedCategories = ({
   title,
 }: {
   categories?: any;
-  setParams?: string | undefined;
+  setParams?: any;
   title?: string;
 }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const handleType = (cat: string) => {
-    if (!setParams) return;
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set(setParams, String(cat));
     router.push(`?${newSearchParams.toString()}`);
@@ -29,9 +28,9 @@ const RelatedCategories = ({
             <li
               key={index}
               className="text-center cursor-pointer"
-              onClick={() => handleType(cat.value)}
+              onClick={() => handleType(cat)}
             >
-              <p className="text-gray-800 capitalize">{cat.label}</p>
+              <p className="text-gray-800 capitalize">{cat}</p>
               {index !== categories.length - 1 && (
                 <hr className="mt-2 border-gray-200 w-2/3 mx-auto" />
               )}

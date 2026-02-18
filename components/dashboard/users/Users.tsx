@@ -14,6 +14,8 @@ import LogoImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function Users({ users }: any) {
+  console.log("users", users);
+
   return (
     <>
       <DropDownDashboard
@@ -29,9 +31,9 @@ export default function Users({ users }: any) {
           <TableRow>
             <TableHead className="w-[100px]">User Name</TableHead>
             <TableHead>Display Name</TableHead>
-            <TableHead>Bussiness Name</TableHead>
+            {/* <TableHead>Bussiness Name</TableHead> */}
             <TableHead className="">Email</TableHead>
-            <TableHead className="">Bussiness Category</TableHead>
+            {/* <TableHead className="">Bussiness Category</TableHead> */}
             <TableHead className="">Join Date</TableHead>
             <TableHead className="">Status</TableHead>
             <TableHead className="">View</TableHead>
@@ -60,14 +62,14 @@ export default function Users({ users }: any) {
                       /> */}
                       <LogoImage item={invoice.image} />
                     </div>
-                    <p>{invoice.lastName}</p>
+                    <p>{invoice.firstName + " " + invoice.lastName}</p>
                   </div>
                 </TableCell>
 
-                <TableCell className="">
+                {/* <TableCell className="">
                   <div className="flex items-center gap-2">
                     <div>
-                      {/* <Image
+                      <Image
                         src={
                           invoice?.company?.logo
                             ? process.env.NEXT_PUBLIC_BASE_URL +
@@ -78,15 +80,15 @@ export default function Users({ users }: any) {
                         height={60}
                         alt={`${invoice.company?.name} logo`}
                         className=" rounded-full object-cover"
-                      /> */}
+                      /> 
                       <CompanyImage item={invoice?.company?.logo} />
                     </div>
 
                     <p>{invoice.company?.name}</p>
                   </div>
-                </TableCell>
+                </TableCell> */}
                 <TableCell>{invoice.email}</TableCell>
-                <TableCell className="">{invoice?.title}</TableCell>
+                {/* <TableCell className="">{invoice?.title}</TableCell> */}
                 <TableCell className="">
                   {invoice.createdAt.slice(0, 10)}
                 </TableCell>

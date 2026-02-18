@@ -23,7 +23,7 @@ export default function Profile({ data }: any) {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>("");
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -78,6 +78,7 @@ export default function Profile({ data }: any) {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData();
 
@@ -103,13 +104,15 @@ export default function Profile({ data }: any) {
       if (res.success) {
         toast.success("Profile updated successfully.");
         revalidate("users-profile");
-        window.location.reload();
+        // window.location.reload();
       } else {
         toast.error(res.message || "Profile update failed.");
       }
     } catch (err) {
       console.error("Error updating profile:", err);
       toast.error("An error occurred while updating the profile.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -179,7 +182,10 @@ export default function Profile({ data }: any) {
           ))}
 
           <div className="flex items-center justify-end">
-            <Button className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223]">
+            <Button
+              disabled={loading}
+              className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223]"
+            >
               Save Changes
             </Button>
           </div>

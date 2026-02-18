@@ -8,6 +8,8 @@ export default async function ProfilePage() {
   const res = await myFetch("/users/profile");
 
   const company = await myFetch("/companies/my-company");
+  console.log("company", company);
+
   return (
     <section className="w-[70%] mx-auto py-10 ">
       <header className="text-[#F05223] text-2xl font-bold">Profile</header>
@@ -16,7 +18,7 @@ export default async function ProfilePage() {
 
         <Profile data={res?.data} />
 
-        <hr className="h-[1px] bg-[#C9C9C9] border-0" />
+        <hr className="h-px bg-[#C9C9C9] border-0" />
 
         {res?.data?.role === "Owner" && (
           <div className="grid grid-cols-[30%_auto] gap-5 p-5">

@@ -6,11 +6,10 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
-import { myFetch } from "@/utils/myFetch";
-import { UserDropdownMenu } from "./HoverNavber";
+
+import { UserDropdownMenu } from "./UserDropdownMenu";
 import ActiveOffer from "@/components/share/ActiveOffer";
 import { Skeleton } from "@/components/ui/skeleton";
-import path from "path";
 import Search from "@/components/pages/home/Search";
 
 interface ProfileData {
@@ -27,34 +26,25 @@ const navItems = [
   { title: "Contact", href: "/contact-us" },
 ];
 
-export default function WebsiteHeader() {
+export default function WebsiteHeader({
+  profileData,
+}: {
+  profileData?: ProfileData;
+}) {
   const pathname = usePathname();
-  const [profileData, setProfileData] = React.useState<ProfileData | null>(
-    null
-  );
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
 
-  // Fetch profile data once
   React.useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await myFetch("/users/profile", {
-          tags: ["users-profile"],
-        });
-
-        setProfileData(res.data);
-      } catch (err) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, []);
+    if (profileData) {
+      setLoading(false);
+    } else {
+      setLoading(false);
+      setError(true);
+    }
+  }, [profileData]);
 
   return (
     <>

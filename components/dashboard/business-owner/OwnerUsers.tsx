@@ -14,6 +14,8 @@ import LogoImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function OwnerUsers({ users }: any) {
+  console.log("users", users);
+
   return (
     <>
       <DropDownDashboard
@@ -60,7 +62,9 @@ export default function OwnerUsers({ users }: any) {
                       /> */}
                       <LogoImage item={invoice.image} />
                     </div>
-                    <p>{invoice.lastName}</p>
+                    <p>
+                      {invoice.firstName} {invoice.lastName}
+                    </p>
                   </div>
                 </TableCell>
 

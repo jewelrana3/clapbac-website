@@ -27,7 +27,7 @@ const CategoryHeader = ({ total, data, pathname }: any) => {
       {/* Left: Category Title */}
       <div>
         <h2 className="text-lg font-semibold">
-          {data?.[0].name} {pathname !== "/reviewers" && ":"}{" "}
+          {data?.name || "All Businesses"} {pathname !== "/reviewers" && ":"}{" "}
           <span className="font-bold">
             {total} {pathname === "/reviewers" ? "Reviewers" : "  Businesses"}
           </span>

@@ -16,7 +16,7 @@ export default function BussinessCard({ data }: { data: props[] }) {
     <Container className="grid md:grid-cols-2 lg:grid-cols-3 gap-16 py-16">
       {data?.map((item) => (
         <Link
-          href={`/bussiness-categories/${item._id}?title=${encodeURIComponent(item.name)}`}
+          href={`/bussiness-categories-details?category=${item._id}`}
           key={item._id}
         >
           <div className="bg-[#C5D92D] p-3  shadow-lg">

@@ -38,6 +38,8 @@ export default function Reports({ reports }: { reports: any }) {
         </TableHeader>
         <TableBody>
           {reports?.map((invoice: any, index: number) => {
+            console.log("invoice", invoice);
+
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">

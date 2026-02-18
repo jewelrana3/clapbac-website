@@ -3,6 +3,7 @@ import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import Image from "next/image";
 import Container from "@/layout/Container";
 import { myFetch } from "@/utils/myFetch";
+import Link from "next/link";
 
 export default async function FeatureBusiness() {
   const featuresBussiness = await myFetch("/companies?isFeatured=true");
@@ -34,37 +35,39 @@ export default async function FeatureBusiness() {
           </h2>
           <div className=" grid md:grid-cols-4 gap-5 ">
             {featuresBussiness?.data?.map((item: any) => (
-              <div
-                key={item?._id}
-                className="bg-[#F5F5F5] p-5 text-[#3D454E] flex flex-col"
-              >
-                <Image
-                  src={
-                    item?.logo
-                      ? `${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`
-                      : "/default-company-logo.png"
-                  }
-                  alt={item?.category?.name}
-                  width={1000}
-                  height={1000}
-                  className="w-full flex-1"
-                />
-                <div className="mt-5">
-                  <h3 className="font-bold text-xl lg:text-2xl">
-                    {item?.name}
-                  </h3>
-                  <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
-                    <div className="lg:flex gap-5">
-                      <div className="flex items-center">
-                        {renderStars(item?.avgRating)}
+              <Link href={`/clapbac-reviews/${item._id}`} key={item?._id}>
+                <div
+                  key={item?._id}
+                  className="bg-[#F5F5F5] p-5 text-[#3D454E] flex flex-col"
+                >
+                  <Image
+                    src={
+                      item?.logo
+                        ? `${process.env.NEXT_PUBLIC_BASE_URL}${item?.logo}`
+                        : "/default-company-logo.png"
+                    }
+                    alt={item?.category?.name}
+                    width={1000}
+                    height={1000}
+                    className="w-full flex-1"
+                  />
+                  <div className="mt-5">
+                    <h3 className="font-bold text-xl lg:text-2xl">
+                      {item?.name}
+                    </h3>
+                    <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
+                      <div className="lg:flex gap-5">
+                        <div className="flex items-center">
+                          {renderStars(item?.avgRating)}
+                        </div>
+                        <p className="mt-1 lg:mt-0">
+                          {item?.avgRating} ({item?.reviewCount} Reviews)
+                        </p>
                       </div>
-                      <p className="mt-1 lg:mt-0">
-                        {item?.avgRating} ({item?.reviewCount} Reviews)
-                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

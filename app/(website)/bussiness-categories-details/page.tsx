@@ -8,19 +8,24 @@ import { myFetch } from "@/utils/myFetch";
 export default async function FoodDrink({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string; title: string }>;
+  searchParams: Promise<{ page: string; title: string; category: string }>;
 }) {
   const { page = "" } = await searchParams;
   const { title = "" } = await searchParams;
+  const { category = "" } = await searchParams;
   const featuresBussiness = await myFetch(
-    `${page ? `/companies?page=${page}` : `/companies`}`,
+    `${category ? `/companies?category=${category}` : `/companies`}`,
   );
   const recentBusiness = await myFetch("/recent-companies");
   const profile = await myFetch("/users/profile");
 
+  console.log("featuresBussiness", featuresBussiness);
+
   return (
     <div>
-      <SectionTitle title={title} />
+      <SectionTitle
+        title={featuresBussiness?.data?.[0]?.category?.name || "All Businesses"}
+      />
       <FeatureBusiness />
       <AllBussiness
         data={featuresBussiness?.data}

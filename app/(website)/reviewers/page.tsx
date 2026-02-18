@@ -30,7 +30,7 @@ export default async function Page({
   if (reviewerIndex) query.append("reviewerIndex", reviewerIndex);
 
   const reviews = await myFetch(
-    `/reviews/reviewers${query.toString() ? `?${query.toString()}` : ""}`
+    `/reviews/reviewers${query.toString() ? `?${query.toString()}` : ""}`,
   );
 
   const recentCompanies = await myFetch("/recent-companies");

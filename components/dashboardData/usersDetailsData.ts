@@ -1,6 +1,6 @@
 export const getUserInfo = (user: any) => [
   { label: "User Name", value: user?.username },
-  { label: "Display Name", value: user?.firstName },
+  { label: "Display Name", value: user?.firstName + " " + user?.lastName },
   { label: "Email", value: user?.email },
   // { label: "Business Category", value: "Food & Drink" },
   { label: "Join Date", value: user?.createdAt?.slice(0, 10) },

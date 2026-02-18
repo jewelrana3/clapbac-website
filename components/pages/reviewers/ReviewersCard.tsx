@@ -4,6 +4,7 @@ import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 import one from "../../../public/food-drink/one.png";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
+import UserImage from "@/components/share/customImageHandle/UserImage";
 
 export default function ReviewersCard({ item }: { item: any }) {
   const renderStars = (rating: number) => {
@@ -30,6 +31,9 @@ export default function ReviewersCard({ item }: { item: any }) {
   // const formattedDate = (date: string) => {
   //   return format(parseISO(date), "d/ d/ yyyy");
   // };
+
+  console.log("item", item);
+
   return (
     <Link href={`/clapbac-reviews/${item?.company?._id}`}>
       <div className="border-[#C5D92D] border-8 mb-8 p-4">
@@ -51,9 +55,14 @@ export default function ReviewersCard({ item }: { item: any }) {
           <div className="flex gap-3 ">
             <div>
               <div className="flex gap-3 ">
-                <Image
+                {/* <Image
                   src={one}
                   alt="Arabica Coffee"
+                  className="w-14 h-14 rounded-full object-contain"
+                /> */}
+                <UserImage
+                  item={item?.company?.logo}
+                  name="Arabica Coffee"
                   className="w-14 h-14 rounded-full object-contain"
                 />
                 <div>

@@ -1,45 +1,46 @@
 "use client";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Edit } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { myFetch } from "@/utils/myFetch";
 
-// Define schema
-const formSchema = z.object({
-  name: z.string().min(1),
-  address: z.string().min(1),
-  phone: z.string().min(1),
-  email: z.string().email(),
-  website: z.string().url().optional(),
-  about: z.string().min(1).optional(),
-});
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
-type FormValues = z.infer<typeof formSchema>;
+import { Label } from "../ui/label";
+
+type Inputs = {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  website?: string;
+  about?: string;
+};
 
 export default function BusinessInformationForm({ company }: { company: any }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [error, setError] = useState<string | null>("");
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const {
+    register,
+    handleSubmit,
+
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>({
     defaultValues: {
       name: "",
       address: "",
@@ -47,18 +48,20 @@ export default function BusinessInformationForm({ company }: { company: any }) {
       email: "",
       website: "",
       about: "",
+      // businessCategory: "",
     },
   });
 
   useEffect(() => {
     if (company) {
-      form.reset({
+      reset({
         name: company.name || "",
         address: company.address || "",
         phone: company.phone || "",
         email: company.email || "",
         website: company.website || "",
         about: company.about || "",
+        businessCategory: company?._id || "",
       });
 
       const logo = company?.logo;
@@ -70,34 +73,6 @@ export default function BusinessInformationForm({ company }: { company: any }) {
       }
     }
   }, [company]);
-
-  const onSubmit = async (values: FormValues) => {
-    const formData = new FormData();
-
-    Object.entries(values).forEach(([key, value]) => {
-      formData.append(key, value || "");
-    });
-
-    if (imageFile) {
-      formData.append("image", imageFile);
-    }
-
-    try {
-      const res = await myFetch(`/companies/${company._id}`, {
-        method: "PATCH",
-        body: formData,
-      });
-
-      if (res.success) {
-        toast.success("Business updated successfully.");
-      } else {
-        toast.error(res.message || "Business update failed.");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Something went wrong.");
-    }
-  };
 
   const handleEditClick = () => {
     fileInputRef.current?.click();
@@ -118,13 +93,43 @@ export default function BusinessInformationForm({ company }: { company: any }) {
 
     if (file.size > 1 * 1024 * 1024) {
       toast.error(`Please upload a file smaller than 1 MB`);
-      setError("Please upload a file smaller than 1 MB");
+      setError({ businessCategory: "Please upload a file smaller than 1 MB" });
       return;
     }
 
     if (file) {
       setPreviewImage(URL.createObjectURL(file));
       setImageFile(file);
+    }
+  };
+
+  const onSubmit: SubmitHandler<Inputs> = async (values) => {
+    const formData = new FormData();
+
+    formData.append("name", values.name);
+    formData.append("address", values.address);
+    formData.append("phone", values.phone);
+    formData.append("email", values.email);
+    formData.append("website", values.website || "");
+    formData.append("about", values.about || "");
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    try {
+      const res = await myFetch(`/companies/${company._id}`, {
+        method: "PATCH",
+        body: formData,
+      });
+
+      if (res.success) {
+        toast.success("Business updated successfully.");
+      } else {
+        toast.error(res.message || "Business update failed.");
+      }
+    } catch (err) {
+      toast.error("Something went wrong.");
     }
   };
 
@@ -163,183 +168,123 @@ export default function BusinessInformationForm({ company }: { company: any }) {
         >
           <Edit size={22} />
         </span>
-
-        {error && (
-          <p className="text-sm text-red-500 mt-2">
-            Please upload a file smaller than 1 MB
-          </p>
-        )}
       </div>
 
       {/* Form */}
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          {/** Company Name */}
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-6">
-                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
-                    Company Name:
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="text"
-                      placeholder="Company Name"
-                      className="flex-1 ml-6 text-[#3D454E]"
-                    />
-                  </FormControl>
-                </div>
-                <div className="ml-[12rem] mt-1">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <div className="flex items-center gap-6">
+          <Label className="w-36 font-medium text-[#A0A0A0]">Name :</Label>
 
-          {/** Address */}
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-6">
-                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
-                    Address:
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="text"
-                      placeholder="123 Main St"
-                      className="flex-1 ml-6 text-[#3D454E]"
-                    />
-                  </FormControl>
-                </div>
-                <div className="ml-[12rem] mt-1">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
+          <Input
+            {...register("name")}
+            type="text"
+            placeholder="Company Name"
+            className="flex-1 ml-6 text-[#3D454E]"
           />
+        </div>
 
-          {/** Phone */}
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-6">
-                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
-                    Phone:
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="text"
-                      placeholder="Phone"
-                      className="flex-1 ml-6 text-[#3D454E]"
-                    />
-                  </FormControl>
-                </div>
-                <div className="ml-[12rem] mt-1">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
+        {/* Business Category */}
+        {/* <Controller
+          control={control}
+          name="businessCategory"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Select
+                  {...field}
+                  onValueChange={(value) => field.onChange(value)} // Ensure value change is handled
+                  value={field.value}
+                >
+                  <SelectTrigger className="w-full bg-white rounded-none h-12! text-gray-500 font-medium text-[17px]">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories?.map((category: any) => (
+                      <SelectItem key={category._id} value={category._id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </FormControl>
 
-          {/** Email */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-6">
-                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
-                    Company Email:
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="email"
-                      placeholder="company@gmail.com"
-                      className="flex-1 ml-6 text-[#3D454E]"
-                    />
-                  </FormControl>
-                </div>
-                <div className="ml-[12rem] mt-1">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
+              {error.businessCategory && (
+                <p className="text-red-500 text-sm mt-1">
+                  {error.businessCategory}
+                </p>
+              )}
+            </FormItem>
+          )}
+        /> */}
 
-          {/** Website */}
-          <FormField
-            control={form.control}
-            name="website"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-6">
-                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
-                    Website:
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="text"
-                      placeholder="https://company.com"
-                      className="flex-1 ml-6 text-[#3D454E]"
-                    />
-                  </FormControl>
-                </div>
-                <div className="ml-[12rem] mt-1">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
+        {/** Address */}
+        <div>
+          <div className="flex items-center gap-6">
+            <Label className="w-36 font-medium text-[#A0A0A0]">Address:</Label>
 
-          {/** About */}
-          <FormField
-            control={form.control}
-            name="about"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center gap-6">
-                  <FormLabel className="w-36 font-medium text-[#A0A0A0]">
-                    Company Details:
-                  </FormLabel>
-                  <FormControl>
-                    <Textarea
-                      {...field}
-                      placeholder="Describe your company..."
-                      className="flex-1 ml-6 text-[#3D454E]"
-                    />
-                  </FormControl>
-                </div>
-                <div className="ml-[12rem] mt-1">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
-          />
-
-          {/** Submit */}
-          <div className="flex justify-end">
-            <Button
-              type="submit"
-              className="w-[77.5%] bg-[#F05223] hover:bg-[#d3441f]"
-            >
-              Save Changes
-            </Button>
+            <Input
+              {...register("address")}
+              type="text"
+              placeholder="123 Main St"
+              className="flex-1 ml-6 text-[#3D454E]"
+            />
           </div>
-        </form>
-      </Form>
+          {/* <div className="ml-48 mt-1">
+            <FormMessage />
+          </div> */}
+        </div>
+        {/** Phone */}
+        <div className="flex items-center gap-6">
+          <Label className="w-36 font-medium text-[#A0A0A0]">Phone:</Label>
+
+          <Input
+            {...register("phone")}
+            type="text"
+            placeholder="Phone"
+            className="flex-1 ml-6 text-[#3D454E]"
+          />
+        </div>
+        {/** Email */}
+        <div className="flex items-center gap-6">
+          <Label className="w-36 font-medium text-[#A0A0A0]">Email:</Label>
+          <Input
+            {...register("email")}
+            type="email"
+            placeholder="company@gmail.com"
+            className="flex-1 ml-6 text-[#3D454E]"
+          />
+        </div>
+
+        {/** Website */}
+        <div className="flex items-center gap-6">
+          <Label className="w-36 font-medium text-[#A0A0A0]">Website:</Label>
+          <Input
+            {...register("website")}
+            type="text"
+            placeholder="https://company.com"
+            className="flex-1 ml-6 text-[#3D454E]"
+          />
+        </div>
+
+        {/** About */}
+        <div className="flex items-center gap-6">
+          <Label className="w-36 font-medium text-[#A0A0A0]">About:</Label>
+          <Textarea
+            {...register("about")}
+            placeholder="Describe your company..."
+            className="flex-1 ml-6 text-[#3D454E]"
+          />
+        </div>
+        {/** Submit */}
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            className="w-[77.5%] bg-[#F05223] hover:bg-[#d3441f]"
+          >
+            Save Changes
+          </Button>
+        </div>
+      </form>
     </>
   );
 }
