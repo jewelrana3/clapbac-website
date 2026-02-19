@@ -184,7 +184,7 @@ export default function Profile({ data }: any) {
           <div className="flex items-center justify-end">
             <Button
               disabled={loading}
-              className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223]"
+              className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg"
             >
               Save Changes
             </Button>

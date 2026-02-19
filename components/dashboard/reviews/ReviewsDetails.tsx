@@ -50,7 +50,7 @@ export default function ReviewsDetails({
                 {ratingCaculate(data?.clapbacRating)}
               </div>
               <strong className="review-title text-[#3D454E] font-semibold">
-                {data?.reviewerName} Original Rating of {data?.company?.name}
+                {data?.reviewerName}’s” Original Rating of {data?.company?.name}
               </strong>
             </div>
             <p>{data?.reviewMessage}</p>
@@ -69,7 +69,7 @@ export default function ReviewsDetails({
                 {ratingCaculate(data?.reviewRating)}
               </div>
               <div className="font-bold text-[#3D454E] text-sm">
-                {data?.company?.name} Rating of {data?.reviewerName}
+                {data?.company?.name}.’s” Rating of {data?.reviewerName}
               </div>
             </div>
             {/* description  */}

@@ -12,7 +12,7 @@ import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
 import ReviewersDetails from "./ReviewersDetails";
 
 export default function Reviewers({ reviews }: any) {
-  console.log("reviews", reviews);
+  console.log("reviews get---", reviews);
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function Reviewers({ reviews }: any) {
             <TableHead className="">No. of Responses</TableHead>
             <TableHead className="">Avg Rating</TableHead>
             <TableHead className="">Join Date</TableHead>
-            {/* <TableHead className="">Status</TableHead> */}
+            <TableHead className="">Location</TableHead>
             <TableHead className="">View</TableHead>
           </TableRow>
         </TableHeader>
@@ -60,6 +60,9 @@ export default function Reviewers({ reviews }: any) {
                 </TableCell>
                 <TableCell className="">
                   {invoice.createdAt.slice(0, 10)}
+                </TableCell>
+                <TableCell className="">
+                  {invoice?.reviewerAddress || "N/A"}
                 </TableCell>
                 {/* <TableCell className="pl-">
                   <Badge

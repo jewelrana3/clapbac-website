@@ -10,14 +10,14 @@ export default function ReviewersDetails({ data }: any) {
   ];
 
   const bottomSection = [
-    { label: "Original Reviews:", value: "3" },
+    { label: "Original Reviews:", value: data?.clapbacRating },
     { label: "Number of Responses:", value: data?.helpfulCount },
     {
       label: "Avg Rating:",
       value: (
         <>
           <div className="text-[#F05223] text-xl flex">
-            {ratingCaculate(data?.reviewRating)}
+            {ratingCaculate(data?.clapbacRating)}
           </div>
         </>
       ),

@@ -16,7 +16,7 @@ export default async function page({
     <div>
       <Reviewers reviews={reviews?.data} />
 
-      {reviews?.data?.length > 0 && (
+      {reviews?.data?.length > 10 && (
         <div className="mt-10">
           <TablePagination total={reviews?.pagination?.total} />
         </div>

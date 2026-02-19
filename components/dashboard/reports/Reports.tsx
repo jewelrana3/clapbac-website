@@ -13,6 +13,8 @@ import DropDownDashboard from "@/components/share/DropDownDashboard";
 import ReportsDetails from "./ReportsDetails";
 
 export default function Reports({ reports }: { reports: any }) {
+  console.log("reports", reports);
+
   return (
     <div className="mt-9">
       <DropDownDashboard

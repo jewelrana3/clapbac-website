@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +13,7 @@ import { myFetch } from "@/utils/myFetch";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -27,9 +28,19 @@ type Inputs = {
   email: string;
   website?: string;
   about?: string;
+  category: string;
 };
 
-export default function BusinessInformationForm({ company }: { company: any }) {
+export default function BusinessInformationForm({
+  company,
+  categories,
+}: {
+  company: any;
+  categories: any;
+}) {
+  console.log("company", company?.category?._id);
+  console.log("categories", categories);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -37,7 +48,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
   const {
     register,
     handleSubmit,
-
+    control,
     reset,
     formState: { errors },
   } = useForm<Inputs>({
@@ -48,7 +59,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
       email: "",
       website: "",
       about: "",
-      // businessCategory: "",
+      category: company?.category?._id || "",
     },
   });
 
@@ -61,7 +72,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
         email: company.email || "",
         website: company.website || "",
         about: company.about || "",
-        businessCategory: company?._id || "",
+        category: company?.category?._id || "",
       });
 
       const logo = company?.logo;
@@ -93,7 +104,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
 
     if (file.size > 1 * 1024 * 1024) {
       toast.error(`Please upload a file smaller than 1 MB`);
-      setError({ businessCategory: "Please upload a file smaller than 1 MB" });
+
       return;
     }
 
@@ -107,6 +118,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
     const formData = new FormData();
 
     formData.append("name", values.name);
+    formData.append("category", values.category);
     formData.append("address", values.address);
     formData.append("phone", values.phone);
     formData.append("email", values.email);
@@ -184,38 +196,32 @@ export default function BusinessInformationForm({ company }: { company: any }) {
         </div>
 
         {/* Business Category */}
-        {/* <Controller
-          control={control}
-          name="businessCategory"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Select
-                  {...field}
-                  onValueChange={(value) => field.onChange(value)} // Ensure value change is handled
-                  value={field.value}
-                >
-                  <SelectTrigger className="w-full bg-white rounded-none h-12! text-gray-500 font-medium text-[17px]">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories?.map((category: any) => (
-                      <SelectItem key={category._id} value={category._id}>
-                        {category.name}
+        <div className="flex items-center gap-6">
+          <Label className="w-52 font-medium text-[#A0A0A0]">Category</Label>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger className="w-full border h-12!">
+                  <SelectValue placeholder="Select Category Level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {categories?.map((sub: any, index: number) => (
+                      <SelectItem key={`${index}`} value={sub?._id}>
+                        <span className="text-lg"> {sub?.name}</span>
                       </SelectItem>
                     ))}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-
-              {error.businessCategory && (
-                <p className="text-red-500 text-sm mt-1">
-                  {error.businessCategory}
-                </p>
-              )}
-            </FormItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            )}
+          />
+          {errors?.category && (
+            <span className="text-red-400">{errors.category.message}</span>
           )}
-        /> */}
+        </div>
 
         {/** Address */}
         <div>
@@ -279,7 +285,7 @@ export default function BusinessInformationForm({ company }: { company: any }) {
         <div className="flex justify-end">
           <Button
             type="submit"
-            className="w-[77.5%] bg-[#F05223] hover:bg-[#d3441f]"
+            className="w-[77.5%] bg-[#F05223] hover:bg-[#d3441f] h-12! font-semibold text-lg"
           >
             Save Changes
           </Button>

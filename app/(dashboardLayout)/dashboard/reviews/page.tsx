@@ -24,9 +24,9 @@ export default async function page({
     <div>
       <Reviews reviews={reviews?.data} />
 
-      <div className="mt-10">
+     {   reviews?.data?.length > 10 &&  <div className="mt-10">
         <TablePagination total={reviews?.pagination?.total} />
-      </div>
+      </div>}
     </div>
   );
 }

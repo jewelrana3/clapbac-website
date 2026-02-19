@@ -8,8 +8,8 @@ export const getUserInfo = (user: any) => [
 ];
 
 export const getTopSection = (user: any) => [
-  { label: "First Name", value: user?.firstName },
-  { label: "Last Name", value: user?.lastName },
+  // { label: "First Name", value: user?.firstName },
+  // { label: "Last Name", value: user?.lastName },
   { label: "Company Name", value: user?.company?.name || "N/A" },
   { label: "Title", value: user?.role },
   { label: "Phone", value: user?.phone },
@@ -23,5 +23,5 @@ export const getBottomSection = (user: any) => [
     value: user?.company?.reviewCount,
     isLink: true,
   },
-  { label: "Last Login / Last Active", value: "8/29/25" },
+  // { label: "Last Login / Last Active", value: "N/D" },
 ];

@@ -24,7 +24,7 @@ export default async function Page({
   return (
     <div>
       <Users users={res?.data} />
-      {res?.data.length > 0 && (
+      {res?.data.length > 10 && (
         <div className="mt-10">
           <TablePagination total={res?.pagination?.total} />
         </div>

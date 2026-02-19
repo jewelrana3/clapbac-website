@@ -14,7 +14,7 @@ export default async function Page({
   if (status) params.append("status", status);
 
   const res = await myFetch(
-    `/users${params.toString() ? `?${params.toString()}` : ""}`,
+    `/users?role=Owner${params.toString() ? `?${params.toString()}` : ""}`,
     {
       tags: ["users"],
       cache: "no-store",
@@ -24,7 +24,7 @@ export default async function Page({
   return (
     <div>
       <OwnerUsers users={res?.data} />
-      {res?.data?.length > 0 && (
+      {res?.data?.length > 10 && (
         <div className="mt-10">
           <TablePagination total={res?.pagination?.total} />
         </div>

@@ -26,7 +26,7 @@ export default async function Page({
   return (
     <div>
       <Announcements data={announcements?.data} />
-      {announcements?.data?.length > 0 && (
+      {announcements?.data?.length > 10 && (
         <div className="mt-10">
           <TablePagination total={announcements?.pagination?.total} />
         </div>

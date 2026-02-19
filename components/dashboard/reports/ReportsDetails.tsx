@@ -11,11 +11,11 @@ export default function ReportsDetails({
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-[30vw]">
         <div className=" p-5 ">
           <div className="flex items-center gap-2 mb-2">
             <span className="font-semibold text-base">
-              {data?.review?.reviewerName}
+              {data?.review?.reviewerName}.
             </span>
             <span className="text-sm text-gray-500">
               {data?.review?.reviewerAddress || "Los Angeles, CA"}

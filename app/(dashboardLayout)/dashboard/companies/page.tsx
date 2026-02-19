@@ -10,7 +10,7 @@ export default async function Companies() {
   return (
     <>
       <CompaniesTable data={res?.data} />{" "}
-      {res?.data?.length > 0 && (
+      {res?.data?.length > 10 && (
         <div className="mt-10">
           <TablePagination total={res?.pagination?.total} />
         </div>

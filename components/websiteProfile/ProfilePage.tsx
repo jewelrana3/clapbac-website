@@ -6,6 +6,7 @@ import { myFetch } from "@/utils/myFetch";
 export default async function ProfilePage() {
   // const [owner, setOwner] = useState(false);
   const res = await myFetch("/users/profile");
+  const categories = await myFetch("/categories");
 
   const company = await myFetch("/companies/my-company");
   console.log("company", company);
@@ -22,7 +23,10 @@ export default async function ProfilePage() {
 
         {res?.data?.role === "Owner" && (
           <div className="grid grid-cols-[30%_auto] gap-5 p-5">
-            <BussinessInformationWebsite company={company?.data} />
+            <BussinessInformationWebsite
+              company={company?.data}
+              categories={categories?.data}
+            />
           </div>
         )}
       </div>

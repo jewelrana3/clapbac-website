@@ -21,6 +21,7 @@ export default function OwnerUsers({ users }: any) {
       <DropDownDashboard
         title="Business Owners"
         data={[
+          { title: "All", value: "all" },
           { title: "Active", value: "Active" },
           { title: "Suspended", value: "Suspended" },
           { title: "Banned", value: "Banned" },

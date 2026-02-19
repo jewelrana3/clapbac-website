@@ -48,6 +48,8 @@ export function UserActions({ findUser }: any) {
         body: payload,
       });
 
+      console.log("res", userUpdate);
+
       if (userUpdate.success) {
         toast.success("User updated successfully");
         revalidate("users");
@@ -78,12 +80,12 @@ export function UserActions({ findUser }: any) {
             aria-label="Notes about this user"
           />
 
-          <button
+          {/* <button
             type="button"
             className="bg-[#F05223] py-2 px-4  rounded font-bold text-white cursor-pointer"
           >
             Update
-          </button>
+          </button> */}
         </div>
 
         <p className="mt-3 text-sm italic text-gray-500">
