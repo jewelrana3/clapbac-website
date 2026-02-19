@@ -16,6 +16,7 @@ const profileFields = [
   { label: "lastName", placeholder: "Last Name" },
   { label: "title", placeholder: "Title" },
   { label: "phone", placeholder: "phone" },
+  { label: "email", placeholder: "Email" },
 ];
 
 export default function Profile({ data }: any) {
@@ -83,7 +84,7 @@ export default function Profile({ data }: any) {
     const formData = new FormData();
 
     // Add all profile fields
-    const allowedFields = ["firstName", "lastName", "title", "phone"]; // update based on backend
+    const allowedFields = ["firstName", "lastName", "title", "phone", "email"]; // update based on backend
 
     allowedFields.forEach((field) => {
       if (profile[field]) {

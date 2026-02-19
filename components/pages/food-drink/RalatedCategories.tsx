@@ -4,11 +4,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const RelatedCategories = ({
   categories,
-  setParams,
+  typeText,
   title,
 }: {
   categories?: any;
-  setParams?: any;
+  typeText?: string;
   title?: string;
 }) => {
   const searchParams = useSearchParams();
@@ -16,7 +16,7 @@ const RelatedCategories = ({
 
   const handleType = (cat: string) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set(setParams, String(cat));
+    newSearchParams.set(typeText!, String(cat));
     router.push(`?${newSearchParams.toString()}`);
   };
   return (
@@ -28,9 +28,9 @@ const RelatedCategories = ({
             <li
               key={index}
               className="text-center cursor-pointer"
-              onClick={() => handleType(cat)}
+              onClick={() => handleType(cat.value)}
             >
-              <p className="text-gray-800 capitalize">{cat}</p>
+              <p className="text-gray-800 capitalize">{cat.label}</p>
               {index !== categories.length - 1 && (
                 <hr className="mt-2 border-gray-200 w-2/3 mx-auto" />
               )}

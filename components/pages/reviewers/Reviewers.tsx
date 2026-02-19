@@ -80,12 +80,12 @@ export default function Reviewers({
           <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
             <RelatedCategories
               title="Reviewer Index"
-              setParams="reviewerIndex"
+              typeText="reviewerIndex"
               categories={reviewerIndexOptions}
             />
             <RelatedCategories
               title="Reviewer Type"
-              setParams="reviewerType"
+              typeText="reviewerType"
               categories={reviewerTypes}
             />
           </div>
