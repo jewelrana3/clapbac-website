@@ -4,7 +4,7 @@ import SignupPageOwner from "./SignupPageOwner";
 import SignupPageUser from "./SignupPageUser";
 
 export default function SignUp({ categories }: any) {
-  const [check, setCheck] = useState("user");
+  const [check, setCheck] = useState("owner");
   return (
     <div>
       <div className="grid grid-cols-2 items-center space-x-4 my-6 mt-8 max-w-xl mx-auto">
@@ -12,7 +12,7 @@ export default function SignUp({ categories }: any) {
           onClick={() => setCheck("owner")}
           className={`px-6 py-2 ${
             check === "owner" &&
-            " bg-[#F05223] text-white border !border-[#F05223]"
+            " bg-[#F05223] text-white border border-[#F05223]!"
           } border border-gray-400  rounded cursor-pointer transition font-bold`}
         >
           I'm a Business Owner
@@ -21,7 +21,7 @@ export default function SignUp({ categories }: any) {
           onClick={() => setCheck("user")}
           className={`${
             check === "user" &&
-            " bg-[#F05223] text-white border !border-[#F05223]"
+            " bg-[#F05223] text-white border border-[#F05223]!"
           } px-6 py-2 border border-gray-400 rounded cursor-pointer  transition font-bold `}
         >
           I'm a Reviewer
