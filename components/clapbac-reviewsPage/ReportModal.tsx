@@ -49,7 +49,7 @@ export default function ReportModal({ review }: any) {
           Report
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] py-3 ">
+      <DialogContent className="w-[70vw] md:w-[25vw] py-3 ">
         <form onSubmit={handleSubmitReport}>
           <RadioGroup value={selectedReason} onValueChange={setSelectedReason}>
             <div className="flex items-center gap-3 mt-10">
@@ -69,7 +69,7 @@ export default function ReportModal({ review }: any) {
             <Button
               type="submit"
               disabled={!selectedReason}
-              className="bg-[#F05223]"
+              className="bg-[#F05223] text-base cursor-pointer"
             >
               Submit
             </Button>

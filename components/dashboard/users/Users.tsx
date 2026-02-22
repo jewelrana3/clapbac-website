@@ -11,7 +11,6 @@ import { Eye } from "lucide-react";
 import DropDownDashboard from "@/components/share/DropDownDashboard";
 import Link from "next/link";
 import LogoImage from "@/components/share/customImageHandle/UserImage";
-import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function Users({ users }: any) {
   console.log("users", users);

@@ -11,6 +11,8 @@ export default function ComapyNameSection({ details }: any) {
 
   const daysDifference = timeDifferenceMs / (1000 * 60 * 60 * 24);
 
+  console.log("details", details);
+
   return (
     <>
       <h1 className="flex items-center">
@@ -25,11 +27,7 @@ export default function ComapyNameSection({ details }: any) {
           <div className="flex items-center md:justify-center gap-5">
             <div className="">
               {details?.category?.icon && (
-                <CompanyImage
-                  item={details?.category?.icon}
-                  width={100}
-                  height={100}
-                />
+                <CompanyImage item={details?.logo} width={100} height={100} />
               )}
             </div>
 

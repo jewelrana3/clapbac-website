@@ -18,7 +18,7 @@ export default function Reports({ reports }: { reports: any }) {
   return (
     <div className="mt-9">
       <DropDownDashboard
-        title="Users"
+        title="Reports"
         data={[
           { title: "All", value: "all" },
           { title: "Active", value: "Active" },

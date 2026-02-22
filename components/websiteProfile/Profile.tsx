@@ -16,7 +16,7 @@ const profileFields = [
   { label: "lastName", placeholder: "Last Name" },
   { label: "title", placeholder: "Title" },
   { label: "phone", placeholder: "phone" },
-  { label: "email", placeholder: "Email" },
+  // { label: "email", placeholder: "Email" },
 ];
 
 export default function Profile({ data }: any) {
@@ -84,7 +84,7 @@ export default function Profile({ data }: any) {
     const formData = new FormData();
 
     // Add all profile fields
-    const allowedFields = ["firstName", "lastName", "title", "phone", "email"]; // update based on backend
+    const allowedFields = ["firstName", "lastName", "title", "phone"]; // update based on backend
 
     allowedFields.forEach((field) => {
       if (profile[field]) {
@@ -102,12 +102,14 @@ export default function Profile({ data }: any) {
         body: formData,
       });
 
+      console.log("profile data", res);
+
       if (res.success) {
         toast.success("Profile updated successfully.");
         revalidate("users-profile");
         // window.location.reload();
       } else {
-        toast.error(res.message || "Profile update failed.");
+        toast.error((res as any)?.error[0].message || "Profile update failed.");
       }
     } catch (err) {
       console.error("Error updating profile:", err);
@@ -185,7 +187,7 @@ export default function Profile({ data }: any) {
           <div className="flex items-center justify-end">
             <Button
               disabled={loading}
-              className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg"
+              className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg cursor-pointer"
             >
               Save Changes
             </Button>

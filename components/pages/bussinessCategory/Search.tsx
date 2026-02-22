@@ -3,7 +3,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const SearchBar = () => {
+const SearchBar = ({ placeholder = "Search" }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -36,7 +36,7 @@ const SearchBar = () => {
           value={status}
           onChange={handleSearch}
           type="text"
-          placeholder="Search"
+          placeholder={placeholder}
           className="outline-none w-full bg-transparent text-gray-700"
         />
       </div>

@@ -14,7 +14,7 @@ export default function ContactPage({ contact }: any) {
   return (
     <>
       <div className="text-[#F05223] text-3xl font-semibold mb-3">
-        Contact Us
+        Support Requests
       </div>
       <Table>
         <TableHeader>

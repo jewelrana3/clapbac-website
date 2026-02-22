@@ -21,7 +21,7 @@ export default function SectionTitle({
       <p className="text-[#3D454E] text-lg xl:text-2xl  mt-2 mx-auto lg:w-[50%]">
         {subTitle}
       </p>
-      {currentPathname && <SearchBar />}
+      {currentPathname && <SearchBar placeholder="Search by reviewer name" />}
     </div>
   );
 }

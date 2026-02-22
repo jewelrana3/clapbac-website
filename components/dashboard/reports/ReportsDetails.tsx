@@ -1,4 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { truncateText } from "@/utils/truncateText";
+import Link from "next/link";
 import React from "react";
 
 export default function ReportsDetails({
@@ -8,22 +11,40 @@ export default function ReportsDetails({
   data: any;
   trigger: React.ReactNode;
 }) {
+  console.log("data", data);
+
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="w-[30vw]">
         <div className=" p-5 ">
-          <div className="flex items-center gap-2 mb-2">
-            <span className="font-semibold text-base">
-              {data?.review?.reviewerName}.
-            </span>
-            <span className="text-sm text-gray-500">
-              {data?.review?.reviewerAddress || "Los Angeles, CA"}
-            </span>
+          <div className=" ">
+            <span className="font-semibold">Reason</span> :{" "}
+            {data?.reason || "N/A"}
           </div>
-          <p className="text-sm text-gray-700 leading-relaxed">
-            {data?.review?.reviewMessage || "No review provided."}
+          <div className=" items-center gap-2 ">
+            <div className="font-semibold text-base">
+              Reviewer Name : {data?.review?.reviewerName}.
+            </div>
+          </div>
+          <p className="leading-relaxed">
+            <span className="font-semibold"> Reviewer Message</span> :{" "}
+            {truncateText(data?.review?.reviewMessage, 10) ||
+              "No review provided."}
+            <Link
+              href={`/clapbac-reviews/${data?.review?.company}`}
+              target="_blank"
+              className="ml-4 underline text-primary"
+            >
+              View full review
+            </Link>
           </p>
+          <div className="flex justify-end gap-4 mt-6">
+            <Button className="text-base cursor-pointer" variant={"outline"}>
+              Ignore
+            </Button>
+            <Button className="text-base cursor-pointer">Resolved</Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

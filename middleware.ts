@@ -24,7 +24,12 @@ const roleBasedRoutes = {
     "/reviewers",
   ],
   ADMIN: [/^\/dashboard(\/.*)?$/],
-  "SUPER ADMIN": [/^\/dashboard(\/.*)?$/],
+  "SUPER ADMIN": [
+    /^\/dashboard(\/.*)?$/,
+    /^\/clapbac-reviews\/[^\/]+$/,
+    "/reviewers",
+  ],
+
   // add more roles here if needed
 };
 
@@ -96,7 +101,7 @@ export const config = {
     "/dashboard/:path*",
     "/bussiness-categories/:id",
     "/clapbac-reviews/:id",
-    "/reviewers",
+    // "/reviewers",
     "/rate-reviewer",
   ],
 };
