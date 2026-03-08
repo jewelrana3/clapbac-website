@@ -47,9 +47,10 @@ export default async function FeatureBusiness() {
                         : "/default-company-logo.png"
                     }
                     alt={item?.category?.name}
-                    width={1000}
-                    height={1000}
-                    className="w-full flex-1"
+                    width={100}
+                    height={100}
+                    className="h-80 w-80 object-cover"
+                    sizes="100vh"
                   />
                   <div className="mt-5">
                     <h3 className="font-bold text-xl lg:text-2xl">

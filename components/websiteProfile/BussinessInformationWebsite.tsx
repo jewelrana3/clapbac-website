@@ -121,7 +121,7 @@ export default function BusinessInformationForm({
     formData.append("category", values.category);
     formData.append("address", values.address);
     formData.append("phone", values.phone);
-    formData.append("email", values.email);
+    // formData.append("email", values.email);
     formData.append("website", values.website || "");
     formData.append("about", values.about || "");
 
@@ -135,10 +135,14 @@ export default function BusinessInformationForm({
         body: formData,
       });
 
+      console.log("res", res);
+
       if (res.success) {
         toast.success("Business updated successfully.");
       } else {
-        toast.error(res.message || "Business update failed.");
+        toast.error(
+          (res as any)?.error[0].message || "Business update failed.",
+        );
       }
     } catch (err) {
       toast.error("Something went wrong.");
@@ -251,7 +255,7 @@ export default function BusinessInformationForm({
           />
         </div>
         {/** Email */}
-        <div className="flex items-center gap-6">
+        {/* <div className="flex items-center gap-6">
           <Label className="w-36 font-medium text-[#A0A0A0]">Email:</Label>
           <Input
             {...register("email")}
@@ -259,7 +263,7 @@ export default function BusinessInformationForm({
             placeholder="company@gmail.com"
             className="flex-1 ml-6 text-[#3D454E]"
           />
-        </div>
+        </div> */}
 
         {/** Website */}
         <div className="flex items-center gap-6">

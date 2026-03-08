@@ -1,12 +1,13 @@
 "use client";
 import { myFetch } from "@/utils/myFetch";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 export default function Search() {
   const [data, setData] = useState<any[] | null>(null);
   const [value, setValue] = useState("");
+  const router = useRouter();
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -30,9 +31,14 @@ export default function Search() {
 
   const filterData = value
     ? data?.filter((item) =>
-        item.name.toLowerCase().includes(value.toLowerCase())
+        item.name.toLowerCase().includes(value.toLowerCase()),
       )
     : [];
+
+  const handleClickCategory = (id: string) => {
+    router.push(`/bussiness-categories-details?category=${id}`);
+    setValue("");
+  };
 
   return (
     <>
@@ -67,13 +73,13 @@ export default function Search() {
           >
             {filterData && filterData.length > 0 ? (
               filterData.map((item) => (
-                <Link
-                  href={`/bussiness-categories/${item.name}`}
+                <div
+                  onClick={() => handleClickCategory(item?._id)}
                   key={item._id}
-                  className="block px-4 py-2 text-sm text-gray-800  transition hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-sm text-gray-800  transition hover:bg-gray-100 rounded-lg cursor-pointer"
                 >
                   {item.name}
-                </Link>
+                </div>
               ))
             ) : (
               <p className="px-4 py-2 text-sm text-gray-500 italic">

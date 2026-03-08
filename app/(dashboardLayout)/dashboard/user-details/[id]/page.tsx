@@ -14,6 +14,8 @@ export default async function id({
   const res = await myFetch(`/users/${userId}`);
   const findUserById = res?.data;
 
+  console.log("find user", findUserById);
+
   return (
     <div className=" w-[60%] mx-auto">
       <div className="flex items-center mb-4">

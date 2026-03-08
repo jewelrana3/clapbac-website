@@ -1,4 +1,9 @@
-import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
+import {
+  ratingCaculate,
+  ratingDefault,
+  ratingDefault2,
+  ratingDefault3,
+} from "@/components/share/rating/ratingCaculate";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Eye } from "lucide-react";
 
@@ -39,7 +44,7 @@ export default function ReviewsDetails({
                 Overall Rating of {data?.reviewerName}
               </span>
               <div className="rating overall-rating flex">
-                {ratingCaculate(data?.clapbacRating)}
+                {ratingDefault3(data?.clapbacRating)}
               </div>
             </div>
           </div>
@@ -47,10 +52,10 @@ export default function ReviewsDetails({
           <div className="original-review ">
             <div className="flex items-center gap-3">
               <div className="stars flex">
-                {ratingCaculate(data?.clapbacRating)}
+                {ratingDefault(data?.clapbacRating)}
               </div>
               <strong className="review-title text-[#3D454E] font-semibold">
-                {data?.reviewerName}’s” Original Rating of {data?.company?.name}
+                {data?.reviewerName}’s Original Rating of {data?.company?.name}
               </strong>
             </div>
             <p>{data?.reviewMessage}</p>
@@ -66,10 +71,10 @@ export default function ReviewsDetails({
             </div>
             <div className="flex items-center gap-4">
               <div className="stars flex">
-                {ratingCaculate(data?.reviewRating)}
+                {ratingDefault2(data?.reviewRating)}
               </div>
               <div className="font-bold text-[#3D454E] text-sm">
-                {data?.company?.name}.’s” Rating of {data?.reviewerName}
+                {data?.company?.name}.’s Rating of {data?.reviewerName}
               </div>
             </div>
             {/* description  */}
