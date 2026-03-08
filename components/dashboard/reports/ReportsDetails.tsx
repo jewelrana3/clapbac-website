@@ -11,8 +11,6 @@ export default function ReportsDetails({
   data: any;
   trigger: React.ReactNode;
 }) {
-  console.log("data", data);
-
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>

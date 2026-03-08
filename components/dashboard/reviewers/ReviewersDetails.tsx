@@ -10,7 +10,7 @@ export default function ReviewersDetails({ data }: any) {
   ];
 
   const bottomSection = [
-    { label: "Original Reviews:", value: data?.clapbacRating },
+    { label: "Original Review Rating:", value: data?.clapbacRating },
     { label: "Number of Responses:", value: data?.helpfulCount },
     {
       label: "Avg Rating:",

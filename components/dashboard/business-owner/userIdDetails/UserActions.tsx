@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { myFetch } from "@/utils/myFetch";
 import { revalidate } from "@/utils/revalidateTags";
@@ -10,6 +11,8 @@ import toast from "react-hot-toast";
 export function UserActions({ findUser }: any) {
   const router = useRouter();
   const [value, setValue] = useState("");
+  const [notes, setNotes] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleDeleteUser = async (id: string) => {
     try {
@@ -64,6 +67,31 @@ export function UserActions({ findUser }: any) {
     }
   };
 
+  const handleSaveNote = async (e: any) => {
+    setLoading(true);
+    e.stopPropagation();
+    try {
+      const userUpdate = await myFetch(`/users/${findUser?._id}`, {
+        method: "PATCH",
+        body: { adminNotes: notes },
+      });
+
+      console.log("res", userUpdate);
+
+      if (userUpdate.success) {
+        toast.success("User updated successfully");
+        revalidate("users");
+        router.refresh();
+      } else {
+        toast.error("User update failed");
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <form onSubmit={handleUpdateUser}>
       {/* user notes */}
@@ -74,18 +102,23 @@ export function UserActions({ findUser }: any) {
 
         <div>
           <Textarea
+            onChange={(e) => setNotes(e.target.value)}
             name="adminNotes"
             className="w-full h-28 p-4 bg-white shadow-sm resize-none border-none rounded-sm"
             placeholder=""
             aria-label="Notes about this user"
           />
 
-          {/* <button
-            type="button"
-            className="bg-[#F05223] py-2 px-4  rounded font-bold text-white cursor-pointer"
-          >
-            Update
-          </button> */}
+          <div className="flex justify-end mt-2">
+            <Button
+              disabled={loading}
+              type="button"
+              onClick={handleSaveNote}
+              className="ml-auto bg-[#F05223] py-2 px-4  rounded font-bold text-white cursor-pointer"
+            >
+              Save Note
+            </Button>
+          </div>
         </div>
 
         <p className="mt-3 text-sm italic text-gray-500">

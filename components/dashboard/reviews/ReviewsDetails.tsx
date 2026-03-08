@@ -4,8 +4,10 @@ import {
   ratingDefault2,
   ratingDefault3,
 } from "@/components/share/rating/ratingCaculate";
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Eye } from "lucide-react";
+import Link from "next/link";
 
 import React from "react";
 
@@ -16,6 +18,8 @@ export default function ReviewsDetails({
   data: any;
   trigger?: React.ReactNode;
 }) {
+  console.log("data?.review?.company", data.company._id);
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -80,6 +84,16 @@ export default function ReviewsDetails({
             {/* description  */}
             <p>{data?.clapbacMessage}</p>
           </div>
+
+          <Link
+            href={`/clapbac-reviews/${data.company._id}`}
+            target="_blank"
+            className="flex justify-end cursor-pointer mt-9"
+          >
+            <Button className=" text-white cursor-pointer">
+              View Full Review
+            </Button>
+          </Link>
         </div>
       </DialogContent>
     </Dialog>
