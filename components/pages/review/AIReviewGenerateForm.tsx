@@ -180,7 +180,7 @@ export default function AIReviewGenerator({
                 value={lengthInWords}
                 onValueChange={setLengthInWords}
                 min={5}
-                max={120}
+                max={300}
                 step={1}
               />
             </div>
