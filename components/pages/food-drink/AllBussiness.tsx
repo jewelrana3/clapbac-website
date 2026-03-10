@@ -38,8 +38,6 @@ export default function AllBussiness({
   data: Props[];
   total: number | undefined;
 }) {
-  console.log("total", total);
-
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">
