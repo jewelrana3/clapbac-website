@@ -16,14 +16,20 @@ interface Props {
   reviewCount: number;
   avgRating: number;
 }
+const categories = [
+  { label: "Bakery", value: "Bakery" },
+  { label: "Desserts", value: "Desserts" },
+  { label: "Snacks", value: "Snacks" },
+  { label: "Chocolate", value: "Chocolate" },
+  { label: "Candy", value: "Candy" },
+];
 
-const categories = ["Bakery", "Desserts", "Snacks", "Chocolate", "Candy"];
 const searches = [
-  "Brunch",
-  "Steak House",
-  "Fine Dining",
-  "Ice Cream",
-  "Family Restaurant",
+  { label: "Brunch", value: "Brunch" },
+  { label: "Steak House", value: "Steak House" },
+  { label: "Fine Dining", value: "Fine Dining" },
+  { label: "Ice Cream", value: "Ice Cream" },
+  { label: "Family Restaurant", value: "Family Restaurant" },
 ];
 export default function AllBussiness({
   data,

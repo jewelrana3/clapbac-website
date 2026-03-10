@@ -29,6 +29,10 @@ type Inputs = {
   website?: string;
   about?: string;
   category: string;
+  address1: string;
+  city: string;
+  state: string;
+  zipCode: string;
 };
 
 export default function BusinessInformationForm({
@@ -65,6 +69,7 @@ export default function BusinessInformationForm({
 
   useEffect(() => {
     if (company) {
+      const addressParts = company?.address?.split(",") || [];
       reset({
         name: company.name || "",
         address: company.address || "",
@@ -73,7 +78,13 @@ export default function BusinessInformationForm({
         website: company.website || "",
         about: company.about || "",
         category: company?.category?._id || "",
+
+        address1: addressParts[0]?.trim() || "",
+        city: addressParts[1]?.trim() || "",
+        state: addressParts[2]?.trim() || "",
+        zipCode: addressParts[3]?.trim() || "",
       });
+      console.log("address", company.address);
 
       const logo = company?.logo;
       if (logo) {
@@ -117,11 +128,14 @@ export default function BusinessInformationForm({
   const onSubmit: SubmitHandler<Inputs> = async (values) => {
     const formData = new FormData();
 
+    const address = [values.address1, values.city, values.state, values.zipCode]
+      .filter(Boolean)
+      .join(", ");
+
     formData.append("name", values.name);
     formData.append("category", values.category);
-    formData.append("address", values.address);
+    formData.append("address", address);
     formData.append("phone", values.phone);
-    // formData.append("email", values.email);
     formData.append("website", values.website || "");
     formData.append("about", values.about || "");
 
