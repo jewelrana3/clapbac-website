@@ -56,7 +56,7 @@ export default async function FeatureBusiness() {
                     <h3 className="font-bold text-xl lg:text-2xl">
                       {item?.name}
                     </h3>
-                    <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
+                    {/* <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
                       <div className="lg:flex gap-5">
                         <div className="flex items-center">
                           {renderStars(item?.avgRating)}
@@ -65,7 +65,7 @@ export default async function FeatureBusiness() {
                           {item?.avgRating} ({item?.reviewCount} Reviews)
                         </p>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </Link>

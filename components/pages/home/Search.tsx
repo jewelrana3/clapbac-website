@@ -36,7 +36,7 @@ export default function Search() {
     : [];
 
   const handleClickCategory = (id: string) => {
-    router.push(`/bussiness-categories-details?category=${id}`);
+    router.push(`/bussiness-categories-details?category=${id}&Feature=true`);
     setValue("");
   };
 

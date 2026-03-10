@@ -11,6 +11,7 @@ export default function CommentsSection({
   review,
   replyComment,
   setReplyComment,
+  userId,
 }: any) {
   const isOpen = replyComment ? true : false;
   const [profileData, setProfileData] = React.useState<any>(null);
@@ -22,6 +23,7 @@ export default function CommentsSection({
     };
     getProfile();
   }, []);
+
   return (
     <>
       <div className="flex flex-col sm:flex-row gap-3 mt-10 mb-4">
@@ -43,9 +45,11 @@ export default function CommentsSection({
 
         {/* Helpful Button */}
 
-        <div>
-          <HelpFull reviews={review} />
-        </div>
+        {userId !== profileData?._id && (
+          <div>
+            <HelpFull reviews={review} />
+          </div>
+        )}
       </div>
       {replyComment?.message && (
         <div className="p-2 my-2 bg-gray-100 rounded-lg max-w-xs">

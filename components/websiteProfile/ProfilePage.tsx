@@ -13,7 +13,7 @@ export default async function ProfilePage() {
 
   return (
     <section className="w-[70%] mx-auto py-10 ">
-      <header className="text-[#F05223] text-2xl font-bold">Profile</header>
+      {/* <header className="text-[#F05223] text-2xl font-bold">Profile</header> */}
       <div className="bg-[#F8F8F8] p-5">
         {/* profile */}
 
@@ -22,11 +22,16 @@ export default async function ProfilePage() {
         <hr className="h-px bg-[#C9C9C9] border-0" />
 
         {res?.data?.role === "Owner" && (
-          <div className="grid grid-cols-[30%_auto] gap-5 p-5">
-            <BussinessInformationWebsite
-              company={company?.data}
-              categories={categories?.data}
-            />
+          <div>
+            <h1 className="text-2xl font-semibold my-4">
+              Business Information
+            </h1>
+            <div className="grid grid-cols-[30%_auto] gap-5 p-5">
+              <BussinessInformationWebsite
+                company={company?.data}
+                categories={categories?.data}
+              />
+            </div>
           </div>
         )}
       </div>

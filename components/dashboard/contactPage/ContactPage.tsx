@@ -13,9 +13,9 @@ import ContactModal from "./ContactModal";
 export default function ContactPage({ contact }: any) {
   return (
     <>
-      <div className="text-[#F05223] text-3xl font-semibold mb-3">
-        Support Requests
-      </div>
+      < className="text-[#F05223] text-3xl font-semibold mb-3">
+        Support Requests From Contact Form
+      </\div>
       <Table>
         <TableHeader>
           <TableRow>

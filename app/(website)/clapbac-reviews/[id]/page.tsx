@@ -18,6 +18,8 @@ export default async function Review({ params }: any) {
     tags: ["companies"],
   });
 
+  console.log("companyReviews", companyReviews[0].user?._id);
+
   return (
     <>
       <SectionTitle
@@ -40,7 +42,12 @@ export default async function Review({ params }: any) {
                     <SingleComment reply={item} index={0} />
 
                     {/* comments section */}
-                    {<ReviewAndComment review={item} />}
+                    {
+                      <ReviewAndComment
+                        review={item}
+                        userId={companyReviews[0]?.user?._id}
+                      />
+                    }
                   </div>
                 ))
               ) : (

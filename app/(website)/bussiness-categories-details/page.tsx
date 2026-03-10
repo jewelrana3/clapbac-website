@@ -8,9 +8,14 @@ import { myFetch } from "@/utils/myFetch";
 export default async function FoodDrink({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string; title: string; category: string }>;
+  searchParams: Promise<{
+    page: string;
+    title: string;
+    category: string;
+    Feature: string;
+  }>;
 }) {
-  const { page = "" } = await searchParams;
+  const { Feature = "" } = await searchParams;
   const { title = "" } = await searchParams;
   const { category = "" } = await searchParams;
   const featuresBussiness = await myFetch(
@@ -20,19 +25,20 @@ export default async function FoodDrink({
   const profile = await myFetch("/users/profile");
 
   console.log("featuresBussiness", featuresBussiness);
+  console.log("Feature", Feature);
 
   return (
     <div>
       <SectionTitle
         title={featuresBussiness?.data?.[0]?.category?.name || "All Businesses"}
       />
-      <FeatureBusiness />
+      {Feature !== "true" && <FeatureBusiness />}
       <AllBussiness
         data={featuresBussiness?.data}
         total={featuresBussiness?.pagination?.total}
       />
 
-      {profile?.data.length > 0 && (
+      {profile?.data?.length > 0 && (
         <RecentlyViewCompanies
           title="Recently Viewed Companies"
           data={recentBusiness?.data || []}

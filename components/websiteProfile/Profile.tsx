@@ -120,79 +120,82 @@ export default function Profile({ data }: any) {
   };
 
   return (
-    <div className="grid grid-cols-[30%_auto] gap-5 p-5">
-      {/* image */}
-      <div className="relative w-max">
-        <div className="border border-gray-300 rounded-full w-[150px] h-[150px] overflow-hidden">
-          {previewImage ? (
-            <Image
-              src={previewImage ? previewImage : man}
-              alt="Profile"
-              width={150}
-              height={150}
-              className="rounded-full object-cover h-[150px] w-[150px]"
-            />
-          ) : (
-            <span className="flex items-center justify-center h-full text-gray-500">
-              No Image
-            </span>
+    <div>
+      <h1 className="text-2xl font-semibold mb-4">Profile Information</h1>
+      <div className="grid grid-cols-[30%_auto] gap-5 p-5">
+        {/* image */}
+        <div className="relative w-max">
+          <div className="border border-gray-300 rounded-full w-[150px] h-[150px] overflow-hidden">
+            {previewImage ? (
+              <Image
+                src={previewImage ? previewImage : man}
+                alt="Profile"
+                width={150}
+                height={150}
+                className="rounded-full object-cover h-[150px] w-[150px]"
+              />
+            ) : (
+              <span className="flex items-center justify-center h-full text-gray-500">
+                No Image
+              </span>
+            )}
+          </div>
+
+          {/* Hidden file input */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            multiple={false}
+            onChange={handleImageChange}
+            className="hidden"
+          />
+
+          {/* Edit icon, clickable to open file picker */}
+          <span
+            className="absolute left-28 top-28 cursor-pointer text-gray-700 hover:text-gray-900 z-50"
+            onClick={handleEditClick}
+            title="Change profile picture"
+          >
+            <Edit size={22} />
+          </span>
+
+          {error && (
+            <p className="text-sm text-red-500 mt-2">
+              Please upload a file smaller than 1 MB
+            </p>
           )}
         </div>
 
-        {/* Hidden file input */}
-        <input
-          type="file"
-          accept="image/*"
-          ref={fileInputRef}
-          multiple={false}
-          onChange={handleImageChange}
-          className="hidden"
-        />
-
-        {/* Edit icon, clickable to open file picker */}
-        <span
-          className="absolute left-28 top-28 cursor-pointer text-gray-700 hover:text-gray-900 z-50"
-          onClick={handleEditClick}
-          title="Change profile picture"
-        >
-          <Edit size={22} />
-        </span>
-
-        {error && (
-          <p className="text-sm text-red-500 mt-2">
-            Please upload a file smaller than 1 MB
-          </p>
-        )}
-      </div>
-
-      {/* form handle */}
-      <div className="">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {profileFields.map((field, index) => (
-            <div key={index} className="flex items-center gap-8 my-3">
-              <div className="w-40 font-medium text-[#A0A0A0] capitalize">
-                {field.label}
+        {/* form handle */}
+        <div className="">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {profileFields.map((field, index) => (
+              <div key={index} className="flex items-center gap-8 my-3">
+                <div className="w-40 font-medium text-[#A0A0A0] capitalize">
+                  {field.label}
+                </div>
+                <Input
+                  name={field.label}
+                  type="text"
+                  placeholder={field.placeholder}
+                  className="flex-1 text-[#3D454E] px-4 py-2 border border-gray-300 rounded"
+                  value={profile[field.label]}
+                  onChange={handleChange}
+                />
               </div>
-              <Input
-                name={field.label}
-                type="text"
-                placeholder={field.placeholder}
-                className="flex-1 text-[#3D454E] px-4 py-2 border border-gray-300 rounded"
-                value={profile[field.label]}
-                onChange={handleChange}
-              />
-            </div>
-          ))}
+            ))}
 
-          <div className="flex items-center justify-end">
-            <Button
-              disabled={loading}
-              className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg cursor-pointer"
-            >
-              Save Changes
-            </Button>
-          </div>
-        </form>
+            <div className="flex items-center justify-end">
+              <Button
+                disabled={loading}
+                className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg cursor-pointer"
+              >
+                Save Changes
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

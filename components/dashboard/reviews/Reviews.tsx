@@ -16,6 +16,8 @@ import { truncateText } from "@/utils/truncateText";
 import { DeleteReviews } from "./DeleteReviews";
 
 export default function Reviews({ reviews }: any) {
+  console.log("re-------", reviews);
+
   return (
     <>
       <DropDownDashboard
@@ -29,11 +31,12 @@ export default function Reviews({ reviews }: any) {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>Reviewer Name</TableHead>
             <TableHead>User Name</TableHead>
             <TableHead>Display Name</TableHead>
-            <TableHead>Bussiness Name</TableHead>
+            <TableHead>Business Name</TableHead>
 
-            <TableHead className="">Bussiness Category</TableHead>
+            <TableHead className="">Business Category</TableHead>
             <TableHead className="">Location</TableHead>
             <TableHead className="">Submited Date</TableHead>
             <TableHead className="">Helpful</TableHead>
@@ -44,6 +47,7 @@ export default function Reviews({ reviews }: any) {
           {reviews?.map((invoice: any, index: number) => {
             return (
               <TableRow key={index}>
+                <TableCell>{invoice?.reviewerName}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <p>{invoice.user.username}</p>

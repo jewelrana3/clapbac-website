@@ -3,7 +3,13 @@
 import { useState } from "react";
 import ReviewCommentDetails from "./ReviewCommentDetails";
 import CommentsSection from "./CommentsSection";
-export default function ReviewAndComment({ review }: { review: any }) {
+export default function ReviewAndComment({
+  review,
+  userId,
+}: {
+  review: any;
+  userId: any;
+}) {
   const [replyComment, setReplyComment] = useState(null);
 
   return (
@@ -27,6 +33,7 @@ export default function ReviewAndComment({ review }: { review: any }) {
         replyComment={replyComment}
         setReplyComment={setReplyComment}
         review={review}
+        userId={userId}
       />
     </div>
   );
