@@ -227,21 +227,60 @@ export default function BusinessInformationForm({
           )}
         </div>
 
-        {/** Address */}
+        {/** address line one */}
         <div>
           <div className="flex items-center gap-6">
-            <Label className="w-36 font-medium text-[#A0A0A0]">Address:</Label>
+            <Label className="w-36 font-medium text-[#A0A0A0]">
+              Address Line 1:
+            </Label>
 
             <Input
-              {...register("address")}
+              {...register("address1")}
               type="text"
-              placeholder="123 Main St"
+              placeholder="123 Main Street"
               className="flex-1 ml-6 text-[#3D454E]"
             />
           </div>
-          {/* <div className="ml-48 mt-1">
-            <FormMessage />
-          </div> */}
+        </div>
+
+        {/** city */}
+        <div>
+          <div className="flex items-center gap-6">
+            <Label className="w-36 font-medium text-[#A0A0A0]">City:</Label>
+
+            <Input
+              {...register("city")}
+              type="text"
+              placeholder="Enter Your City"
+              className="flex-1 ml-6 text-[#3D454E]"
+            />
+          </div>
+        </div>
+        {/** Address */}
+        <div>
+          <div className="flex items-center gap-6">
+            <Label className="w-36 font-medium text-[#A0A0A0]">State:</Label>
+
+            <Input
+              {...register("state")}
+              type="text"
+              placeholder="Enter Your State"
+              className="flex-1 ml-6 text-[#3D454E]"
+            />
+          </div>
+        </div>
+        {/** Address */}
+        <div>
+          <div className="flex items-center gap-6">
+            <Label className="w-36 font-medium text-[#A0A0A0]">Zip Code:</Label>
+
+            <Input
+              {...register("zipCode")}
+              type="text"
+              placeholder="Enter Your Zip Code"
+              className="flex-1 ml-6 text-[#3D454E]"
+            />
+          </div>
         </div>
         {/** Phone */}
         <div className="flex items-center gap-6">

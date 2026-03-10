@@ -11,8 +11,10 @@ import toast from "react-hot-toast";
 export function UserActions({ findUser }: any) {
   const router = useRouter();
   const [value, setValue] = useState("");
-  const [notes, setNotes] = useState("");
+  const [notes, setNotes] = useState(findUser?.adminNotes || "");
   const [loading, setLoading] = useState(false);
+
+  console.log("finder details", findUser);
 
   const handleDeleteUser = async (id: string) => {
     try {
@@ -102,6 +104,7 @@ export function UserActions({ findUser }: any) {
 
         <div>
           <Textarea
+            value={notes}
             onChange={(e) => setNotes(e.target.value)}
             name="adminNotes"
             className="w-full h-28 p-4 bg-white shadow-sm resize-none border-none rounded-sm"
