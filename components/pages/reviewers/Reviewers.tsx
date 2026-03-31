@@ -51,7 +51,7 @@ export default function Reviewers({
 }: any) {
   const pathname = usePathname();
   return (
-    <div>
+    <>
       <SectionTitle
         title="Reviewers"
         subTitle="Everyone has an opinion—start by finding theirs."
@@ -73,7 +73,9 @@ export default function Reviewers({
 
             {/* <ReviewersCard item={reviews?.data} /> */}
 
-            <Pagination total={reviews?.pagination?.total} />
+            {reviews?.pagination?.total > 9 && (
+              <Pagination total={reviews?.pagination?.total} />
+            )}
           </div>
 
           {/* categories ralted  */}
@@ -98,6 +100,6 @@ export default function Reviewers({
           data={recentCompanies?.data || []}
         />
       )}
-    </div>
+    </>
   );
 }

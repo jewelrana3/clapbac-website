@@ -18,8 +18,6 @@ export default async function Review({ params }: any) {
     tags: ["companies"],
   });
 
-  console.log("companyReviews", companyReviews[0].user?._id);
-
   return (
     <>
       <SectionTitle

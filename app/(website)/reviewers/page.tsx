@@ -37,12 +37,12 @@ export default async function Page({
   const getProfile = await myFetch("/users/profile");
 
   return (
-    <div>
+    <>
       <Reviewers
         reviews={reviews}
         recentCompanies={recentCompanies?.data}
         getProfile={getProfile?.data}
       />
-    </div>
+    </>
   );
 }
