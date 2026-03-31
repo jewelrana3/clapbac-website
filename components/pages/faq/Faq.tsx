@@ -36,7 +36,7 @@ const des = (
 const shortName = "— Alexander S., Chicago";
 export default function Faq() {
   return (
-    <div>
+    <>
       <FaqBody />
       <ProfileSection
         className=""
@@ -44,6 +44,6 @@ export default function Faq() {
         des={des}
         shortName={shortName}
       />
-    </div>
+    </>
   );
 }

@@ -105,7 +105,7 @@ export default function Users({ users }: any) {
                   </Badge>
                 </TableCell>
                 <TableCell className="">
-                  <Link href={`/dashboard/user-details/${invoice._id}`}>
+                  <Link href={`/dashboard/reviewer-details/${invoice._id}`}>
                     <Eye className="text-[#3D454E] cursor-pointer" />
                   </Link>
                 </TableCell>

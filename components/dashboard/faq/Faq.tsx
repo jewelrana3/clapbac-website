@@ -15,7 +15,7 @@ export default async function Faq() {
       <div className="flex justify-end">
         <FaqEditModal
           trigger={
-            <Button className="bg-[#F05223] mb-3">
+            <Button className="bg-[#F05223] mb-3 font-bold cursor-pointer">
               <Plus size={19} /> Add Faq
             </Button>
           }

@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { handleUpdateFaq } from "./CreateFaq";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function FaqEditModal({
   faq,
@@ -28,6 +28,15 @@ export default function FaqEditModal({
       answer: faq?.answer || "",
     },
   });
+
+  useEffect(() => {
+    reset({
+      _id: faq?._id || "",
+      question: faq?.question || "",
+      answer: faq?.answer || "",
+    });
+  }, [faq, reset]);
+
   const [open, setOpen] = useState(false);
 
   const onSubmit = async (data: any) => {
@@ -36,8 +45,10 @@ export default function FaqEditModal({
     formData.append("question", data.question);
     formData.append("answer", data.answer);
 
-    await handleUpdateFaq(formData);
-    reset(); // ✅ reset form after submit
+    const res = await handleUpdateFaq(formData);
+    console.log("res", res);
+
+    reset();
     setOpen(false);
   };
 
@@ -45,7 +56,7 @@ export default function FaqEditModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
 
-      <DialogContent className="!min-w-2xl">
+      <DialogContent className="min-w-2xl!">
         <h1 className="font-semibold text-lg">
           {faq?._id ? "Update Faq" : "Create Faq"}
         </h1>
@@ -58,7 +69,7 @@ export default function FaqEditModal({
             <Input
               type="text"
               {...register("question", { required: "Question is required" })}
-              className="!text-base mb-1 rounded"
+              className="text-base! mb-1 rounded"
             />
             {errors.question && (
               <p className="text-sm text-red-500">
@@ -71,7 +82,7 @@ export default function FaqEditModal({
             <Label>Answer</Label>
             <Textarea
               {...register("answer", { required: "Answer is required" })}
-              className="text-gray-700 rounded !text-base"
+              className="text-gray-700 rounded text-base!"
             />
             {errors.answer && (
               <p className="text-sm text-red-500">

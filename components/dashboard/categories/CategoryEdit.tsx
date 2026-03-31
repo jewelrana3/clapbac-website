@@ -134,7 +134,7 @@ export default function CategoryEdit({
       <DialogTrigger asChild>
         <div className="flex justify-end cursor-pointer">{trigger}</div>
       </DialogTrigger>
-      <DialogContent className="space-y-4">
+      <DialogContent className="space-y-4 w-[16vw]!">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* Name */}
@@ -168,7 +168,7 @@ export default function CategoryEdit({
                     width={200}
                     height={160}
                     sizes="100vh"
-                    className="mt-2 object-cover"
+                    className="mt-2 object-cover ml-4"
                   />
                 ) : (
                   <span className="text-center">No Image</span>

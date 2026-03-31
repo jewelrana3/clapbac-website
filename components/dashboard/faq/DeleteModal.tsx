@@ -45,9 +45,9 @@ export default function DeleteModal({
 
           <div className="flex space-x-3 my-3">
             <DialogClose asChild>
-              <Button className="w-full bg-red-500">No</Button>
+              <Button className="w-[50%] bg-red-500">No</Button>
             </DialogClose>
-            <Button className="w-full bg-[#F05223]" onClick={handleDelete}>
+            <Button className="w-[50%] bg-[#F05223]" onClick={handleDelete}>
               Yes
             </Button>
           </div>

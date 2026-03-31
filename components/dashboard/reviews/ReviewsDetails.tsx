@@ -5,7 +5,12 @@ import {
   ratingDefault3,
 } from "@/components/share/rating/ratingCaculate";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Eye } from "lucide-react";
 import Link from "next/link";
 
@@ -27,7 +32,8 @@ export default function ReviewsDetails({
           <Eye className="text-[#3D454E] cursor-pointer" />
         </div>
       </DialogTrigger>
-      <DialogContent className="md:w-[60vw] md:h-[50vh]">
+      <DialogContent className="md:w-[60vw] ">
+        <DialogTitle className="sr-only">Title</DialogTitle>
         <div className="mt-4 p-4">
           <div className="review-header">
             <div>

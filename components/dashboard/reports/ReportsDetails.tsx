@@ -1,5 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { truncateText } from "@/utils/truncateText";
 import Link from "next/link";
 import React from "react";
@@ -15,6 +20,7 @@ export default function ReportsDetails({
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="w-[30vw]">
+        <DialogTitle className="sr-only">Title</DialogTitle>
         <div className=" p-5 ">
           <div className=" ">
             <span className="font-semibold">Reason</span> :{" "}
@@ -38,9 +44,9 @@ export default function ReportsDetails({
             </Link>
           </p>
           <div className="flex justify-end gap-4 mt-6">
-            <Button className="text-base cursor-pointer" variant={"outline"}>
+            {/* <Button className="text-base cursor-pointer" variant={"outline"}>
               Ignore
-            </Button>
+            </Button> */}
             <Button className="text-base cursor-pointer">Resolved</Button>
           </div>
         </div>

@@ -1,0 +1,37 @@
+import UserDetails from "@/components/dashboard/business-owner/UserDetails";
+import React from "react";
+import { myFetch } from "@/utils/myFetch";
+import UserImage from "@/components/share/customImageHandle/UserImage";
+import BackButton from "@/helper/BackButton";
+
+export default async function id({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: userId } = await params;
+
+  const res = await myFetch(`/users/${userId}`);
+  const findUserById = res?.data;
+
+  console.log("find user", findUserById);
+
+  return (
+    <div className=" w-[60%] mx-auto">
+      <div className="flex items-center mb-4">
+        <BackButton />
+        <button className="text-[#F05223] font-semibold text-2xl">
+          View User Profile Details
+        </button>
+      </div>
+      <div className="flex bg-[#F5F5F5] p-9 gap-14">
+        <div className="">
+          <UserImage item={findUserById?.image} width={100} height={100} />
+        </div>
+        <div className="flex-1">
+          <UserDetails findUserById={findUserById} />
+        </div>
+      </div>
+    </div>
+  );
+}

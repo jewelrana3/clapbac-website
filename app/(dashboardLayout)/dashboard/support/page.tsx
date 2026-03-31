@@ -7,8 +7,8 @@ export default async function Page() {
     tags: ["supports"],
   });
   return (
-    <div>
+    <>
       <ContactPage contact={contact?.data} />
-    </div>
+    </>
   );
 }

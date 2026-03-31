@@ -59,8 +59,12 @@ export default function Sidebar() {
       {paths.map((item) => {
         const isActive = pathname === item.path;
         const isUserActive =
-          item.path === "/dashboard/users" &&
+          item.path === "/dashboard/business-owner" &&
           pathname.startsWith(`/dashboard/user-details/${id}`);
+
+        const isUserActive2 =
+          item.path === "/dashboard/reg-users" &&
+          pathname.startsWith(`/dashboard/reviewer-details/${id}`);
 
         // reviews active
         const isReviewsActive =
@@ -87,7 +91,7 @@ export default function Sidebar() {
             <Link
               href={item.path}
               className={`block font-bold px-4 py-2 rounded w-full ${
-                isActive || isUserActive || isReviewsActive
+                isActive || isUserActive || isReviewsActive || isUserActive2
                   ? "bg-[#F05223] text-white"
                   : "text-black"
               }`}

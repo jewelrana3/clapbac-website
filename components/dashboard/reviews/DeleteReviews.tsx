@@ -42,13 +42,9 @@ export function DeleteReviews({ id }: any) {
       <form>
         {/* Trash icon as trigger */}
         <DialogTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-red-600 hover:bg-red-100 cursor-pointer"
-          >
-            <Trash2 />
-          </Button>
+          <span className="text-red-600 hover:bg-red-100 cursor-pointer">
+            <Trash2 size={20} />
+          </span>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-sm p-8">

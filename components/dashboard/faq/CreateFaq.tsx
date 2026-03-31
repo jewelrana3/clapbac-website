@@ -20,10 +20,9 @@ export const handleUpdateFaq = async (formData: FormData) => {
 
     if (res.success) {
       toast.success(
-        id ? "FAQ updated successfully" : "FAQ created successfully"
+        id ? "FAQ updated successfully" : "FAQ created successfully",
       );
       formData.values();
-
       revalidate("faqs");
     } else {
       toast.error("Failed to create FAQ");

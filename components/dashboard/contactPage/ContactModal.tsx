@@ -1,5 +1,10 @@
 "use client";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import React from "react";
 
 import { SquarePen } from "lucide-react";
@@ -40,6 +45,7 @@ export default function ContactModal({ invoice }: any) {
       </DialogTrigger>
 
       <DialogContent className="p-3">
+        <DialogTitle className="sr-only">Edit</DialogTitle>
         <form className="border rounded p-5 mt-10" onSubmit={handleSubmit}>
           <div>
             <div className="grid grid-cols-2 my-2">
