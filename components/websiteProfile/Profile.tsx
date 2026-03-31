@@ -102,8 +102,6 @@ export default function Profile({ data }: any) {
         body: formData,
       });
 
-      console.log("profile data", res);
-
       if (res.success) {
         toast.success("Profile updated successfully.");
         revalidate("users-profile");

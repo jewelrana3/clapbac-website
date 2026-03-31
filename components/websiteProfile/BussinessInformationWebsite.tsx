@@ -42,9 +42,6 @@ export default function BusinessInformationForm({
   company: any;
   categories: any;
 }) {
-  console.log("company", company?.category?._id);
-  console.log("categories", categories);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -84,7 +81,6 @@ export default function BusinessInformationForm({
         state: addressParts[2]?.trim() || "",
         zipCode: addressParts[3]?.trim() || "",
       });
-      console.log("address", company.address);
 
       const logo = company?.logo;
       if (logo) {
@@ -148,8 +144,6 @@ export default function BusinessInformationForm({
         method: "PATCH",
         body: formData,
       });
-
-      console.log("res", res);
 
       if (res.success) {
         toast.success("Business updated successfully.");

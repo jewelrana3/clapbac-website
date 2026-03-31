@@ -13,8 +13,6 @@ import DropDownDashboard from "@/components/share/DropDownDashboard";
 import ReportsDetails from "./ReportsDetails";
 
 export default function Reports({ reports }: { reports: any }) {
-  console.log("reports", reports);
-
   return (
     <div className="mt-9">
       <DropDownDashboard
@@ -40,8 +38,6 @@ export default function Reports({ reports }: { reports: any }) {
         </TableHeader>
         <TableBody>
           {reports?.map((invoice: any, index: number) => {
-            console.log("invoice", invoice);
-
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">

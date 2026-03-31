@@ -46,7 +46,6 @@ export default function FaqEditModal({
     formData.append("answer", data.answer);
 
     const res = await handleUpdateFaq(formData);
-    console.log("res", res);
 
     reset();
     setOpen(false);

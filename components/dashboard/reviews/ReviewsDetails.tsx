@@ -23,8 +23,6 @@ export default function ReviewsDetails({
   data: any;
   trigger?: React.ReactNode;
 }) {
-  console.log("data?.review?.company", data.company._id);
-
   return (
     <Dialog>
       <DialogTrigger asChild>

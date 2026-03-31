@@ -12,8 +12,6 @@ import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
 import ReviewersDetails from "./ReviewersDetails";
 
 export default function Reviewers({ reviews }: any) {
-  console.log("reviews get---", reviews);
-
   return (
     <>
       {/* <DropDownDashboard

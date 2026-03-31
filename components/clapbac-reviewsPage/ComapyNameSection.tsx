@@ -11,8 +11,6 @@ export default function ComapyNameSection({ details }: any) {
 
   const daysDifference = timeDifferenceMs / (1000 * 60 * 60 * 24);
 
-  console.log("details", details);
-
   return (
     <>
       <h1 className="flex items-center">

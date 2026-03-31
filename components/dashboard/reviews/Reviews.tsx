@@ -16,8 +16,6 @@ import { truncateText } from "@/utils/truncateText";
 import { DeleteReviews } from "./DeleteReviews";
 
 export default function Reviews({ reviews }: any) {
-  console.log("re-------", reviews);
-
   return (
     <>
       <DropDownDashboard

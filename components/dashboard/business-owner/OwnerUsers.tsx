@@ -14,8 +14,6 @@ import LogoImage from "@/components/share/customImageHandle/UserImage";
 import CompanyImage from "@/components/share/customImageHandle/CompanyImage";
 
 export default function OwnerUsers({ users }: any) {
-  console.log("users", users);
-
   return (
     <>
       <DropDownDashboard

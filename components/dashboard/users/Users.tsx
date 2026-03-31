@@ -13,8 +13,6 @@ import Link from "next/link";
 import LogoImage from "@/components/share/customImageHandle/UserImage";
 
 export default function Users({ users }: any) {
-  console.log("users", users);
-
   return (
     <>
       <DropDownDashboard

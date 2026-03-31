@@ -9,7 +9,6 @@ export default async function ProfilePage() {
   const categories = await myFetch("/categories");
 
   const company = await myFetch("/companies/my-company");
-  console.log("company", company);
 
   return (
     <section className="w-[70%] mx-auto py-10 ">

@@ -24,9 +24,6 @@ export default async function FoodDrink({
   const recentBusiness = await myFetch("/recent-companies");
   const profile = await myFetch("/users/profile");
 
-  console.log("featuresBussiness", featuresBussiness);
-  console.log("Feature", Feature);
-
   return (
     <div>
       <SectionTitle

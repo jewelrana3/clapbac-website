@@ -14,8 +14,6 @@ export function UserActions({ findUser }: any) {
   const [notes, setNotes] = useState(findUser?.adminNotes || "");
   const [loading, setLoading] = useState(false);
 
-  console.log("finder details", findUser);
-
   const handleDeleteUser = async (id: string) => {
     try {
       const userDelete = await myFetch(`/users/${id}`, {
@@ -53,8 +51,6 @@ export function UserActions({ findUser }: any) {
         body: payload,
       });
 
-      console.log("res", userUpdate);
-
       if (userUpdate.success) {
         toast.success("User updated successfully");
         revalidate("users");
@@ -77,8 +73,6 @@ export function UserActions({ findUser }: any) {
         method: "PATCH",
         body: { adminNotes: notes },
       });
-
-      console.log("res", userUpdate);
 
       if (userUpdate.success) {
         toast.success("User updated successfully");

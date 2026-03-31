@@ -27,13 +27,6 @@ export default function ReviewersCard({ item }: { item: any }) {
     );
   };
 
-  // date format
-  // const formattedDate = (date: string) => {
-  //   return format(parseISO(date), "d/ d/ yyyy");
-  // };
-
-  console.log("item", item);
-
   return (
     <Link href={`/clapbac-reviews/${item?.company?._id}`}>
       <div className="border-[#C5D92D] border-8 mb-8 p-4">
