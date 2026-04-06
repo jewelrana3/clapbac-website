@@ -6,7 +6,7 @@ import SectionTitle from "@/components/share/SectionTitle";
 import Container from "@/layout/Container";
 import CategoryHeader from "@/components/pages/food-drink/CategoryHeader";
 import Pagination from "@/components/share/Pagination";
-import RelatedCategories from "@/components/pages/food-drink/RalatedCategories";
+import SidebarSuggestions from "@/components/pages/food-drink/SidebarSuggestions";
 import ReviewersCard from "@/components/pages/reviewers/ReviewersCard";
 import { usePathname } from "next/navigation";
 import LatestLoudVoices from "../home/LatestLoudVoices";
@@ -80,15 +80,15 @@ export default function Reviewers({
 
           {/* categories ralted  */}
           <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
-            <RelatedCategories
+            <SidebarSuggestions
               title="Reviewer Index"
-              typeText="reviewerIndex"
-              categories={reviewerIndexOptions}
+              itemType="reviewerIndex"
+              items={reviewerIndexOptions}
             />
-            <RelatedCategories
+            <SidebarSuggestions
               title="Reviewer Type"
-              typeText="reviewerType"
-              categories={reviewerTypes}
+              itemType="reviewerType"
+              items={reviewerTypes}
             />
           </div>
         </section>

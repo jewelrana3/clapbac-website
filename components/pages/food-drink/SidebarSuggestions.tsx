@@ -2,13 +2,14 @@
 
 import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
 
-const RelatedCategories = ({
-  categories,
+const SidebarSuggestions = ({
+  items: categories,
   title,
+  itemType,
 }: {
-  categories?: any;
-  typeText?: string;
+  items?: any;
   title?: string;
+  itemType: string;
 }) => {
   const updateSearchParams = useUpdateSearchParams();
 
@@ -21,9 +22,9 @@ const RelatedCategories = ({
             <li
               key={index}
               className="text-center cursor-pointer"
-              onClick={() => updateSearchParams({ category: category._id })}
+              onClick={() => updateSearchParams({ [itemType]: category.value })}
             >
-              <p className="text-gray-800 capitalize">{category?.name}</p>
+              <p className="text-gray-800 capitalize">{category?.label}</p>
               {index !== categories.length - 1 && (
                 <hr className="mt-2 border-gray-200 w-2/3 mx-auto" />
               )}
@@ -38,4 +39,4 @@ const RelatedCategories = ({
   );
 };
 
-export default RelatedCategories;
+export default SidebarSuggestions;

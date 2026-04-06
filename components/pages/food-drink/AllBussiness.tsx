@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "@/layout/Container";
 import CategoryHeader from "./CategoryHeader";
-import RelatedCategories from "./RalatedCategories";
+import SidebarSuggestions from "./SidebarSuggestions";
 import FoodDrinkBussinessCard from "./FoodDrinkBussinessCard";
 import Pagination from "@/components/share/Pagination";
 
@@ -30,6 +30,15 @@ export default async function AllBussiness({
   data: Props[];
   total: number | undefined;
 }) {
+    const formattedCategories = relatedCategories.map((item: any) => ({
+      label: item.name,
+      value: item._id,
+    }));
+    const formattedPopularCategories = popularCategories.map((item: any) => ({
+      label: item.name,
+      value: item._id,
+    }));
+  
   return (
     <Container>
       <section className="flex flex-col lg:flex-row gap-12">
@@ -52,13 +61,15 @@ export default async function AllBussiness({
 
         {/* categories ralted  */}
         <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
-          <RelatedCategories
+          <SidebarSuggestions
+            itemType="category"
             title="Related Categories"
-            categories={relatedCategories}
+            items={formattedCategories}
           />
-          <RelatedCategories
+          <SidebarSuggestions
+            itemType="category"
             title=" Popular Searches"
-            categories={popularCategories}
+            items={formattedPopularCategories}
           />
         </div>
       </section>
