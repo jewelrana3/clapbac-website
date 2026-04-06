@@ -6,9 +6,11 @@ import { usePathname } from "next/navigation";
 export default function SectionTitle({
   title,
   subTitle,
+  searchPlaceholder = "Search here",
 }: {
   title: string;
   subTitle?: string | undefined | React.ReactNode;
+  searchPlaceholder?: string;
 }) {
   const pathname = usePathname();
   const currentPathname =
@@ -21,7 +23,7 @@ export default function SectionTitle({
       <p className="text-[#3D454E] text-lg xl:text-2xl  mt-2 mx-auto lg:w-[50%]">
         {subTitle}
       </p>
-      {currentPathname && <SearchBar placeholder="Search by reviewer name" />}
+      {currentPathname && <SearchBar placeholder={searchPlaceholder} />}
     </div>
   );
 }

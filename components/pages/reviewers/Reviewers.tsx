@@ -55,6 +55,7 @@ export default function Reviewers({
       <SectionTitle
         title="Reviewers"
         subTitle="Everyone has an opinion—start by finding theirs."
+        searchPlaceholder="Search by reviewer name"
       />
 
       <LatestLoudVoices />

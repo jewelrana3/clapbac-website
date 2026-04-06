@@ -66,6 +66,7 @@ export default async function BussinessCategories({
       <SectionTitle
         title="Business Categories"
         subTitle="Find Out Who’s Worth It. Type It In. Expose or Endorse."
+        searchPlaceholder="Search category here"
       />
       <BussinessCard data={categories?.data} />
       <ProfileSection
