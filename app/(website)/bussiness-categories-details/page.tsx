@@ -16,23 +16,22 @@ export default async function FoodDrink({
   }>;
 }) {
   const { Feature = "" } = await searchParams;
-  const { title = "" } = await searchParams;
   const { category = "" } = await searchParams;
-  const featuresBussiness = await myFetch(
+  const businesses = await myFetch(
     `${category ? `/companies?category=${category}` : `/companies`}`,
   );
+  const categoryRes = await myFetch(`/categories/${category}`);
   const recentBusiness = await myFetch("/recent-companies");
   const profile = await myFetch("/users/profile");
 
   return (
     <div>
-      <SectionTitle
-        title={featuresBussiness?.data?.[0]?.category?.name || "All Businesses"}
-      />
+      <SectionTitle title={categoryRes?.data?.name || "All Businesses"} />
       {Feature !== "true" && <FeatureBusiness />}
       <AllBussiness
-        data={featuresBussiness?.data}
-        total={featuresBussiness?.pagination?.total}
+        categoryName={categoryRes?.data?.name || "All Businesses"}
+        data={businesses?.data}
+        total={businesses?.pagination?.total}
       />
 
       {profile?.data?.length > 0 && (

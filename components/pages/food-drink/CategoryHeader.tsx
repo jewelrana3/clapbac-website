@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const CategoryHeader = ({ total, data, pathname }: any) => {
+const CategoryHeader = ({ total, pathname, categoryName }: any) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -27,7 +27,7 @@ const CategoryHeader = ({ total, data, pathname }: any) => {
       {/* Left: Category Title */}
       <div>
         <h2 className="text-lg font-semibold">
-          {data?.name || "All Businesses"} {pathname !== "/reviewers" && ":"}{" "}
+          {categoryName} {pathname !== "/reviewers" && ":"}{" "}
           <span className="font-bold">
             {total} {pathname === "/reviewers" ? "Reviewers" : "  Businesses"}
           </span>

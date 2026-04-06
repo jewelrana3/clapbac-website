@@ -32,9 +32,11 @@ const searches = [
   { label: "Family Restaurant", value: "Family Restaurant" },
 ];
 export default function AllBussiness({
+  categoryName,
   data,
   total,
 }: {
+  categoryName: string;
   data: Props[];
   total: number | undefined;
 }) {
@@ -43,7 +45,7 @@ export default function AllBussiness({
       <section className="flex flex-col lg:flex-row gap-12">
         <div className="basis-[70%] mb-8">
           {/* category header */}
-          <CategoryHeader total={total} data={data?.[0]?.category} />
+          <CategoryHeader total={total} categoryName={categoryName} />
 
           {/* bussiness cards */}
           {data?.length > 0 ? (

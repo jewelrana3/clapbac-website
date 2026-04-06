@@ -27,7 +27,7 @@ const SearchBar = ({ placeholder = "Search" }) => {
   return (
     <div
       className={`${
-        pathname !== "/" && "bg-gray-200 w-full"
+        pathname !== "/" && "w-full"
       } flex justify-center mt-3 w-full`}
     >
       <div className="flex items-center bg-white rounded-full px-4 py-3 w-full md:max-w-2xl shadow-sm">
