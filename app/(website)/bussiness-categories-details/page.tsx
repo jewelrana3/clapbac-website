@@ -5,7 +5,7 @@ import SectionTitle from "@/components/share/SectionTitle";
 import React from "react";
 import { myFetch } from "@/utils/myFetch";
 
-export default async function FoodDrink({
+export default async function SingleCategoryPage({
   searchParams,
 }: {
   searchParams: Promise<{
@@ -21,8 +21,9 @@ export default async function FoodDrink({
     `${category ? `/companies?category=${category}` : `/companies`}`,
   );
   const categoryRes = await myFetch(`/categories/${category}`);
+  const popularCategoriesRes = await myFetch("/categories/popular");
   const recentBusiness = await myFetch("/recent-companies");
-  const profile = await myFetch("/users/profile");
+  const profileRes = await myFetch("/users/profile");
 
   return (
     <div>
@@ -30,11 +31,13 @@ export default async function FoodDrink({
       {Feature !== "true" && <FeatureBusiness />}
       <AllBussiness
         categoryName={categoryRes?.data?.name || "All Businesses"}
+        relatedCategories={categoryRes?.data?.relatedTo || []}
+        popularCategories={popularCategoriesRes?.data || []}
         data={businesses?.data}
         total={businesses?.pagination?.total}
       />
 
-      {profile?.data?.length > 0 && (
+      {profileRes?.data?.length > 0 && (
         <RecentlyViewCompanies
           title="Recently Viewed Companies"
           data={recentBusiness?.data || []}

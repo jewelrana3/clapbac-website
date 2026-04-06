@@ -16,27 +16,17 @@ interface Props {
   reviewCount: number;
   avgRating: number;
 }
-const categories = [
-  { label: "Bakery", value: "Bakery" },
-  { label: "Desserts", value: "Desserts" },
-  { label: "Snacks", value: "Snacks" },
-  { label: "Chocolate", value: "Chocolate" },
-  { label: "Candy", value: "Candy" },
-];
 
-const searches = [
-  { label: "Brunch", value: "Brunch" },
-  { label: "Steak House", value: "Steak House" },
-  { label: "Fine Dining", value: "Fine Dining" },
-  { label: "Ice Cream", value: "Ice Cream" },
-  { label: "Family Restaurant", value: "Family Restaurant" },
-];
-export default function AllBussiness({
+export default async function AllBussiness({
   categoryName,
+  relatedCategories,
+  popularCategories,
   data,
   total,
 }: {
   categoryName: string;
+  relatedCategories: Props[];
+  popularCategories: Props[];
   data: Props[];
   total: number | undefined;
 }) {
@@ -64,9 +54,12 @@ export default function AllBussiness({
         <div className="basis-[30%] my-8 flex flex-col md:flex-row lg:flex-col gap-6 items-end">
           <RelatedCategories
             title="Related Categories"
-            categories={categories}
+            categories={relatedCategories}
           />
-          <RelatedCategories title=" Popular Searches" categories={searches} />
+          <RelatedCategories
+            title=" Popular Searches"
+            categories={popularCategories}
+          />
         </div>
       </section>
     </Container>

@@ -1,36 +1,29 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
 
 const RelatedCategories = ({
   categories,
-  typeText,
   title,
 }: {
   categories?: any;
   typeText?: string;
   title?: string;
 }) => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+  const updateSearchParams = useUpdateSearchParams();
 
-  const handleType = (cat: string) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set(typeText!, String(cat));
-    router.push(`?${newSearchParams.toString()}`);
-  };
   return (
     <div className="bg-gray-50 shadow-md p-6 border-r-2 w-full lg:w-[90%]">
       <h3 className="text-center text-lg font-semibold mb-4">{title}</h3>
       <ul className="space-y-3">
-        {categories?.map((cat: any, index: number) => {
+        {categories?.map((category: any, index: number) => {
           return (
             <li
               key={index}
               className="text-center cursor-pointer"
-              onClick={() => handleType(cat.value)}
+              onClick={() => updateSearchParams({ category: category._id })}
             >
-              <p className="text-gray-800 capitalize">{cat.label}</p>
+              <p className="text-gray-800 capitalize">{category?.name}</p>
               {index !== categories.length - 1 && (
                 <hr className="mt-2 border-gray-200 w-2/3 mx-auto" />
               )}
@@ -38,6 +31,9 @@ const RelatedCategories = ({
           );
         })}
       </ul>
+      {categories?.length === 0 && (
+        <p className="text-center text-gray-500">No item found</p>
+      )}
     </div>
   );
 };
