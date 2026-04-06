@@ -9,6 +9,7 @@ export default async function Companies() {
   });
   return (
     <>
+      <h1 className="text-[#F05223] text-3xl font-semibold">Companies</h1>
       <CompaniesTable data={res?.data} />{" "}
       {res?.data?.length > 10 && (
         <div className="mt-10">

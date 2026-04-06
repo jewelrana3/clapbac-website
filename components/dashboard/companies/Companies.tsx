@@ -36,7 +36,7 @@ export default function CompaniesTable({ data }: any) {
     }
   };
   return (
-    <div className="mt-9">
+    <div className="mt-8">
       <Table>
         <TableHeader>
           <TableRow>
