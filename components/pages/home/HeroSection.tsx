@@ -6,7 +6,7 @@ export default async function HeroSection() {
     <>
       <div>
         <video
-          src="/new-banner.mp4"
+          src="/hero-section-video.mp4"
           autoPlay
           loop
           muted
