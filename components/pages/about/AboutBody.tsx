@@ -22,7 +22,7 @@ export default function AboutBody() {
           />
         </div>
 
-        <p className="mt-10 font-semibold">
+        <p className="mt-10">
           Clapbac is a fierce, mobile-friendly platform that flips the script on
           reviews, letting business owners rate customers, fire back at unfair
           critiques, and cheer their best patrons. Sick of Yelp’s one-way slams?

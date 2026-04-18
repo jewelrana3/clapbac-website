@@ -12,9 +12,9 @@ export default async function Page({
   const params = new URLSearchParams();
   if (page) params.append("page", page);
   if (status) params.append("status", status);
-
+  console.log(params.toString());
   const res = await myFetch(
-    `/users?role=Owner${params.toString() ? `?${params.toString()}` : ""}`,
+    `/users?role=Owner${params.toString() ? `&${params.toString()}` : ""}`,
     {
       tags: ["users"],
       cache: "no-store",
