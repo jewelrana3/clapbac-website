@@ -37,7 +37,7 @@ const reviewGuidelines = [
   {
     title: "Moderation & Enforcement",
     description:
-      "Clapbac reserves the right to review, moderate, remove, or restrict content or accounts that violate these guidelines or our Terms of Service—at our discretion.",
+      "Clapbac reserves the right to review, moderate, remove, or restrict content or accounts that violate these guidelines or our Terms & Conditions at our discretion.",
   },
 ];
 

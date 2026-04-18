@@ -8,14 +8,14 @@ export default async function TermsOfService() {
   return (
     <>
       <SectionTitle
-        title="Terms of Service and Privacy Policy"
+        title="Terms & Conditions and Privacy Policy"
         subTitle="How We Rate and How We Respect Your Data"
       />
 
       {/* body */}
       <div className="max-w-3xl mx-auto px-6 py-12 text-gray-800">
         <h1 className="text-2xl font-bold text-[#F05223] mb-4">
-          Terms of Service
+          Terms & Conditions
         </h1>
 
         <p

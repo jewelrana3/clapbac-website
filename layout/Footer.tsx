@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
           <div className="space-x-4 mt-2 md:mt-0">
             <Link className="condition" href="/privacy-policy">
-              Terms of Service
+              Terms & Conditions
             </Link>
             <span>|</span>
             <Link className="condition" href="/privacy-policy">

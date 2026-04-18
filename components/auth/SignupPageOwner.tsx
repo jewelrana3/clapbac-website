@@ -308,7 +308,7 @@ export default function SignupPageOwner({ categories }: any) {
                 rel="noopener noreferrer"
                 className="text-[#F05223]"
               >
-                Terms of Service
+                Terms & Conditions
               </a>
               and{" "}
               <a
