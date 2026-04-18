@@ -8,21 +8,21 @@ import {
   getUserInfo,
 } from "@/components/dashboardData/usersDetailsData";
 
-export default function UserDetails({ findUserById }: any) {
-  const userInfo = getUserInfo(findUserById);
-  const topSection = getTopSection(findUserById);
+export default function UserDetails({ findUserById: user }: any) {
+  const userInfo = getUserInfo(user);
+  const topSection = getTopSection(user);
 
-  const bottomSection = getBottomSection(findUserById);
+  const bottomSection = getBottomSection(user);
 
   return (
     <section className=" text-[#3D454E]">
       <UserInfoSection data={userInfo} />
       <hr />
-      <CompanyDetailsSection data={topSection} />
-      <StatsSection data={bottomSection} />
+      {user?.role === "Owner" && <CompanyDetailsSection data={topSection} />}
+      {user?.role === "Owner" && <StatsSection data={bottomSection} />}
       <hr />
 
-      <UserActions findUser={findUserById} />
+      <UserActions findUser={user} />
     </section>
   );
 }

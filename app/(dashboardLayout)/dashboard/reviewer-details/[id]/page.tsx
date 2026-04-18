@@ -16,10 +16,10 @@ export default async function id({
 
   return (
     <div className=" w-[60%] mx-auto">
-      <div className="flex items-center mb-4">
+      <div className="flex items-center gap-4 mb-4">
         <BackButton />
         <button className="text-[#F05223] font-semibold text-2xl">
-          View User Profile Details
+          User Profile Details
         </button>
       </div>
       <div className="flex bg-[#F5F5F5] p-9 gap-14">

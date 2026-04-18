@@ -70,9 +70,12 @@ export default function ReviewsDetails({
           </div>
 
           <div className="clapback-review">
+            <h3 className="text-lg font-semibold mb-1">
+              {data?.user?.firstName}'s Clapbac Review
+            </h3>
             <div className="">
               <strong className="clapback-author">
-                {/* Pete Wells’s Clapbac Review */}
+                {/* Business Owners Clapbac Review */}
                 {data?.user?.firstName + " " + data?.user?.lastName}
               </strong>
               <span className="ml-3">{data?.createdAt.slice(0, 10)}</span>
@@ -92,7 +95,7 @@ export default function ReviewsDetails({
           <Link
             href={`/clapbac-reviews/${data.company._id}`}
             target="_blank"
-            className="flex justify-end cursor-pointer mt-9"
+            className="flex justify-center cursor-pointer mt-9"
           >
             <Button className=" text-white cursor-pointer">
               View Full Review

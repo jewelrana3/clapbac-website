@@ -30,64 +30,64 @@ export default function Reviews({ reviews }: any) {
         <TableHeader>
           <TableRow>
             <TableHead>Reviewer Name</TableHead>
-            <TableHead>User Name</TableHead>
+            <TableHead>Username</TableHead>
             <TableHead>Display Name</TableHead>
             <TableHead>Business Name</TableHead>
 
             <TableHead className="">Business Category</TableHead>
             <TableHead className="">Location</TableHead>
-            <TableHead className="">Submited Date</TableHead>
+            <TableHead className="">Submit Date</TableHead>
             <TableHead className="">Helpful</TableHead>
             <TableHead className="">View</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {reviews?.map((invoice: any, index: number) => {
+          {reviews?.map((review: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell>{invoice?.reviewerName}</TableCell>
+                <TableCell>{review?.reviewerName}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <p>{invoice.user.username}</p>
+                    <p>{review.user.username}</p>
                   </div>
                 </TableCell>
                 <TableCell className="">
                   <div className="flex items-center gap-2">
                     <div>
-                      <UserImage item={invoice.user?.image} />
+                      <UserImage item={review.user?.image} />
                     </div>
 
-                    <p>{invoice.user?.firstName}</p>
+                    <p>{review.user?.firstName}</p>
                   </div>
                 </TableCell>
 
                 <TableCell className="">
                   <div className="flex items-center gap-2">
                     <div>
-                      <CompanyImage item={invoice.company?.logo} />
+                      <CompanyImage item={review.company?.logo} />
                     </div>
 
-                    <p> {invoice.company?.name}</p>
+                    <p> {review.company?.name}</p>
                   </div>
                 </TableCell>
 
                 <TableCell className="">
-                  {invoice?.company?.category?.name}
+                  {review?.company?.category?.name}
                 </TableCell>
                 <TableCell className="">
-                  {truncateText(invoice?.company?.address, 5) || "No Location"}
+                  {truncateText(review?.company?.address, 5) || "No Location"}
                 </TableCell>
                 <TableCell className="">
-                  {invoice.createdAt
-                    ? new Date(invoice.createdAt).toLocaleDateString()
+                  {review.createdAt
+                    ? new Date(review.createdAt).toLocaleDateString()
                     : "No Date"}
                 </TableCell>
-                <TableCell className="pl-8">{invoice.helpfulCount}</TableCell>
+                <TableCell className="pl-8">{review.helpfulCount}</TableCell>
                 <TableCell className="-pl-16">
-                  <div className="flex items-center  gap-1  hover:none">
+                  <div className="flex items-center gap-4 hover:none">
                     <div>
                       <ReviewsDetails
-                        data={invoice}
+                        data={review}
                         trigger={
                           <div>
                             <Eye className="text-[#3D454E] cursor-pointer" />
@@ -97,7 +97,7 @@ export default function Reviews({ reviews }: any) {
                     </div>
 
                     <div>
-                      <DeleteReviews id={invoice?._id} />
+                      <DeleteReviews id={review?._id} />
                     </div>
                   </div>
                 </TableCell>

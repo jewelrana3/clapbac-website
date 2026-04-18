@@ -5,12 +5,12 @@ import help from "../../public/clapbac-reviews/help.svg";
 import Image from "next/image";
 import { myFetch } from "@/utils/myFetch";
 
-export default function HelpFull({ reviews }: any) {
-  const reviewId = reviews?._id;
+export default function HelpFull({ reviews: review }: any) {
+  const reviewId = review?._id;
   const localKey = `helpful-${reviewId}`;
 
   const [isHelpful, setIsHelpful] = useState(false);
-  const [helpfulCount, setHelpfulCount] = useState(reviews?.helpfulCount || 0);
+  const [helpfulCount, setHelpfulCount] = useState(review?.helpfulCount || 0);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -21,7 +21,12 @@ export default function HelpFull({ reviews }: any) {
   }, [localKey]);
 
   const handleToggleHelpful = async () => {
-    const newCount = isHelpful ? helpfulCount - 1 : helpfulCount + 1;
+    let newCount = helpfulCount;
+    if (isHelpful && newCount > 0) {
+      newCount--;
+    } else {
+      newCount++;
+    }
 
     // Update UI
     setHelpfulCount(newCount);

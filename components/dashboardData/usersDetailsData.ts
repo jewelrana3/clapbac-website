@@ -3,7 +3,7 @@ export const getUserInfo = (user: any) => [
   { label: "Display Name", value: user?.firstName + " " + user?.lastName },
   { label: "Email", value: user?.email },
   // { label: "Business Category", value: "Food & Drink" },
-  { label: "Join Date", value: user?.createdAt?.slice(0, 10) },
+  { label: "Join Date", value: user?.createdAt?.split("T")[0] },
   // { label: "Location", value: "Beverly Hills, CA" },
 ];
 
@@ -12,7 +12,7 @@ export const getTopSection = (user: any) => [
   // { label: "Last Name", value: user?.lastName },
   { label: "Company Name", value: user?.company?.name || "N/A" },
   { label: "Title", value: user?.role },
-  { label: "Phone", value: user?.phone },
+  { label: "Phone", value: user?.phone || "N/A" },
   { label: "Address", value: user?.company?.address || "N/A" },
   { label: "Website", value: user?.company?.website || "N/A" },
 ];

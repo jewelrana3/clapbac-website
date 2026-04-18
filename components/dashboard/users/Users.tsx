@@ -16,7 +16,7 @@ export default function Users({ users }: any) {
   return (
     <>
       <DropDownDashboard
-        title="Reg. Reviewers"
+        title="Registered Reviewers"
         data={[
           { title: "Active", value: "Active" },
           { title: "Suspended", value: "Suspended" },
@@ -26,23 +26,19 @@ export default function Users({ users }: any) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">User Name</TableHead>
+            <TableHead className="w-[100px]">Username</TableHead>
             <TableHead>Display Name</TableHead>
-            {/* <TableHead>Bussiness Name</TableHead> */}
             <TableHead className="">Email</TableHead>
-            {/* <TableHead className="">Bussiness Category</TableHead> */}
             <TableHead className="">Join Date</TableHead>
             <TableHead className="">Status</TableHead>
             <TableHead className="">View</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users?.map((invoice: any, index: number) => {
+          {users?.map((user: any, index: number) => {
             return (
               <TableRow key={index}>
-                <TableCell className="font-medium">
-                  {invoice?.username}
-                </TableCell>
+                <TableCell className="font-medium">{user?.username}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <div>
@@ -57,9 +53,9 @@ export default function Users({ users }: any) {
                         alt={`${invoice.firstName}'s profile`}
                         className=" rounded-full object-cover"
                       /> */}
-                      <LogoImage item={invoice.image} />
+                      <LogoImage item={user.image} />
                     </div>
-                    <p>{invoice.firstName + " " + invoice.lastName}</p>
+                    <p>{user.firstName + " " + user.lastName}</p>
                   </div>
                 </TableCell>
 
@@ -84,26 +80,25 @@ export default function Users({ users }: any) {
                     <p>{invoice.company?.name}</p>
                   </div>
                 </TableCell> */}
-                <TableCell>{invoice.email}</TableCell>
-                {/* <TableCell className="">{invoice?.title}</TableCell> */}
+                <TableCell>{user.email}</TableCell>
                 <TableCell className="">
-                  {invoice.createdAt.slice(0, 10)}
+                  {user?.createdAt?.split("T")[0]}
                 </TableCell>
                 <TableCell className="">
                   <Badge
                     className={`w-20 ${
-                      invoice.status === "Active"
+                      user.status === "Active"
                         ? "bg-[#C5D92D] text-[#3D454E]"
-                        : invoice.status === "Banned"
+                        : user.status === "Banned"
                           ? "bg-[#000000] text-white"
                           : "bg-[#F05223]"
                     }`}
                   >
-                    {invoice.status}
+                    {user.status}
                   </Badge>
                 </TableCell>
                 <TableCell className="">
-                  <Link href={`/dashboard/reviewer-details/${invoice._id}`}>
+                  <Link href={`/dashboard/reviewer-details/${user._id}`}>
                     <Eye className="text-[#3D454E] cursor-pointer" />
                   </Link>
                 </TableCell>
