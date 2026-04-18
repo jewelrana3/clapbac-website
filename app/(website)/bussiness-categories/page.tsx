@@ -56,10 +56,10 @@ export default async function BussinessCategories({
 
   // ✅ build query string
   const query = searchTerm
-    ? `?searchTerm=${encodeURIComponent(searchTerm)}`
+    ? `searchTerm=${encodeURIComponent(searchTerm)}`
     : "";
 
-  const categories = await myFetch(`/categories${query}`);
+  const categories = await myFetch(`/categories?sort=-updatedAt&${query}`);
 
   return (
     <div className="">
