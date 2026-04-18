@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { ratingCaculate } from "@/components/share/rating/ratingCaculate";
+import { ratingCaculate as ratingCalculate } from "@/components/share/rating/ratingCaculate";
 import ReviewersDetails from "./ReviewersDetails";
 
 export default function Reviewers({ reviews }: any) {
@@ -24,7 +24,7 @@ export default function Reviewers({ reviews }: any) {
       /> */}
 
       <div className="text-[#F05223] text-3xl font-semibold mb-3">
-        Unreg. Reviewers
+        Unregistered Reviewers
       </div>
       <Table>
         <TableHeader>
@@ -41,26 +41,26 @@ export default function Reviewers({ reviews }: any) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {reviews.map((invoice: any, index: number) => {
+          {reviews.map((review: any, index: number) => {
             return (
               <TableRow key={index}>
                 <TableCell className="p-5">
                   <div className="flex items-center gap-2">
-                    <p>{invoice.reviewerName}</p>
+                    <p>{review.reviewerName}</p>
                   </div>
                 </TableCell>
 
-                <TableCell className="pl-16">{invoice.helpfulCount}</TableCell>
+                <TableCell className="pl-16">{review.helpfulCount}</TableCell>
                 <TableCell className="">
                   <div className="rating overall-rating flex">
-                    {ratingCaculate(invoice?.clapbacRating)}
+                    {ratingCalculate(review?.clapbacRating)}
                   </div>
                 </TableCell>
                 <TableCell className="">
-                  {invoice.createdAt.slice(0, 10)}
+                  {review.createdAt.split("T")[0]}
                 </TableCell>
                 <TableCell className="">
-                  {invoice?.reviewerAddress || "N/A"}
+                  {review?.reviewerAddress || "N/A"}
                 </TableCell>
                 {/* <TableCell className="pl-">
                   <Badge
@@ -76,7 +76,7 @@ export default function Reviewers({ reviews }: any) {
                   </Badge>
                 </TableCell> */}
                 <TableCell className="pl-3">
-                  <ReviewersDetails data={invoice} />
+                  <ReviewersDetails data={review} />
                 </TableCell>
               </TableRow>
             );

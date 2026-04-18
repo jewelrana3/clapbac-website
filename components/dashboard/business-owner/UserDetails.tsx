@@ -8,7 +8,7 @@ import {
   getUserInfo,
 } from "@/components/dashboardData/usersDetailsData";
 
-export default function UserDetails({ findUserById: user }: any) {
+export default function UserDetails({ findUserById: user, comments }: any) {
   const userInfo = getUserInfo(user);
   const topSection = getTopSection(user);
 

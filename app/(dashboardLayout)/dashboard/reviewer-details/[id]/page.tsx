@@ -14,6 +14,8 @@ export default async function id({
   const res = await myFetch(`/users/${userId}`);
   const findUserById = res?.data;
 
+  const commentRes = await myFetch(`/comments/user/${userId}`);
+
   return (
     <div className=" w-[60%] mx-auto">
       <div className="flex items-center gap-4 mb-4">
@@ -27,7 +29,10 @@ export default async function id({
           <UserImage item={findUserById?.image} width={100} height={100} />
         </div>
         <div className="flex-1">
-          <UserDetails findUserById={findUserById} />
+          <UserDetails
+            findUserById={findUserById}
+            comments={commentRes?.data}
+          />
         </div>
       </div>
     </div>
