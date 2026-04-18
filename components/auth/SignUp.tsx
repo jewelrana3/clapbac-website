@@ -15,7 +15,7 @@ export default function SignUp({ categories }: any) {
             " bg-[#F05223] text-white border border-[#F05223]!"
           } border border-gray-400  rounded cursor-pointer transition font-bold`}
         >
-          I'm a Business Owner
+          I'm a Business Representative
         </button>
         <button
           onClick={() => setCheck("user")}

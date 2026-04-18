@@ -104,9 +104,6 @@ export default function SingleComment({
           {/* clapbac message */}
           <div className="mt-2">
             <h2 className="text-lg font-bold">{reply?.clapbacTitle}</h2>
-            <h3 className="italic text-sm">
-              {reply?.reviewerType} | {reply?.reviewerConsequence}
-            </h3>
             <p
               style={{ whiteSpace: "pre-line" }}
               className="text-gray-700 mt-6"

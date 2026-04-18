@@ -44,7 +44,7 @@ export default function ReviewCommentDetails({
             <div className=" text-sm">
               <div>
                 <div>
-                  <p className="uppercase font-medium text-sm">Clapbac From</p>{" "}
+                  <p className="uppercase font-medium text-sm">Comment From</p>{" "}
                   <p className="text-gray-500"></p>
                   <div className="flex gap-1 font-bold text-md">
                     <p>{commentItem?.user?.firstName}</p>

@@ -56,6 +56,7 @@ export default async function FeatureBusiness() {
                     <h3 className="font-bold text-xl lg:text-2xl">
                       {item?.name}
                     </h3>
+                    <h4>{item?.category?.name}</h4>
                     {/* <div className="font-bold lg:text-xl flex gap-5 items-center mt-2">
                       <div className="lg:flex gap-5">
                         <div className="flex items-center">
