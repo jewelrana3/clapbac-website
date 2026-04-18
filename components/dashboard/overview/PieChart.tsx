@@ -10,36 +10,16 @@ import {
 export const description = "A simple pie chart";
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "var(--chart-1)",
-  },
-  safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
-  },
-  edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
-  },
-  other: {
-    label: "Other",
-    color: "var(--chart-5)",
+  count: {
+    label: "Count",
   },
 } satisfies ChartConfig;
 export function PieChartPage({ data }: any) {
   const colors = ["#3D454E", "#84cc16", "#F05223"];
 
   const pieChartData = data?.map((item: any, index: number) => ({
-    browser: item.category,
-    visitors: item.count,
+    category: item.category.toUpperCase(),
+    count: item.count,
     fill: colors[index],
   }));
 
@@ -55,7 +35,7 @@ export function PieChartPage({ data }: any) {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Pie data={pieChartData} dataKey="visitors" nameKey="browser" />
+            <Pie data={pieChartData} dataKey="count" nameKey="category" />
           </PieChart>
         </ChartContainer>
       </CardContent>

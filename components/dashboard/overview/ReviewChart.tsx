@@ -13,13 +13,13 @@ const colors = [
 const ReviewChart = async ({ data }: any) => {
   const newbar = data?.map((item: any, index: number) => ({
     day: item.day,
-    count: item.count === 0 ? 20 : item.count,
+    count: item.count === 0 ? 2 : item.count,
     color: colors[index],
   }));
   return (
     <div className="p-6 bg-[#F8F8F8]">
       <h2 className="text-xl font-semibold mb-4  text-gray-700">
-        Review Activity | Weekly
+        Weekly Review Activity
       </h2>
       <div className="flex items-end justify-between h-48  border-gray-300 pt-4">
         {newbar?.map(
@@ -40,7 +40,7 @@ const ReviewChart = async ({ data }: any) => {
               />
               <span className="mt-2 text-sm font-medium">{day}</span>
             </div>
-          )
+          ),
         )}
       </div>
     </div>
