@@ -70,6 +70,10 @@ const AnnouncementForm = ({
     };
 
     if (dateValue) {
+      if (new Date(dateValue) < new Date()) {
+        toast.error("Date should be tomorrow or later.");
+        return;
+      }
       payload.scheduleDate = new Date(dateValue).toISOString();
     }
 
@@ -78,7 +82,7 @@ const AnnouncementForm = ({
         method: method,
         body: payload,
       });
-
+      console.log(res);
       if (res.success) {
         toast.success("Announcement updated successfully.");
         revalidate("announcements");
