@@ -18,7 +18,8 @@ const ReviewCard = ({ reviews: review }: { reviews: any }) => {
         <div>
           <h3 className="font-bold text-lg">{review?.reviewerName}</h3>
           <p className="text-sm">
-            {review?.reviewerType} | {review?.reviewerConsequence}
+            Reviewer Type: {review?.reviewerType} | Reviewer Consequence:{" "}
+            {review?.reviewerConsequence}
           </p>
           <p className="text-sm ">{review?.reviewerAddress}</p>
         </div>

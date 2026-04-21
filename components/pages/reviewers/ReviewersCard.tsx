@@ -1,7 +1,5 @@
-import Image from "next/image";
 import React from "react";
 import { FaRegStar, FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
-import one from "../../../public/food-drink/one.png";
 import Link from "next/link";
 import { truncateText } from "@/utils/truncateText";
 import UserImage from "@/components/share/customImageHandle/UserImage";
@@ -48,11 +46,6 @@ export default function ReviewersCard({ item }: { item: any }) {
           <div className="flex gap-3 ">
             <div>
               <div className="flex gap-3 ">
-                {/* <Image
-                  src={one}
-                  alt="Arabica Coffee"
-                  className="w-14 h-14 rounded-full object-contain"
-                /> */}
                 <UserImage
                   item={item?.company?.logo}
                   name="Arabica Coffee"
@@ -64,7 +57,7 @@ export default function ReviewersCard({ item }: { item: any }) {
                   </p>
                   <p className="text-sm font-bold text-gray-800">
                     {item.user?.firstName} {item.user?.lastName}
-                    <span className="font-normal">,{item?.user?.title}</span>
+                    <span className="font-normal">, {item?.user?.title}</span>
                   </p>
                   <p className="text-sm text-gray-700">{item?.company?.name}</p>
                   <p className="text-sm text-gray-500">

@@ -40,6 +40,7 @@ export default function SingleComment({
   reply: any;
   index: number;
 }) {
+  console.log(reply);
   return (
     <div className=" flex flex-col xl:flex-row justify-between">
       <div
@@ -71,19 +72,14 @@ export default function SingleComment({
             <div className="text-sm">
               <div>
                 <div>
-                  <p>
-                    {reply?.user.title === "Owner"
-                      ? "RESPONSE FROM..."
-                      : "CLAPBAC FROM..."}
-                  </p>
-                  {/* <p>CLAPBAC FROM</p> */}
+                  <p>CLAPBAC FROM...</p>
                   {/* name & owner */}
                   <div className="">
                     <div className="flex items-center gap-2">
                       <p className="font-bold text-lg">
-                        {reply?.user?.firstName} {reply?.user?.lastName} ,
+                        {reply?.user?.firstName} {reply?.user?.lastName},
                       </p>
-                      <p>Owner</p>
+                      <p>{reply?.user?.title}</p>
                     </div>
                     <p className="capitalize">{reply?.company?.name}</p>
                     <p>
