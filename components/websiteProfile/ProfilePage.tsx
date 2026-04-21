@@ -4,7 +4,6 @@ import BussinessInformationWebsite from "./BussinessInformationWebsite";
 import { myFetch } from "@/utils/myFetch";
 
 export default async function ProfilePage() {
-  // const [owner, setOwner] = useState(false);
   const res = await myFetch("/users/profile");
   const categories = await myFetch("/categories");
 
@@ -12,7 +11,6 @@ export default async function ProfilePage() {
 
   return (
     <section className="w-[70%] mx-auto py-10 ">
-      {/* <header className="text-[#F05223] text-2xl font-bold">Profile</header> */}
       <div className="bg-[#F8F8F8] p-5">
         {/* profile */}
 

@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, LayoutDashboard, User } from "lucide-react";
+import { LogOut, LayoutDashboard, User, KeyRound } from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
 import UserImage from "@/components/share/customImageHandle/UserImage";
@@ -76,6 +76,15 @@ export function UserDropdownMenu({ profileData }: Props) {
             Profile
           </DropdownMenuItem>
         </Link>
+
+        {["User", "Owner"].includes(profileData.role || "") && (
+          <Link href="/change-password">
+            <DropdownMenuItem className="text-sm cursor-pointer hover:bg-gray-100 flex items-center">
+              <KeyRound className="h-4 w-4 mr-2 text-gray-600" />
+              Change Password
+            </DropdownMenuItem>
+          </Link>
+        )}
 
         <DropdownMenuItem
           onClick={handleLogout}

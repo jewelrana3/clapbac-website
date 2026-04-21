@@ -9,12 +9,6 @@ import { myFetch } from "@/utils/myFetch";
 
 export default function ChangePassword() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-  });
-
   const [showPassword, setShowPassword] = useState({
     currentPassword: false,
     newPassword: false,
@@ -30,24 +24,37 @@ export default function ChangePassword() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
     toast.loading("Submitting...", { id: "change-password" });
 
+    const formData = new FormData(e.currentTarget);
+    const currentPassword = formData.get("currentPassword") as string;
+    const newPassword = formData.get("newPassword") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+
+    if (newPassword !== confirmPassword) {
+      toast.error("New password and confirm password do not matched", {
+        id: "change-password",
+      });
+      return;
+    }
+    
     try {
+      setIsSubmitting(true);
       const res = await myFetch("/auth/change-password", {
         method: "POST",
-        body: formData,
+        body: {
+          currentPassword,
+          newPassword,
+          confirmPassword,
+        },
       });
 
       if (res.success) {
         toast.success("Password changed successfully", {
           id: "change-password",
         });
-        setFormData({
-          currentPassword: "",
-          newPassword: "",
-          confirmPassword: "",
-        });
+        // reset the form
+        (e.target as HTMLFormElement).reset();
       } else {
         toast.error(res.message || "Password change failed", {
           id: "change-password",
@@ -55,17 +62,15 @@ export default function ChangePassword() {
       }
     } catch (err) {
       toast.error("Something went wrong", { id: "change-password" });
+      console.error(err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div
-      className="flex items-center justify-center bg-[#F6F6F6] px-4 mb-5"
-      style={{ height: "calc(100vh - 120px)" }}
-    >
-      <div className="min-w-md w-[50%] mx-auto bg-white p-8 rounded-md shadow-md space-y-6">
+    <div className="h-screen flex items-center justify-center bg-[#F6F6F6] p-4">
+      <div className="w-full md:max-w-lg mx-auto bg-white p-6 md:p-8 rounded-md shadow-md space-y-6">
         <h2 className="text-center text-2xl font-semibold">Change Password</h2>
 
         <form onSubmit={handleSubmit}>
@@ -75,12 +80,8 @@ export default function ChangePassword() {
             <div className="relative">
               <Input
                 type={showPassword.currentPassword ? "text" : "password"}
-                name="oldPassword"
+                name="currentPassword"
                 placeholder="Enter Old Password"
-                value={formData.currentPassword}
-                onChange={(e) =>
-                  setFormData({ ...formData, currentPassword: e.target.value })
-                }
                 className="w-full px-4 py-2 rounded border  focus:outline-none"
                 required
               />
@@ -106,10 +107,6 @@ export default function ChangePassword() {
                 type={showPassword.newPassword ? "text" : "password"}
                 name="newPassword"
                 placeholder="Enter New Password"
-                value={formData.newPassword}
-                onChange={(e) =>
-                  setFormData({ ...formData, newPassword: e.target.value })
-                }
                 className="w-full px-4 py-2 rounded border  focus:outline-none"
                 required
               />
@@ -135,10 +132,6 @@ export default function ChangePassword() {
                 type={showPassword.confirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm New Password"
-                value={formData.confirmPassword}
-                onChange={(e) =>
-                  setFormData({ ...formData, confirmPassword: e.target.value })
-                }
                 className="w-full px-4 py-2 rounded border  focus:outline-none "
                 required
               />
