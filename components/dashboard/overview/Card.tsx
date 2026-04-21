@@ -5,7 +5,7 @@ const Card = async () => {
   const cards = await myFetch("/analytics/overview");
   const data = [
     { title: "Total Users", value: cards?.data?.totalUsers },
-    { title: "Total Reviewers", value: cards?.data?.totalReviewers },
+    { title: "Total Businesses", value: cards?.data?.totalCompanies },
     { title: "Total Reviews", value: cards?.data?.totalReviews },
     { title: "New Sign Ups", value: cards?.data?.newUsers },
   ];
