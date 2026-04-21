@@ -28,15 +28,17 @@ const AnnouncementForm = ({
   data?: any;
   trigger: React.ReactNode;
 }) => {
-  const [buttonValue, setButtonValue] = useState("");
-  const [dateValue, setDateValue] = useState("");
+  const [status, setStatus] = useState("");
+  const [dateValue, setDateValue] = useState(
+    data?.scheduleDate?.split("T")[0] || "",
+  );
 
   const [formData, setFormData] = useState({
-    audience: data?.audience || "",
+    audience: data?.audience || "All",
     title: data?.title || "",
     message: data?.message || "",
     url: data?.url || "",
-    scheduleDate: data?.scheduleDate || "",
+    scheduleDate: data?.scheduleDate?.split("T")[0] || "",
   });
 
   const handleEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +48,7 @@ const AnnouncementForm = ({
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    toast.loading("Submitting...", { id: "announcement" });
     e.preventDefault();
 
     const isEdit: boolean = data?._id ? true : false;
@@ -66,12 +69,19 @@ const AnnouncementForm = ({
       title: formData.title,
       message: formData.message,
       url: formData.url,
-      status: buttonValue,
+      status: status,
     };
 
-    if (dateValue) {
+    // schedule date validation
+    if (status === "Scheduled") {
+      if (!dateValue) {
+        toast.error("Please select a future date.", { id: "announcement" });
+        return;
+      }
       if (new Date(dateValue) < new Date()) {
-        toast.error("Date should be tomorrow or later.");
+        toast.error("Date should be tomorrow or later.", {
+          id: "announcement",
+        });
         return;
       }
       payload.scheduleDate = new Date(dateValue).toISOString();
@@ -82,12 +92,16 @@ const AnnouncementForm = ({
         method: method,
         body: payload,
       });
-      console.log(res);
+
       if (res.success) {
-        toast.success("Announcement updated successfully.");
+        toast.success("Announcement updated successfully.", {
+          id: "announcement",
+        });
         revalidate("announcements");
       } else {
-        toast.error(res?.message || "Announcement update failed.");
+        toast.error(res?.message || "Announcement update failed.", {
+          id: "announcement",
+        });
       }
     } catch (err) {
       console.error(err);
@@ -170,7 +184,7 @@ const AnnouncementForm = ({
               </Label>
               <Input
                 name="url"
-                type="text"
+                type="url"
                 className="flex-1 px-4 border rounded shadow-sm"
                 placeholder="http://"
                 value={formData?.url}
@@ -200,7 +214,7 @@ const AnnouncementForm = ({
                 <span className="font-semibold">Schedule :</span>
                 <button
                   type="submit"
-                  onClick={() => setButtonValue("Active")}
+                  onClick={() => setStatus("Active")}
                   className="cursor-pointer bg-[#C5D92D] text-[#000000] px-4 rounded-xl font-semibold py-1.5"
                 >
                   Publish Now
@@ -209,7 +223,7 @@ const AnnouncementForm = ({
                 <div>
                   <input
                     type="date"
-                    value={formData?.scheduleDate.slice(0, 10)}
+                    value={dateValue}
                     onChange={(e) => setDateValue(e.target.value)}
                     className="cursor-pointer bg-[#F05223] text-white px-4 font-semibold rounded-xl py-1.5"
                   />
@@ -218,7 +232,7 @@ const AnnouncementForm = ({
                 {dateValue && (
                   <button
                     type="submit"
-                    onClick={() => setButtonValue("Scheduled")}
+                    onClick={() => setStatus("Scheduled")}
                     className="cursor-pointer bg-[#F05223] text-white px-4 py-1.5 rounded-xl font-semibold"
                   >
                     Schedule
@@ -226,7 +240,7 @@ const AnnouncementForm = ({
                 )}
                 <button
                   type="submit"
-                  onClick={() => setButtonValue("Draft")}
+                  onClick={() => setStatus("Draft")}
                   className="cursor-pointer bg-[#A0A0A0] text-white px-4 py-1.5 rounded-xl font-semibold"
                 >
                   Save Draft
