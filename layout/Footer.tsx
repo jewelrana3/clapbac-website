@@ -4,36 +4,48 @@ import Image from "next/image";
 import { Facebook, Instagram } from "lucide-react";
 import { FaTiktok } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import { myFetch } from "@/utils/myFetch";
 
-const footerLinks = [
-  {
-    title: "ABOUT",
-    links: [
-      { label: "About Clapbac", href: "/about-us" },
-      { label: "FAQs", href: "/faq" },
-      { label: "Contact Us", href: "/contact-us" },
-    ],
-  },
-  {
-    title: "COMMUNITY",
-    links: [
-      { label: "Log In", href: "/login" },
-      { label: "Sign Up", href: "/signup" },
-      { label: "Help Center", href: "#" },
-    ],
-  },
-  {
-    title: "FOR BUSINESSES",
-    links: [
-      { label: "Advertise on Clapbac", href: "https://www.google.com" },
-      { label: "Clapbac for Business", href: "https://www.google.com" },
-    ],
-  },
-];
-
-export default function Footer() {
+export default async function Footer() {
   const date = new Date();
   const currentYear = date.getFullYear();
+
+  const res = await myFetch("/users/profile", {
+    tags: ["users-profile"],
+  });
+  const profileData = res.data;
+
+  const footerLinks = [
+    {
+      title: "ABOUT",
+      links: [
+        { label: "About Clapbac", href: "/about-us" },
+        { label: "FAQs", href: "/faq" },
+        { label: "Contact Us", href: "/contact-us" },
+      ],
+    },
+    {
+      title: "COMMUNITY",
+      links: [
+        // Only show these if the user is NOT logged in
+        ...(!profileData
+          ? [
+              { label: "Log In", href: "/login" },
+              { label: "Sign Up", href: "/signup" },
+            ]
+          : []),
+        { label: "Help Center", href: "#" },
+      ],
+    },
+    {
+      title: "FOR BUSINESSES",
+      links: [
+        { label: "Advertise on Clapbac", href: "/advertise-on-clapbac" },
+        { label: "Clapbac for Business", href: "/clapbac-for-business" },
+      ],
+    },
+  ];
+
   return (
     <footer className="bg-[#181716] text-white py-20 px-6 md:px">
       <Container className="max-w-screen-2xl mx-auto">
