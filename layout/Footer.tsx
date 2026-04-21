@@ -34,7 +34,7 @@ export default async function Footer() {
               { label: "Sign Up", href: "/signup" },
             ]
           : []),
-        { label: "Help Center", href: "#" },
+        { label: "Help Center", href: "/contact-us" },
       ],
     },
     {
