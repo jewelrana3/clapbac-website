@@ -72,7 +72,11 @@ export default function SingleComment({
             <div className="text-sm">
               <div>
                 <div>
-                  <p>CLAPBAC FROM...</p>
+                  <p className="uppercase">
+                    {reply?.clapbacRating >= 3
+                      ? "Props from…"
+                      : "Clapbac from…"}
+                  </p>
                   {/* name & owner */}
                   <div className="">
                     <div className="flex items-center gap-2">
