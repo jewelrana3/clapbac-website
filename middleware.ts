@@ -100,7 +100,7 @@ export const config = {
     // Add missing routes here:
     "/dashboard/:path*",
     "/bussiness-categories/:id",
-    "/clapbac-reviews/:id",
+    // "/clapbac-reviews/:id",
     // "/reviewers",
     "/rate-reviewer",
   ],

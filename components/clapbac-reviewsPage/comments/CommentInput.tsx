@@ -22,7 +22,6 @@ export default function CommentInput({
   const [error, setError] = useState("");
 
   const handleSubmitComment = async (e: React.FormEvent) => {
-    toast.loading("Sending...", { id: "comment" });
     e.preventDefault();
 
     if (!message.trim()) {
@@ -36,6 +35,7 @@ export default function CommentInput({
       message,
     };
 
+    toast.loading("Submitting...", { id: "comment" });
     try {
       const res = await myFetch("/comments/create", {
         method: "POST",

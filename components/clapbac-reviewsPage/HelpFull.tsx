@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import help from "../../public/clapbac-reviews/help.svg";
 import Image from "next/image";
 import { myFetch } from "@/utils/myFetch";
+import { useRouter } from "next/navigation";
 
-export default function HelpFull({ reviews: review }: any) {
+export default function HelpFull({ reviews: review, profileData }: any) {
   const reviewId = review?._id;
   const localKey = `helpful-${reviewId}`;
 
+  const router = useRouter();
   const [isHelpful, setIsHelpful] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(review?.helpfulCount || 0);
 
@@ -21,6 +23,11 @@ export default function HelpFull({ reviews: review }: any) {
   }, [localKey]);
 
   const handleToggleHelpful = async () => {
+    if (!profileData) {
+      router.push("/login");
+      return;
+    }
+
     let newCount = helpfulCount;
     if (isHelpful && newCount > 0) {
       newCount--;

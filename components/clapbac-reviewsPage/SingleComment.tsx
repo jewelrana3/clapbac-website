@@ -40,7 +40,6 @@ export default function SingleComment({
   reply: any;
   index: number;
 }) {
-  console.log(reply);
   return (
     <div className=" flex flex-col xl:flex-row justify-between">
       <div
