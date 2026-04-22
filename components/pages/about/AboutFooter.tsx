@@ -1,9 +1,16 @@
 import Button from "@/components/share/Button";
+import { myFetch } from "@/utils/myFetch";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function AboutFooter() {
+export default async function AboutFooter() {
+  const res = await myFetch("/users/profile", {
+    tags: ["users-profile"],
+  });
+
+  const profileData = res?.data;
+
   return (
     <>
       {/* footer */}
@@ -27,11 +34,13 @@ export default function AboutFooter() {
               Say it straight — we’re listening.
             </p>
 
-            <Link href="/signup" className="cursor-pointer">
-              <Button className="bg-[#F05223] text-white rounded-lg font-bold px-5">
-                Log In or Sign Up
-              </Button>
-            </Link>
+            {!profileData && (
+              <Link href="/login" className="cursor-pointer">
+                <Button className="bg-[#F05223] text-white rounded-lg font-bold px-5">
+                  Log In or Sign Up
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </section>
