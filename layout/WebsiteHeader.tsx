@@ -5,16 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { UserDropdownMenu } from "./UserDropdownMenu";
 import ActiveOffer from "@/components/share/ActiveOffer";
 import { Skeleton } from "@/components/ui/skeleton";
 import Search from "@/components/pages/home/Search";
+import { deleteCookie } from "cookies-next/client";
 
 interface ProfileData {
   firstName: string;
   image: string;
+  role: string;
 }
 
 const navItems = [
@@ -32,19 +34,20 @@ export default function WebsiteHeader({
   profileData?: ProfileData;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
-    if (profileData) {
-      setLoading(false);
-    } else {
-      setLoading(false);
-      setError(true);
-    }
+    setLoading(false);
   }, [profileData]);
+
+  const handleLogout = () => {
+    deleteCookie("accessToken");
+    router.push("/login");
+    window.location.replace("/login");
+  };
 
   return (
     <>
@@ -142,17 +145,49 @@ export default function WebsiteHeader({
               ))}
 
               {/* Profile / Login in mobile */}
-              {loading ? (
+              {loading && (
                 <span className="block px-3 py-2 text-gray-400">
                   Loading...
                 </span>
-              ) : error ? (
-                <span className="block px-3 py-2 text-red-500">
-                  Error loading profile
-                </span>
-              ) : profileData ? (
-                <UserDropdownMenu profileData={profileData} />
-              ) : (
+              )}
+              {!loading && profileData && (
+                <div>
+                  {["Admin", "Super Admin"].includes(profileData?.role) && (
+                    <Link
+                      href={"/dashboard"}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block px-3 py-2 font-semibold text-white hover:text-red-500 transition-colors"
+                    >
+                      Dashboard
+                    </Link>
+                  )}
+                  <Link
+                    href={"/profile"}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-3 py-2 font-semibold text-white hover:text-red-500 transition-colors"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href={"/change-password"}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-3 py-2 font-semibold text-white hover:text-red-500 transition-colors"
+                  >
+                    Change Password
+                  </Link>
+                  <Link
+                    href={""}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      handleLogout();
+                    }}
+                    className="block px-3 py-2 font-semibold text-red-500 hover:text-red-500 transition-colors"
+                  >
+                    Logout
+                  </Link>
+                </div>
+              )}
+              {!loading && !profileData && (
                 <Link href="/login">
                   <button
                     onClick={() => setIsMenuOpen(false)}
