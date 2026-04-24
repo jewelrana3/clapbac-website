@@ -9,14 +9,12 @@ import Image from "next/image";
 import { Edit } from "lucide-react";
 import man from "../../public/home-man.png";
 import { revalidate } from "@/utils/revalidateTags";
-import { useRouter } from "next/navigation";
 
 const profileFields = [
   { label: "firstName", placeholder: "First Name" },
   { label: "lastName", placeholder: "Last Name" },
   { label: "title", placeholder: "Title" },
   { label: "phone", placeholder: "phone" },
-  // { label: "email", placeholder: "Email" },
 ];
 
 export default function Profile({ data }: any) {
@@ -120,7 +118,7 @@ export default function Profile({ data }: any) {
   return (
     <div>
       <h1 className="text-2xl font-semibold mb-4">Profile Information</h1>
-      <div className="grid grid-cols-[30%_auto] gap-5 p-5">
+      <div className="grid md:grid-cols-[30%_auto] gap-5 md:p-5">
         {/* image */}
         <div className="relative w-max">
           <div className="border border-gray-300 rounded-full w-[150px] h-[150px] overflow-hidden">
@@ -133,7 +131,7 @@ export default function Profile({ data }: any) {
                 className="rounded-full object-cover h-[150px] w-[150px]"
               />
             ) : (
-              <span className="flex items-center justify-center h-full text-gray-500">
+              <span className="grid md:flex items-center justify-center h-full text-gray-500">
                 No Image
               </span>
             )}
@@ -169,9 +167,12 @@ export default function Profile({ data }: any) {
         <div className="">
           <form onSubmit={handleSubmit} className="space-y-4">
             {profileFields.map((field, index) => (
-              <div key={index} className="flex items-center gap-8 my-3">
+              <div
+                key={index}
+                className="grid md:flex items-center gap-1 md:gap-8 my-3"
+              >
                 <div className="w-40 font-medium text-[#A0A0A0] capitalize">
-                  {field.label}
+                  {field.placeholder}
                 </div>
                 <Input
                   name={field.label}
@@ -184,10 +185,10 @@ export default function Profile({ data }: any) {
               </div>
             ))}
 
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-end pt-4">
               <Button
                 disabled={loading}
-                className="w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg cursor-pointer"
+                className="w-full md:w-[77.5%] bg-[#F05223] hover:bg-[#F05223] h-12! font-semibold text-lg cursor-pointer"
               >
                 Save Changes
               </Button>

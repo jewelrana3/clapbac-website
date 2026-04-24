@@ -158,7 +158,7 @@ export default function BusinessInformationForm({
   };
 
   return (
-    <>
+    <section className="grid md:grid-cols-[30%_auto] gap-5 md:p-5">
       {/* Image upload section */}
       <div className="relative w-max mb-6">
         <div className="border border-gray-300 rounded-full w-[150px] h-[150px] overflow-hidden">
@@ -196,19 +196,19 @@ export default function BusinessInformationForm({
 
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <div className="flex items-center gap-6">
+        <div className="grid md:flex items-center md:gap-6">
           <Label className="w-36 font-medium text-[#A0A0A0]">Name :</Label>
 
           <Input
             {...register("name")}
             type="text"
             placeholder="Company Name"
-            className="flex-1 ml-6 text-[#3D454E]"
+            className="flex-1 md:ml-6 text-[#3D454E]"
           />
         </div>
 
         {/* Business Category */}
-        <div className="flex items-center gap-6">
+        <div className="grid md:flex items-center md:gap-6">
           <Label className="w-52 font-medium text-[#A0A0A0]">Category</Label>
           <Controller
             name="category"
@@ -237,7 +237,7 @@ export default function BusinessInformationForm({
 
         {/** address line one */}
         <div>
-          <div className="flex items-center gap-6">
+          <div className="grid md:flex items-center md:gap-6">
             <Label className="w-36 font-medium text-[#A0A0A0]">
               Address Line 1:
             </Label>
@@ -246,102 +246,102 @@ export default function BusinessInformationForm({
               {...register("address1")}
               type="text"
               placeholder="123 Main Street"
-              className="flex-1 ml-6 text-[#3D454E]"
+              className="flex-1 md:ml-6 text-[#3D454E]"
             />
           </div>
         </div>
 
         {/** city */}
         <div>
-          <div className="flex items-center gap-6">
+          <div className="grid md:flex items-center md:gap-6">
             <Label className="w-36 font-medium text-[#A0A0A0]">City:</Label>
 
             <Input
               {...register("city")}
               type="text"
               placeholder="Enter Your City"
-              className="flex-1 ml-6 text-[#3D454E]"
+              className="flex-1 md:ml-6 text-[#3D454E]"
             />
           </div>
         </div>
         {/** Address */}
         <div>
-          <div className="flex items-center gap-6">
+          <div className="grid md:flex items-center md:gap-6">
             <Label className="w-36 font-medium text-[#A0A0A0]">State:</Label>
 
             <Input
               {...register("state")}
               type="text"
               placeholder="Enter Your State"
-              className="flex-1 ml-6 text-[#3D454E]"
+              className="flex-1 md:ml-6 text-[#3D454E]"
             />
           </div>
         </div>
         {/** Address */}
         <div>
-          <div className="flex items-center gap-6">
+          <div className="grid md:flex items-center md:gap-6">
             <Label className="w-36 font-medium text-[#A0A0A0]">Zip Code:</Label>
 
             <Input
               {...register("zipCode")}
               type="text"
               placeholder="Enter Your Zip Code"
-              className="flex-1 ml-6 text-[#3D454E]"
+              className="flex-1 md:ml-6 text-[#3D454E]"
             />
           </div>
         </div>
         {/** Phone */}
-        <div className="flex items-center gap-6">
+        <div className="grid md:flex items-center md:gap-6">
           <Label className="w-36 font-medium text-[#A0A0A0]">Phone:</Label>
 
           <Input
             {...register("phone")}
             type="text"
             placeholder="Phone"
-            className="flex-1 ml-6 text-[#3D454E]"
+            className="flex-1 md:ml-6 text-[#3D454E]"
           />
         </div>
         {/** Email */}
-        {/* <div className="flex items-center gap-6">
+        {/* <div className="grid md:flex items-center md:gap-6">
           <Label className="w-36 font-medium text-[#A0A0A0]">Email:</Label>
           <Input
             {...register("email")}
             type="email"
             placeholder="company@gmail.com"
-            className="flex-1 ml-6 text-[#3D454E]"
+            className="flex-1 md:ml-6 text-[#3D454E]"
           />
         </div> */}
 
         {/** Website */}
-        <div className="flex items-center gap-6">
+        <div className="grid md:flex items-center md:gap-6">
           <Label className="w-36 font-medium text-[#A0A0A0]">Website:</Label>
           <Input
             {...register("website")}
             type="text"
             placeholder="https://company.com"
-            className="flex-1 ml-6 text-[#3D454E]"
+            className="flex-1 md:ml-6 text-[#3D454E]"
           />
         </div>
 
         {/** About */}
-        <div className="flex items-center gap-6">
+        <div className="grid md:flex items-center md:gap-6">
           <Label className="w-36 font-medium text-[#A0A0A0]">About:</Label>
           <Textarea
             {...register("about")}
             placeholder="Describe your company..."
-            className="flex-1 ml-6 text-[#3D454E]"
+            className="flex-1 md:ml-6 text-[#3D454E]"
           />
         </div>
         {/** Submit */}
         <div className="flex justify-end">
           <Button
             type="submit"
-            className="w-[77.5%] bg-[#F05223] hover:bg-[#d3441f] h-12! font-semibold text-lg"
+            className="w-full md:w-[77.5%] bg-[#F05223] hover:bg-[#d3441f] h-12! font-semibold text-lg"
           >
             Save Changes
           </Button>
         </div>
       </form>
-    </>
+    </section>
   );
 }

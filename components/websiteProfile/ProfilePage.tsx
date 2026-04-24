@@ -10,25 +10,23 @@ export default async function ProfilePage() {
   const company = await myFetch("/companies/my-company");
 
   return (
-    <section className="w-[70%] mx-auto py-10 ">
+    <section className="lg:w-[70%] mx-auto px-4 py-10">
       <div className="bg-[#F8F8F8] p-5">
         {/* profile */}
 
         <Profile data={res?.data} />
 
-        <hr className="h-px bg-[#C9C9C9] border-0" />
+        <hr className="h-px bg-[#C9C9C9] border-0 my-6" />
 
         {res?.data?.role === "Owner" && (
-          <div>
+          <div className="mt-4">
             <h1 className="text-2xl font-semibold my-4">
               Business Information
             </h1>
-            <div className="grid grid-cols-[30%_auto] gap-5 p-5">
-              <BussinessInformationWebsite
-                company={company?.data}
-                categories={categories?.data}
-              />
-            </div>
+            <BussinessInformationWebsite
+              company={company?.data}
+              categories={categories?.data}
+            />
           </div>
         )}
       </div>
