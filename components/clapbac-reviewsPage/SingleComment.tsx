@@ -86,7 +86,7 @@ export default function SingleComment({
                     </div>
                     <p className="capitalize">{reply?.company?.name}</p>
                     <p>
-                      {new Date(reply?.createdAt).toISOString().split("T")[0]}
+                      {new Date(reply?.createdAt).toLocaleDateString("en-US")}
                     </p>
                   </div>
                   <p>{reply?.subName}</p>
@@ -112,7 +112,7 @@ export default function SingleComment({
           </div>
         </div>
       </div>
-      <div className="text-nowrap my-4 lg:my-0 ml-1 md:ml-14 xl:ml-0">
+      <div className="md:text-nowrap my-4 lg:my-0 ml-1 md:ml-14 xl:ml-0">
         <p className="font-bold text-md">
           {reply?.company?.name}’s Rating of {reply?.reviewerName}
         </p>

@@ -60,7 +60,7 @@ export default function ReviewCommentDetails({
                 </span>
               )}
               <p className="text-xs text-gray-400 mb-1">
-                {commentItem?.createdAt?.slice(0, 10)}
+                {new Date(commentItem?.createdAt).toLocaleDateString("en-US")}
               </p>
             </div>
           </div>

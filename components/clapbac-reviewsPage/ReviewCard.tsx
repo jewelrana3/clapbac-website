@@ -41,9 +41,9 @@ const ReviewCard = ({ reviews: review }: { reviews: any }) => {
       {review?.createdAt && review?.updatedAt && (
         <p className="text-xs text-gray-500 mt-2">
           Original Review Excerpted from {review?.reviewSource} | Date of
-          Review: {new Date(review?.createdAt).toISOString().split("T")[0]} |
+          Review: {new Date(review?.createdAt).toLocaleDateString("en-US")} |
           Date of Experience:{" "}
-          {new Date(review?.experienceDate).toISOString().split("T")[0]}
+          {new Date(review?.experienceDate).toLocaleDateString("en-US")}
         </p>
       )}
 
