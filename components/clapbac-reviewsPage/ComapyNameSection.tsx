@@ -21,7 +21,7 @@ export default function ComapyNameSection({ details: business }: any) {
         {business?.name}
       </h1>
       <div className=" shadow-lg  border-8 border-[#C5D92D] my-4">
-        <div className="bg-white p-3 flex flex-col md:flex-row gap-7 md:justify-around md:items-center ">
+        <div className="bg-white p-3 flex flex-col md:flex-row gap-1 md:gap-7 md:justify-around md:items-center ">
           <div className="flex items-center md:justify-center gap-5">
             <div className="">
               {business?.logo && (

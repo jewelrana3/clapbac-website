@@ -13,9 +13,9 @@ export default function ReviewAndComment({
   const [replyComment, setReplyComment] = useState(null);
 
   return (
-    <div className=" px-6 bg-white">
+    <div className="px-4 md:px-6 bg-white">
       {/* ReviewCommentDetails */}
-      <div className=" pl-4 space-y-6">
+      <div className="md:pl-4 space-y-6">
         {review?.comments?.map((comment: any, index: number) => {
           return (
             <div key={comment._id}>

@@ -17,9 +17,10 @@ const ReviewCard = ({ reviews: review }: { reviews: any }) => {
       <div className="flex flex-col md:flex-row justify-between items-start gap-2">
         <div>
           <h3 className="font-bold text-lg">{review?.reviewerName}</h3>
-          <p className="text-sm">
-            Reviewer Type: {review?.reviewerType} | Reviewer Consequence:{" "}
-            {review?.reviewerConsequence}
+          <p className="text-sm flex flex-col md:flex-row gap-x-1.5">
+            <span>Reviewer Type: {review?.reviewerType}</span>
+            <span className="hidden md:block">|</span>
+            <span>Reviewer Consequence: {review?.reviewerConsequence}</span>
           </p>
           <p className="text-sm ">{review?.reviewerAddress}</p>
         </div>
@@ -48,7 +49,7 @@ const ReviewCard = ({ reviews: review }: { reviews: any }) => {
 
       {/* Excerpt */}
       <div className="mt-4">
-        <p className="font-semibold text-gray-800 flex flex-col sm:flex-row items-center mb-2">
+        <p className="font-semibold text-gray-800 flex flex-col sm:flex-row items-center gap-3 mb-2">
           <span className="flex items-center gap-1 text-xl text-gray-400 mr-2">
             {review?.reviewRating && (
               <span className="flex gap-1">

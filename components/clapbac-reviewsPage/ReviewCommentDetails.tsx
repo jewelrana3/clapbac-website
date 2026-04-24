@@ -20,7 +20,7 @@ export default function ReviewCommentDetails({
         style={{ marginLeft: index === 0 ? 0 : "" }}
       >
         {/* left logo */}
-        <Image src={left} alt="Logo" className="hidden sm:block h-10" />
+        <Image src={left} alt="Logo" className="h-10" />
 
         <div className="">
           <div className="flex flex-row items-center gap-2">
@@ -66,7 +66,6 @@ export default function ReviewCommentDetails({
           </div>
 
           <p className="text-sm text-gray-700 mt-1">{commentItem?.message}</p>
-          {/* <p className="text-sm text-gray-700 mt-1">{commentItem?.message}</p> */}
 
           <button
             className="hover:underline p-1 rounded text-sm font-semibold text-gray-500 cursor-pointer text-start"

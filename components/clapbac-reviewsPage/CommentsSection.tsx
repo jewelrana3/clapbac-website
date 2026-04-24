@@ -66,10 +66,14 @@ export default function CommentsSection({
       </div>
       {replyComment?.message && (
         <div className="p-2 my-2 bg-gray-100 rounded-lg max-w-xs">
-          <p className="text-xs flex justify-between items-center gap-2">
-            <span>{replyComment?.user?.firstName}</span>{" "}
+          <p className="text-xs flex justify-between items-center gap-2 mb-1">
+            <span className="font-semibold">
+              {replyComment?.user?.firstName}
+            </span>{" "}
             <span className="flex items-center gap-2">
-              <span>{new Date().toLocaleString()}</span>
+              <span className="text-gray-500">
+                {new Date(replyComment?.updatedAt).toLocaleString()}
+              </span>
               <XIcon
                 size={16}
                 className="cursor-pointer"
