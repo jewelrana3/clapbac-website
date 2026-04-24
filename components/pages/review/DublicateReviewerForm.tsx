@@ -121,10 +121,10 @@ export default function DublicateReviewerRatingForm() {
     <div className="max-w-3xl mx-auto p-6 bg-white space-y-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-3xl mx-auto p-6 bg-white space-y-6"
+        className="max-w-3xl mx-auto md:p-6 bg-white space-y-6"
       >
         {/* Your Rating */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col-reverse md:flex-row justify-between md:items-center gap-4">
           <div className="flex items-center gap-5">
             <RenderStars
               initialRating={rating.yourRating}
@@ -186,7 +186,7 @@ export default function DublicateReviewerRatingForm() {
               {errors.reviewerName.message}
             </p>
           )}
-          <p className="italic text-[#3D454E]">
+          <p className="italic text-[#3D454E] text-sm md:text-base">
             Please use first name and last initial only (e.g., Sarah M.) to
             respect privacy and comply with Fair Use.
           </p>
@@ -225,7 +225,7 @@ export default function DublicateReviewerRatingForm() {
               {errors.reviewMessage.message}
             </p>
           )}
-          <p className="italic text-[#3D454E]">
+          <p className="italic text-[#3D454E] text-sm md:text-base">
             Review needs to be short excerpts from original review to comply
             with the Fair Use.
           </p>
