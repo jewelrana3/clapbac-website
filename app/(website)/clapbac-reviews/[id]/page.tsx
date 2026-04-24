@@ -31,7 +31,7 @@ export default async function Review({ params }: any) {
         <section className="my-10 flex flex-col lg:flex-row gap-10">
           <div className="flex-1">
             <ComapyNameSection details={companyDetails?.data} />
-            <div className="bg-[#E9E9E9] p-6 space-y-6">
+            <div className="bg-[#E9E9E9] p-4 md:p-6 space-y-6">
               {companyReviews.length > 0 ? (
                 companyReviews?.map((item: any, index: number) => (
                   <div key={index} className="bg-white p-6 shadow-lg">

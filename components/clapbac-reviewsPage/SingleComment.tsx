@@ -41,7 +41,7 @@ export default function SingleComment({
   index: number;
 }) {
   return (
-    <div className=" flex flex-col xl:flex-row justify-between">
+    <div className=" flex flex-col-reverse xl:flex-row justify-between">
       <div
         className={`flex items-start gap-3 `}
         style={{ marginLeft: index === 0 ? 0 : index * 33 }}
@@ -64,7 +64,7 @@ export default function SingleComment({
                   height={0}
                   alt="Logo"
                   sizes="100vh"
-                  className="w-8 h-8 sm:w-20 sm:h-20 rounded-full object-cover"
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
                 />
               )}
             </div>
@@ -112,7 +112,7 @@ export default function SingleComment({
           </div>
         </div>
       </div>
-      <div className="text-nowrap my-4 lg:my-0 ml-14 xl:ml-0">
+      <div className="text-nowrap my-4 lg:my-0 ml-1 md:ml-14 xl:ml-0">
         <p className="font-bold text-md">
           {reply?.company?.name}’s Rating of {reply?.reviewerName}
         </p>

@@ -14,7 +14,7 @@ const ReviewCard = ({ reviews: review }: { reviews: any }) => {
   return (
     <div className="border-b   pb-6 mb-6">
       {/* Header */}
-      <div className="flex justify-between items-start">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-2">
         <div>
           <h3 className="font-bold text-lg">{review?.reviewerName}</h3>
           <p className="text-sm">

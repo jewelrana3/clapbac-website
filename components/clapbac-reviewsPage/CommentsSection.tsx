@@ -29,7 +29,7 @@ export default function CommentsSection({
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row gap-3 mt-10 mb-4">
+      <div className="flex flex-col-reverse sm:flex-row gap-3 mt-10 mb-4">
         <div className="">
           <button
             className="flex items-center gap-1 px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition cursor-pointer"

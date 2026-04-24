@@ -59,7 +59,7 @@ export default function CommentInput({
   };
 
   return (
-    <div className="w-[55%]">
+    <div className="md:w-[55%]">
       <Textarea
         className="rounded placeholder:text-sm"
         placeholder="Write your comment..."
@@ -70,7 +70,7 @@ export default function CommentInput({
         }}
       />
       <p className="text-sm text-red-500">{error}</p>
-      <div className="flex space-x-4 mt-4">
+      <div className="flex gap-2 md:gap-4 mt-4">
         <Button
           onClick={() => setReplyComment(false)}
           type="submit"
