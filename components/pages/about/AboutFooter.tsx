@@ -14,7 +14,7 @@ export default async function AboutFooter() {
   return (
     <>
       {/* footer */}
-      <section className="bg-[#E9E9E9]">
+      <section className="bg-[#E9E9E9] p-4">
         <div className="flex flex-col lg:flex-row items-center justify-center py-16 gap-8">
           {/* Left image */}
           <Image
