@@ -1,6 +1,6 @@
-# 🌐 My Website – Built with Next.js
+# 🌐 Clapbac
 
-Welcome to **My Website**, a modern web application built using [Next.js](https://nextjs.org/) and bootstrapped with `create-next-app`. This project is optimized for performance and styled using the elegant [Geist](https://vercel.com/font) font by Vercel.
+This isn’t another review site. Clapbac is where business owners fight back. No more silent frustration while trolls run wild. Rate the reviewers, expose the haters, drop stars on critics, tag shady haters and honor great patrons boldly! Reclaim your reputation, your business, your comeback. Rate the raters at Clapbac.
 
 ---
 
@@ -18,48 +18,27 @@ yarn install
 yarn dev
 # or
 npm run dev
-
+```
 
 Open http://localhost:3000
 
+💻 GitHub Repo
+ – https://github.com/rahad-ullah
 
-🛠️ Development
-
-The main page is located at: app/page.tsx
-
-The page auto-updates as you edit the file.
-
-This project uses next/font
- to optimize and load Geist, a clean and modern font.
-
-🔍 Learn More
-
-Here are some helpful links to deepen your Next.js knowledge:
-
-📘 Next.js Documentation
- – https://nextjs.org/docs
-
-🧪 Learn Next.js
- – Interactive tutorial to get started quickly.
-
-💻 Next.js GitHub Repo
- – https://github.com/jewelrana3/clapbac-website
-
-🚢 Deployment
-
-The easiest way to deploy your app is through Vercel
-, the platform built by the creators of Next.js.
-
-📄 Deployment Documentation
- – Learn how to deploy your app step-by-step.
-
-🌟 Feedback
-
-Feel free to open issues or contribute. We’d love to hear your thoughts and ideas to improve the project!
-
-
-# # env file
-
-# BASE_URL=http://82.180.137.106:5000/api/v1
-# NEXT_PUBLIC_BASE_URL=http://82.180.137.106:5000
+## Create `.env.local` at the root and paste 
+```markdown
+BASE_URL=http://82.180.137.106:5000/api/v1
+NEXT_PUBLIC_BASE_URL=http://82.180.137.106:5000
 ```
+## 👨‍💻 Developer
+
+Built with ❤️ by [**Rahad Ullah**](mailto:rahadullah10@gmail.com)
+
+> "Turning complex problems into elegant, efficient code."
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Rahad-Ullah)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=react&logoColor=white)](https://rahadullah.vercel.app)
+
+---
+
+### Happy Coding 🚀
