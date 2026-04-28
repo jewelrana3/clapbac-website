@@ -1,7 +1,12 @@
 {
-  "name": "clapback-website",
+  "name": "clapbac",
+  "description": "Rating Website",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Rahad Ullah",
+    "email": "rahadullah10@gmail.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
