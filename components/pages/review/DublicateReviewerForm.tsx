@@ -382,7 +382,7 @@ export default function DublicateReviewerRatingForm() {
                   <BotIcon /> AI
                 </Button>
               }
-              className="w-[70vw] max-h-[80vh] overflow-y-scroll scroll-hidden p-6"
+              className="w-[90vw] md:w-[70vw] max-h-[80vh] overflow-y-scroll scroll-hidden p-4 md:p-6"
             >
               <AIReviewGenerator
                 context={reviewMessage || ""}

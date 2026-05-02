@@ -9,7 +9,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Switch } from "@/components/ui/switch";
 import { myFetch } from "@/utils/myFetch";
 import toast from "react-hot-toast";
-import { Loader, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { DialogClose } from "@/components/ui/dialog";
 import {
   Select,
@@ -32,7 +32,7 @@ export default function AIReviewGenerator({
   const [lengthInWords, setLengthInWords] = useState([50]);
   const [useHashTags, setUseHashtags] = useState(false);
   const [useEmojis, setUseEmojis] = useState(true);
-  const [resultCount, setResultCount] = useState(3);
+  const [resultCount, setResultCount] = useState(1);
   const tones = [
     "Polite",
     "Witty",
@@ -99,10 +99,10 @@ export default function AIReviewGenerator({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-gray-50 h-auto">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 bg-gray-50 h-auto">
       {/* Left Panel */}
       <Card className="lg:col-span-1 rounded-2xl shadow-none border">
-        <CardContent className="space-y-6 p-6">
+        <CardContent className="space-y-6 p-4 md:p-6">
           <form className="space-y-6">
             {/* Prompt */}
             <div>
@@ -212,7 +212,7 @@ export default function AIReviewGenerator({
                 value={resultCount}
                 onChange={(e) => setResultCount(Number(e.target.value))}
                 className="px-3 py-1 rounded-lg border w-16 text-center"
-                min={3}
+                min={1}
                 max={5}
               />
             </div>
@@ -231,7 +231,7 @@ export default function AIReviewGenerator({
 
       {/* Right Panel */}
       <Card className="lg:col-span-2 rounded-2xl shadow-none border">
-        <CardContent className="p-6 space-y-4 h-full max-h-[650px] overflow-y-scroll scroll-hidden">
+        <CardContent className="p-4 md:p-6 space-y-4 h-full md:max-h-[650px] overflow-y-scroll scroll-hidden">
           <div className="flex justify-between items-center">
             <h2 className="font-semibold text-lg">Results</h2>
             <Button
@@ -281,11 +281,11 @@ export default function AIReviewGenerator({
 
           {/* Use selected button */}
           {!isLoading && results.length > 0 && (
-            <div className="flex justify-end pt-4 mt-auto">
+            <div className="flex justify-end pt-2 md:pt-4 mt-auto">
               <DialogClose asChild>
                 <Button
                   type="button"
-                  className="rounded-md px-6"
+                  className="rounded-md px-6 w-full md:w-auto"
                   onClick={() => {
                     setValue("clapbacTitle", results[selected]?.title || "");
                     setValue(
