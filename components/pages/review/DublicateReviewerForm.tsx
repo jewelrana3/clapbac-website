@@ -22,15 +22,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { BotIcon, Loader2 } from "lucide-react";
 import CustomModal from "@/modal/CustomModal";
 import AIReviewGenerator from "./AIReviewGenerateForm";
-type Rating = { yourRating: number; bussinessRating: number };
+type Rating = {
+  yourRating: number;
+  bussinessRating: number;
+  ratingError: string;
+  businessRatingError: string;
+};
 
 export default function DublicateReviewerRatingForm() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAIAutoFillLoading, setIsAIAutoFillLoading] = useState(false);
   const [rating, setRating] = useState<Rating>({
-    yourRating: 0.5,
-    bussinessRating: 0.5,
+    yourRating: 0,
+    bussinessRating: 0,
+    ratingError: "",
+    businessRatingError: "",
   });
   const [isOtherType, setIsOtherType] = useState(false);
   const [yelpText, setYelpText] = useState("");
@@ -60,9 +67,27 @@ export default function DublicateReviewerRatingForm() {
   });
 
   const onSubmit = async (data: any) => {
-    setIsSubmitting(true);
-    toast.loading("Submitting...", { id: "review" });
+    // check if any field is empty
+    if (rating.yourRating === 0) {
+      setRating((prev) => ({
+        ...prev,
+        ratingError: "Please choose your rating.",
+      }));
+      return toast.error("Please choose your rating.", {
+        id: "review",
+      });
+    } else if (rating.bussinessRating === 0) {
+      setRating((prev) => ({
+        ...prev,
+        businessRatingError: "Please choose business rating.",
+      }));
+      return toast.error("Please choose business rating.", {
+        id: "review",
+      });
+    }
 
+    toast.loading("Submitting...", { id: "review" });
+    setIsSubmitting(true);
     try {
       const res = await myFetch("/reviews/create", {
         method: "POST",
@@ -77,7 +102,12 @@ export default function DublicateReviewerRatingForm() {
         toast.success("Review submitted successfully!", { id: "review" });
         reset();
         revalidate("reviews");
-        setRating({ yourRating: 0, bussinessRating: 0 });
+        setRating({
+          yourRating: 0,
+          bussinessRating: 0,
+          ratingError: "",
+          businessRatingError: "",
+        });
         router.push(`/clapbac-reviews/${res?.data?.company}`);
       } else {
         toast.error(
@@ -91,7 +121,7 @@ export default function DublicateReviewerRatingForm() {
       setIsAIAutoFillLoading(false);
       setIsSubmitting(false);
     }
-  };
+  };;
 
   const handleAIAutoFill = async () => {
     setIsAIAutoFillLoading(true);
@@ -124,27 +154,36 @@ export default function DublicateReviewerRatingForm() {
         className="max-w-3xl mx-auto md:p-6 bg-white space-y-6"
       >
         {/* Your Rating */}
-        <div className="flex flex-col-reverse md:flex-row justify-between md:items-center gap-4">
-          <div className="flex items-center gap-5">
-            <RenderStars
-              initialRating={rating.yourRating}
-              onRatingChange={(newRating: number) =>
-                setRating((prev) => ({ ...prev, yourRating: newRating }))
-              }
-            />
-            <div className="inline-block bg-[#c6db24] text-black font-semibold px-4 py-3 rounded-md text-sm relative clip-tag mt-2 md:mt-0">
-              Choose Your Rating
+        <div>
+          <div className="flex flex-col-reverse md:flex-row justify-between md:items-center gap-4">
+            <div className="flex items-center gap-5">
+              <RenderStars
+                initialRating={rating.yourRating}
+                onRatingChange={(newRating: number) =>
+                  setRating((prev) => ({
+                    ...prev,
+                    yourRating: newRating,
+                    ratingError: "",
+                  }))
+                }
+              />
+              <div className="inline-block bg-[#c6db24] text-black font-semibold px-4 py-3 rounded-md text-sm relative clip-tag mt-2 md:mt-0">
+                Choose Your Rating
+              </div>
+            </div>
+            <div className="flex items-end mt-2 md:mt-0">
+              <Link
+                target="_blank"
+                href="/review-guildliness"
+                className="text-sm text-[#3D454E] font-semibold hover:underline"
+              >
+                Read Our Review Guidelines
+              </Link>
             </div>
           </div>
-          <div className="flex items-end mt-2 md:mt-0">
-            <Link
-              target="_blank"
-              href="/review-guildliness"
-              className="text-sm text-[#3D454E] font-semibold hover:underline"
-            >
-              Read Our Review Guidelines
-            </Link>
-          </div>
+          {rating.ratingError && (
+            <p className="text-red-500 text-sm mt-1">{rating.ratingError}</p>
+          )}
         </div>
 
         {/* ai auto fill */}
@@ -291,9 +330,18 @@ export default function DublicateReviewerRatingForm() {
           <RenderStars
             initialRating={rating.bussinessRating}
             onRatingChange={(val: number) =>
-              setRating((prev) => ({ ...prev, bussinessRating: val }))
+              setRating((prev) => ({
+                ...prev,
+                bussinessRating: val,
+                businessRatingError: "",
+              }))
             }
           />
+          {rating.businessRatingError && (
+            <p className="text-red-500 text-sm mt-1">
+              {rating.businessRatingError}
+            </p>
+          )}
         </div>
 
         {/* Clapback Title */}
