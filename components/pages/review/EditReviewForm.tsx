@@ -110,7 +110,9 @@ export default function EditReviewForm({ review }: any) {
           ratingError: "",
           businessRatingError: "",
         });
-        router.push(`/clapbac-reviews/${res?.data?.company}`);
+        router.push(
+          `/clapbac-reviews/${res?.data?.company}#review-${review?._id}`,
+        );
       } else {
         toast.error(
           (res as any)?.error[0].message || "Review submission failed.",

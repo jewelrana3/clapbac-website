@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import SearchBar from "../pages/bussinessCategory/Search";
 import { usePathname } from "next/navigation";
 

@@ -9,7 +9,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, LayoutDashboard, User, KeyRound } from "lucide-react";
+import {
+  LogOut,
+  LayoutDashboard,
+  User,
+  KeyRound,
+  MessageCircleMore,
+} from "lucide-react";
 import Link from "next/link";
 import { deleteCookie } from "cookies-next/client";
 import UserImage from "@/components/share/customImageHandle/UserImage";
@@ -36,10 +42,6 @@ export function UserDropdownMenu({ profileData }: Props) {
     window.location.replace("/login");
   };
 
-  const handleDashboard = () => {
-    router.push("/dashboard");
-  };
-
   if (!profileData) return null;
 
   return (
@@ -61,13 +63,21 @@ export function UserDropdownMenu({ profileData }: Props) {
         <DropdownMenuSeparator />
 
         {["Admin", "Super Admin"].includes(profileData.role || "") && (
-          <DropdownMenuItem
-            onClick={handleDashboard}
-            className="text-sm cursor-pointer hover:bg-gray-100 flex items-center"
-          >
-            <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
-            Dashboard
-          </DropdownMenuItem>
+          <Link href="/dashboard">
+            <DropdownMenuItem className="text-sm cursor-pointer hover:bg-gray-100 flex items-center">
+              <LayoutDashboard className="h-4 w-4 mr-2 text-gray-600" />
+              Dashboard
+            </DropdownMenuItem>
+          </Link>
+        )}
+
+        {profileData.role === "Owner" && (
+          <Link href="/my-reviews">
+            <DropdownMenuItem className="text-sm cursor-pointer hover:bg-gray-100 flex items-center">
+              <MessageCircleMore className="h-4 w-4 mr-2 text-gray-600" />
+              My Reviews
+            </DropdownMenuItem>
+          </Link>
         )}
 
         <Link href="/profile">
