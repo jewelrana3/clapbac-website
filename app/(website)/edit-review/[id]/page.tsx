@@ -4,11 +4,7 @@ import SectionTitle from "@/components/share/SectionTitle";
 import { myFetch } from "@/utils/myFetch";
 import React from "react";
 
-export default async function EditReviewPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function EditReviewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const res = await myFetch(`/reviews/single/${id}`, { tags: ["reviews"] });
   const review = res?.data;
