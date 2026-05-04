@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    scrollRestoration: true, // enables scroll restoration
+  },
 };
 
 export default nextConfig;

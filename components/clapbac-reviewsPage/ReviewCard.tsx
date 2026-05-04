@@ -1,18 +1,12 @@
 import React from "react";
-import { parseISO, format } from "date-fns";
 import {
   ratingCaculate,
   ratingCaculate2,
 } from "../share/rating/ratingCaculate";
 
 const ReviewCard = ({ reviews: review }: { reviews: any }) => {
-  // date
-  const formattedDate = (date: string) => {
-    return format(parseISO(date), "MMMM d, yyyy");
-  };
-
   return (
-    <div className="border-b   pb-6 mb-6">
+    <div className="border-b pb-6 mb-6">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start gap-2">
         <div>

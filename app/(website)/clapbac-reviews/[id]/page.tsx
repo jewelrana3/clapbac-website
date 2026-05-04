@@ -34,7 +34,11 @@ export default async function Review({ params }: any) {
             <div className="bg-[#E9E9E9] p-4 md:p-6 space-y-6">
               {companyReviews.length > 0 ? (
                 companyReviews?.map((item: any, index: number) => (
-                  <div key={index} className="bg-white p-6 shadow-lg">
+                  <div
+                    key={index}
+                    id={`review-${item._id}`}
+                    className="bg-white p-6 shadow-lg"
+                  >
                     {/* review card */}
                     <ReviewCard reviews={item} />
                     <SingleComment reply={item} index={0} />

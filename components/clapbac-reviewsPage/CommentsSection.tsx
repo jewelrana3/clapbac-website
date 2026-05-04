@@ -8,6 +8,8 @@ import CommentInput from "./comments/CommentInput";
 import { myFetch } from "@/utils/myFetch";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { copyToClipboard } from "@/utils/copyToClipboard";
 
 export default function CommentsSection({
   review,
@@ -26,6 +28,18 @@ export default function CommentsSection({
     };
     getProfile();
   }, []);
+
+  // handle copy message
+  const handleCopyMessage = () => {
+    const message = `A response related to your review is available on Clapbac. If you’d like to view it, you can use the below: https://clapbac.com/clapbac-reviews/${review?.company?._id}#review-${review?._id}`;
+
+    // call the utility
+    copyToClipboard(
+      message,
+      "Message copied to clipboard!",
+      "Failed to copy message.",
+    );
+  };
 
   return (
     <>
@@ -63,6 +77,17 @@ export default function CommentsSection({
             <HelpFull reviews={review} profileData={profileData} />
           </div>
         )}
+
+        {/* Copy Message to Reviewer */}
+        <div>
+          <button
+            onClick={handleCopyMessage}
+            className="text-sm md:text-base px-4 py-2 border border-gray-600 rounded-md text-gray-800 hover:bg-gray-100 transition"
+          >
+            {/* <Copy className="size-4 text-gray-500" /> */}
+            Copy Message to Reviewer
+          </button>
+        </div>
       </div>
       {replyComment?.message && (
         <div className="p-2 my-2 bg-gray-100 rounded-lg max-w-xs">
