@@ -236,9 +236,7 @@ export default function DublicateReviewerRatingForm() {
           <Label>City and State of Reviewer you are Rating</Label>
           <input
             className="border p-2 w-full"
-            {...register("reviewerAddress", {
-              required: "Reviewer address is required",
-            })}
+            {...register("reviewerAddress")}
             placeholder="Enter address"
           />
           {errors.reviewerAddress && (
@@ -274,9 +272,7 @@ export default function DublicateReviewerRatingForm() {
           <Label>Date of Experience</Label>
           <input
             className="border p-2 w-full"
-            {...register("experienceDate", {
-              required: "Experience date is required",
-            })}
+            {...register("experienceDate")}
             type="date"
           />
           {errors.experienceDate && (
@@ -309,7 +305,6 @@ export default function DublicateReviewerRatingForm() {
           <input
             className="border p-2 w-full"
             {...register("sourceLink", {
-              required: "Source link is required.",
               pattern: {
                 value: /^(https?:\/\/[^\s$.?#].[^\s]*)$/i,
                 message: "Enter a valid URL.",
