@@ -5,6 +5,8 @@ import "./globals.css";
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
 import { Toaster } from "react-hot-toast";
+import Script from "next/script";
+import { AnalyticsTracker } from "./analytics";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -61,11 +63,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scrollbar-hide">
+      <head>
+        {/* Load the Google Analytics script */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-ZQX0HF58NB`}
+        />
+
+        {/* Initialize gtag */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZQX0HF58NB');
+          `}
+        </Script>
+      </head>
       <body className={`${lato.className} antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />
         <Toaster position="bottom-right" />
+
+        {/* Render the client tracker component */}
+        <AnalyticsTracker />
       </body>
     </html>
   );
