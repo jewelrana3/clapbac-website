@@ -6,7 +6,7 @@ export default async function HeroSection() {
     <>
       <div>
         <video
-          src="/hero-section-video.mp4"
+          src="https://clapbac-bucket-2.s3.us-west-1.amazonaws.com/video/hero-section-video.mp4"
           autoPlay
           loop
           muted
