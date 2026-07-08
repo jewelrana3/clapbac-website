@@ -1,37 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import { FaRegStar, FaStar } from "react-icons/fa";
-import { FaRegStarHalfStroke } from "react-icons/fa6";
 import left from "../../public/clapbac-reviews/left.svg";
 import share from "../../public/clapbac-reviews/man.jpg";
-
-const ratingCaculate = (rating: number) => {
-  const fullStars = Math.floor(rating);
-  const hasHalf = rating % 1 >= 0.5;
-  const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
-
-  return (
-    <>
-      {[...Array(fullStars)].map((_, i) => (
-        <FaStar
-          key={`full-${i}`}
-          className="text-[#F05223] text-2xl bg-[#D9D9D9]"
-        />
-      ))}
-
-      {hasHalf && (
-        <FaRegStarHalfStroke className="text-[#F05223] text-2xl bg-[#D9D9D9]" />
-      )}
-
-      {[...Array(emptyStars)].map((_, i) => (
-        <FaRegStar
-          key={`empty-${i}`}
-          className="text-[#F05223] text-2xl bg-[#D9D9D9]"
-        />
-      ))}
-    </>
-  );
-};
+import { ratingDefault2 } from "../share/rating/ratingCaculate";
 
 export default function SingleComment({
   reply,
@@ -119,7 +90,7 @@ export default function SingleComment({
 
         {reply?.reviewRating && (
           <p className="mt-1 flex gap-1 xl:justify-end ">
-            {ratingCaculate(reply?.clapbacRating)}
+            {ratingDefault2(reply?.clapbacRating)}
           </p>
         )}
       </div>
