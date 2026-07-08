@@ -83,18 +83,34 @@ export default async function Footer() {
         <div className=" mt-10 pt-6 text-xs flex flex-col md:flex-row justify-between ">
           <div>
             <div className="flex items-center space-x-2 mb-3 mr-4">
-              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+              <Link
+                href={"https://www.instagram.com/clapbacofficial"}
+                target="_blank"
+                className="hover:bg-gray-500 p-1 rounded-full cursor-pointer"
+              >
                 <Instagram size={24} />
-              </p>
-              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+              </Link>
+              <Link
+                href={"#"}
+                target="_blank"
+                className="hover:bg-gray-500 p-1 rounded-full cursor-pointer"
+              >
                 <BsTwitterX size={22} />
-              </p>
-              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+              </Link>
+              <Link
+                href={"https://www.tiktok.com/@clapbacofficial"}
+                target="_blank"
+                className="hover:bg-gray-500 p-1 rounded-full cursor-pointer"
+              >
                 <FaTiktok size={22} />
-              </p>
-              <p className="hover:bg-gray-500 p-1 rounded-full cursor-pointer">
+              </Link>
+              <Link
+                href={"https://www.facebook.com/people/ClapBac/61583835840487"}
+                target="_blank"
+                className="hover:bg-gray-500 p-1 rounded-full cursor-pointer"
+              >
                 <Facebook size={24} />
-              </p>
+              </Link>
             </div>
             <p className="condition">
               © {currentYear} Clapbac | All Rights Reserved.
