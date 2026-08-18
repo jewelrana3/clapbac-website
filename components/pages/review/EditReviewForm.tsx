@@ -243,7 +243,7 @@ export default function EditReviewForm({ review }: any) {
           <input
             className="border p-2 w-full"
             {...register("reviewerAddress", {
-              required: "Reviewer address is required",
+              // required: "Reviewer address is required",
             })}
             placeholder="Enter address"
           />
@@ -285,7 +285,7 @@ export default function EditReviewForm({ review }: any) {
           <input
             className="border p-2 w-full"
             {...register("experienceDate", {
-              required: "Experience date is required",
+              // required: "Experience date is required",
             })}
             type="date"
           />
