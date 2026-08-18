@@ -37,7 +37,9 @@ const ReviewCard = ({ reviews: review }: { reviews: any }) => {
           Original Review Excerpted from {review?.reviewSource} | Date of
           Review: {new Date(review?.createdAt).toLocaleDateString("en-US")} |
           Date of Experience:{" "}
-          {new Date(review?.experienceDate).toLocaleDateString("en-US")}
+          {review?.experienceDate
+            ? new Date(review?.experienceDate).toLocaleDateString("en-US")
+            : "N/A"}
         </p>
       )}
 
